@@ -56,7 +56,9 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     
     /* Filling the surface with red color. */
     //SDL_FillRect(pTempSurface, NULL, SDL_MapRGB(pTempSurface->format, 255, 0, 0));
-    SDL_Surface* pTempSurface = SDL_LoadBMP("rider.bmp");
+    
+    
+    SDL_Surface* pTempSurface = SDL_LoadBMP(resource.c_str());
     if(pTempSurface == 0){
         std::cout << "surface creation failed\n";
     }

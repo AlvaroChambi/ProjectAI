@@ -29,7 +29,9 @@ bool Game::isRunning()
 void Game::onInit()
 {
     renderer->init();
-    sprite = renderer->loadTexture("resource");
+    sprite = renderer->loadTexture("rider.bmp");
+    sprite2 = renderer->loadTexture("test.bmp");
+    scene->attachTexture(sprite2);
     scene->attachTexture(sprite);
     scene->registerListener(this);
 }

@@ -34,6 +34,7 @@ private:
     SDLInputHandler* inputHandler;
     Scene* scene;
     Texture* sprite;
+    Texture* sprite2;
 };
 
 #endif /* defined(__ProjectWar__Game__) */

@@ -9,11 +9,14 @@
 #ifndef ProjectWar_IGameEventsListener_h
 #define ProjectWar_IGameEventsListener_h
 
+#include "Tile.h"
+
 class IGameEventsListener
 {
 public:
     virtual void onTextureClicked(const Texture texture) = 0;
     virtual void onSceneClicked(const Point position) = 0;
+    virtual void onMapClicked(const Tile tile) = 0;
 };
 
 #endif

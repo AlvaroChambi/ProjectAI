@@ -15,6 +15,7 @@
 #include "Renderer.h"
 #include "Event.h"
 #include "IGameEventsListener.h"
+#include "Map.h"
 
 class Scene
 {
@@ -25,6 +26,7 @@ public:
     void attachTexture(Texture* texture);
     void handleEvent(const Event event);
     void registerListener(IGameEventsListener* listener);
+    void attachMap(Map* map);
     void render();
 private:
     //TODO Change it for a linked list or a map
@@ -32,6 +34,7 @@ private:
     int numTextures;
     Renderer *renderer;
     IGameEventsListener* eventsListener;
+    Map* map;
 };
 
 #endif /* defined(__ProjectWar__Scene__) */

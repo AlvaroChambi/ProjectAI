@@ -10,12 +10,12 @@
 
 SDLRenderer::SDLRenderer()
 {
-
+    
 }
 
 SDLRenderer::~SDLRenderer()
 {
-
+    
 }
 
 //TODO Change ir to return a boolean or a exception if something fails
@@ -28,12 +28,12 @@ void SDLRenderer::init()
     
     // create a window
     sdlWindow = SDL_CreateWindow(   "SDL 2 window",             // window title
-                                    SDL_WINDOWPOS_CENTERED,     // x position, centered
-                                    SDL_WINDOWPOS_CENTERED,     // y position, centered
-                                    640,                        // width, in pixels
-                                    480,                        // height, in pixels
-                                    SDL_WINDOW_OPENGL           // flags
-                                );
+                                 SDL_WINDOWPOS_CENTERED,     // x position, centered
+                                 SDL_WINDOWPOS_CENTERED,     // y position, centered
+                                 640,                        // width, in pixels
+                                 480,                        // height, in pixels
+                                 SDL_WINDOW_OPENGL           // flags
+                                 );
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
     
     if(sdlRenderer != 0) // renderer init success
@@ -45,7 +45,7 @@ void SDLRenderer::init()
     {
         std::cout << "renderer init fail\n";
     }
-
+    
 }
 
 Texture* SDLRenderer::loadTexture(std::string resource)
@@ -56,15 +56,13 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     
     /* Filling the surface with red color. */
     //SDL_FillRect(pTempSurface, NULL, SDL_MapRGB(pTempSurface->format, 255, 0, 0));
-    
-    
     SDL_Surface* pTempSurface = SDL_LoadBMP(resource.c_str());
     if(pTempSurface == 0){
         std::cout << "surface creation failed\n";
     }
     
     SDL_Texture* m_pTexture = SDL_CreateTextureFromSurface(sdlRenderer,
-                                              pTempSurface);
+                                                           pTempSurface);
     if(m_pTexture == 0){
         std::cout << "texture creation failed \n";
     }
@@ -79,6 +77,38 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     return texture;
 }
 
+Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
+{
+    Texture *texture = new SDLTexture;
+    //TODO remove -5, it's just to set a separation between tiles
+    SDL_Surface* pTempSurface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
+    
+    /* Filling the surface with red color. */
+    SDL_Rect destRect;
+    destRect.x = 1;
+    destRect.y = 1;
+    destRect.w = width - 2;
+    destRect.h = height - 2;
+    SDL_FillRect(pTempSurface, &destRect, SDL_MapRGB(pTempSurface->format, color.r, color.g, color.b));
+    if(pTempSurface == 0){
+        std::cout << "surface creation failed\n";
+    }
+    
+    SDL_Texture* m_pTexture = SDL_CreateTextureFromSurface(sdlRenderer,
+                                                           pTempSurface);
+    if(m_pTexture == 0){
+        std::cout << "texture creation failed \n";
+    }
+    texture->setTexture(m_pTexture);
+    SDL_FreeSurface(pTempSurface);
+    
+    texture->setWidth(width);
+    texture->setHeight(height);
+    
+    return texture;
+}
+
+//TODO provide position, width and height to draw texture
 void SDLRenderer::drawTexture(Texture* texture)
 {
     SDL_Rect srcRect;

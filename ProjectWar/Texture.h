@@ -26,6 +26,7 @@ public:
     int getWidth();
     void setHeight( int height );
     int getHeight();
+    bool matchPosition(Point position);
 private:
     Point position;
     int width;

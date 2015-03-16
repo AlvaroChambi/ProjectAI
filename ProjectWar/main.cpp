@@ -23,7 +23,8 @@ int main(int argc, char * arg[])
         frameTime = SDL_GetTicks() - frameStart;
         
         if(frameTime < DELAY_TIME){
-            SDL_Delay(DELAY_TIME - frameTime);
+            //TODO Removed fixed framerate, try to solve the events pooling delay problem...
+            //SDL_Delay(DELAY_TIME - frameTime);
         }
     }
     

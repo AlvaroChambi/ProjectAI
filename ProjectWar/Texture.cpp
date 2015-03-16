@@ -8,13 +8,13 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0)
+Texture::Texture() : width(0), height(0), position(0,0)
 {
 }
 
 Texture::~Texture()
 {
-
+    
 }
 
 void Texture::setPosition(Point position)
@@ -53,4 +53,15 @@ int Texture::getHeight()
     return height;
 }
 
+bool Texture::matchPosition(const Point position)
+{
+    bool result = false;
+    if(position.x < this->position.x + this->width && position.x > this->position.x){
+        if(position.y < this->position.y + this->height && position.y > this->position.y){
+            result = true;
+        }
+    }
+    
+    return result;
+}
 

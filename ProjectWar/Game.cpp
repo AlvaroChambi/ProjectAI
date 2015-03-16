@@ -14,6 +14,7 @@ Game::Game()
     gameRunning = true;
     scene = new Scene(renderer);
     inputHandler = new SDLInputHandler();
+    playerController = new PlayerController;
 }
 
 Game::~Game()
@@ -21,18 +22,47 @@ Game::~Game()
     //dtor
 }
 
-bool Game::isRunning()
+void Game::onSceneClicked(const Point position)
 {
-    return gameRunning;
+    std::cout << "scene clicked: " << position.x << "  " << position.y << "\n";
+}
+
+void Game::onTextureClicked(const Texture texture)
+{
+    std::cout << "texture clicked\n";
+}
+
+void Game::onMapClicked(const Tile tile)
+{
+    //std::cout << "Game\n";
+    //std::cout << "map clicked: " << tile.position.x << " " << tile.position.y << "\n";
+    playerController->onMapClicked(tile);
 }
 
 void Game::onInit()
 {
     renderer->init();
-    sprite = renderer->loadTexture("rider.bmp");
-    sprite2 = renderer->loadTexture("test.bmp");
-    scene->attachTexture(sprite2);
+    //TODO Load map data model and view resources
+    Map* map = new Map();
+    map->loadMap(renderer, 40, 40);
+    //TODO Load player data model, view and create new controller
+    Player* player = new Player();
+    PlayerView* playerView = new PlayerView();
+    playerView->setModel(player);
+    playerController->setPlayer(player);
+    Texture* texture = renderer->loadShape(RECTANGLE, RED, 30, 30);
+    Texture* sprite = renderer->loadTexture("test.bmp");
+    playerView->setTexture(texture);
+    texture->setPosition(map->getAbsolutePosition(8,8));
+    sprite->setPosition(map->getAbsolutePosition(2, 2));
+    //TODO For each player load unit and buildings data model and view resources
+    
+    //TODO register game and player controller as an scene events listener
+    
+    scene->attachMap(map);
+    scene->attachTexture(texture);
     scene->attachTexture(sprite);
+    //scene->attachTexture(sprite);
     scene->registerListener(this);
 }
 
@@ -44,9 +74,6 @@ void Game::onProcessInput()
         case ON_WINDOW_CLOSED:
             this->gameRunning = false;
             break;
-        case ON_MOUSE_DOWN_EVENT:
-            sprite->setPosition(event->x, event->y);
-            break;
         default:
             break;
     }
@@ -54,7 +81,7 @@ void Game::onProcessInput()
 
 void Game::onUpdate()
 {
-
+    
 }
 
 void Game::onRender()
@@ -64,17 +91,32 @@ void Game::onRender()
     renderer->renderPresent();
 }
 
-void Game::onSceneClicked(const Point position)
-{
-    std::cout << "scene clicked\n";
-}
-
-void Game::onTextureClicked(const Texture texture)
-{
-    std::cout << "texture clicked\n";
-}
-
 void Game::onFinish()
 {
-
+    
 }
+
+bool Game::isRunning()
+{
+    return gameRunning;
+}
+
+void Game::addPlayer(Player* player)
+{
+    players.push_front(player);
+}
+
+void Game::removePlayer(Player *player)
+{
+    players.remove(player);
+}
+
+Player* Game::getPlayer(int position)
+{
+    //TODO search in the list for the element of the given position
+    return nullptr;
+}
+
+
+
+

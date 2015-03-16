@@ -10,9 +10,14 @@
 #define __ProjectWar__Game__
 
 #include <stdio.h>
+#include <list>
+
 #include "SDLRenderer.h"
 #include "Scene.h"
 #include "SDLInputHandler.h"
+#include "Player.h"
+#include "PlayerView.h"
+#include "PlayerController.h"
 
 class Game : IGameEventsListener
 {
@@ -26,7 +31,15 @@ public:
     virtual void onFinish();
     void onSceneClicked(const Point position);
     void onTextureClicked(const Texture texture);
+    void onMapClicked(const Tile tile);
     bool isRunning();
+    void addPlayer(Player* player);
+    void removePlayer(Player* player);
+    Player* getPlayer(int position);
+    
+    //Define this colors as an static type
+    const Color RED = Color(255,0,0);
+    const Color GREEN = Color(0,153,0);
 protected:
 private:
     bool gameRunning;
@@ -34,7 +47,8 @@ private:
     SDLInputHandler* inputHandler;
     Scene* scene;
     Texture* sprite;
-    Texture* sprite2;
+    std::list<Player*> players;
+    PlayerController* playerController;
 };
 
 #endif /* defined(__ProjectWar__Game__) */

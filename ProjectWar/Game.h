@@ -18,6 +18,8 @@
 #include "Player.h"
 #include "PlayerView.h"
 #include "PlayerController.h"
+#include "UnitView.h"
+#include "SpriteFactory.h"
 
 class Game : IGameEventsListener
 {
@@ -32,23 +34,28 @@ public:
     void onSceneClicked(const Point position);
     void onTextureClicked(const Texture texture);
     void onMapClicked(const Tile tile);
+    void onSpriteClicked(const int id);
     bool isRunning();
     void addPlayer(Player* player);
     void removePlayer(Player* player);
     Player* getPlayer(int position);
     
-    //Define this colors as an static type
+    //Define this colors as a global static type
     const Color RED = Color(255,0,0);
     const Color GREEN = Color(0,153,0);
+    const Color BLUE = Color(0,0,255);
 protected:
 private:
     bool gameRunning;
     SDLRenderer* renderer;
     SDLInputHandler* inputHandler;
     Scene* scene;
+    
+    //Game specific info
     Texture* sprite;
     std::list<Player*> players;
     PlayerController* playerController;
+    Player* activePlayer;
 };
 
 #endif /* defined(__ProjectWar__Game__) */

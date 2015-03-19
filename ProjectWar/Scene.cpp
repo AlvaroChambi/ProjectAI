@@ -8,9 +8,8 @@
 
 #include "Scene.h"
 
-Scene::Scene(Renderer* renderer)
+Scene::Scene(Renderer* renderer) : numTextures(0), numSprites(0)
 {
-    numTextures = 0;
     this->renderer = renderer;
     this->map = nullptr;
 }
@@ -29,6 +28,13 @@ void Scene::attachTexture(Texture* texture)
     numTextures++;
 }
 
+//TODO set z order when adding sprite
+void Scene::attachSprite(Sprite *sprite)
+{
+    sprites[numSprites] = sprite;
+    numSprites++;
+}
+
 void Scene::attachMap(Map *map)
 {
     this->map = map;
@@ -42,6 +48,10 @@ void Scene::render()
     
     for(int i = 0; i < numTextures; i++){
         renderer->drawTexture(textureList[i]);
+    }
+    //Sprites in this case are mvc oriented 
+    for(int i = 0; i < numSprites; i++){
+        renderer->drawTexture(sprites[i]->getTexture());
     }
 }
 
@@ -62,6 +72,14 @@ void Scene::handleEvent(const Event event)
                         eventsListener->onTextureClicked(*textureList[i]);
                     }
                 }
+                for(int i = 0; i < numSprites; i++){
+                    //if clicked position match with the given sprite area notify event
+                    if(sprites[i]->getTexture()->matchPosition(position)){
+                        eventsListener->onSpriteClicked(sprites[i]->getID());
+                    }
+
+                }
+                
                 Tile* tile = nullptr;
                 // if there are no given matches just send scene clicked event
                 if (map != nullptr) {

@@ -77,6 +77,12 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     return texture;
 }
 
+//TODO Pending to implement
+Sprite* SDLRenderer::loadSprite(std::string resource)
+{
+    return nullptr;
+}
+
 Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
 {
     Texture *texture = new SDLTexture;

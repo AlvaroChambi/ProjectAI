@@ -8,7 +8,7 @@
 
 #include "Player.h"
 
-Player::Player() : Model(), position(0,0)
+Player::Player() : Model(), position(0,0), numUnits(0), selectedUnit(nullptr)
 {
     
 }
@@ -39,4 +39,21 @@ void Player::setTile(const Tile tile)
 Tile Player::getTile()
 {
     return tile;
+}
+
+void Player::addUnit(Unit *unit)
+{
+    units[numUnits] = unit;
+    numUnits++;
+}
+
+Unit* Player::getUnit(int id)
+{
+    Unit* unit = nullptr;
+    for (int i = 0; i < numUnits; i++) {
+        if (units[i]->getId() == id) {
+            unit = units[i];
+        }
+    }
+    return unit;
 }

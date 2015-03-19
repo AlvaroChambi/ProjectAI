@@ -24,6 +24,7 @@ public:
     void notifyObservers();
     void notify(Observer* observer);
 private:
+    //TODO Replace with linked lists!!!
     Observer* observers[20];
     int numListeners;
 };

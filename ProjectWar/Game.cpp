@@ -15,6 +15,7 @@ Game::Game()
     gameRunning = true;
     scene = new Scene(renderer);
     inputHandler = new SDLInputHandler();
+    //Just one instance of the player controller, the player reference will be update according to the player turn
     playerController = new PlayerController;
 }
 
@@ -25,12 +26,12 @@ Game::~Game()
 
 void Game::onSceneClicked(const Point position)
 {
-    std::cout << "scene clicked: " << position.x << "  " << position.y << "\n";
+    //std::cout << "scene clicked: " << position.x << "  " << position.y << "\n";
 }
 
 void Game::onTextureClicked(const Texture texture)
 {
-    std::cout << "texture clicked\n";
+    //std::cout << "texture clicked\n";
 }
 
 void Game::onMapClicked(const Tile tile)
@@ -40,25 +41,42 @@ void Game::onMapClicked(const Tile tile)
     playerController->onMapClicked(tile);
 }
 
+//TODO Just pass the id of the sprite as parameter
+void Game::onSpriteClicked(const int id)
+{
+    //std::cout << "sprite clicked " << id << "\n";
+    //TODO Check if the sprite clicked is a resource of the active player(unit or building)
+    playerController->onUnitClicked(id);
+}
+
 void Game::onInit()
 {
     renderer->init();
     //TODO Load map data model and view resources
     Map* map = new Map();
     map->loadMap(renderer, 40, 40);
+    
+    SpriteFactory* spriteFactory = new SpriteFactory;
+    
     //TODO Load player data model, view and create new controller
     Player* player = new Player();
-    PlayerView* playerView = new PlayerView();
-    playerView->setModel(player);
+    Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
+    playerSprite->setModel(player);
     playerController->setPlayer(player);
     Texture* texture = renderer->loadShape(RECTANGLE, RED, 30, 30);
-    Texture* sprite = renderer->loadTexture("test.bmp");
-    playerView->setTexture(texture);
+    playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
-    sprite->setPosition(map->getAbsolutePosition(2, 2));
+    
     //TODO For each player load unit and buildings data model and view resources
+    Unit* unit = new Unit();
+    unit->setResource("rider.bmp");
+    Sprite* unitSprite = spriteFactory->createSprite(UNIT);
+    unitSprite->setModel(unit);
+    Texture* unitTexture = renderer->loadShape(RECTANGLE, BLUE, 20, 20);
+    unitSprite->setTexture(unitTexture);
     
-    
+    player->addUnit(unit);
+/*
     texture->setZ_order(20);
     
     sprite->setZ_order(15);
@@ -67,13 +85,14 @@ void Game::onInit()
     lista.Insertar(sprite);
     lista.MostrarLista();
     
+*////////////////
+    //TODO register game and player controller as an scene events listener
+
     
     //TODO register game and player controller as an scene events listener
-    
     scene->attachMap(map);
-    scene->attachTexture(texture);
-    scene->attachTexture(sprite);
-    //scene->attachTexture(sprite);
+    scene->attachSprite(playerSprite);
+    scene->attachSprite(unitSprite);
     scene->registerListener(this);
 }
 

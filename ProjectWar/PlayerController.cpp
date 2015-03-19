@@ -25,18 +25,17 @@ void PlayerController::setPlayer(Player *player)
 
 void PlayerController::onMapClicked(const Tile tile)
 {
-    std::cout << "PlayerController\n";
-    std::cout << "map clicked: " << tile.position.x << " " << tile.position.y << "\n";
+    //std::cout << "PlayerController\n";
+    //std::cout << "map clicked: " << tile.position.x << " " << tile.position.y << "\n";
     player->setTile(tile);
     
 }
 
-void PlayerController::onSceneClicked(const Point position)
+void PlayerController::onUnitClicked(const int id)
 {
-
-}
-
-void PlayerController::onTextureClicked(const Texture texture)
-{
-
+    std::cout << "unit clicked: ";
+    Unit* unit = player->getUnit(id);
+    if(unit != nullptr){
+        std::cout << unit->getId() << " resource: " << unit->getResource() << "\n";
+    }
 }

@@ -8,7 +8,7 @@
 
 #include "PlayerView.h"
 
-PlayerView::PlayerView() : View()
+PlayerView::PlayerView() : Sprite()
 {
 
 }
@@ -27,6 +27,5 @@ void PlayerView::setModel(Model* model)
 void PlayerView::update()
 {
     this->getTexture()->setPosition(player->getTile().getTexture()->getPosition());
-    std::cout << "update!\n";
 }
 

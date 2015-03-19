@@ -13,8 +13,9 @@
 #include <stdio.h>
 #include "View.h"
 #include "Player.h"
+#include "Sprite.h"
 
-class PlayerView : public View
+class PlayerView : public Sprite
 {
 public:
     PlayerView();

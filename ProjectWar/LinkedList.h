@@ -14,28 +14,32 @@
 #include "Texture.h"
 
 
-typedef struct _nodo {
-    //int valor;
-    Texture *valor;
-    struct _nodo *siguiente;
-} tipoNodo;
+class Node
+{
+public:
+    Node():value(nullptr), next(nullptr)
+    {
+    }
+    
+    Texture *value;
+    Node *next;
+};
 
-typedef tipoNodo *pNodo;
-typedef tipoNodo *Lista;
+
 
 class LinkedList
 {
 public:
     LinkedList();
     ~LinkedList();
-    void Insertar(Texture *v);
-    void Borrar(Lista *lista, Texture *v);
-    int ListaVacia();
-    void BorrarLista(Lista *lista);
-    void MostrarLista();
+    void insertTexture(Texture *v);
+    void deleteTexture(Texture *v);
+    int emptyList();
+    void deleteList();
+    void showList();
     
 private:
-    Lista lista;
+    Node *list;
     
 };
 

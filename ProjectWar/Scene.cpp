@@ -22,7 +22,6 @@ Scene::~Scene()
 //TODO set z order when adding new texture
 void Scene::attachTexture(Texture* texture)
 {
-    int z_order = texture->getZ_order();
     
     textureList[numTextures] = texture;
     numTextures++;

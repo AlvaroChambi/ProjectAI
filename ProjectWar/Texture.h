@@ -24,8 +24,8 @@ public:
     void setPosition( Point position );
     void setWidth( int width );
     int getWidth();
-    void setZ_order( int z_order );
-    int getZ_order();
+    void setZOrder( int zOrder );
+    int getZOrder();
     void setHeight( int height );
     int getHeight();
     bool matchPosition(Point position);
@@ -33,7 +33,7 @@ private:
     Point position;
     int width;
     int height;
-    int z_order;
+    int zOrder;
 };
 
 #endif /* defined(__ProjectWar__Texture__) */

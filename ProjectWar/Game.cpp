@@ -64,6 +64,10 @@ void Game::onInit()
     playerSprite->setModel(player);
     playerController->setPlayer(player);
     Texture* texture = renderer->loadShape(RECTANGLE, RED, 30, 30);
+    Texture* texture2 = renderer->loadShape(RECTANGLE, RED, 30, 30);
+
+    
+    
     playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
     
@@ -76,16 +80,18 @@ void Game::onInit()
     unitSprite->setTexture(unitTexture);
     
     player->addUnit(unit);
-/*
-    texture->setZ_order(20);
+
+
     
-    sprite->setZ_order(15);
-    LinkedList lista;
-    lista.Insertar(texture);
-    lista.Insertar(sprite);
-    lista.MostrarLista();
+    //sprite->setZ_order(15);
+    texture->setZOrder(15);
+    texture2->setZOrder(4);
+    LinkedList list = *new LinkedList();
+    list.insertTexture(texture);
+    list.insertTexture(texture2);
+    list.showList();
     
-*////////////////
+///////////////
     //TODO register game and player controller as an scene events listener
 
     

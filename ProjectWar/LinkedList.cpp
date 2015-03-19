@@ -10,84 +10,85 @@
 
 
 
-LinkedList::LinkedList()
+LinkedList::LinkedList():list( NULL)
 {
-     lista = NULL;
+    
 }
 
 LinkedList::~LinkedList()
 {
     
 }
+/* Insert a new texture sorting by z_order*/
 
-void LinkedList::Insertar(Texture *v) {
-    pNodo nuevo, anterior;
+void LinkedList::insertTexture(Texture *v)
+{
+    Node *newNode, *previousNode;
     
-    /* Crear un nodo nuevo */
-    nuevo = (pNodo)malloc(sizeof(tipoNodo));
-    nuevo->valor = v;
+    newNode = new Node;
+    newNode->value = v;
     
-    /* Si la lista está vacía */
-    if(ListaVacia() || (*lista).valor->getZ_order() > v->getZ_order()) {
-        /* Añadimos la lista a continuación del nuevo nodo */
-        nuevo->siguiente = lista;
-        /* Ahora, el comienzo de nuestra lista es en nuevo nodo */
-        lista = nuevo;
+    if(emptyList() || (*list).value->getZOrder() > v->getZOrder()) {
+        /* Add to the list next to the new node */
+        newNode->next = list;
+        /* Then, the start of the list is the new node */
+        list = newNode;
     } else {
-        /* Buscar el nodo de valor menor a v */
-        anterior = lista;
-        /* Avanzamos hasta el último elemento o hasta que el siguiente tenga
-         un valor mayor que v */
-        while(anterior->siguiente && anterior->siguiente->valor->getZ_order() <= v->getZ_order())
-            anterior = anterior->siguiente;
-        /* Insertamos el nuevo nodo después del nodo anterior */
-        nuevo->siguiente = anterior->siguiente;
-        anterior->siguiente = nuevo;
+        /* Look for the node previous with less value than v*/
+        previousNode = list;
+
+        while(previousNode->next && previousNode->next->value->getZOrder() <= v->getZOrder())
+            previousNode = previousNode->next;
+
+        newNode->next = previousNode->next;
+        previousNode->next = newNode;
     }
 }
 
-void LinkedList::Borrar(Lista *lista, Texture *v) {
-    pNodo anterior, nodo;
- /*
-    nodo = *lista;
-    anterior = NULL;
-    while(nodo && nodo->valor->getZ_order() < v->getZ_order) {
-        anterior = nodo;
-        nodo = nodo->siguiente;
+void LinkedList::deleteTexture(Texture *v)
+{
+    Node *previousNode, *node;
+ 
+    node = list;
+    previousNode = NULL;
+    while(node && node->value->getZOrder() < v->getZOrder()) {
+        previousNode = node;
+        node = node->next;
     }
-    if(!nodo || nodo->valor->getZ_order() != v->getZ_order) return;
-    else { /* Borrar el nodo */
-    
-    //    if(!anterior) /* Primer elemento */
-      //      *lista = nodo->siguiente;
-       // else  /* un elemento cualquiera */
-        //    anterior->siguiente = nodo->siguiente;
-        //free(nodo);
-   // }
-}
-
-int LinkedList::ListaVacia() {
-    return (lista == NULL);
-}
-
-void LinkedList::BorrarLista(Lista *lista) {
-    pNodo nodo;
-    
-    while(*lista) {
-        nodo = *lista;
-        *lista = nodo->siguiente;
-        free(nodo);
-    }
-}
-
-void LinkedList::MostrarLista() {
-    pNodo nodo = lista;
-    
-    if(ListaVacia()) printf("Lista vacía\n");
+    if(!node || node->value->getZOrder() != v->getZOrder()) return;
     else {
-        while(nodo) {
-            printf("%d -> ", nodo->valor->getZ_order());
-            nodo = nodo->siguiente;
+    
+        if(!previousNode)
+            list = node->next;
+        else
+            previousNode->next = node->next;
+    }
+}
+
+int LinkedList::emptyList()
+{
+    return (list == NULL);
+}
+
+void LinkedList::deleteList()
+{
+    Node *node;
+    
+    while(list) {
+        node = list;
+        list = node->next;
+        free(node);
+    }
+}
+
+void LinkedList::showList()
+{
+    Node *node = list;
+    
+    if(!emptyList()){
+        while(node) {
+            printf("%d -> ", node->value->getZOrder());
+            node = node->next;
         }
     }
 }

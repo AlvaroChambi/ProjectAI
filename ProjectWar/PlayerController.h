@@ -11,19 +11,20 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "IGameEventsListener.h"
+#include "IPlayerEventsListener.h"
 #include "Player.h"
+#include "Sprite.h"
 
-class PlayerController : public IGameEventsListener
+class PlayerController : public IPlayerEventsListener
 {
 public:
     PlayerController();
     virtual ~PlayerController();
     void setPlayer(Player* player);
     
-    void onTextureClicked(const Texture texture);
-    void onSceneClicked(const Point position);
     void onMapClicked(const Tile tile);
+    void onUnitClicked(const int id);
+    
 private:
     Player* player;
 };

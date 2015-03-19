@@ -13,6 +13,7 @@
 #include <iostream>
 #include "Texture.h"
 #include "Color.h"
+#include "Sprite.h"
 
 enum Shape
 {
@@ -25,6 +26,7 @@ public:
     virtual void init() = 0;
     virtual Texture* loadTexture(std::string resource) = 0;
     virtual Texture* loadShape(Shape shape, Color color ,int width, int height) = 0;
+    virtual Sprite* loadSprite(std::string resource) = 0;
     virtual void drawTexture(Texture* texture) = 0;
     virtual void renderClear() = 0;
     virtual void renderPresent() = 0;

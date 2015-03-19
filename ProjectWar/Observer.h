@@ -15,6 +15,7 @@
 class Observer
 {
 public:
+    //TODO add something like a update type as a parameter...
     virtual void update() = 0;
 };
 

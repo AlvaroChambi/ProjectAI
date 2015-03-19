@@ -8,9 +8,9 @@
 
 #include "Tile.h"
 
-Tile::Tile()
+Tile::Tile() : position(0,0)
 {
-
+    this->texture = nullptr;
 }
 
 Tile::Tile(Texture* texture) : position(0,0)

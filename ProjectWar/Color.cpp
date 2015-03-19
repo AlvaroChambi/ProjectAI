@@ -8,7 +8,7 @@
 
 #include "Color.h"
 
-Color::Color(int r, int g, int b)
+Color::Color(int r, int g, int b) : a(0)
 {
     this->r = r;
     this->g = g;

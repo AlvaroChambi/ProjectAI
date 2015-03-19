@@ -25,10 +25,16 @@ public:
     Point getPosition();
     Tile getTile();
     void setTile(const Tile tile);
+    void addUnit( Unit* unit );
+    Unit* getUnit(int id);
 private:
     Point position;
     Tile tile;
-    std::list<Unit*> units;
+    //TODO Replace with linked lists!!!!
+    Unit* units[20];
+    int numUnits;
+    
+    Unit* selectedUnit;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

@@ -16,6 +16,7 @@
 #include "Event.h"
 #include "IGameEventsListener.h"
 #include "Map.h"
+#include "Sprite.h"
 
 class Scene
 {
@@ -24,14 +25,18 @@ public:
     Scene(Renderer *renderer);
     virtual ~Scene();
     void attachTexture(Texture* texture);
+    void attachSprite(Sprite* sprite);
     void handleEvent(const Event event);
     void registerListener(IGameEventsListener* listener);
     void attachMap(Map* map);
     void render();
 private:
-    //TODO Change it for a linked list or a map
+    //TODO Change it for a linked list or a map!!
     Texture* textureList[10];
+    Sprite* sprites[10];
     int numTextures;
+    int numSprites;
+    
     Renderer *renderer;
     IGameEventsListener* eventsListener;
     Map* map;

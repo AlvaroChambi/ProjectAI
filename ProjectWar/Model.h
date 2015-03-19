@@ -10,6 +10,7 @@
 #define __ProjectWar__Model__
 
 #include <stdio.h>
+#include <iostream>
 #include "Observable.h"
 
 class Model : public Observable
@@ -19,8 +20,11 @@ public:
     virtual ~Model();
     int getId();
     void setid(int id);
+    void setResource(std::string resource);
+    std::string getResource();
 private:
     int id;
+    std::string resource ;
 };
 
 #endif /* defined(__ProjectWar__Model__) */

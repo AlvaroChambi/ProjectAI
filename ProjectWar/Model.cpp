@@ -8,7 +8,7 @@
 
 #include "Model.h"
 
-Model::Model() : Observable(), id(0)
+Model::Model() : Observable(), id(0), resource("")
 {
 
 }
@@ -26,4 +26,14 @@ void Model::setid(int id)
 int Model::getId()
 {
     return id;
+}
+
+std::string Model::getResource()
+{
+    return resource;
+}
+
+void Model::setResource( std::string resource )
+{
+    this->resource = resource;
 }

@@ -57,3 +57,25 @@ Unit* Player::getUnit(int id)
     }
     return unit;
 }
+
+void Player::setSelectedUnit(Unit *unit)
+{
+    this->selectedUnit = unit;
+}
+
+Unit* Player::getSelectedUnit()
+{
+    return selectedUnit;
+}
+
+State* Player::getState()
+{
+    return state;
+}
+
+//Update the player actual state and enter in it
+void Player::updateState(State *state)
+{
+    this->state = state;
+    this->state->enter();
+}

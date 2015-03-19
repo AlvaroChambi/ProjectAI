@@ -15,6 +15,7 @@
 #include "Model.h"
 #include "Unit.h"
 #include "Tile.h"
+#include "State.h"
 
 class Player : public Model
 {
@@ -27,6 +28,12 @@ public:
     void setTile(const Tile tile);
     void addUnit( Unit* unit );
     Unit* getUnit(int id);
+    
+    Unit* getSelectedUnit();
+    void setSelectedUnit(Unit* unit);
+    
+    State* getState();
+    void updateState(State* state);
 private:
     Point position;
     Tile tile;
@@ -34,6 +41,7 @@ private:
     Unit* units[20];
     int numUnits;
     
+    State* state;
     Unit* selectedUnit;
 };
 

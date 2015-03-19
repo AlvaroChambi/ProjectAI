@@ -8,9 +8,9 @@
 
 #include "PlayerController.h"
 
-PlayerController::PlayerController()
+PlayerController::PlayerController() : player(nullptr)
 {
-    player = nullptr;
+    
 }
 
 PlayerController::~PlayerController()
@@ -21,21 +21,17 @@ PlayerController::~PlayerController()
 void PlayerController::setPlayer(Player *player)
 {
     this->player = player;
+    player->updateState(new NothingSelectedState(player));
 }
 
 void PlayerController::onMapClicked(const Tile tile)
 {
-    //std::cout << "PlayerController\n";
-    //std::cout << "map clicked: " << tile.position.x << " " << tile.position.y << "\n";
-    player->setTile(tile);
-    
+    //ID not needed
+    player->getState()->handleInput(MAP_CLICKED, -1, tile);
 }
 
 void PlayerController::onUnitClicked(const int id)
 {
-    std::cout << "unit clicked: ";
-    Unit* unit = player->getUnit(id);
-    if(unit != nullptr){
-        std::cout << unit->getId() << " resource: " << unit->getResource() << "\n";
-    }
+    //Position not needed
+    player->getState()->handleInput(UNIT_CLICKED, id, nullptr);
 }

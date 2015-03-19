@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <list>
+#include <vector>
 #include "Texture.h"
 #include "Renderer.h"
 #include "Event.h"
@@ -31,6 +32,7 @@ public:
 private:
     //TODO Change it for a linked list or a map
     Texture* textureList[10];
+    std::vector<Texture*> textureVector;
     int numTextures;
     Renderer *renderer;
     IGameEventsListener* eventsListener;

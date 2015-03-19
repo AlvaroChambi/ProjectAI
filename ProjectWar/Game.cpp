@@ -7,6 +7,7 @@
 //
 
 #include "Game.h"
+#include "LinkedList.h"
 
 Game::Game()
 {
@@ -56,6 +57,16 @@ void Game::onInit()
     texture->setPosition(map->getAbsolutePosition(8,8));
     sprite->setPosition(map->getAbsolutePosition(2, 2));
     //TODO For each player load unit and buildings data model and view resources
+    
+    
+    texture->setZ_order(20);
+    
+    sprite->setZ_order(15);
+    LinkedList lista;
+    lista.Insertar(texture);
+    lista.Insertar(sprite);
+    lista.MostrarLista();
+    
     
     //TODO register game and player controller as an scene events listener
     

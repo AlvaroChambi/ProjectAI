@@ -28,6 +28,7 @@ public:
         this->x = x;
         this->y = y;
     }
+    
 };
 
 #endif /* defined(__ProjectWar__Point__) */

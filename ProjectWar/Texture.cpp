@@ -8,7 +8,7 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0), position(0,0)
+Texture::Texture() : width(0), height(0), position(0,0), z_order(0)
 {
 }
 
@@ -51,6 +51,16 @@ void Texture::setHeight(int height)
 int Texture::getHeight()
 {
     return height;
+}
+
+void Texture::setZ_order(int z_order)
+{
+    this->z_order = z_order;
+}
+
+int Texture::getZ_order()
+{
+    return z_order;
 }
 
 bool Texture::matchPosition(const Point position)

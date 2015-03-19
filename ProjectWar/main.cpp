@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "Game.h"
+#include "LinkedList.h"
 
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
@@ -12,6 +13,7 @@ int main(int argc, char * arg[])
     Game game = Game();
     
     game.onInit();
+    
     
     while(game.isRunning()){
         frameStart = SDL_GetTicks();

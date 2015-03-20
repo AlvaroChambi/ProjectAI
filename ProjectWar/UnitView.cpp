@@ -20,6 +20,7 @@ UnitView::~UnitView()
 
 void UnitView::setModel(Model *model)
 {
+    View::setModel(model);
     //Link game object id with the model id
     this->unit = (Unit*)model;
     model->setid(this->getID());
@@ -29,4 +30,6 @@ void UnitView::update()
 {
     std::cout << "UnitView update\n";
     this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+    
+    this->startAnimation();
 }

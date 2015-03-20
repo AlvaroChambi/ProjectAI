@@ -31,6 +31,8 @@ public:
     void registerListener(IGameEventsListener* listener);
     void attachMap(Map* map);
     void render();
+    //animations
+    void update();
 private:
     //TODO Change it for a linked list or a map!!
     Texture* textureList[10];

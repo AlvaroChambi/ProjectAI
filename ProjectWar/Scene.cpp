@@ -19,7 +19,6 @@ Scene::~Scene()
     
 }
 
-//TODO set z order when adding new texture
 void Scene::attachTexture(Texture* texture)
 {
     
@@ -27,7 +26,6 @@ void Scene::attachTexture(Texture* texture)
     numTextures++;
 }
 
-//TODO set z order when adding sprite
 void Scene::attachSprite(Sprite *sprite)
 {
     sprites[numSprites] = sprite;
@@ -50,7 +48,15 @@ void Scene::render()
     }
     //Sprites in this case are mvc oriented 
     for(int i = 0; i < numSprites; i++){
-        renderer->drawTexture(sprites[i]->getTexture());
+        renderer->drawTexture(sprites[i]->getTexture(), sprites[i]->getWidth(), sprites[i]->getHeight());
+    }
+}
+
+//Sprites animations ticks
+void Scene::update()
+{
+    for (int i = 0; i < numSprites; i++) {
+        sprites[i]->updateFrame();
     }
 }
 

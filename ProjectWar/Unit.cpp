@@ -28,6 +28,7 @@ void Unit::setPosition(int x, int y)
 void Unit::setPosition(const Tile tile)
 {
     this->tile = tile;
+    this->notifyObservers();
 }
 
 Tile Unit::getTile()

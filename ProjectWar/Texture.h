@@ -28,8 +28,20 @@ public:
     int getZOrder();
     void setHeight( int height );
     int getHeight();
+    Point getSourceRect();
+    void setSourceRect(Point position);
+    int getFrameWidth();
+    void setFrameWidth(int width);
+    int getFrameHeight();
+    void setFrameHeight(int height);
+    
     bool matchPosition(Point position);
 private:
+    //used to handle animated sprites
+    Point sourceRect;
+    int frameWidth;
+    int frameHeight;
+    
     Point position;
     int width;
     int height;

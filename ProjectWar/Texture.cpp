@@ -8,7 +8,7 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0), position(0,0), zOrder(0)
+Texture::Texture() : width(0), height(0), position(0,0), zOrder(0), sourceRect(0,0),frameWidth(0), frameHeight(0)
 {
 }
 
@@ -61,6 +61,36 @@ void Texture::setZOrder(int zOrder)
 int Texture::getZOrder()
 {
     return zOrder;
+}
+
+Point Texture::getSourceRect()
+{
+    return sourceRect;
+}
+
+void Texture::setSourceRect(Point position)
+{
+    this->sourceRect = position;
+}
+
+void Texture::setFrameWidth(int width)
+{
+    this->frameWidth = width;
+}
+
+int Texture::getFrameWidth()
+{
+    return frameWidth;
+}
+
+void Texture::setFrameHeight(int height)
+{
+    this->frameHeight = height;
+}
+
+int Texture::getFrameHeight()
+{
+    return frameHeight;
 }
 
 bool Texture::matchPosition(const Point position)

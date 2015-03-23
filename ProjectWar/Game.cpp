@@ -84,8 +84,8 @@ void Game::onInit()
 
     
     //sprite->setZ_order(15);
-    texture->setZOrder(15);
-    texture2->setZOrder(4);
+    texture->setZorder(15);
+    texture2->setZorder(4);
     LinkedList list = *new LinkedList();
     list.insertTexture(texture);
     list.insertTexture(texture2);

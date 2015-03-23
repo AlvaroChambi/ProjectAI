@@ -23,12 +23,12 @@ LinkedList::~LinkedList()
 
 void LinkedList::insertTexture(Texture *v)
 {
-    Node *newNode, *previousNode;
+    Node<Texture> *newNode, *previousNode;
     
-    newNode = new Node;
+    newNode = new Node<Texture>;
     newNode->value = v;
     
-    if(emptyList() || (*list).value->getZOrder() > v->getZOrder()) {
+    if(emptyList() || (*list).value->getPosition().z > v->getPosition().z) {
         /* Add to the list next to the new node */
         newNode->next = list;
         /* Then, the start of the list is the new node */
@@ -37,7 +37,7 @@ void LinkedList::insertTexture(Texture *v)
         /* Look for the node previous with less value than v*/
         previousNode = list;
 
-        while(previousNode->next && previousNode->next->value->getZOrder() <= v->getZOrder())
+        while(previousNode->next && previousNode->next->value->getPosition().z <= v->getPosition().z)
             previousNode = previousNode->next;
 
         newNode->next = previousNode->next;
@@ -47,15 +47,15 @@ void LinkedList::insertTexture(Texture *v)
 
 void LinkedList::deleteTexture(Texture *v)
 {
-    Node *previousNode, *node;
+    Node<Texture> *previousNode, *node;
  
     node = list;
     previousNode = NULL;
-    while(node && node->value->getZOrder() < v->getZOrder()) {
+    while(node && node->value->getPosition().z < v->getPosition().z) {
         previousNode = node;
         node = node->next;
     }
-    if(!node || node->value->getZOrder() != v->getZOrder()) return;
+    if(!node || node->value->getPosition().z != v->getPosition().z) return;
     else {
     
         if(!previousNode)
@@ -72,7 +72,7 @@ int LinkedList::emptyList()
 
 void LinkedList::deleteList()
 {
-    Node *node;
+    Node<Texture> *node;
     
     while(list) {
         node = list;
@@ -83,11 +83,11 @@ void LinkedList::deleteList()
 
 void LinkedList::showList()
 {
-    Node *node = list;
+    Node<Texture> *node = list;
     
     if(!emptyList()){
         while(node) {
-            printf("%d -> ", node->value->getZOrder());
+            printf("%d -> ", node->value->getPosition().z);
             node = node->next;
         }
     }

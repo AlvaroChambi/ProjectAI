@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "Texture.h"
 
+template <class T>
 
 class Node
 {
@@ -21,10 +22,9 @@ public:
     {
     }
     
-    Texture *value;
+    T *value;
     Node *next;
 };
-
 
 
 class LinkedList
@@ -39,7 +39,7 @@ public:
     void showList();
     
 private:
-    Node *list;
+    Node<Texture> *list;
     
 };
 

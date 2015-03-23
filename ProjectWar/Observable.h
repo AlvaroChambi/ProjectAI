@@ -21,7 +21,7 @@ public:
     virtual ~Observable();
     void registerObserver( Observer* observer );
     void unRegisterObserver( Observer* observer );
-    void notifyObservers();
+    void notifyObservers(Update update);
     void notify(Observer* observer);
 private:
     //TODO Replace with linked lists!!!

@@ -12,11 +12,18 @@
 
 #include <stdio.h>
 
+enum Update
+{
+    POSITION_UPDATE,
+    SELECTED_UPDATE,
+    ACTIVE_UPDATE,
+};
+
 class Observer
 {
 public:
     //TODO add something like a update type as a parameter...
-    virtual void update() = 0;
+    virtual void update( Update update ) = 0;
 };
 
 #endif /* defined(__ProjectWar__Observer__) */

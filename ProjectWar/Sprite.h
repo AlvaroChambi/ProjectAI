@@ -20,8 +20,19 @@ public:
     virtual ~Sprite();
     void setID( int id );
     int getID();
+    void setTexture(Texture* texture);
+    virtual void updateFrame();
+    void updateAnimated(bool animated);
+    void resize(int width, int height);
+    bool matchPosition(Point position);
+    int getWidth();
+    int getHeight();
 private:
     int id;
+    int frame;
+    bool animated;
+    int width;
+    int height;
 };
 
 #endif /* defined(__ProjectWar__Sprite__) */

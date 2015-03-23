@@ -22,8 +22,9 @@ public:
     void init();
     Texture* loadTexture(std::string resource);
     Texture* loadShape(Shape shape, Color color, int width, int height);
-    Sprite* loadSprite(std::string resource);
+    Texture* loadSprite(std::string resource, int width, int height);
     void drawTexture(Texture* texture);
+    void drawTexture(Texture* texture, int width, int height);
     void renderClear();
     void renderPresent();
 private:

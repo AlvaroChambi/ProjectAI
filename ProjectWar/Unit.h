@@ -22,9 +22,23 @@ public:
     virtual ~Unit();
     void setPosition(const Tile tile);
     void setPosition(int x, int y);
+    
+    void setMovement(int movement);
+    int getmovement();
+    
     Tile getTile();
     Point getPosition();
+    
+    void setActive(bool active);
+    bool isActive();
+    
+    void setSelected(bool selected);
+    bool isSelected();
+    
+    bool canReach(Point destination);
 private:
+    bool selected;
+    bool active;
     Tile tile;
     int movement;
     int hp;

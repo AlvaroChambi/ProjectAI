@@ -22,7 +22,7 @@ void Player::setPosition(int x, int y)
 {
     position.x = x;
     position.y = y;
-    this->notifyObservers();
+    this->notifyObservers(POSITION_UPDATE);
 }
 
 Point Player::getPosition()
@@ -33,7 +33,7 @@ Point Player::getPosition()
 void Player::setTile(const Tile tile)
 {
     this->tile = tile;
-    this->notifyObservers();
+    this->notifyObservers(POSITION_UPDATE);
 }
 
 Tile Player::getTile()
@@ -56,4 +56,50 @@ Unit* Player::getUnit(int id)
         }
     }
     return unit;
+}
+
+//Update the unit selected flag and the player reference to the unit
+//nullptr if there isn't any unit selected
+void Player::setSelectedUnit(Unit *unit)
+{
+    if(unit != nullptr){
+        unit->setSelected(true);
+    }else{
+        this->selectedUnit->setSelected(false);
+    }
+    this->selectedUnit = unit;
+    this->notifyObservers(SELECTED_UPDATE);
+    
+}
+
+Unit* Player::getSelectedUnit()
+{
+    return selectedUnit;
+}
+
+State* Player::getState()
+{
+    return state;
+}
+
+void Player::setMap(Map *map)
+{
+    this->map = map;
+}
+
+Map* Player::getMap()
+{
+    return map;
+}
+
+//Update the player actual state and enter in it
+void Player::updateState(State *state)
+{
+    this->state = state;
+    this->state->enter();
+}
+
+void Player::setState(State *state)
+{
+    this->state = state;
 }

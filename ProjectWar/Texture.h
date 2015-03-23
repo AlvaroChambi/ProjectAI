@@ -27,8 +27,23 @@ public:
     int getWidth();
     void setHeight( int height );
     int getHeight();
+    Point getSourceRect();
+    void setSourceRect(Point position);
+    int getFrameWidth();
+    void setFrameWidth(int width);
+    int getFrameHeight();
+    void setFrameHeight(int height);
+    void setVisible(bool visibility);
+    bool isVisible();
+    
     bool matchPosition(Point position);
 private:
+    //used to handle animated sprites
+    Point sourceRect;
+    int frameWidth;
+    int frameHeight;
+    
+    bool visible;
     Point position;
     int width;
     int height;

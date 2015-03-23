@@ -8,7 +8,8 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0), position(0,0)
+Texture::Texture() : width(0), height(0), position(0,0), sourceRect(0,0),frameWidth(0),
+                     visible(true), frameHeight(0)
 {
 }
 
@@ -55,6 +56,46 @@ void Texture::setHeight(int height)
 int Texture::getHeight()
 {
     return height;
+}
+
+void Texture::setVisible(bool visibility)
+{
+    this->visible = visibility;
+}
+
+bool Texture::isVisible()
+{
+    return visible;
+}
+
+Point Texture::getSourceRect()
+{
+    return sourceRect;
+}
+
+void Texture::setSourceRect(Point position)
+{
+    this->sourceRect = position;
+}
+
+void Texture::setFrameWidth(int width)
+{
+    this->frameWidth = width;
+}
+
+int Texture::getFrameWidth()
+{
+    return frameWidth;
+}
+
+void Texture::setFrameHeight(int height)
+{
+    this->frameHeight = height;
+}
+
+int Texture::getFrameHeight()
+{
+    return frameHeight;
 }
 
 bool Texture::matchPosition(const Point position)

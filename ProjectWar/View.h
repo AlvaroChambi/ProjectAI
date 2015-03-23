@@ -21,7 +21,7 @@ public:
     View();
     virtual ~View();
     virtual void setModel(Model* model);
-    void setTexture(Texture* texture);
+    virtual void setTexture(Texture* texture);
     Texture* getTexture();
 private:
     Texture* texture;

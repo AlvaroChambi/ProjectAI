@@ -20,13 +20,25 @@ UnitView::~UnitView()
 
 void UnitView::setModel(Model *model)
 {
+    View::setModel(model);
     //Link game object id with the model id
     this->unit = (Unit*)model;
     model->setid(this->getID());
 }
 
-void UnitView::update()
+void UnitView::update( Update update )
 {
-    std::cout << "UnitView update\n";
-    this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+    switch (update) {
+        case POSITION_UPDATE:
+            this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+            break;
+        case SELECTED_UPDATE:
+            this->updateAnimated(this->unit->isSelected());
+            break;
+        case ACTIVE_UPDATE:
+            this->updateAnimated(false);
+            break;
+        default:
+            break;
+    }
 }

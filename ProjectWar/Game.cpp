@@ -63,36 +63,23 @@ void Game::onInit()
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
     playerController->setPlayer(player);
-    Texture* texture = renderer->loadShape(RECTANGLE, RED, 30, 30);
-    Texture* texture2 = renderer->loadShape(RECTANGLE, RED, 30, 30);
-
-    
-    
+    Texture* texture = renderer->loadShape(RECTANGLE, RED, 40, 40);
     playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
+    player->setMap(map);
     
     //TODO For each player load unit and buildings data model and view resources
     Unit* unit = new Unit();
-    unit->setResource("rider.bmp");
+    unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
+    unit->setMovement(3);
     unitSprite->setModel(unit);
-    Texture* unitTexture = renderer->loadShape(RECTANGLE, BLUE, 20, 20);
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
     unitSprite->setTexture(unitTexture);
-    
+    //resize to fit in a map tile
+    unitSprite->resize(40, 40);
+    unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
-
-
-    
-    //sprite->setZ_order(15);
-    texture->setZorder(15);
-    texture2->setZorder(4);
-    LinkedList list = *new LinkedList();
-    list.insertTexture(texture);
-    list.insertTexture(texture2);
-    list.showList();
-    
-///////////////
-    //TODO register game and player controller as an scene events listener
 
     
     //TODO register game and player controller as an scene events listener
@@ -115,9 +102,10 @@ void Game::onProcessInput()
     }
 }
 
+//use detal time and call entities update time method to handle animations
 void Game::onUpdate()
 {
-    
+    this->scene->update();
 }
 
 void Game::onRender()

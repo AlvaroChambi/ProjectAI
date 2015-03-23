@@ -51,14 +51,11 @@ void SDLRenderer::init()
 Texture* SDLRenderer::loadTexture(std::string resource)
 {
     Texture *texture = new SDLTexture;
-    SDL_Rect sourceRectangle; // the first rectangle
-    //SDL_Surface* pTempSurface = SDL_CreateRGBSurface(0, 100, 100, 32, 0, 0, 0, 0);
-    
-    /* Filling the surface with red color. */
-    //SDL_FillRect(pTempSurface, NULL, SDL_MapRGB(pTempSurface->format, 255, 0, 0));
+    SDL_Rect sourceRectangle;
+
     SDL_Surface* pTempSurface = SDL_LoadBMP(resource.c_str());
     if(pTempSurface == 0){
-        std::cout << "surface creation failed\n";
+        std::cout << "surface creation failed: resource: " << resource <<"\n";
     }
     
     SDL_Texture* m_pTexture = SDL_CreateTextureFromSurface(sdlRenderer,
@@ -77,19 +74,20 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     return texture;
 }
 
-//TODO Pending to implement
-Sprite* SDLRenderer::loadSprite(std::string resource)
+Texture* SDLRenderer::loadSprite(std::string resource, int width, int height)
 {
-    return nullptr;
+    Texture* texture = this->loadTexture(resource);
+    texture->setFrameWidth(width);
+    texture->setFrameHeight(height);
+    return texture;
 }
 
 Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
 {
     Texture *texture = new SDLTexture;
-    //TODO remove -5, it's just to set a separation between tiles
     SDL_Surface* pTempSurface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
     
-    /* Filling the surface with red color. */
+    /* Filling less than the surface defined just for the map appearance, change it! */
     SDL_Rect destRect;
     destRect.x = 1;
     destRect.y = 1;
@@ -114,18 +112,52 @@ Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
     return texture;
 }
 
-//TODO provide position, width and height to draw texture
+//TODO Refactor drawtexture methods 
 void SDLRenderer::drawTexture(Texture* texture)
 {
     SDL_Rect srcRect;
     SDL_Rect destRect;
     
-    srcRect.x = 0;
-    srcRect.y = 0;
+    srcRect.x = texture->getSourceRect().x;
+    srcRect.y = texture->getSourceRect().y;
     destRect.x = texture->getPosition().x;
     destRect.y = texture->getPosition().y;
-    srcRect.w = destRect.w = texture->getWidth();
-    srcRect.h = destRect.h = texture->getHeight();
+    //Check if the texture has some frameWidth or height defined in order tha animate a sprite
+    //TODO change it!!
+    if(texture->getFrameWidth() != 0 || texture->getFrameHeight() != 0){
+        srcRect.w = destRect.w = texture->getFrameWidth();
+        srcRect.h = destRect.h = texture->getFrameHeight();
+    }else{
+        srcRect.w = destRect.w = texture->getWidth();
+        srcRect.h = destRect.h = texture->getHeight();
+    }
+    
+    SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
+    SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
+}
+
+void SDLRenderer::drawTexture(Texture* texture, int width, int height)
+{
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+    
+    srcRect.x = texture->getSourceRect().x;
+    srcRect.y = texture->getSourceRect().y;
+    destRect.x = texture->getPosition().x;
+    destRect.y = texture->getPosition().y;
+    //Check if the texture has some frameWidth or height defined in order tha animate a sprite
+    //TODO change it!!
+    if(texture->getFrameWidth() != 0 || texture->getFrameHeight() != 0){
+        srcRect.w = texture->getFrameWidth();
+        destRect.w = width;
+        srcRect.h = texture->getFrameHeight();
+        destRect.h = height;
+    }else{
+        srcRect.w = texture->getWidth();
+        destRect.w = width;
+        srcRect.h = texture->getHeight();
+        destRect.h = height;
+    }
     
     SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
     SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);

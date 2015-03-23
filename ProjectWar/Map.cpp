@@ -40,11 +40,59 @@ void Map::loadMap(Renderer* renderer, int width, int height)
     }
 }
 
+//TODO refactor this
+//We can make a cleanUnitAvailableArea(unit), in which case we must call this method before
+//we update the selected unit and update the sprite position
+
+//We can also have always referenced the updated tiles in the map, so we can clean then whenever we want
+
+void Map::cleanUnitAvailableArea(Unit *unit)
+{
+    int x = unit->getPosition().x - unit->getmovement();
+    int y = unit->getPosition().y - unit->getmovement();
+    
+    for (int i = x; i <= x + (unit->getmovement() * 2) ; i++) {
+        for (int j = y; j <= y + (unit->getmovement() * 2) ; j++) {
+            int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
+            if(distance >= 0 && distance <= unit->getmovement()){
+                //TODO Update tile of the [i][j] position, just hiding tiles now...
+                //maybe create a tile pool and draw a new one for each position
+                
+                if( i >= 0 && j >= 0){ //Avoiding negative positions
+                    matrix[i][j]->getTexture()->setVisible(true);
+                }
+            }
+        }
+    }
+}
+
+void Map::updateUnitAvailableArea(Unit *unit)
+{
+    int x = unit->getPosition().x - unit->getmovement();
+    int y = unit->getPosition().y - unit->getmovement();
+    
+    for (int i = x; i <= x + (unit->getmovement() * 2) ; i++) {
+        for (int j = y; j <= y + (unit->getmovement() * 2) ; j++) {
+            int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
+            if(distance >= 0 && distance <= unit->getmovement()){
+                //TODO Update tile of the [i][j] position, just hiding tiles now...
+                //maybe create a tile pool and draw a new one for each position
+                
+                if( i >= 0 && j >= 0){ //Avoiding negative positions
+                    matrix[i][j]->getTexture()->setVisible(false);
+                }
+            }
+        }
+    }
+}
+
 void Map::drawMap(Renderer* renderer)
 {
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
-            renderer->drawTexture(matrix[i][j]->getTexture());
+            if(matrix[i][j]->getTexture()->isVisible()){
+                renderer->drawTexture(matrix[i][j]->getTexture());
+            }
         }
     }
 }
@@ -77,4 +125,9 @@ Point Map::getAbsolutePosition(int x, int y)
     point.x = x;
     point.y = y;
     return getAbsolutePosition(point);
+}
+
+Tile Map::getTile(int x, int y)
+{
+    return *matrix[x][y];
 }

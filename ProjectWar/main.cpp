@@ -14,10 +14,10 @@ int main(int argc, char * arg[])
     
     game.onInit();
     
-    
     while(game.isRunning()){
         frameStart = SDL_GetTicks();
         
+        //TODO trying to solve the events pooling delay problem...
         game.onProcessInput();
         game.onUpdate();
         game.onRender();
@@ -25,8 +25,7 @@ int main(int argc, char * arg[])
         frameTime = SDL_GetTicks() - frameStart;
         
         if(frameTime < DELAY_TIME){
-            //TODO Removed fixed framerate, try to solve the events pooling delay problem...
-            //SDL_Delay(DELAY_TIME - frameTime);
+            SDL_Delay(DELAY_TIME - frameTime);
         }
     }
     

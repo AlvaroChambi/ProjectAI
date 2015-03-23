@@ -15,6 +15,7 @@
 #include "Renderer.h"
 #include "SDLTexture.h"
 #include "Tile.h"
+#include "Unit.h"
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
@@ -30,6 +31,11 @@ public:
     //cast tile map position to absolute window coordinate position
     Point getAbsolutePosition(Point tilePosition);
     Point getAbsolutePosition(int x, int y);
+    
+    Tile getTile(int x, int y);
+    
+    void updateUnitAvailableArea(Unit* unit);
+    void cleanUnitAvailableArea(Unit* unit);
 private:
     std::vector< std::vector<Tile*> > matrix;
 };

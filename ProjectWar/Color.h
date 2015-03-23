@@ -14,8 +14,17 @@
 class Color
 {
 public:
-    Color(int r, int g, int b);
-    virtual ~Color();
+    Color(int r, int g, int b) : a(0)
+    {
+        this->r = r;
+        this->g = g;
+        this->b = b;
+    }
+    
+    ~Color()
+    {
+        
+    }
     int r;
     int g;
     int b;

@@ -80,6 +80,7 @@ void Game::onInit()
     unitSprite->resize(40, 40);
     unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
+
     
     //TODO register game and player controller as an scene events listener
     scene->attachMap(map);

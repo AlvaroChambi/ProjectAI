@@ -20,12 +20,11 @@ public:
     virtual void* getTexture() = 0;
     virtual void setTexture(void* texture) = 0;
     void setPosition(int x, int y);
+    void setZorder(int z);
     Point getPosition();
     void setPosition( Point position );
     void setWidth( int width );
     int getWidth();
-    void setZOrder( int zOrder );
-    int getZOrder();
     void setHeight( int height );
     int getHeight();
     Point getSourceRect();
@@ -48,7 +47,6 @@ private:
     Point position;
     int width;
     int height;
-    int zOrder;
 };
 
 #endif /* defined(__ProjectWar__Texture__) */

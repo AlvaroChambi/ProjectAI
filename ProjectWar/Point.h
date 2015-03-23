@@ -29,6 +29,11 @@ public:
         this->y = y;
     }
     
+    void setZ ( int zV )
+    {
+        this->z = zV;
+    }
+    
 };
 
 #endif /* defined(__ProjectWar__Point__) */

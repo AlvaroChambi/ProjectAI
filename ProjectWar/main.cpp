@@ -17,7 +17,6 @@ int main(int argc, char * arg[])
     while(game.isRunning()){
         frameStart = SDL_GetTicks();
         
-        //TODO trying to solve the events pooling delay problem...
         game.onProcessInput();
         game.onUpdate();
         game.onRender();

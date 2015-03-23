@@ -30,14 +30,15 @@ void Observable::unRegisterObserver( Observer* observer )
     //TODO remove observer from the list
 }
 
-void Observable::notifyObservers()
+void Observable::notifyObservers(Update update)
 {
     for (int i = 0; i < numListeners; i++) {
-        observers[i]->update();
+        observers[i]->update(update);
     }
 }
 
+//Don't really know why is this here...
 void Observable::notify(Observer* observer)
 {
-    observer->update();
+    //observer->update();
 }

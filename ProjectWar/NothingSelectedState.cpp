@@ -20,7 +20,8 @@ NothingSelectedState::~NothingSelectedState()
 
 void NothingSelectedState::enter()
 {
-    std::cout << "getting into NothingSelectedState...\n";
+    Player* player = (Player*)model;
+    player->setSelectedUnit(nullptr); //Nothing selected
 }
 
 void NothingSelectedState::handleInput(Input input, int id, Tile position)

@@ -21,7 +21,7 @@ PlayerController::~PlayerController()
 void PlayerController::setPlayer(Player *player)
 {
     this->player = player;
-    player->updateState(new NothingSelectedState(player));
+    player->setState(new NothingSelectedState(player));
 }
 
 void PlayerController::onMapClicked(const Tile tile)

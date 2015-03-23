@@ -20,7 +20,11 @@ UnitSelectedState::~UnitSelectedState()
 
 void UnitSelectedState::enter()
 {
-    std::cout << "getting into UnitSelectedState...\n";
+    //TODO refactor state class to avoid implicit cast here...
+    Player* player = (Player*)model;
+    
+    //Update available area and set unit as selected
+    player->getMap()->updateUnitAvailableArea(player->getSelectedUnit());
 }
 
 void UnitSelectedState::handleInput(Input input, int id, Tile position)
@@ -31,15 +35,27 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             //Select new unit - keep state
             Player* player = (Player*)model;
             Unit* unit = player->getUnit(id);
+            player->getMap()->cleanUnitAvailableArea(unit);
             player->setSelectedUnit(unit);
+            player->getState()->enter();
         }
             break;
         case MAP_CLICKED:
         {
-            //update state
             Player* player = (Player*)model;
             Unit* unit = player->getSelectedUnit();
-            unit->setPosition(position);
+            
+            if (unit->canReach(position.position)) {
+                //new MoveCommand(unit).execute// command just executes if unit is active?
+                player->getMap()->cleanUnitAvailableArea(unit);
+                unit->setPosition(position);
+                unit->setActive(false);
+                player->updateState(new NothingSelectedState(player));
+            }else{
+                player->setTile(position);
+                player->getMap()->cleanUnitAvailableArea(player->getSelectedUnit());
+                player->updateState(new NothingSelectedState(player));
+            }
         }
             break;
         default:

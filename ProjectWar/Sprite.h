@@ -22,8 +22,9 @@ public:
     int getID();
     void setTexture(Texture* texture);
     virtual void updateFrame();
-    void startAnimation();
+    void updateAnimated(bool animated);
     void resize(int width, int height);
+    bool matchPosition(Point position);
     int getWidth();
     int getHeight();
 private:

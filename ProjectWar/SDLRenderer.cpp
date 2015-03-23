@@ -48,7 +48,6 @@ void SDLRenderer::init()
     
 }
 
-//TODO Refactor loadTexture and loadSprite methods
 Texture* SDLRenderer::loadTexture(std::string resource)
 {
     Texture *texture = new SDLTexture;

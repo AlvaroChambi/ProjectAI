@@ -35,6 +35,7 @@ void Sprite::setTexture(Texture *texture)
     this->height = texture->getHeight();
 }
 
+//Try to set a fixed frame rate for animations...
 void Sprite::updateFrame()
 {
     int frameWidth = getTexture()->getFrameWidth();
@@ -67,9 +68,21 @@ int Sprite::getHeight()
     return height;
 }
 
-void Sprite::startAnimation()
+void Sprite::updateAnimated(bool animated)
 {
-    if(!animated){
-        this->animated = true;
+    this->animated = animated;
+}
+
+bool Sprite::matchPosition(Point position)
+{
+    bool result = false;
+    int posX = this->getTexture()->getPosition().x;
+    int posY = this->getTexture()->getPosition().y;
+    if(position.x < posX + this->width && position.x > posX){
+        if(position.y < posY + this->height && position.y > posY){
+            result = true;
+        }
     }
+    
+    return result;
 }

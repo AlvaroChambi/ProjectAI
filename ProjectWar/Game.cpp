@@ -66,17 +66,19 @@ void Game::onInit()
     Texture* texture = renderer->loadShape(RECTANGLE, RED, 40, 40);
     playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
+    player->setMap(map);
     
     //TODO For each player load unit and buildings data model and view resources
     Unit* unit = new Unit();
     unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
+    unit->setMovement(3);
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
-    
+    unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
     
     //TODO register game and player controller as an scene events listener

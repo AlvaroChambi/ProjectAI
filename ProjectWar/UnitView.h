@@ -21,7 +21,7 @@ public:
     UnitView();
     virtual ~UnitView();
     void setModel(Model* model);
-    void update();
+    void update( Update update );
 private:
     Unit* unit;
 };

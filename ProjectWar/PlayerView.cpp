@@ -24,8 +24,21 @@ void PlayerView::setModel(Model* model)
     this->player = (Player*)model;
 }
 
-void PlayerView::update()
+void PlayerView::update( Update update )
 {
-    this->getTexture()->setPosition(player->getTile().getTexture()->getPosition());
+    switch (update) {
+        case POSITION_UPDATE:
+            this->getTexture()->setPosition(player->getTile().getTexture()->getPosition());
+            break;
+        case SELECTED_UPDATE:
+            if(this->player->getSelectedUnit() != nullptr){
+                this->getTexture()->setVisible(false);
+            }else{
+                this->getTexture()->setVisible(true);
+            }
+            break;
+        default:
+            break;
+    }
 }
 

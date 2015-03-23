@@ -8,7 +8,8 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0), position(0,0), zOrder(0), sourceRect(0,0),frameWidth(0), frameHeight(0)
+Texture::Texture() : width(0), height(0), position(0,0), zOrder(0), sourceRect(0,0),frameWidth(0),
+                     visible(true), frameHeight(0)
 {
 }
 
@@ -61,6 +62,16 @@ void Texture::setZOrder(int zOrder)
 int Texture::getZOrder()
 {
     return zOrder;
+}
+
+void Texture::setVisible(bool visibility)
+{
+    this->visible = visibility;
+}
+
+bool Texture::isVisible()
+{
+    return visible;
 }
 
 Point Texture::getSourceRect()

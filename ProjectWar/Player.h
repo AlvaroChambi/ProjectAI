@@ -16,6 +16,7 @@
 #include "Unit.h"
 #include "Tile.h"
 #include "State.h"
+#include "Map.h"
 
 class Player : public Model
 {
@@ -34,8 +35,13 @@ public:
     
     State* getState();
     void updateState(State* state);
+    void setState(State* state);
+    
+    void setMap(Map* map);
+    Map* getMap();
 private:
     Point position;
+    //Now that the player has a map maybe we can remove the tile 
     Tile tile;
     //TODO Replace with linked lists!!!!
     Unit* units[20];
@@ -43,6 +49,7 @@ private:
     
     State* state;
     Unit* selectedUnit;
+    Map* map;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

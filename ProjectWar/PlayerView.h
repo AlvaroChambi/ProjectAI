@@ -21,7 +21,7 @@ public:
     PlayerView();
     virtual ~PlayerView();
     void setModel(Model* model);
-    void update();
+    void update( Update update );
 private:
     Player* player;
 };

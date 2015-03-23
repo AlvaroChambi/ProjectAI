@@ -26,10 +26,19 @@ void UnitView::setModel(Model *model)
     model->setid(this->getID());
 }
 
-void UnitView::update()
+void UnitView::update( Update update )
 {
-    std::cout << "UnitView update\n";
-    this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
-    
-    this->startAnimation();
+    switch (update) {
+        case POSITION_UPDATE:
+            this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+            break;
+        case SELECTED_UPDATE:
+            this->updateAnimated(this->unit->isSelected());
+            break;
+        case ACTIVE_UPDATE:
+            this->updateAnimated(false);
+            break;
+        default:
+            break;
+    }
 }

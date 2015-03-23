@@ -15,13 +15,10 @@
 #include "SDLRenderer.h"
 #include "Scene.h"
 #include "SDLInputHandler.h"
-#include "Player.h"
-#include "PlayerView.h"
-#include "PlayerController.h"
-#include "UnitView.h"
-#include "SpriteFactory.h"
+#include "GameImplementation.h"
+#include "ProjectAI.h"
 
-class Game : IGameEventsListener
+class Game 
 {
 public:
     Game();
@@ -31,31 +28,15 @@ public:
     virtual void onUpdate();
     virtual void onRender();
     virtual void onFinish();
-    void onSceneClicked(const Point position);
-    void onTextureClicked(const Texture texture);
-    void onMapClicked(const Tile tile);
-    void onSpriteClicked(const int id);
     bool isRunning();
-    void addPlayer(Player* player);
-    void removePlayer(Player* player);
-    Player* getPlayer(int position);
     
-    //Define this colors as a global static type
-    const Color RED = Color(255,0,0);
-    const Color GREEN = Color(0,153,0);
-    const Color BLUE = Color(0,0,255);
 protected:
 private:
     bool gameRunning;
     SDLRenderer* renderer;
     SDLInputHandler* inputHandler;
     Scene* scene;
-    
-    //Game specific info
-    Texture* sprite;
-    std::list<Player*> players;
-    PlayerController* playerController;
-    Player* activePlayer;
+    GameImplementation* gameImplementation;    
 };
 
 #endif /* defined(__ProjectWar__Game__) */

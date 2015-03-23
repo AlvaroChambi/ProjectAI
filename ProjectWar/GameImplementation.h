@@ -16,7 +16,7 @@ class GameImplementation : public IGameEventsListener
 {
     
 public:
-    virtual void onGameStarted( Scene* scene ) = 0;
+    virtual void onGameStarted( Scene* scene, Renderer* renderer ) = 0;
 };
 
 #endif

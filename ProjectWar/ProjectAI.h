@@ -13,22 +13,34 @@
 #include "GameImplementation.h"
 #include "Player.h"
 #include "PlayerController.h"
+#include "SpriteFactory.h"
+#include "Color.h"
 
 class ProjectAI : public GameImplementation
 {
 public:
+    ProjectAI();
+    virtual ~ProjectAI();
     void onSceneClicked(const Point position);
     void onTextureClicked(const Texture texture);
     void onMapClicked(const Tile tile);
     void onSpriteClicked(const int id);
     
+    void onGameStarted(Scene* scene, Renderer* renderer);
+    
     void addPlayer(Player* player);
     void removePlayer(Player* player);
     Player* getPlayer(int position);
 
+    //Define this colors as a global static type
+    const Color RED = Color(255,0,0);
+    const Color GREEN = Color(0,153,0);
+    const Color BLUE = Color(0,0,255);
+    
 private:
-    Texture* sprite;
-    std::list<Player*> players;
+    //TODO Change it for a linked list!
+    Player* players[20];
+    int numPlayers;
     PlayerController* playerController;
     Player* activePlayer;
 

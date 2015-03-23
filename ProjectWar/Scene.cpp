@@ -71,6 +71,7 @@ void Scene::registerListener(IGameEventsListener *listener)
 
 void Scene::handleEvent(const Event event)
 {
+    //TODO Do not trigger event if the texture is not visible
     bool eventHandled = false;
     Point position = Point(event.x, event.y);
     switch (event.type) {

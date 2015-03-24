@@ -136,6 +136,7 @@ void SDLRenderer::drawTexture(Texture* texture)
     SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
 }
 
+//method to draw resized texture, new dimensions passed as parameters
 void SDLRenderer::drawTexture(Texture* texture, int width, int height)
 {
     SDL_Rect srcRect;

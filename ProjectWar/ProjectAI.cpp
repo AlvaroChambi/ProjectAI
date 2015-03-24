@@ -8,7 +8,7 @@
 
 #include "ProjectAI.h"
 
-ProjectAI::ProjectAI()
+ProjectAI::ProjectAI() : numPlayers(0), activePlayer(nullptr), day(0), playerTurn(0)
 {
     //Just one instance of the player controller, the player reference will be update according to the player turn
     playerController = new PlayerController;
@@ -39,15 +39,32 @@ void ProjectAI::onTextureClicked(const Texture texture)
 
 }
 
+void ProjectAI::onUIComponentClicked(UIComponent component)
+{
+    std::cout << "ui component clicked";
+    //Pass the next player the turn
+    activePlayer = this->getNextPlayer();
+    playerController->setPlayer(activePlayer);
+}
+
 void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
 {
-    //TODO Load map data model and view resources
+    //Set scene ui
+    Layout* layout = new Layout();
+    Button* button = new Button();
+    button->setParams(Params(60,40,CENTER));
+    layout->setParams(Params(FILL,100,DOWN));
+    scene->setUIHUD(layout);
+    layout->addComponent(button);
+    button->setTexture(renderer->loadShape(RECTANGLE, BLUE, 60, 40));
+    
+    //Load map data model and view resources
     Map* map = new Map();
     map->loadMap(renderer, 40, 40);
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
-    //TODO Load player data model, view and create new controller
+    //Load player data model, view and create new controller
     Player* player = new Player();
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
@@ -57,7 +74,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
-    //TODO For each player load unit and buildings data model and view resources
+    //For each player load unit and buildings data model and view resources
     Unit* unit = new Unit();
     unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
@@ -70,11 +87,36 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
     
-    
-    //TODO register game and player controller as an scene events listener
+    //register game and player controller as an scene events listener
     scene->attachMap(map);
     scene->attachSprite(playerSprite);
     scene->attachSprite(unitSprite);
+    
     scene->registerListener(this);
 
+}
+
+Player* ProjectAI::getNextPlayer()
+{
+    Player* result;
+    if(playerTurn > numPlayers){
+        playerTurn = 0;
+        day++;
+        result = players[playerTurn];
+    }else{
+        result = players[playerTurn];
+        playerTurn++;
+    }
+    return result;
+}
+
+void ProjectAI::addPlayer(Player *player)
+{
+    players[numPlayers] = player;
+    numPlayers++;
+}
+
+Player* ProjectAI::getPlayer(int position)
+{
+    return players[position];
 }

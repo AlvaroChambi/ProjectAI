@@ -15,6 +15,7 @@
 #include "PlayerController.h"
 #include "SpriteFactory.h"
 #include "Color.h"
+#include "Button.h"
 
 class ProjectAI : public GameImplementation
 {
@@ -25,25 +26,29 @@ public:
     void onTextureClicked(const Texture texture);
     void onMapClicked(const Tile tile);
     void onSpriteClicked(const int id);
+    void onUIComponentClicked(UIComponent component);
     
     void onGameStarted(Scene* scene, Renderer* renderer);
     
     void addPlayer(Player* player);
-    void removePlayer(Player* player);
     Player* getPlayer(int position);
+    
+    Player* getNextPlayer();
 
     //Define this colors as a global static type
     const Color RED = Color(255,0,0);
     const Color GREEN = Color(0,153,0);
     const Color BLUE = Color(0,0,255);
-    
+    const Color YELLOW = Color(255,255,0);
 private:
     //TODO Change it for a linked list!
     Player* players[20];
     int numPlayers;
     PlayerController* playerController;
     Player* activePlayer;
-
+    
+    int playerTurn;
+    int day;
 };
 
 #endif /* defined(__ProjectWar__ProjectAI__) */

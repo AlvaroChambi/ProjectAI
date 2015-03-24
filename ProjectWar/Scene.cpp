@@ -12,6 +12,8 @@ Scene::Scene(Renderer* renderer) : numTextures(0), numSprites(0)
 {
     this->renderer = renderer;
     this->map = nullptr;
+    //Create a virtual layout parent just to hold the screen dimensions
+    rootLayout = new Layout;
 }
 
 Scene::~Scene()
@@ -37,6 +39,15 @@ void Scene::attachMap(Map *map)
     this->map = map;
 }
 
+void Scene::setUIHUD(UIComponent *component)
+{
+    //Fixed windows dimensions, change it...
+    rootLayout->setWidth(640);
+    rootLayout->setHeight(480);
+    
+    rootLayout->addComponent(component);
+}
+
 void Scene::render()
 {
     if( map != nullptr ){
@@ -54,6 +65,8 @@ void Scene::render()
             renderer->drawTexture(sprites[i]->getTexture(), sprites[i]->getWidth(), sprites[i]->getHeight());
         }
     }
+    
+    rootLayout->render(renderer);
 }
 
 //Sprites animations ticks
@@ -93,9 +106,14 @@ void Scene::handleEvent(const Event event)
 
                 }
                 
+                UIComponent* component = rootLayout->matchEvent(position);
+                if(component != nullptr){
+                    eventsListener->onUIComponentClicked(*component);
+                }
+                
                 if(!eventHandled){
                     Tile* tile = nullptr;
-                    // if there are no given matches just send scene clicked event
+                    // if there are no previous matches just send scene clicked event
                     if (map != nullptr) {
                         tile = map->matchEvent(position);
                     }

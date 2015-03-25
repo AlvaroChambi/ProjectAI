@@ -151,10 +151,11 @@ Player* ProjectAI::nextPlayer()
     if(activePlayer != nullptr){
         activePlayer->setActive(false);
     }
-    if(playerTurn > numPlayers){
+    if(playerTurn >= numPlayers){
         playerTurn = 0;
         day++;
         result = players[playerTurn];
+        playerTurn++;
     }else{
         result = players[playerTurn];
         playerTurn++;

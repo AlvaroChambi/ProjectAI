@@ -10,6 +10,7 @@
 #define __ProjectWar__Layout__
 
 #include <stdio.h>
+#include "List.h"
 
 #include "UIComponent.h"
 
@@ -23,10 +24,8 @@ public:
     void setBackground(Texture* background);
     UIComponent* matchEvent(Point position);
 private:
-    //TODO Change it for a linked list
-    UIComponent* components[20];
+    List <UIComponent*> components;
     Texture* background;
-    int numComponents;
 };
 
 #endif /* defined(__ProjectWar__Layout__) */

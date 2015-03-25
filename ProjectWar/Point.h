@@ -10,6 +10,7 @@
 #define __ProjectWar__Point__
 
 #include <stdio.h>
+#include <iostream>
 
 class Point
 {
@@ -20,7 +21,7 @@ public:
     int z;
     Point() : x(0), y(0), z(0)
     {
-        
+        std::cout<<"Constuctor";
     }
     
     Point( int x, int y )
@@ -29,9 +30,9 @@ public:
         this->y = y;
     }
     
-    void setZ ( int zV )
+    void setZ ( int z )
     {
-        this->z = zV;
+        this->z = z;
     }
     
 };

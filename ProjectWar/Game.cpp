@@ -7,7 +7,7 @@
 //
 
 #include "Game.h"
-#include "LinkedList.h"
+#include "List.h"
 
 Game::Game()
 {
@@ -67,6 +67,7 @@ void Game::onInit()
     playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
+    
     
     //TODO For each player load unit and buildings data model and view resources
     Unit* unit = new Unit();

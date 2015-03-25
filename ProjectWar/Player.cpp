@@ -115,3 +115,14 @@ bool Player::isActive()
 {
     return active;
 }
+
+bool Player::hasUnit(int id)
+{
+    bool result = false;
+    for (int i = 0; i < numUnits; i++) {
+        if(units[i]->getId() == id){
+            result = true;
+        }
+    }
+    return result;
+}

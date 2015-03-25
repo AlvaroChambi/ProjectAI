@@ -44,6 +44,9 @@ void NothingSelectedState::handleInput(Input input, int id, Tile position)
             player->setTile(position);
         }
             break;
+        case ENEMY_UNIT_CLICKED:
+        {
+        }
         default:
             break;
     }

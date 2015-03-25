@@ -31,9 +31,30 @@ void ProjectAI::onMapClicked(const Tile tile)
 
 void ProjectAI::onSpriteClicked(const int id)
 {
-    //TODO At this point we must check what kind of sprite triggered the event so we can filter it
+    //At this point we must check what kind of sprite triggered the event so we can filter it
     //(unitClicked, oppositeUnitClicked, building clicked, etc...)
-    playerController->onUnitClicked(id);
+    //playerController->onUnitClicked(id);
+    switch (this->getPlayerEvent(id)) {
+        case UNIT_CLICKED:
+            playerController->onUnitClicked(id);
+            break;
+        case ENEMY_UNIT_CLICKED:
+            playerController->onEnemyUnitClicked(id);
+            break;
+        default:
+            break;
+    }
+}
+
+Input ProjectAI::getPlayerEvent(int id)
+{
+    Input result = ENEMY_UNIT_CLICKED;
+    for (int i = 0; i < numPlayers; i++) {
+        if (activePlayer->hasUnit(id)) {
+            result = UNIT_CLICKED;
+        }
+    }
+    return result;
 }
 
 void ProjectAI::onTextureClicked(const Texture texture)

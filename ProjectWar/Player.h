@@ -42,6 +42,8 @@ public:
     
     void setActive(bool active);
     bool isActive();
+    
+    bool hasUnit(int id);
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 

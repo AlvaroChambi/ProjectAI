@@ -26,6 +26,7 @@ public:
     
     void onMapClicked(const Tile tile);
     void onUnitClicked(const int id);
+    void onEnemyUnitClicked(const int id);
     
 private:
     Player* player;

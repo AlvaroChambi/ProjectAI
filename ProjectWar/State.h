@@ -16,6 +16,7 @@
 enum Input
 {
     UNIT_CLICKED,
+    ENEMY_UNIT_CLICKED,
     MAP_CLICKED
 };
 

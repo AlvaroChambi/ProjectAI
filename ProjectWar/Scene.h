@@ -19,6 +19,7 @@
 #include "Map.h"
 #include "Sprite.h"
 #include "Layout.h"
+#include "List.h"
 
 class Scene
 {
@@ -37,13 +38,8 @@ public:
     //animations
     void update();
 private:
-    //TODO Change it for a linked list or a map!!
-    Texture* textureList[10];
-    Sprite* sprites[10];
-
-    int numTextures;
-    int numSprites;
-    
+    List <Texture*> textureList;
+    List <Sprite*> sprites;
     Renderer *renderer;
     IGameEventsListener* eventsListener;
     Map* map;

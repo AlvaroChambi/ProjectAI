@@ -8,7 +8,7 @@
 
 #include "Scene.h"
 
-Scene::Scene(Renderer* renderer) : numTextures(0), numSprites(0)
+Scene::Scene(Renderer* renderer) :textureList(), sprites()
 {
     this->renderer = renderer;
     this->map = nullptr;
@@ -24,14 +24,13 @@ Scene::~Scene()
 void Scene::attachTexture(Texture* texture)
 {
     
-    textureList[numTextures] = texture;
-    numTextures++;
+    textureList.add(texture);
+
 }
 
 void Scene::attachSprite(Sprite *sprite)
 {
-    sprites[numSprites] = sprite;
-    numSprites++;
+    sprites.add(sprite);
 }
 
 void Scene::attachMap(Map *map)
@@ -54,15 +53,15 @@ void Scene::render()
         map->drawMap(renderer);
     }
     
-    for(int i = 0; i < numTextures; i++){
-        if(textureList[i]->isVisible()){
-            renderer->drawTexture(textureList[i]);
+    for(int i = 0; i < textureList.getSize(); i++){
+        if(textureList.getElement(i)->isVisible()){
+            renderer->drawTexture(textureList.getElement(i));
         }
     }
     //Sprites in this case are mvc oriented 
-    for(int i = 0; i < numSprites; i++){
-        if (sprites[i]->getTexture()->isVisible()) {
-            renderer->drawTexture(sprites[i]->getTexture(), sprites[i]->getWidth(), sprites[i]->getHeight());
+    for(int i = 0; i < sprites.getSize(); i++){
+        if (sprites.getElement(i)->getTexture()->isVisible()) {
+            renderer->drawTexture(sprites.getElement(i)->getTexture(), sprites.getElement(i)->getWidth(), sprites.getElement(i)->getHeight());
         }
     }
     
@@ -72,8 +71,8 @@ void Scene::render()
 //Sprites animations ticks
 void Scene::update()
 {
-    for (int i = 0; i < numSprites; i++) {
-        sprites[i]->updateFrame();
+    for (int i = 0; i < sprites.getSize(); i++) {
+        sprites.getElement(i)->updateFrame();
     }
 }
 
@@ -90,17 +89,17 @@ void Scene::handleEvent(const Event event)
     switch (event.type) {
         case ON_MOUSE_DOWN_EVENT:
             if(this->eventsListener != nullptr){
-                for (int i = 0; i < numTextures; i++) {
+                for (int i = 0; i < textureList.getSize(); i++) {
                     //if clicked position match with the given texture area notify event
-                    if(textureList[i]->matchPosition(position) && textureList[i]->isVisible()){
-                        eventsListener->onTextureClicked(*textureList[i]);
+                    if(textureList.getElement(i)->matchPosition(position) && textureList.getElement(i)->isVisible()){
+                        eventsListener->onTextureClicked(*textureList.getElement(i));
                         eventHandled = true;
                     }
                 }
-                for(int i = 0; i < numSprites; i++){
+                for(int i = 0; i < sprites.getSize(); i++){
                     //if clicked position match with the given sprite size notify event
-                    if(sprites[i]->matchPosition(position) && sprites[i]->getTexture()->isVisible()){
-                        eventsListener->onSpriteClicked(sprites[i]->getID());
+                    if(sprites.getElement(i)->matchPosition(position) && sprites.getElement(i)->getTexture()->isVisible()){
+                        eventsListener->onSpriteClicked(sprites.getElement(i)->getID());
                         eventHandled = true;
                     }
 

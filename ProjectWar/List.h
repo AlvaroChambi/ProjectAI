@@ -22,7 +22,7 @@ public:
     {
     }
     
-    T *value;
+    T value;
     Node *next;
     int order;
 };
@@ -31,9 +31,9 @@ template <class T>
 class List
 {
 public:
-    List():list(NULL){}
+    List():list(NULL), size(0){}
     ~List(){}
-    void add(T *value)
+    void add(T value)
     {
         Node<T> *newNode, *previousNode;
         
@@ -54,8 +54,9 @@ public:
             newNode->next = previousNode->next;
             previousNode->next = newNode;
         }
+        size++;
     }
-    void insert(T *value, int order)
+    void insert(T value, int order)
     {
         
         Node<T> *newNode, *previousNode;
@@ -80,6 +81,7 @@ public:
             newNode->next = previousNode->next;
             previousNode->next = newNode;
         }
+        size++;
     }
     
     bool isEmpty()
@@ -87,7 +89,7 @@ public:
         return (list == NULL);
     }
     
-    T* getElement(int position)
+    T getElement(int position)
     {
         Node<T> *node = list;
         Node<T> *ret;
@@ -107,7 +109,7 @@ public:
         return ret->value;
     }
     
-    T* getElementOrder(int order)
+    T getElementOrder(int order)
     {
         Node<T> *node = list;
         Node<T> *ret;
@@ -123,6 +125,11 @@ public:
             }
         }
         return ret->value;
+    }
+    
+    int getSize()
+    {
+        return size;
     }
     
     void deleteList()
@@ -149,6 +156,7 @@ public:
     
 private:
     Node<T> *list;
+    int size;
     
 };
 

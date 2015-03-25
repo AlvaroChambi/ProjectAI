@@ -31,8 +31,8 @@ int Sprite::getID()
 void Sprite::setTexture(Texture *texture)
 {
     View::setTexture(texture);
-    this->width = texture->getWidth();
-    this->height = texture->getHeight();
+    this->width = texture->getFrameWidth();
+    this->height = texture->getFrameHeight();
 }
 
 //Try to set a fixed frame rate for animations...
@@ -42,7 +42,7 @@ void Sprite::updateFrame()
     //Just animating in the "x axis"...
     if(animated){
         if (frame * frameWidth <= (getTexture()->getWidth() - frameWidth)) {
-            getTexture()->setSourceRect(Point( frame * frameWidth, 0 ));
+            getTexture()->setFramePosition(Point( frame * frameWidth, 0 ));
             frame++;
         }else{
             //restart the animation

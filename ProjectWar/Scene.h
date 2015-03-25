@@ -18,6 +18,7 @@
 #include "IGameEventsListener.h"
 #include "Map.h"
 #include "Sprite.h"
+#include "Layout.h"
 
 class Scene
 {
@@ -29,6 +30,8 @@ public:
     void attachSprite(Sprite* sprite);
     void handleEvent(const Event event);
     void registerListener(IGameEventsListener* listener);
+    
+    void setUIHUD(UIComponent* component);
     void attachMap(Map* map);
     void render();
     //animations
@@ -44,6 +47,7 @@ private:
     Renderer *renderer;
     IGameEventsListener* eventsListener;
     Map* map;
+    Layout* rootLayout;
 };
 
 #endif /* defined(__ProjectWar__Scene__) */

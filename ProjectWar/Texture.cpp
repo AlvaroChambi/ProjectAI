@@ -8,7 +8,7 @@
 
 #include "Texture.h"
 
-Texture::Texture() : width(0), height(0), position(0,0), sourceRect(0,0),frameWidth(0),
+Texture::Texture() : width(0), height(0), position(0,0), framePosition(0,0),frameWidth(0),
                      visible(true), frameHeight(0)
 {
 }
@@ -68,14 +68,14 @@ bool Texture::isVisible()
     return visible;
 }
 
-Point Texture::getSourceRect()
+Point Texture::getFramePosition()
 {
-    return sourceRect;
+    return framePosition;
 }
 
-void Texture::setSourceRect(Point position)
+void Texture::setFramePosition(Point position)
 {
-    this->sourceRect = position;
+    this->framePosition = position;
 }
 
 void Texture::setFrameWidth(int width)

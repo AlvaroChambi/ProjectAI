@@ -37,6 +37,9 @@ void PlayerView::update( Update update )
                 this->getTexture()->setVisible(true);
             }
             break;
+        case ACTIVE_UPDATE:
+            this->getTexture()->setVisible(player->isActive());
+            break;
         default:
             break;
     }

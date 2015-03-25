@@ -71,9 +71,12 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     texture->setWidth(sourceRectangle.w);
     texture->setHeight(sourceRectangle.h);
     
+    texture->setFrameWidth(sourceRectangle.w);
+    texture->setFrameHeight(sourceRectangle.h);
     return texture;
 }
 
+//Sprites are always animated, so frame width and height must be defined
 Texture* SDLRenderer::loadSprite(std::string resource, int width, int height)
 {
     Texture* texture = this->loadTexture(resource);
@@ -109,55 +112,42 @@ Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
     texture->setWidth(width);
     texture->setHeight(height);
     
+    texture->setFrameWidth(width);
+    texture->setFrameHeight(height);
     return texture;
 }
 
-//TODO Refactor drawtexture methods 
+//draws the texture with his dimensions
 void SDLRenderer::drawTexture(Texture* texture)
 {
-    SDL_Rect srcRect;
     SDL_Rect destRect;
-    
-    srcRect.x = texture->getSourceRect().x;
-    srcRect.y = texture->getSourceRect().y;
-    destRect.x = texture->getPosition().x;
-    destRect.y = texture->getPosition().y;
-    //Check if the texture has some frameWidth or height defined in order tha animate a sprite
-    //TODO change it!!
-    if(texture->getFrameWidth() != 0 || texture->getFrameHeight() != 0){
-        srcRect.w = destRect.w = texture->getFrameWidth();
-        srcRect.h = destRect.h = texture->getFrameHeight();
-    }else{
-        srcRect.w = destRect.w = texture->getWidth();
-        srcRect.h = destRect.h = texture->getHeight();
-    }
-    
-    SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
-    SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
+    //If it's animated with the defined frame dimensions
+    destRect.w = texture->getFrameWidth();
+    destRect.h = texture->getFrameHeight();
+    drawTexture(texture, destRect);
 }
 
+//method to draw resized texture, new dimensions passed as parameters
 void SDLRenderer::drawTexture(Texture* texture, int width, int height)
 {
-    SDL_Rect srcRect;
     SDL_Rect destRect;
     
-    srcRect.x = texture->getSourceRect().x;
-    srcRect.y = texture->getSourceRect().y;
+    destRect.w = width;
+    destRect.h = height;
+    drawTexture(texture, destRect);
+}
+
+void SDLRenderer::drawTexture(Texture* texture, SDL_Rect destRect)
+{
+    SDL_Rect srcRect;
+    
+    srcRect.x = texture->getFramePosition().x;
+    srcRect.y = texture->getFramePosition().y;
     destRect.x = texture->getPosition().x;
     destRect.y = texture->getPosition().y;
-    //Check if the texture has some frameWidth or height defined in order tha animate a sprite
-    //TODO change it!!
-    if(texture->getFrameWidth() != 0 || texture->getFrameHeight() != 0){
-        srcRect.w = texture->getFrameWidth();
-        destRect.w = width;
-        srcRect.h = texture->getFrameHeight();
-        destRect.h = height;
-    }else{
-        srcRect.w = texture->getWidth();
-        destRect.w = width;
-        srcRect.h = texture->getHeight();
-        destRect.h = height;
-    }
+    
+    srcRect.w = texture->getFrameWidth();
+    srcRect.h = texture->getFrameHeight();
     
     SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
     SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);

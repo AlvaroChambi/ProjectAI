@@ -27,8 +27,8 @@ public:
     int getWidth();
     void setHeight( int height );
     int getHeight();
-    Point getSourceRect();
-    void setSourceRect(Point position);
+    Point getFramePosition();
+    void setFramePosition(Point position);
     int getFrameWidth();
     void setFrameWidth(int width);
     int getFrameHeight();
@@ -38,14 +38,13 @@ public:
     
     bool matchPosition(Point position);
 private:
-    //used to handle animated sprites
-    Point sourceRect;
-    int frameWidth;
+    Point framePosition;  //Position of the frame to render relative to the texture
+    int frameWidth;       //Dimension of the zone of the texture to render(whole texture if it's not animated)
     int frameHeight;
     
     bool visible;
-    Point position;
-    int width;
+    Point position;       //position relative to the screen
+    int width;            //Dimensions of the whole texture(never used to render, always render with the frame dimensions)
     int height;
 };
 

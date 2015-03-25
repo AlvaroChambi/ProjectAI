@@ -16,6 +16,7 @@ class IPlayerEventsListener
 {
 public:
     virtual void onUnitClicked(const int id) = 0;
+    virtual void onEnemyUnitClicked(const int id) = 0;
     virtual void onMapClicked(const Tile tile) = 0;
 };
 

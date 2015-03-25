@@ -58,6 +58,8 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             }
         }
             break;
+        case ENEMY_UNIT_CLICKED:
+            break;
         default:
             break;
     }

@@ -42,6 +42,8 @@ public:
     const Color YELLOW = Color(255,255,0);
     const Color CIAN = Color(0,255,255);
 private:
+    Input getPlayerEvent(int id);
+    
     //TODO Change it for a linked list!
     Player* players[20];
     int numPlayers;

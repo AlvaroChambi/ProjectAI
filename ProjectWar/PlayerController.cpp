@@ -35,3 +35,10 @@ void PlayerController::onUnitClicked(const int id)
     //Position not needed
     player->getState()->handleInput(UNIT_CLICKED, id, nullptr);
 }
+
+void PlayerController::onEnemyUnitClicked(const int id)
+{
+    //Position not needed
+    std::cout << "onEnemyUnitClicked\n";
+    player->getState()->handleInput(ENEMY_UNIT_CLICKED, id, nullptr);
+}

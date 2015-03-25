@@ -8,7 +8,8 @@
 
 #include "Player.h"
 
-Player::Player() : Model(), position(0,0), numUnits(0), selectedUnit(nullptr)
+Player::Player() : Model(), position(0,0), numUnits(0), selectedUnit(nullptr),
+                    active(false)
 {
     
 }
@@ -102,4 +103,15 @@ void Player::updateState(State *state)
 void Player::setState(State *state)
 {
     this->state = state;
+}
+
+void Player::setActive(bool active)
+{
+    this->active = active;
+    this->notifyObservers(ACTIVE_UPDATE);
+}
+
+bool Player::isActive()
+{
+    return active;
 }

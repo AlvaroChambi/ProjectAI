@@ -33,13 +33,14 @@ public:
     void addPlayer(Player* player);
     Player* getPlayer(int position);
     
-    Player* getNextPlayer();
+    Player* nextPlayer();
 
     //Define this colors as a global static type
     const Color RED = Color(255,0,0);
     const Color GREEN = Color(0,153,0);
     const Color BLUE = Color(0,0,255);
     const Color YELLOW = Color(255,255,0);
+    const Color CIAN = Color(0,255,255);
 private:
     //TODO Change it for a linked list!
     Player* players[20];

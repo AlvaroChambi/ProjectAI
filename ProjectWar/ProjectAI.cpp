@@ -31,6 +31,8 @@ void ProjectAI::onMapClicked(const Tile tile)
 
 void ProjectAI::onSpriteClicked(const int id)
 {
+    //TODO At this point we must check what kind of sprite triggered the event so we can filter it
+    //(unitClicked, oppositeUnitClicked, building clicked, etc...)
     playerController->onUnitClicked(id);
 }
 
@@ -43,8 +45,7 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
 {
     std::cout << "ui component clicked";
     //Pass the next player the turn
-    activePlayer = this->getNextPlayer();
-    playerController->setPlayer(activePlayer);
+    activePlayer = this->nextPlayer();
 }
 
 void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
@@ -68,12 +69,22 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Player* player = new Player();
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
-    playerController->setPlayer(player);
     Texture* texture = renderer->loadShape(RECTANGLE, RED, 40, 40);
     playerSprite->setTexture(texture);
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
+    Player* player2 = new Player;
+    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
+    playerSprite2->setModel(player2);
+    Texture* texture2 = renderer->loadShape(RECTANGLE, CIAN, 40, 40);
+    texture2->setVisible(false);
+    playerSprite2->setTexture(texture2);
+    texture2->setPosition(map->getAbsolutePosition(3,8));
+    player2->setMap(map);
+    
+    this->addPlayer(player);
+    this->addPlayer(player2);
     //For each player load unit and buildings data model and view resources
     Unit* unit = new Unit();
     unit->setResource("animate.bmp");
@@ -87,18 +98,38 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
     
+    Unit* unit2 = new Unit();
+    unit2->setResource("link.bmp");
+    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
+    unit2->setMovement(3);
+    unit2Sprite->setModel(unit2);
+    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
+    unit2Sprite->setTexture(unit2Texture);
+    unit2Sprite->resize(40, 40);
+    unit2->setPosition(map->getTile(10, 10));
+    player2->addUnit(unit2);
+    
     //register game and player controller as an scene events listener
     scene->attachMap(map);
+    scene->attachSprite(playerSprite2);
+    scene->attachSprite(unit2Sprite);
     scene->attachSprite(playerSprite);
     scene->attachSprite(unitSprite);
     
     scene->registerListener(this);
+    
+    //Set the first active player and starts the game
+    nextPlayer();
 
 }
 
-Player* ProjectAI::getNextPlayer()
+Player* ProjectAI::nextPlayer()
 {
     Player* result;
+    //Set the actual active player as non active
+    if(activePlayer != nullptr){
+        activePlayer->setActive(false);
+    }
     if(playerTurn > numPlayers){
         playerTurn = 0;
         day++;
@@ -107,6 +138,10 @@ Player* ProjectAI::getNextPlayer()
         result = players[playerTurn];
         playerTurn++;
     }
+    //Update active player and the player controller
+    activePlayer = result;
+    activePlayer->setActive(true);
+    playerController->setPlayer(activePlayer);
     return result;
 }
 

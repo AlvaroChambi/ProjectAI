@@ -39,6 +39,9 @@ public:
     
     void setMap(Map* map);
     Map* getMap();
+    
+    void setActive(bool active);
+    bool isActive();
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
@@ -48,8 +51,10 @@ private:
     int numUnits;
     
     State* state;
+    //TODO Dont need to have a selected unit instance if i have a player with an active param
     Unit* selectedUnit;
     Map* map;
+    bool active;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

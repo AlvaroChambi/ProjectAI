@@ -28,6 +28,7 @@ public:
     void renderClear();
     void renderPresent();
 private:
+    void drawTexture(Texture* texture, SDL_Rect destRect);
     SDL_Window* sdlWindow;
     SDL_Renderer* sdlRenderer;
 };

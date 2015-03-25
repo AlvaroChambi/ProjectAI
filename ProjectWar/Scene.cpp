@@ -92,14 +92,14 @@ void Scene::handleEvent(const Event event)
             if(this->eventsListener != nullptr){
                 for (int i = 0; i < numTextures; i++) {
                     //if clicked position match with the given texture area notify event
-                    if(textureList[i]->matchPosition(position)){
+                    if(textureList[i]->matchPosition(position) && textureList[i]->isVisible()){
                         eventsListener->onTextureClicked(*textureList[i]);
                         eventHandled = true;
                     }
                 }
                 for(int i = 0; i < numSprites; i++){
                     //if clicked position match with the given sprite size notify event
-                    if(sprites[i]->matchPosition(position)){
+                    if(sprites[i]->matchPosition(position) && sprites[i]->getTexture()->isVisible()){
                         eventsListener->onSpriteClicked(sprites[i]->getID());
                         eventHandled = true;
                     }

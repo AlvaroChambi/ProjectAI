@@ -15,12 +15,15 @@
 class UIComponent
 {
 public:
-    UIComponent();
+    UIComponent(int id);
     virtual ~UIComponent();
     virtual void render(Renderer* renderer) = 0;
     virtual UIComponent* matchEvent(Point position) = 0;
     
     void setParams(Params params);
+    
+    void setID(int id);
+    int getID();
     
     void setPosition(int x, int y);
     Point getPosition();
@@ -39,6 +42,7 @@ private:
     void updatePosition();
     void updateDimensions();
     
+    int id;
     UIComponent* parent;
     Params params;
     Point position;

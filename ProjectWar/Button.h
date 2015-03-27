@@ -16,7 +16,7 @@
 class Button : public UIComponent
 {
 public:
-    Button();
+    Button(int id);
     virtual ~Button();
     void render(Renderer* renderer);
     void setTexture(Texture* texture);

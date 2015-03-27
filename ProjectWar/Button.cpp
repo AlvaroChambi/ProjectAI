@@ -8,7 +8,7 @@
 
 #include "Button.h"
 
-Button::Button() : texture(nullptr)
+Button::Button(int id) : UIComponent(id), texture(nullptr)
 {
 
 }

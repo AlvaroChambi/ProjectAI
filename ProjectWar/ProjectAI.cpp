@@ -46,17 +46,6 @@ void ProjectAI::onSpriteClicked(const int id)
     }
 }
 
-Input ProjectAI::getPlayerEvent(int id)
-{
-    Input result = ENEMY_UNIT_CLICKED;
-    for (int i = 0; i < numPlayers; i++) {
-        if (activePlayer->hasUnit(id)) {
-            result = UNIT_CLICKED;
-        }
-    }
-    return result;
-}
-
 void ProjectAI::onTextureClicked(const Texture texture)
 {
 
@@ -64,16 +53,23 @@ void ProjectAI::onTextureClicked(const Texture texture)
 
 void ProjectAI::onUIComponentClicked(UIComponent component)
 {
-    std::cout << "ui component clicked";
-    //Pass the next player the turn
-    activePlayer = this->nextPlayer();
+    std::cout << "ui component clicked\n";
+    switch (component.getID()) {
+        case END_BUTTON:
+            //Pass the next player the turn
+            activePlayer = this->nextPlayer();
+            break;
+            
+        default:
+            break;
+    }
 }
 
 void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
 {
     //Set scene ui
     Layout* layout = new Layout();
-    Button* button = new Button();
+    Button* button = new Button(END_BUTTON);
     button->setParams(Params(60,40,CENTER));
     layout->setParams(Params(FILL,100,DOWN));
     scene->setUIHUD(layout);
@@ -164,6 +160,17 @@ Player* ProjectAI::nextPlayer()
     activePlayer = result;
     activePlayer->setActive(true);
     playerController->setPlayer(activePlayer);
+    return result;
+}
+
+Input ProjectAI::getPlayerEvent(int id)
+{
+    Input result = ENEMY_UNIT_CLICKED;
+    for (int i = 0; i < numPlayers; i++) {
+        if (activePlayer->hasUnit(id)) {
+            result = UNIT_CLICKED;
+        }
+    }
     return result;
 }
 

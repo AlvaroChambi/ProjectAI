@@ -17,6 +17,7 @@ class Layout : public UIComponent
 {
 public:
     Layout();
+    Layout(int id);
     virtual ~Layout();
     void render(Renderer* renderer);
     void addComponent(UIComponent* component);

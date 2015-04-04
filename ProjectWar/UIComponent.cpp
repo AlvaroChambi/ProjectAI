@@ -8,7 +8,7 @@
 
 #include "UIComponent.h"
 
-UIComponent::UIComponent() : width(0), height(0)
+UIComponent::UIComponent(int id) : id(id), width(0), height(0)
 {
 
 }
@@ -23,9 +23,19 @@ void UIComponent::setParams(Params params)
     this->params = params;
 }
 
+
 Params UIComponent::getParams()
 {
     return this->params;
+}
+void UIComponent::setID(int id)
+{
+    this->id = id;
+}
+
+int UIComponent::getID()
+{
+    return id;
 }
 
 //updates screen(in pixels)position and dimensions of the component(needed to have a parent defined)
@@ -70,10 +80,14 @@ void UIComponent::updatePosition()
             break;
         }
         case UP:
+        {
+            int y = parent->position.y;
+            this->setPosition(position.x, y);
+        }
             break;
         case DOWN:
         {
-            int y = parent->getHeight() - height;
+            int y = parent->position.y + parent->getHeight() - height;
             this->setPosition(position.x , y);
         }
             break;

@@ -41,6 +41,8 @@ public:
     const Color BLUE = Color(0,0,255);
     const Color YELLOW = Color(255,255,0);
     const Color CIAN = Color(0,255,255);
+    //UI button
+    static const int END_BUTTON = 1;
 private:
     Input getPlayerEvent(int id);
     

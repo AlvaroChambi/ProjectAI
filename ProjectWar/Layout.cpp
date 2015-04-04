@@ -8,7 +8,13 @@
 
 #include "Layout.h"
 
-Layout::Layout() : background(nullptr)
+//Instancing an layout with an undefined id
+Layout::Layout() : UIComponent(-1), background(nullptr)
+{
+
+}
+
+Layout::Layout(int id) : UIComponent(id), background(nullptr)
 {
 
 }

@@ -21,6 +21,7 @@ public:
     virtual UIComponent* matchEvent(Point position) = 0;
     
     void setParams(Params params);
+    Params getParams();
     
     void setPosition(int x, int y);
     Point getPosition();
@@ -33,8 +34,9 @@ public:
     
     void setParent(UIComponent* component);
     UIComponent* getParent();
-protected:
     void updateValues();
+
+protected:
 private:
     void updatePosition();
     void updateDimensions();

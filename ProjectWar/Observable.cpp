@@ -9,7 +9,7 @@
 #include "Observable.h"
 #include <iostream>
 
-Observable::Observable() : numListeners(0)
+Observable::Observable()
 {
    
 }
@@ -21,8 +21,7 @@ Observable::~Observable()
 
 void Observable::registerObserver( Observer* observer )
 {
-    observers[numListeners] = observer;
-    numListeners++;
+    observers.add(observer);
 }
 
 void Observable::unRegisterObserver( Observer* observer )
@@ -32,8 +31,8 @@ void Observable::unRegisterObserver( Observer* observer )
 
 void Observable::notifyObservers(Update update)
 {
-    for (int i = 0; i < numListeners; i++) {
-        observers[i]->update(update);
+    for (int i = 0; i < observers.getSize(); i++) {
+        observers.getElement(i)->update(update);
     }
 }
 

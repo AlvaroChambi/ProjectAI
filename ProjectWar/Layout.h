@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "List.h"
+#include "Params.h"
+
 
 #include "UIComponent.h"
 
@@ -22,6 +24,7 @@ public:
     void render(Renderer* renderer);
     void addComponent(UIComponent* component);
     void setBackground(Texture* background);
+    void updatePosition();
     UIComponent* matchEvent(Point position);
 private:
     List <UIComponent*> components;

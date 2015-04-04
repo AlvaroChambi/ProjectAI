@@ -23,6 +23,11 @@ void UIComponent::setParams(Params params)
     this->params = params;
 }
 
+Params UIComponent::getParams()
+{
+    return this->params;
+}
+
 //updates screen(in pixels)position and dimensions of the component(needed to have a parent defined)
 void UIComponent::updateValues() //Called whenever we set a parent
 {
@@ -111,7 +116,7 @@ int UIComponent::getHeight()
 void UIComponent::setParent(UIComponent *component)
 {
     this->parent = component;
-    this->updateValues();
+    //this->updateValues();
 }
 
 UIComponent* UIComponent::getParent()

@@ -78,7 +78,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     layout->setParams(Params(FILL,100,DOWN));
     scene->setUIHUD(layout);
     layout->addComponent(button);
-    button->setTexture(renderer->loadShape(RECTANGLE, BLUE, 60, 40));
+    button->setTexture(renderer->loadShape(RECTANGLE, RED, 60, 40));
     
     //Load map data model and view resources
     Map* map = new Map();

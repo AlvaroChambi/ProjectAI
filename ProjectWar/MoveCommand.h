@@ -12,18 +12,21 @@
 #include <stdio.h>
 
 #include "Command.h"
-#include "Unit.h"
+#include "Player.h"
 
 class MoveCommand : public Command
 {
 public:
-    MoveCommand(Unit* unit);
-    ~MoveCommand();
+    MoveCommand(Player* player, Tile destination);
+    virtual ~MoveCommand();
     
     void execute();
     void cancel();
 private:
-    Unit* unit;
+    Player* player;
+    State* savedState;
+    Tile savedPosition;
+    Tile destination;
 };
 
 #endif /* defined(__ProjectWar__MoveCommand__) */

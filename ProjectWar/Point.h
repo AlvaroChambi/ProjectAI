@@ -20,9 +20,7 @@ public:
     int y;
     int z;
     Point() : x(0), y(0), z(0)
-    {
-        std::cout<<"Constuctor";
-    }
+    {}
     
     Point( int x, int y )
     {

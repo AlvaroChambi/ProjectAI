@@ -8,7 +8,7 @@
 
 #include "Tile.h"
 
-Tile::Tile() : position(0,0)
+Tile::Tile() : position(0,0) ,texture(nullptr)
 {
     this->texture = nullptr;
 }
@@ -26,4 +26,9 @@ Tile::~Tile()
 Texture* Tile::getTexture()
 {
     return texture;
+}
+
+void Tile::setTexture(Texture* texture)
+{
+    this->texture = texture;
 }

@@ -7,9 +7,16 @@
 //
 
 #include "Player.h"
+#include "Map.h"
 
-Player::Player() : Model(), position(0,0), numUnits(0), selectedUnit(nullptr),
-                    active(false)
+Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
+                    active(false), map(nullptr), id(-1)
+{
+    
+}
+
+Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
+                        active(false), map(nullptr), id(id)
 {
     
 }
@@ -44,16 +51,15 @@ Tile Player::getTile()
 
 void Player::addUnit(Unit *unit)
 {
-    units[numUnits] = unit;
-    numUnits++;
+    units.add(unit);
 }
 
 Unit* Player::getUnit(int id)
 {
     Unit* unit = nullptr;
-    for (int i = 0; i < numUnits; i++) {
-        if (units[i]->getId() == id) {
-            unit = units[i];
+    for (int i = 0; i < units.getSize(); i++) {
+        if (units.getElement(i)->getId() == id) {
+            unit = units.getElement(i);
         }
     }
     return unit;
@@ -116,13 +122,35 @@ bool Player::isActive()
     return active;
 }
 
+void Player::setID(int id)
+{
+    this->id = id;
+}
+
+int Player::getID()
+{
+    return id;
+}
+
 bool Player::hasUnit(int id)
 {
     bool result = false;
-    for (int i = 0; i < numUnits; i++) {
-        if(units[i]->getId() == id){
+    for (int i = 0; i < units.getSize(); i++) {
+        if(units.getElement(i)->getId() == id){
             result = true;
         }
     }
     return result;
+}
+
+void Player::populateInfoMap(InfoMap& infoMap)
+{
+    for (int i = 0; i < units.getSize(); i++) {
+        Unit* unit = units.getElement(i);
+        Point position = unit->getPosition();
+        InfoTile* tile = infoMap[position.x][position.y];
+        tile->entity = UNIT_ENTITY;
+        tile->ownerID = id;
+        tile->text->setTextResource("Unit: " + std::to_string(tile->ownerID));
+    }
 }

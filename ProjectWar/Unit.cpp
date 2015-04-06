@@ -8,7 +8,7 @@
 
 #include "Unit.h"
 
-Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true)
+Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
 {
     
 }
@@ -63,6 +63,48 @@ bool Unit::isSelected()
     return selected;
 }
 
+Tile Unit::getTile()
+{
+    return tile;
+}
+
+Point Unit::getPosition()
+{
+    return tile.position;
+}
+
+void Unit::setAttackRange(int attackRange)
+{
+    this->attackRange = attackRange;
+}
+
+int Unit::getAttackRange()
+{
+    return attackRange;
+}
+
+void Unit::updateCommands(List<UnitCommand> commands)
+{
+    //Clean previous commands and set the new ones
+    this->commands = commands;
+    this->notifyObservers(COMMANDS_UPDATE);
+}
+
+void Unit::addCommand(UnitCommand command)
+{
+    commands.add(command);
+}
+
+UnitCommand Unit::getCommand(int position)
+{
+    return commands.getElement(position);
+}
+
+int Unit::getNumCommands()
+{
+    return commands.getSize();
+}
+
 bool Unit::canReach(Point destination)
 {
     bool result = false;
@@ -72,14 +114,4 @@ bool Unit::canReach(Point destination)
         result = true;
     }
     return result;
-}
-
-Tile Unit::getTile()
-{
-    return tile;
-}
-
-Point Unit::getPosition()
-{
-    return tile.position;
 }

@@ -67,23 +67,17 @@ void UIComponent::updatePosition()
     switch (params.gravity) {
         case CENTER:
         {
-            int centerX = parent->position.x + parent->getWidth() / 2;
-            int centerY = parent->position.y + parent->getHeight() / 2;
-            int offsetX = width / 2;
-            int offsetY = height / 2;
-            this->setPosition(centerX - offsetX, centerY -offsetY);
+            center(parent->getPosition(), parent->getWidth(), parent->getHeight());
             break;
         }
         case UP:
         {
-            int y = parent->position.y;
-            this->setPosition(position.x, y);
+            up(parent->getPosition(), parent->getWidth(), parent->getHeight());
         }
             break;
         case DOWN:
         {
-            int y = parent->position.y + parent->getHeight() - height;
-            this->setPosition(position.x , y);
+            down(parent->getPosition(), parent->getWidth(), parent->getHeight());
         }
             break;
         default:
@@ -91,10 +85,36 @@ void UIComponent::updatePosition()
     }
 }
 
+void UIComponent::center(Point parentPosition, int parentWidth, int parentHeight)
+{
+    int centerX = parentPosition.x + parentWidth / 2;
+    int centerY = parentPosition.y + parentHeight / 2;
+    int offsetX = width / 2;
+    int offsetY = height / 2;
+    this->setPosition(centerX - offsetX, centerY -offsetY);
+}
+
+void UIComponent::down(Point parentPosition, int parentWidth, int parentHeight)
+{
+    int y = parentPosition.y + parentHeight - height;
+    this->setPosition(position.x , y);
+}
+
+void UIComponent::up(Point parentPosition, int parentWidth, int parentHeight)
+{
+    int y = parentPosition.y;
+    this->setPosition(position.x, y);
+}
+
 void UIComponent::setPosition(int x, int y)
 {
     this->position.x = x;
     this->position.y = y;
+}
+
+void UIComponent::setPosition(Point position)
+{
+    this->position = position;
 }
 
 Point UIComponent::getPosition()

@@ -7,6 +7,10 @@
 //
 
 #include "UnitSelectedState.h"
+#include "Map.h"
+#include "OnAttackState.h"
+#include "OnMoveState.h"
+#include "MoveCommand.h"
 
 UnitSelectedState::UnitSelectedState(Player* player) : State(player)
 {
@@ -25,15 +29,20 @@ void UnitSelectedState::enter()
     
     //Update available area and set unit as selected
     player->getMap()->updateUnitAvailableArea(player->getSelectedUnit());
+    List<UnitCommand> commands;
+    commands.add(WAIT);
+    //TODO Check if there are any unit around
+    //Update commands
+    player->getSelectedUnit()->updateCommands(commands);
 }
 
 void UnitSelectedState::handleInput(Input input, int id, Tile position)
 {
+    Player* player = (Player*)model;
     switch (input) {
         case UNIT_CLICKED:
         {
             //Select new unit - keep state
-            Player* player = (Player*)model;
             Unit* unit = player->getUnit(id);
             player->getMap()->cleanUnitAvailableArea(unit);
             player->setSelectedUnit(unit);
@@ -42,23 +51,27 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             break;
         case MAP_CLICKED:
         {
-            Player* player = (Player*)model;
             Unit* unit = player->getSelectedUnit();
             
             if (unit->canReach(position.position)) {
-                //new MoveCommand(unit).execute// command just executes if unit is active?
-                player->getMap()->cleanUnitAvailableArea(unit);
-                unit->setPosition(position);
-                unit->setActive(false);
-                player->updateState(new NothingSelectedState(player));
+                Command* moveCommand = new MoveCommand(player, position);
+                moveCommand->execute();
             }else{
                 player->setTile(position);
-                player->getMap()->cleanUnitAvailableArea(player->getSelectedUnit());
                 player->updateState(new NothingSelectedState(player));
             }
         }
             break;
-        case ENEMY_UNIT_CLICKED:
+        case ATTACK_CLICKED:
+        {
+
+        }
+            break;
+        case WAIT_CLICKED:
+        {
+            player->getSelectedUnit()->setActive(false);
+            player->updateState(new NothingSelectedState(player));
+        }
             break;
         default:
             break;

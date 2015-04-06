@@ -8,7 +8,7 @@
 
 #include "SDLRenderer.h"
 
-SDLRenderer::SDLRenderer()
+SDLRenderer::SDLRenderer() : sdlWindow(nullptr), sdlRenderer(nullptr), sdlFont(nullptr)
 {
     
 }
@@ -46,6 +46,18 @@ void SDLRenderer::init()
         std::cout << "renderer init fail\n";
     }
     
+    //Initialize SDL_ttf
+    if( TTF_Init() == -1 )
+    {
+        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
+    
+    //Open the font
+    sdlFont = TTF_OpenFont( "/Library/Fonts/AppleGothic.ttf", 10);
+    if( sdlFont == nullptr )
+    {
+        printf( "Failed to load font! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
 }
 
 Texture* SDLRenderer::loadTexture(std::string resource)
@@ -73,6 +85,7 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     
     texture->setFrameWidth(sourceRectangle.w);
     texture->setFrameHeight(sourceRectangle.h);
+    std::cout << "texture created: " << resource << "\n";
     return texture;
 }
 
@@ -82,6 +95,44 @@ Texture* SDLRenderer::loadSprite(std::string resource, int width, int height)
     Texture* texture = this->loadTexture(resource);
     texture->setFrameWidth(width);
     texture->setFrameHeight(height);
+    return texture;
+}
+
+Texture* SDLRenderer::loadText(std::string text, Color color)
+{
+    Texture* texture = new SDLTexture;
+    SDL_Color sdlColor;
+    sdlColor.r = color.r;
+    sdlColor.g = color.g;
+    sdlColor.b = color.b;
+    //Render text surface
+    SDL_Surface* textSurface = TTF_RenderText_Solid( sdlFont, text.c_str(), sdlColor );
+    if( textSurface == NULL )
+    {
+        printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
+    else
+    {
+        //Create texture from surface pixels
+        SDL_Texture* sdlTexture = SDL_CreateTextureFromSurface( sdlRenderer, textSurface );
+        if( sdlTexture == NULL )
+        {
+            printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Get image dimensions
+            texture->setTexture(sdlTexture);
+            texture->setWidth(textSurface->w);
+            texture->setHeight(textSurface->h);
+            
+            texture->setFrameWidth(textSurface->w);
+            texture->setFrameHeight(textSurface->h);
+        }
+        
+        //Get rid of old surface
+        SDL_FreeSurface( textSurface );
+    }
     return texture;
 }
 

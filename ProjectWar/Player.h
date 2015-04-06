@@ -10,19 +10,23 @@
 #define __ProjectWar__Player__
 
 #include <stdio.h>
-#include <list>
 
 #include "Model.h"
 #include "Unit.h"
 #include "Tile.h"
 #include "State.h"
-#include "Map.h"
+#include "List.h"
+#include "InfoTile.h"
 
+class Map;
 class Player : public Model
 {
 public:
     Player();
+    Player(int id);
     virtual ~Player();
+    typedef std::vector< std::vector<InfoTile*> > InfoMap;
+    
     void setPosition( int x, int y);
     Point getPosition();
     Tile getTile();
@@ -43,15 +47,20 @@ public:
     void setActive(bool active);
     bool isActive();
     
+    void setID( int id );
+    int getID();
+    
     bool hasUnit(int id);
+    
+    //Add units data to the info map
+    void populateInfoMap(InfoMap& infoMap);
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
     Tile tile;
-    //TODO Replace with linked lists!!!!
-    Unit* units[20];
-    int numUnits;
+    List<Unit*> units;
     
+    int id;
     State* state;
     //TODO Dont need to have a selected unit instance if i have a player with an active param
     Unit* selectedUnit;

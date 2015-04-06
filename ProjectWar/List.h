@@ -11,14 +11,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Texture.h"
 
 template <class T>
 
 class Node
 {
 public:
-    Node():value(nullptr), next(nullptr), order(0)
+    Node() : next(nullptr), order(0)
     {
     }
     
@@ -33,6 +32,7 @@ class List
 public:
     List():list(NULL), size(0){}
     ~List(){}
+    //TODO implement method contains(T) that returns true if the given object is  already in the list
     void add(T value)
     {
         Node<T> *newNode, *previousNode;
@@ -141,7 +141,9 @@ public:
             list = node->next;
             free(node);
         }
+        size = 0;
     }
+    
     void showList()
     {
         Node<T> *node = list;

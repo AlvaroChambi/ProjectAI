@@ -24,8 +24,10 @@ public:
     void addComponent(UIComponent* component);
     void setBackground(Texture* background);
     UIComponent* matchEvent(Point position);
-private:
+    void cleanComponents();
+protected:
     List <UIComponent*> components;
+private:
     Texture* background;
 };
 

@@ -17,7 +17,10 @@ enum Input
 {
     UNIT_CLICKED,
     ENEMY_UNIT_CLICKED,
-    MAP_CLICKED
+    MAP_CLICKED,
+    CANCEL_CLICKED,
+    WAIT_CLICKED,
+    ATTACK_CLICKED,
 };
 
 class State

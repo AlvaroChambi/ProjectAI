@@ -11,11 +11,11 @@
 
 #include <stdio.h>
 #include "GameImplementation.h"
-#include "Player.h"
 #include "PlayerController.h"
 #include "SpriteFactory.h"
 #include "Color.h"
 #include "Button.h"
+#include "UnitUIView.h"
 
 class ProjectAI : public GameImplementation
 {
@@ -43,17 +43,21 @@ public:
     const Color CIAN = Color(0,255,255);
     //UI button
     static const int END_BUTTON = 1;
+    static const int WAIT_BUTTON = 2;
+    static const int CANCEL_BUTTON = 3;
+    static const int ATTACK_BUTTON = 4;
 private:
     Input getPlayerEvent(int id);
     
-    //TODO Change it for a linked list!
-    Player* players[20];
-    int numPlayers;
+    List<Player*> players;
+    
     PlayerController* playerController;
     Player* activePlayer;
     
     int playerTurn;
     int day;
+    
+    UnitUIView* layout;
 };
 
 #endif /* defined(__ProjectWar__ProjectAI__) */

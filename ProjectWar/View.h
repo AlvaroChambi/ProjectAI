@@ -24,6 +24,7 @@ public:
     virtual void setTexture(Texture* texture);
     Texture* getTexture();
 private:
+    //TODO maybe place the texture reference in the sprite class and not here...
     Texture* texture;
 };
 

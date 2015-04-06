@@ -7,8 +7,9 @@
 //
 
 #include "ProjectAI.h"
+#include "UnitUIView.h"
 
-ProjectAI::ProjectAI() : numPlayers(0), activePlayer(nullptr), day(0), playerTurn(0)
+ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
 {
     //Just one instance of the player controller, the player reference will be update according to the player turn
     playerController = new PlayerController;
@@ -36,7 +37,14 @@ void ProjectAI::onSpriteClicked(const int id)
     //playerController->onUnitClicked(id);
     switch (this->getPlayerEvent(id)) {
         case UNIT_CLICKED:
+        {
+            Unit* unit = activePlayer->getSelectedUnit();
+            //Updating unit ui reference to the new selected unit
+            if(unit == nullptr || unit->getId() != id){
+                layout->setModel(activePlayer->getUnit(id));
+            }
             playerController->onUnitClicked(id);
+        }
             break;
         case ENEMY_UNIT_CLICKED:
             playerController->onEnemyUnitClicked(id);
@@ -59,8 +67,8 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
             //Pass the next player the turn
             activePlayer = this->nextPlayer();
             break;
-            
         default:
+            playerController->onUIEventReceived(component.getID());
             break;
     }
 }
@@ -68,13 +76,13 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
 void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
 {
     //Set scene ui
-    Layout* layout = new Layout();
+    layout = new UnitUIView();
     Button* button = new Button(END_BUTTON);
     button->setParams(Params(60,40,CENTER));
     layout->setParams(Params(FILL,100,DOWN));
     scene->setUIHUD(layout);
     layout->addComponent(button);
-    button->setTexture(renderer->loadShape(RECTANGLE, BLUE, 60, 40));
+    button->setImageResource("end_button.bmp");
     
     //Load map data model and view resources
     Map* map = new Map();
@@ -83,7 +91,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     SpriteFactory* spriteFactory = new SpriteFactory;
     
     //Load player data model, view and create new controller
-    Player* player = new Player();
+    Player* player = new Player(1);
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
     Texture* texture = renderer->loadShape(RECTANGLE, RED, 40, 40);
@@ -91,7 +99,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
-    Player* player2 = new Player;
+    Player* player2 = new Player(2);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
     Texture* texture2 = renderer->loadShape(RECTANGLE, CIAN, 40, 40);
@@ -107,6 +115,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
     unit->setMovement(3);
+    unit->setAttackRange(1);
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
     unitSprite->setTexture(unitTexture);
@@ -114,17 +123,22 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->resize(40, 40);
     unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
+    layout->setModel(unit);
     
     Unit* unit2 = new Unit();
     unit2->setResource("link.bmp");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
     unit2->setMovement(3);
+    unit->setAttackRange(2);
     unit2Sprite->setModel(unit2);
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
-    unit2->setPosition(map->getTile(10, 10));
+    unit2->setPosition(map->getTile(10, 9));
     player2->addUnit(unit2);
+    
+    //When all the players resources has been setted, load the strategic info map
+    map->loadInfoMap(players);
     
     //register game and player controller as an scene events listener
     scene->attachMap(map);
@@ -147,13 +161,13 @@ Player* ProjectAI::nextPlayer()
     if(activePlayer != nullptr){
         activePlayer->setActive(false);
     }
-    if(playerTurn >= numPlayers){
+    if(playerTurn >= players.getSize()){
         playerTurn = 0;
         day++;
-        result = players[playerTurn];
+        result = players.getElement(playerTurn);
         playerTurn++;
     }else{
-        result = players[playerTurn];
+        result = players.getElement(playerTurn);
         playerTurn++;
     }
     //Update active player and the player controller
@@ -163,10 +177,11 @@ Player* ProjectAI::nextPlayer()
     return result;
 }
 
+//Given an sprite id return an event according to the type of sprite clicked
 Input ProjectAI::getPlayerEvent(int id)
 {
     Input result = ENEMY_UNIT_CLICKED;
-    for (int i = 0; i < numPlayers; i++) {
+    for (int i = 0; i < players.getSize(); i++) {
         if (activePlayer->hasUnit(id)) {
             result = UNIT_CLICKED;
         }
@@ -176,11 +191,10 @@ Input ProjectAI::getPlayerEvent(int id)
 
 void ProjectAI::addPlayer(Player *player)
 {
-    players[numPlayers] = player;
-    numPlayers++;
+    players.add(player);
 }
 
 Player* ProjectAI::getPlayer(int position)
 {
-    return players[position];
+    return players.getElement(position);
 }

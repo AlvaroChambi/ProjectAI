@@ -7,6 +7,7 @@
 //
 
 #include "NothingSelectedState.h"
+#include "Map.h"
 
 NothingSelectedState::NothingSelectedState(Player* player) : State(player)
 {
@@ -21,6 +22,10 @@ NothingSelectedState::~NothingSelectedState()
 void NothingSelectedState::enter()
 {
     Player* player = (Player*)model;
+    player->getMap()->cleanUnitAvailableArea(player->getSelectedUnit());
+    List<UnitCommand> commands;
+    commands.add(END);
+    player->getSelectedUnit()->updateCommands(commands);
     player->setSelectedUnit(nullptr); //Nothing selected
 }
 

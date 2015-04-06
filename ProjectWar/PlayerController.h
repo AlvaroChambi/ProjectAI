@@ -28,6 +28,8 @@ public:
     void onUnitClicked(const int id);
     void onEnemyUnitClicked(const int id);
     
+    void onUIEventReceived(int id);
+    
 private:
     Player* player;
 };

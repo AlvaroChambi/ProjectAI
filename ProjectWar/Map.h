@@ -15,18 +15,24 @@
 #include "Renderer.h"
 #include "SDLTexture.h"
 #include "Tile.h"
+#include "InfoTile.h"
+#include "List.h"
 #include "Unit.h"
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
+class Player;
 class Map
 {
 public:
+    typedef std::vector< std::vector<Tile*> > TileMap;
+    typedef std::vector< std::vector<InfoTile*> > InfoMap;
     Map();
     virtual ~Map();
     //Width and height in tiles
     void loadMap(Renderer* renderer, int width, int height);
     void drawMap(Renderer* renderer);
+    void drawInfoMap(Renderer* renderer);
     Tile* matchEvent(Point position);
     //cast tile map position to absolute window coordinate position
     Point getAbsolutePosition(Point tilePosition);
@@ -36,8 +42,23 @@ public:
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
+    
+    //Initializes the values of the strategic info map
+    void loadInfoMap( List<Player*> & players);
+    InfoMap& getInfoMap();
+    
+    //Check entities near the given unit(units, buildings...) and update his commands
+    void checkNearEntities(Unit* unit);
+    
+    //Restore a info tile to his default values
+    void cleanTile(int x, int y);
+    //Update the values of a tile with the given entity
+    void updateTile(Unit* unit, int ownerID);
+    //Change unit position in the infomap, must be called before the unit position has been changed
+    void moveUnit(Unit* unit, Point destination);
 private:
-    std::vector< std::vector<Tile*> > matrix;
+    TileMap matrix;
+    InfoMap infoMap;
 };
 
 #endif /* defined(__ProjectWar__Map__) */

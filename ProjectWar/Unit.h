@@ -14,6 +14,17 @@
 
 #include "Model.h"
 #include "Tile.h"
+#include "List.h"
+#include "InfoTile.h"
+
+enum UnitCommand
+{
+    CANCEL,
+    WAIT,
+    ATTACK,
+    CAPTURE,
+    END,
+};
 
 class Unit : public Model
 {
@@ -35,13 +46,25 @@ public:
     void setSelected(bool selected);
     bool isSelected();
     
+    void setAttackRange(int attackRange);
+    int getAttackRange();
+    
+    void addCommand(UnitCommand command);
+    UnitCommand getCommand(int position);
+    void updateCommands(List<UnitCommand> commands);
+    
+    int getNumCommands();
+    
     bool canReach(Point destination);
+
 private:
     bool selected;
     bool active;
     Tile tile;
     int movement;
     int hp;
+    int attackRange;
+    List<UnitCommand> commands;
 };
 
 #endif /* defined(__ProjectWar__Unit__) */

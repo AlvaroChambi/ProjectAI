@@ -61,9 +61,13 @@ void Scene::render()
     //Sprites in this case are mvc oriented 
     for(int i = 0; i < sprites.getSize(); i++){
         if (sprites.getElement(i)->getTexture()->isVisible()) {
-            renderer->drawTexture(sprites.getElement(i)->getTexture(), sprites.getElement(i)->getWidth(), sprites.getElement(i)->getHeight());
+            renderer->drawTexture(sprites.getElement(i)->getTexture(), sprites.getElement(i)->getWidth(),
+                                  sprites.getElement(i)->getHeight());
         }
     }
+    
+    //InfoMap
+    map->drawInfoMap(renderer);
     
     rootLayout->render(renderer);
 }

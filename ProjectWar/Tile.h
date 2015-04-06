@@ -19,6 +19,7 @@ public:
     Tile();
     Tile(Texture* texture);
     Texture* getTexture();
+    void setTexture(Texture* texture);
     virtual ~Tile();
 private:
     Texture* texture;

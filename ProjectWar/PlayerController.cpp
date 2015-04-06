@@ -7,6 +7,7 @@
 //
 
 #include "PlayerController.h"
+#include "ProjectAI.h"
 
 PlayerController::PlayerController() : player(nullptr)
 {
@@ -41,4 +42,22 @@ void PlayerController::onEnemyUnitClicked(const int id)
     //Position not needed
     std::cout << "onEnemyUnitClicked\n";
     player->getState()->handleInput(ENEMY_UNIT_CLICKED, id, nullptr);
+}
+
+void PlayerController::onUIEventReceived(int id)
+{
+    //Just input needed
+    switch (id) {
+        case ProjectAI::WAIT_BUTTON:
+            player->getState()->handleInput(WAIT_CLICKED, -1,nullptr);
+            break;
+        case ProjectAI::CANCEL_BUTTON:
+            player->getState()->handleInput(CANCEL_CLICKED, -1,nullptr);
+            break;
+        case ProjectAI::ATTACK_BUTTON:
+            player->getState()->handleInput(ATTACK_CLICKED, -1,nullptr);
+            break;
+        default:
+            break;
+    }
 }

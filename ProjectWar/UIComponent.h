@@ -26,6 +26,7 @@ public:
     int getID();
     
     void setPosition(int x, int y);
+    void setPosition(Point position);
     Point getPosition();
     
     void setWidth(int width);
@@ -36,11 +37,14 @@ public:
     
     void setParent(UIComponent* component);
     UIComponent* getParent();
+    void center(Point parentPosition, int parentWidth, int parentHeight);
+    void up(Point parentPosition, int parentWidth, int parentHeight);
+    void down(Point parentPosition, int parentWidth, int parentHeight);
+
 protected:
-    void updateValues();
-private:
-    void updatePosition();
-    void updateDimensions();
+    virtual void updateValues();
+    virtual void updatePosition();
+    virtual void updateDimensions();
     
     int id;
     UIComponent* parent;

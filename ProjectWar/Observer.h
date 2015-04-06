@@ -17,12 +17,12 @@ enum Update
     POSITION_UPDATE,
     SELECTED_UPDATE,
     ACTIVE_UPDATE,
+    COMMANDS_UPDATE,
 };
 
 class Observer
 {
 public:
-    //TODO add something like a update type as a parameter...
     virtual void update( Update update ) = 0;
 };
 

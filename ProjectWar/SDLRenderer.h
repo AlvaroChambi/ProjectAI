@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2_ttf/SDL_ttf.h>
 #include "Renderer.h"
 #include "SDLTexture.h"
 
@@ -22,6 +23,7 @@ public:
     void init();
     Texture* loadTexture(std::string resource);
     Texture* loadShape(Shape shape, Color color, int width, int height);
+    Texture* loadText(std::string text, Color color);
     Texture* loadSprite(std::string resource, int width, int height);
     void drawTexture(Texture* texture);
     void drawTexture(Texture* texture, int width, int height);
@@ -31,6 +33,7 @@ private:
     void drawTexture(Texture* texture, SDL_Rect destRect);
     SDL_Window* sdlWindow;
     SDL_Renderer* sdlRenderer;
+    TTF_Font *sdlFont;
 };
 
 #endif /* defined(__ProjectWar__SDLRenderer__) */

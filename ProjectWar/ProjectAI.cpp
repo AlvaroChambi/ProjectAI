@@ -17,12 +17,12 @@ ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
 
 ProjectAI::~ProjectAI()
 {
-
+    
 }
 
 void ProjectAI::onSceneClicked(const Point position)
 {
-
+    
 }
 
 void ProjectAI::onMapClicked(const Tile tile)
@@ -56,7 +56,7 @@ void ProjectAI::onSpriteClicked(const int id)
 
 void ProjectAI::onTextureClicked(const Texture texture)
 {
-
+    //TODO implement
 }
 
 void ProjectAI::onUIComponentClicked(UIComponent component)
@@ -151,7 +151,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     //Set the first active player and starts the game
     nextPlayer();
-
+    
 }
 
 Player* ProjectAI::nextPlayer()
@@ -174,6 +174,7 @@ Player* ProjectAI::nextPlayer()
     activePlayer = result;
     activePlayer->setActive(true);
     playerController->setPlayer(activePlayer);
+    
     return result;
 }
 

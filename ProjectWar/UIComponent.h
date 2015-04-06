@@ -21,6 +21,7 @@ public:
     virtual UIComponent* matchEvent(Point position) = 0;
     
     void setParams(Params params);
+    Params getParams();
     
     void setID(int id);
     int getID();
@@ -37,6 +38,7 @@ public:
     
     void setParent(UIComponent* component);
     UIComponent* getParent();
+
     void center(Point parentPosition, int parentWidth, int parentHeight);
     void up(Point parentPosition, int parentWidth, int parentHeight);
     void down(Point parentPosition, int parentWidth, int parentHeight);

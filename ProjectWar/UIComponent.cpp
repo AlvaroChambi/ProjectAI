@@ -23,6 +23,11 @@ void UIComponent::setParams(Params params)
     this->params = params;
 }
 
+
+Params UIComponent::getParams()
+{
+    return this->params;
+}
 void UIComponent::setID(int id)
 {
     this->id = id;

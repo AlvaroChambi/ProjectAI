@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "Observer.h"
+#include "List.h"
 
 class Observable
 {
@@ -24,9 +25,7 @@ public:
     void notifyObservers(Update update);
     void notify(Observer* observer);
 private:
-    //TODO Replace with linked lists!!!
-    Observer* observers[20];
-    int numListeners;
+    List <Observer*> observers;
 };
 
 #endif /* defined(__ProjectWar__Observable__) */

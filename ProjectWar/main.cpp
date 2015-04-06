@@ -23,6 +23,7 @@ int main(int argc, char * arg[])
         frameTime = SDL_GetTicks() - frameStart;
         
         if(frameTime < DELAY_TIME){
+           SDL_Delay(DELAY_TIME - frameTime);
             SDL_Delay(DELAY_TIME - frameTime);
         }
     }

@@ -48,12 +48,8 @@ public:
     InfoMap& getInfoMap();
     
     //Check entities near the given unit(units, buildings...) and update his commands
-    void checkNearEntities(Unit* unit);
+    void checkNearEntities(Unit* unit, List<UnitCommand>& commands);
     
-    //Restore a info tile to his default values
-    void cleanTile(int x, int y);
-    //Update the values of a tile with the given entity
-    void updateTile(Unit* unit, int ownerID);
     //Change unit position in the infomap, must be called before the unit position has been changed
     void moveUnit(Unit* unit, Point destination);
 private:

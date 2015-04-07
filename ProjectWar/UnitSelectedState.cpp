@@ -26,12 +26,13 @@ void UnitSelectedState::enter()
 {
     //TODO refactor state class to avoid implicit cast here...
     Player* player = (Player*)model;
-    
+    Unit* unit = player->getSelectedUnit();
     //Update available area and set unit as selected
-    player->getMap()->updateUnitAvailableArea(player->getSelectedUnit());
+    player->getMap()->updateUnitAvailableArea(unit);
     List<UnitCommand> commands;
     commands.add(WAIT);
-    //TODO Check if there are any unit around
+    //Check if there are any unit around
+    player->getMap()->checkNearEntities(unit, commands);
     //Update commands
     player->getSelectedUnit()->updateCommands(commands);
 }

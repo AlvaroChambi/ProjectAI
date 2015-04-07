@@ -176,38 +176,22 @@ Map::InfoMap& Map::getInfoMap()
     return infoMap;
 }
 
-void Map::cleanTile(int x, int y)
-{
-    /*
-    InfoTile* tile = infoMap[x][y];
-    Texture* texture = renderer.loadText(" - : - ",Color(255,0,0));
-    tile->setTexture(texture);
-    tile->ownerID = -1;*/
-}
-
-void Map::updateTile(Unit *unit, int ownerID)
-{
-    /*
-    InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    std::string text = "Unit: " + std::to_string(tile->ownerID);
-    Texture* texture = renderer.loadText(text,Color(255,0,0));
-    tile->setTexture(texture);
-    tile->ownerID = ownerID;*/
-}
-
-void Map::checkNearEntities(Unit *unit)
+void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
 {
     InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     int x = unit->getPosition().x - unit->getAttackRange();
     int y = unit->getPosition().y - unit->getAttackRange();
     
-    for (int i = x; i < x + (unit->getAttackRange() * 2) ; i++) {
-        for (int j = y; j < y + (unit->getAttackRange() * 2) ; j++) {
+    for (int i = x; i <= x + (unit->getAttackRange() * 2) ; i++) {
+        for (int j = y; j <= y + (unit->getAttackRange() * 2) ; j++) {
             int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
             if(distance >= 0 && distance <= unit->getAttackRange() && i >= 0 && j >= 0){
-                InfoTile* infoTile = infoMap[i][j];
-                if(infoTile->ownerID != unitTile->ownerID){
-                    unit->addCommand(ATTACK);
+                if(i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT){
+                    InfoTile* infoTile = infoMap[i][j];
+                    
+                    if(infoTile->ownerID != -1 && infoTile->ownerID != unitTile->ownerID){
+                        commands.add(ATTACK);
+                    }
                 }
             }
         }

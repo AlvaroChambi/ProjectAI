@@ -61,7 +61,6 @@ void ProjectAI::onTextureClicked(const Texture texture)
 
 void ProjectAI::onUIComponentClicked(UIComponent component)
 {
-    std::cout << "ui component clicked\n";
     switch (component.getID()) {
         case END_BUTTON:
             //Pass the next player the turn
@@ -114,7 +113,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Unit* unit = new Unit();
     unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
-    unit->setMovement(3);
+    unit->setMovement(4);
     unit->setAttackRange(1);
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
@@ -129,12 +128,12 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit2->setResource("link.bmp");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
     unit2->setMovement(3);
-    unit->setAttackRange(2);
+    unit2->setAttackRange(1);
     unit2Sprite->setModel(unit2);
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
-    unit2->setPosition(map->getTile(10, 9));
+    unit2->setPosition(map->getTile(4, 3));
     player2->addUnit(unit2);
     
     //When all the players resources has been setted, load the strategic info map
@@ -154,6 +153,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
 }
 
+//TODO Check this method, returning corrupted player instance sometimes...
 Player* ProjectAI::nextPlayer()
 {
     Player* result;
@@ -174,7 +174,6 @@ Player* ProjectAI::nextPlayer()
     activePlayer = result;
     activePlayer->setActive(true);
     playerController->setPlayer(activePlayer);
-    
     return result;
 }
 

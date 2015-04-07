@@ -28,7 +28,7 @@ void OnMoveState::enter()
     commands.add(CANCEL);
     commands.add(WAIT);
     //Check if there are any enemy aroud
-    //player->getMap()->updateUnitCommands(unit);
+    player->getMap()->checkNearEntities(unit,commands);
     //update commands
     unit->updateCommands(commands);
 }

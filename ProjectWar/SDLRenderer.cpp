@@ -85,7 +85,6 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     
     texture->setFrameWidth(sourceRectangle.w);
     texture->setFrameHeight(sourceRectangle.h);
-    std::cout << "texture created: " << resource << "\n";
     return texture;
 }
 

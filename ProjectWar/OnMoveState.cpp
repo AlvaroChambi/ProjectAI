@@ -9,8 +9,11 @@
 #include "OnMoveState.h"
 #include "Player.h"
 #include "Map.h"
+#include "OnAttackState.h"
+#include "AttackCommand.h"
 
-OnMoveState::OnMoveState(Model* model, Command* command) : OnCommandState(model, command)
+OnMoveState::OnMoveState(Model* model,State* savedState, Command* command)
+                        : OnCommandState(model, savedState,command)
 {
 
 }
@@ -35,9 +38,18 @@ void OnMoveState::enter()
 
 void OnMoveState::handleInput(Input input, int id, Tile position)
 {
+    Player* player = (Player*)model;
     OnCommandState::handleInput(input, id, position);
     switch (input) {
-        //just do nothing, i think...
+        case ATTACK_CLICKED:
+        {
+            Unit* unit = player->getSelectedUnit();
+            //TODO At this point i should have and enemy unit, but i don't know how...
+            Command* attackCommand = new AttackCommand(unit, nullptr);
+            attackCommand->execute();
+            player->updateState(new OnAttackState(player, player->getState(), attackCommand));
+        }
+            break;
         default:
             break;
     }

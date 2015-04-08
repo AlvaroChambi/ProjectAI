@@ -16,7 +16,7 @@
 class OnCommandState : public State
 {
 public:
-    OnCommandState(Model* model, Command* Command);
+    OnCommandState(Model* model, State* savedState, Command* Command);
     virtual ~OnCommandState();
     virtual void handleInput(Input input, int id, Tile position);
     virtual void enter() = 0;

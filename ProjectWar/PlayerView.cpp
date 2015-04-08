@@ -20,7 +20,7 @@ PlayerView::~PlayerView()
 
 void PlayerView::setModel(Model* model)
 {
-    View::setModel(model);
+    model->registerObserver(this);
     this->player = (Player*)model;
 }
 

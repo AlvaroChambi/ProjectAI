@@ -13,7 +13,6 @@
 #include <iostream>
 #include "Texture.h"
 #include "Color.h"
-#include "Sprite.h"
 
 enum Shape
 {

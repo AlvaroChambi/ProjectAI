@@ -74,6 +74,7 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
 
 void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
 {
+    
     //Set scene ui
     layout = new UnitUIView();
     Button* button = new Button(END_BUTTON);
@@ -89,7 +90,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
-    //Load player data model, view and create new controller
+    //Load player data model, view
     Player* player = new Player(1);
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
@@ -110,6 +111,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     this->addPlayer(player);
     this->addPlayer(player2);
     //For each player load unit and buildings data model and view resources
+    
+    /////////  PLAYER 1 UNITS //////////
     Unit* unit = new Unit();
     unit->setResource("animate.bmp");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
@@ -122,8 +125,34 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->resize(40, 40);
     unit->setPosition(map->getTile(4, 4));
     player->addUnit(unit);
-    layout->setModel(unit);
     
+    Unit* unit3 = new Unit();
+    unit3->setResource("animate.bmp");
+    Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
+    unit3->setMovement(4);
+    unit3->setAttackRange(1);
+    unitSprite3->setModel(unit3);
+    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    unitSprite3->setTexture(unitTexture3);
+    //resize to fit in a map tile
+    unitSprite3->resize(40, 40);
+    unit3->setPosition(map->getTile(8, 9));
+    player->addUnit(unit3);
+    
+    Unit* unit4 = new Unit();
+    unit4->setResource("animate.bmp");
+    Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
+    unit4->setMovement(4);
+    unit4->setAttackRange(1);
+    unitSprite4->setModel(unit4);
+    Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    unitSprite4->setTexture(unitTexture4);
+    //resize to fit in a map tile
+    unitSprite4->resize(40, 40);
+    unit4->setPosition(map->getTile(4, 9));
+    player->addUnit(unit4);
+    
+    ///////////  PLAYER 2 UNITS ///////////
     Unit* unit2 = new Unit();
     unit2->setResource("link.bmp");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
@@ -136,14 +165,31 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit2->setPosition(map->getTile(4, 3));
     player2->addUnit(unit2);
     
+    Unit* unit5 = new Unit();
+    unit5->setResource("link.bmp");
+    Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
+    unit5->setMovement(3);
+    unit5->setAttackRange(1);
+    unitSprite5->setModel(unit5);
+    Texture* unitTexture5 = renderer->loadSprite(unit2->getResource(), 90, 90);
+    unitSprite5->setTexture(unitTexture5);
+    unitSprite5->resize(40, 40);
+    unit5->setPosition(map->getTile(6, 6));
+    player2->addUnit(unit5);
+    
     //When all the players resources has been setted, load the strategic info map
     map->loadInfoMap(players);
     
     //register game and player controller as an scene events listener
     scene->attachMap(map);
     scene->attachSprite(playerSprite2);
-    scene->attachSprite(unit2Sprite);
     scene->attachSprite(playerSprite);
+    
+    scene->attachSprite(unit2Sprite);
+    scene->attachSprite(unitSprite3);
+    scene->attachSprite(unitSprite4);
+    scene->attachSprite(unitSprite5);
+
     scene->attachSprite(unitSprite);
     
     scene->registerListener(this);

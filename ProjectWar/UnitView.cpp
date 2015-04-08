@@ -10,7 +10,8 @@
 
 UnitView::UnitView() : Sprite()
 {
-
+    text = new Text();
+    text->setParams(Params(10,10,DOWN));
 }
 
 UnitView::~UnitView()
@@ -20,10 +21,16 @@ UnitView::~UnitView()
 
 void UnitView::setModel(Model *model)
 {
-    View::setModel(model);
+    model->registerObserver(this);
     //Link game object id with the model id
     this->unit = (Unit*)model;
     model->setid(this->getID());
+}
+
+void UnitView::render(Renderer *renderer)
+{
+    Sprite::render(renderer);
+    text->render(renderer);
 }
 
 void UnitView::update( Update update )

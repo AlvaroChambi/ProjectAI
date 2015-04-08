@@ -11,6 +11,7 @@
 #include "OnAttackState.h"
 #include "OnMoveState.h"
 #include "MoveCommand.h"
+#include "AttackCommand.h"
 
 UnitSelectedState::UnitSelectedState(Player* player) : State(player)
 {
@@ -55,8 +56,10 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             Unit* unit = player->getSelectedUnit();
             
             if (unit->canReach(position.position)) {
-                Command* moveCommand = new MoveCommand(player, position);
+                Command* moveCommand = new MoveCommand(unit, player->getMap(), position);
+                //Always move before getting in the new state
                 moveCommand->execute();
+                player->updateState(new OnMoveState(player, player->getState(), moveCommand));
             }else{
                 player->setTile(position);
                 player->updateState(new NothingSelectedState(player));
@@ -65,7 +68,12 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             break;
         case ATTACK_CLICKED:
         {
-
+            //TODO pretty much the same code here and in OnMovedState attack event
+            Unit* unit = player->getSelectedUnit();
+            //TODO At this point i should have and enemy unit, but i don't know how...
+            Command* attackCommand = new AttackCommand(unit, nullptr);
+            attackCommand->execute();
+            player->updateState(new OnAttackState(player, player->getState(), attackCommand));
         }
             break;
         case WAIT_CLICKED:

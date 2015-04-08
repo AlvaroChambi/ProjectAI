@@ -7,8 +7,11 @@
 //
 
 #include "OnAttackState.h"
+#include "player.h"
+#include "Map.h"
 
-OnAttackState::OnAttackState(Model* model, Command* command) : OnCommandState(model, command)
+OnAttackState::OnAttackState(Model* model, State* savedState, Command* command)
+                            : OnCommandState(model, savedState, command)
 {
 
 }
@@ -20,15 +23,22 @@ OnAttackState::~OnAttackState()
 
 void OnAttackState::enter()
 {
+    Player* player = (Player*)model;
+    Unit* unit = player->getSelectedUnit();
     //Update unit commands
+    List<UnitCommand> commands;
+    commands.add(CANCEL);
+    commands.add(ATTACK);
+    unit->updateCommands(commands);
 }
 
 void OnAttackState::handleInput(Input input, int id, Tile position)
 {
+    OnCommandState::handleInput(input, id, position);
     switch (input) {
         case ATTACK_CLICKED:
-            //set unit active false
-            //back to the unit selected state
+            //go to a clean state
+            OnCommandState::handleInput(WAIT_CLICKED, id, position);
             break;
         case ENEMY_UNIT_CLICKED:
             //if can reach target selected enemy

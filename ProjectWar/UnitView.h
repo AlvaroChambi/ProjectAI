@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 
-#include "View.h"
 #include "Unit.h"
 #include "Sprite.h"
 
@@ -22,8 +21,10 @@ public:
     virtual ~UnitView();
     void setModel(Model* model);
     void update( Update update );
+    void render( Renderer* renderer );
 private:
     Unit* unit;
+    Text* text;
 };
 
 #endif /* defined(__ProjectWar__UnitView__) */

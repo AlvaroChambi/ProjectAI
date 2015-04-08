@@ -27,6 +27,7 @@ Event* SDLInputHandler::poolEvent()
 {
     Event* gameEvent = new Event();
     SDL_Event event;
+    //TODO Crashing sometimes when polling event (BAD ACCESS)
     while(SDL_PollEvent(&event))
     {
         switch (event.type)

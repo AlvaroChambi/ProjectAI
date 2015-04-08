@@ -10,12 +10,11 @@
 #define __ProjectWar__UnitUIView__
 
 #include <stdio.h>
-#include "View.h"
 #include "Layout.h"
 #include "List.h"
 #include "Unit.h"
 
-class UnitUIView : public View, public Layout
+class UnitUIView : public Observer, public Layout
 {
 public:
     UnitUIView();

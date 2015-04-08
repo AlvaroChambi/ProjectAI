@@ -11,7 +11,6 @@
 #define __ProjectWar__PlayerView__
 
 #include <stdio.h>
-#include "View.h"
 #include "Player.h"
 #include "Sprite.h"
 
@@ -20,6 +19,7 @@ class PlayerView : public Sprite
 public:
     PlayerView();
     virtual ~PlayerView();
+    
     void setModel(Model* model);
     void update( Update update );
 private:

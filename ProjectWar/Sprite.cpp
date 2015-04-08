@@ -2,20 +2,21 @@
 //  Sprite.cpp
 //  ProjectWar
 //
-//  Created by Alvaro Chambi Campos on 17/3/15.
+//  Created by Alvaro Chambi Campos on 8/4/15.
 //  Copyright (c) 2015 Alvaro Chambi Campos. All rights reserved.
 //
 
 #include "Sprite.h"
 
-Sprite::Sprite() : id(-1), animated(false), frame(0), width(0), height(0)
-{
 
+Sprite::Sprite() : id(-1), animated(false), frame(0), width(0), height(0), texture(nullptr)
+{
+    
 }
 
 Sprite::~Sprite()
 {
-
+    
 }
 
 void Sprite::setID(int id)
@@ -30,9 +31,21 @@ int Sprite::getID()
 
 void Sprite::setTexture(Texture *texture)
 {
-    View::setTexture(texture);
+    this->texture = texture;
     this->width = texture->getFrameWidth();
     this->height = texture->getFrameHeight();
+}
+
+Texture* Sprite::getTexture()
+{
+    return texture;
+}
+
+void Sprite::render(Renderer *renderer)
+{
+ if (getTexture()->isVisible()) {
+     renderer->drawTexture(getTexture(), getWidth(), getHeight());
+ }
 }
 
 //Try to set a fixed frame rate for animations...

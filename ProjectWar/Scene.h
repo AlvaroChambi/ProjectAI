@@ -13,7 +13,6 @@
 #include <list>
 #include <vector>
 #include "Texture.h"
-#include "Renderer.h"
 #include "Event.h"
 #include "IGameEventsListener.h"
 #include "Map.h"

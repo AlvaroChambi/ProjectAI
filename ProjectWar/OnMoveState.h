@@ -15,7 +15,7 @@
 class OnMoveState : public OnCommandState
 {
 public:
-    OnMoveState(Model* model, Command* command);
+    OnMoveState(Model* model, State* savedState, Command* command);
     virtual ~OnMoveState();
     void handleInput(Input input, int id, Tile position);
     void enter();

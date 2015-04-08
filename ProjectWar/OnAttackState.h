@@ -15,7 +15,7 @@
 class OnAttackState: public OnCommandState
 {
 public:
-    OnAttackState(Model* model, Command* command);
+    OnAttackState(Model* model, State* savedState, Command* command);
     virtual ~OnAttackState();
     void handleInput(Input input, int id, Tile position);
     void enter();

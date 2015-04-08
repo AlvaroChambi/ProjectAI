@@ -41,6 +41,7 @@ void PlayerController::onEnemyUnitClicked(const int id)
 {
     //Position not needed
     std::cout << "onEnemyUnitClicked\n";
+    //here i can get a enemy unit
     player->getState()->handleInput(ENEMY_UNIT_CLICKED, id, nullptr);
 }
 
@@ -55,6 +56,7 @@ void PlayerController::onUIEventReceived(int id)
             player->getState()->handleInput(CANCEL_CLICKED, -1,nullptr);
             break;
         case ProjectAI::ATTACK_BUTTON:
+            //here i would need an enemy unit(but i don't know which one of them)
             player->getState()->handleInput(ATTACK_CLICKED, -1,nullptr);
             break;
         default:

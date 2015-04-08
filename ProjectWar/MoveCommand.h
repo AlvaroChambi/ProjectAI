@@ -12,19 +12,19 @@
 #include <stdio.h>
 
 #include "Command.h"
-#include "Player.h"
-
+#include "Unit.h"
+class Map;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand(Player* player, Tile destination);
+    MoveCommand(Unit* unit,Map* map ,Tile destination);
     virtual ~MoveCommand();
     
     void execute();
     void cancel();
 private:
-    Player* player;
-    State* savedState;
+    Map* map;
+    Unit* unit;
     Tile savedPosition;
     Tile destination;
 };

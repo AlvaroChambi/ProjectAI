@@ -27,7 +27,7 @@ UnitUIView::~UnitUIView()
 
 void UnitUIView::setModel(Model *model)
 {
-    View::setModel(model);
+    model->registerObserver(this);
     this->unit = (Unit*)model;
 }
 

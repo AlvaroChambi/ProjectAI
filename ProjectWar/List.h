@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Alvaro Chambi Campos. All rights reserved.
 //
 
-#ifndef __ProjectWar__LinkedList__
-#define __ProjectWar__LinkedList__
+#ifndef __ProjectWar__List__
+#define __ProjectWar__List__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,7 +30,7 @@ template <class T>
 class List
 {
 public:
-    List():list(NULL), size(0){}
+    List():list(nullptr), size(0){}
     ~List(){}
     //TODO implement method contains(T) that returns true if the given object is  already in the list
     void add(T value)
@@ -86,7 +86,7 @@ public:
     
     bool isEmpty()
     {
-        return (list == NULL);
+        return (list == nullptr);
     }
     
     T getElement(int position)

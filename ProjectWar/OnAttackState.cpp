@@ -9,9 +9,10 @@
 #include "OnAttackState.h"
 #include "player.h"
 #include "Map.h"
+#include "AttackCommand.h"
 
-OnAttackState::OnAttackState(Model* model, State* savedState, Command* command)
-                            : OnCommandState(model, savedState, command)
+OnAttackState::OnAttackState(Model* model, State* savedState)
+                            : OnCommandState(model, savedState, nullptr)
 {
 
 }
@@ -39,14 +40,32 @@ void OnAttackState::handleInput(Input input, int id, Tile position)
         case ATTACK_CLICKED:
             //go to a clean state
             OnCommandState::handleInput(WAIT_CLICKED, id, position);
-            break;
-        case ENEMY_UNIT_CLICKED:
-            //if can reach target selected enemy
-            //update attack results(maybe cancel previous executed attack command)
-            
-            //attack command execute
+            //TODO just allow attack if a command has already been executed
             break;
         default:
             break;
     }
+}
+
+void OnAttackState::handleInput(Input input, int id, Tile position, Unit* targetUnit)
+{
+    Player* player = (Player*) model;
+    OnCommandState::handleInput(input, id, position);
+    switch (input) {
+        case ENEMY_UNIT_CLICKED:
+        {
+            //if can reach target selected enemy
+            if (player->getSelectedUnit()->canAttack(targetUnit->getPosition())) {
+                //Move target tile over the attacked unit
+                player->setTile(player->getMap()->getTile(targetUnit->getPosition().x, targetUnit->getPosition().y));
+                //cancel previous executed command if there is one(Once cancelled the command is set to null)
+                this->cancelCommand();
+                executeCommand(new AttackCommand(player->getSelectedUnit(), targetUnit));
+            }
+            break;
+        }
+        default:
+            break;
+    }
+
 }

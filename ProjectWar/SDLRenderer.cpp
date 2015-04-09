@@ -65,7 +65,7 @@ Texture* SDLRenderer::loadTexture(std::string resource)
     Texture *texture = new SDLTexture;
     SDL_Rect sourceRectangle;
 
-    SDL_Surface* pTempSurface = SDL_LoadBMP(resource.c_str());
+    SDL_Surface* pTempSurface = IMG_Load(resource.c_str());
     if(pTempSurface == 0){
         std::cout << "surface creation failed: resource: " << resource <<"\n";
     }

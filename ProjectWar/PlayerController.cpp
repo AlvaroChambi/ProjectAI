@@ -37,12 +37,12 @@ void PlayerController::onUnitClicked(const int id)
     player->getState()->handleInput(UNIT_CLICKED, id, nullptr);
 }
 
-void PlayerController::onEnemyUnitClicked(const int id)
+void PlayerController::onEnemyUnitClicked(Unit* targetUnit)
 {
     //Position not needed
     std::cout << "onEnemyUnitClicked\n";
     //here i can get a enemy unit
-    player->getState()->handleInput(ENEMY_UNIT_CLICKED, id, nullptr);
+    player->getState()->handleInput(ENEMY_UNIT_CLICKED, -1, nullptr, targetUnit);
 }
 
 void PlayerController::onUIEventReceived(int id)

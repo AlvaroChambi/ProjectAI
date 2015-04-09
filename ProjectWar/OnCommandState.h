@@ -20,6 +20,9 @@ public:
     virtual ~OnCommandState();
     virtual void handleInput(Input input, int id, Tile position);
     virtual void enter() = 0;
+    
+    void cancelCommand();
+    void executeCommand(Command* command);
 private:
     State* savedState;
     Command* command;

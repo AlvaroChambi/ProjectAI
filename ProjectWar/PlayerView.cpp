@@ -29,6 +29,7 @@ void PlayerView::update( Update update )
     switch (update) {
         case POSITION_UPDATE:
             this->getTexture()->setPosition(player->getTile().getTexture()->getPosition());
+            this->getTexture()->setVisible(true);
             break;
         case SELECTED_UPDATE:
             if(this->player->getSelectedUnit() != nullptr){

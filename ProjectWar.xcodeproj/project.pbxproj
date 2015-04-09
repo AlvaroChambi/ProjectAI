@@ -15,6 +15,8 @@
 		9C0A5A7A1AC2D13F00BF793E /* link.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A5A791AC2D13F00BF793E /* link.bmp */; };
 		9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A5A7D1AC32E4600BF793E /* mario.bmp */; };
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
+		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
+		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -84,6 +86,8 @@
 		9C0A5A7D1AC32E4600BF793E /* mario.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mario.bmp; sourceTree = "<group>"; };
 		9C0A5A811AC57C5D00BF793E /* InfoTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTile.h; sourceTree = "<group>"; };
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		9C800B031AB743F3003FE2AA /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		9C800B051AB7440E003FE2AA /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerView.cpp; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */,
 				9CCD60B21AC6A659004537F8 /* SDL2_ttf.framework in Frameworks */,
 				9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */,
 			);
@@ -397,6 +402,7 @@
 		9C8FBFFD1AB04AF400C4EB1F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C6685C71AD6E49C00C9DFAD /* target_tile.png */,
 				9CCD60C81ACFF37F004537F8 /* attack_button.bmp */,
 				9CCD60C91ACFF37F004537F8 /* cancel_button.bmp */,
 				9CCD60CA1ACFF37F004537F8 /* end_button.bmp */,
@@ -416,6 +422,7 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
 				9C6613861AA771930094B72F /* SDL2.framework */,
 				9CAE2DE01AA76F8B00B6279D /* ProjectWar */,
@@ -563,6 +570,7 @@
 			files = (
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
 				9CCD60CD1ACFF37F004537F8 /* cancel_button.bmp in Resources */,
+				9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */,
 				9CCD60CC1ACFF37F004537F8 /* attack_button.bmp in Resources */,
 				9C8FBFFF1AB056D700C4EB1F /* rider.bmp in Resources */,
 				9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */,

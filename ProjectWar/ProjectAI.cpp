@@ -47,11 +47,25 @@ void ProjectAI::onSpriteClicked(const int id)
         }
             break;
         case ENEMY_UNIT_CLICKED:
-            playerController->onEnemyUnitClicked(id);
+            playerController->onEnemyUnitClicked(getUnit(id));
             break;
         default:
             break;
     }
+}
+
+Unit* ProjectAI::getUnit(int id)
+{
+    Unit* unit = nullptr;
+    for (int i = 0; i < players.getSize(); i++) {
+        unit = players.getElement(i)->getUnit(id);
+        if (unit != nullptr) {
+            //Change the way to stop when we get a match...
+             i = players.getSize();
+        }
+       
+    }
+    return unit;
 }
 
 void ProjectAI::onTextureClicked(const Texture texture)
@@ -90,16 +104,18 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
+    //TODO Solve error assigning id to the sprites and models
     //Load player data model, view
-    Player* player = new Player(1);
+    Player* player = new Player(0);
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
-    Texture* texture = renderer->loadShape(RECTANGLE, RED, 40, 40);
+    Texture* texture = renderer->loadTexture("target_tile.png");
     playerSprite->setTexture(texture);
+    playerSprite->resize(40, 40);
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
-    Player* player2 = new Player(2);
+    Player* player2 = new Player(1);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
     Texture* texture2 = renderer->loadShape(RECTANGLE, CIAN, 40, 40);
@@ -118,6 +134,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
     unit->setMovement(4);
     unit->setAttackRange(1);
+    unit->setHP(10);
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
     unitSprite->setTexture(unitTexture);
@@ -131,6 +148,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
     unit3->setMovement(4);
     unit3->setAttackRange(1);
+    unit3->setHP(10);
     unitSprite3->setModel(unit3);
     Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 82);
     unitSprite3->setTexture(unitTexture3);
@@ -144,6 +162,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
     unit4->setMovement(4);
     unit4->setAttackRange(1);
+    unit4->setHP(10);
     unitSprite4->setModel(unit4);
     Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 82);
     unitSprite4->setTexture(unitTexture4);
@@ -158,6 +177,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
     unit2->setMovement(3);
     unit2->setAttackRange(1);
+    unit2->setHP(10);
     unit2Sprite->setModel(unit2);
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
     unit2Sprite->setTexture(unit2Texture);
@@ -170,6 +190,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
     unit5->setMovement(3);
     unit5->setAttackRange(1);
+    unit5->setHP(10);
     unitSprite5->setModel(unit5);
     Texture* unitTexture5 = renderer->loadSprite(unit2->getResource(), 90, 90);
     unitSprite5->setTexture(unitTexture5);
@@ -182,15 +203,15 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     //register game and player controller as an scene events listener
     scene->attachMap(map);
-    scene->attachSprite(playerSprite2);
-    scene->attachSprite(playerSprite);
     
     scene->attachSprite(unit2Sprite);
     scene->attachSprite(unitSprite3);
     scene->attachSprite(unitSprite4);
     scene->attachSprite(unitSprite5);
-
     scene->attachSprite(unitSprite);
+    
+    scene->attachSprite(playerSprite2);
+    scene->attachSprite(playerSprite);
     
     scene->registerListener(this);
     
@@ -227,10 +248,16 @@ Player* ProjectAI::nextPlayer()
 Input ProjectAI::getPlayerEvent(int id)
 {
     Input result = ENEMY_UNIT_CLICKED;
+    //If the active player doesn't have a unity with that id then it's a enemy
     for (int i = 0; i < players.getSize(); i++) {
         if (activePlayer->hasUnit(id)) {
             result = UNIT_CLICKED;
         }
+    }
+    //TODO Handle events filters somewhere else...
+    //If the sprite clicked is not a valid unit(Player sprite)
+    if (activePlayer->getId() == id) {
+        result = NOT_HANDLED;
     }
     return result;
 }

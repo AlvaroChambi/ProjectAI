@@ -43,9 +43,9 @@ Texture* Sprite::getTexture()
 
 void Sprite::render(Renderer *renderer)
 {
- if (getTexture()->isVisible()) {
-     renderer->drawTexture(getTexture(), getWidth(), getHeight());
- }
+    if (getTexture()->isVisible()) {
+        renderer->drawTexture(getTexture(), getWidth(), getHeight());
+    }
 }
 
 //Try to set a fixed frame rate for animations...

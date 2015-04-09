@@ -47,3 +47,17 @@ void OnCommandState::handleInput(Input input, int id, Tile position)
             break;
     }
 }
+
+void OnCommandState::cancelCommand()
+{
+    if(this->command != nullptr){
+        this->command->cancel();
+        this->command = nullptr;
+    }
+}
+
+void OnCommandState::executeCommand(Command *command)
+{
+    this->command = command;
+    command->execute();
+}

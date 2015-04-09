@@ -10,15 +10,15 @@
 #include "Map.h"
 
 Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
-                    active(false), map(nullptr), id(-1)
+                    active(false), map(nullptr)
 {
     
 }
 
 Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
-                        active(false), map(nullptr), id(id)
+                        active(false), map(nullptr)
 {
-    
+    this->setid(id);
 }
 
 Player::~Player()
@@ -122,16 +122,6 @@ bool Player::isActive()
     return active;
 }
 
-void Player::setID(int id)
-{
-    this->id = id;
-}
-
-int Player::getID()
-{
-    return id;
-}
-
 bool Player::hasUnit(int id)
 {
     bool result = false;
@@ -150,7 +140,7 @@ void Player::populateInfoMap(InfoMap& infoMap)
         Point position = unit->getPosition();
         InfoTile* tile = infoMap[position.x][position.y];
         tile->entity = UNIT_ENTITY;
-        tile->ownerID = id;
+        tile->ownerID = getId();
         tile->text->setTextResource("Unit: " + std::to_string(tile->ownerID));
     }
 }

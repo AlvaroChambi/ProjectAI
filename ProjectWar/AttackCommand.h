@@ -16,13 +16,18 @@
 class AttackCommand : public Command
 {
 public:
-    AttackCommand(Unit* unit, Unit* enemyUnit);
+    AttackCommand(Unit* unit, Unit* targetUnit);
     virtual ~AttackCommand();
     void cancel();
     void execute();
+    
 private:
     Unit* unit;
-    Unit* enemyUnit;
+    Unit* targetUnit;
+    int savedUnitHP;
+    int savedTargetHP;
+    
+    void updateHP(Unit* attacker, Unit* attacked);
 };
 
 #endif /* defined(__ProjectWar__AttackCommand__) */

@@ -181,6 +181,8 @@ void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
     InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     int x = unit->getPosition().x - unit->getAttackRange();
     int y = unit->getPosition().y - unit->getAttackRange();
+    //TODO Change this, think another way to setop searching near unit when we have already found one
+    bool commandAdded = false;
     
     for (int i = x; i <= x + (unit->getAttackRange() * 2) ; i++) {
         for (int j = y; j <= y + (unit->getAttackRange() * 2) ; j++) {
@@ -189,8 +191,10 @@ void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
                 if(i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT){
                     InfoTile* infoTile = infoMap[i][j];
                     
-                    if(infoTile->ownerID != -1 && infoTile->ownerID != unitTile->ownerID){
+                    if(infoTile->ownerID != -1 && infoTile->ownerID != unitTile->ownerID
+                       && !commandAdded){
                         commands.add(ATTACK);
+                        commandAdded = true;
                     }
                 }
             }

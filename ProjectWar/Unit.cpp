@@ -83,6 +83,17 @@ int Unit::getAttackRange()
     return attackRange;
 }
 
+void Unit::setHP(int hp)
+{
+    this->hp = hp;
+    this->notifyObservers(HP_UPDATE);
+}
+
+int Unit::getHP()
+{
+    return hp;
+}
+
 void Unit::updateCommands(List<UnitCommand> commands)
 {
     //Clean previous commands and set the new ones
@@ -105,12 +116,25 @@ int Unit::getNumCommands()
     return commands.getSize();
 }
 
+//TODO duplicated code here...
 bool Unit::canReach(Point destination)
 {
     bool result = false;
     int distance = std::abs(destination.x - this->getPosition().x) +
                     std::abs(destination.y - this->getPosition().y);
     if (distance <= movement) {
+        result = true;
+    }
+    return result;
+}
+
+bool Unit::canAttack(Point destination)
+{
+    bool result = false;
+    int distance = std::abs(destination.x - this->getPosition().x) +
+                    std::abs(destination.y - this->getPosition().y);
+    
+    if (distance <= attackRange) {
         result = true;
     }
     return result;

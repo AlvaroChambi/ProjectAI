@@ -11,12 +11,13 @@
 
 #include <stdio.h>
 #include "Tile.h"
+#include "Unit.h"
 
 class IPlayerEventsListener
 {
 public:
     virtual void onUnitClicked(const int id) = 0;
-    virtual void onEnemyUnitClicked(const int id) = 0;
+    virtual void onEnemyUnitClicked(Unit* targetUnit) = 0;
     virtual void onMapClicked(const Tile tile) = 0;
 };
 

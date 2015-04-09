@@ -12,6 +12,7 @@
 
 #include "Tile.h"
 #include "Model.h"
+#include "Unit.h"
 
 enum Input
 {
@@ -21,6 +22,7 @@ enum Input
     CANCEL_CLICKED,
     WAIT_CLICKED,
     ATTACK_CLICKED,
+    NOT_HANDLED,
 };
 
 class State
@@ -35,6 +37,8 @@ public:
     
     }
     virtual void handleInput(Input input, int id, Tile position) = 0;
+    //TODO Maybe implement a bundle and a way to serialize objects...
+    virtual void handleInput(Input input, int id, Tile position, Unit*targetUnit){}
     virtual void enter() = 0;
 protected:
     Model* model;

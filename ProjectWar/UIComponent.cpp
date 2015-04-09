@@ -102,13 +102,13 @@ void UIComponent::center(Point parentPosition, int parentWidth, int parentHeight
 void UIComponent::down(Point parentPosition, int parentWidth, int parentHeight)
 {
     int y = parentPosition.y + parentHeight - height;
-    this->setPosition(position.x , y);
+    this->setPosition(parentPosition.x, y);
 }
 
 void UIComponent::up(Point parentPosition, int parentWidth, int parentHeight)
 {
     int y = parentPosition.y;
-    this->setPosition(position.x, y);
+    this->setPosition(parentPosition.x, y);
 }
 
 void UIComponent::setPosition(int x, int y)

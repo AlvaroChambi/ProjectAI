@@ -33,6 +33,8 @@ public:
     void addPlayer(Player* player);
     Player* getPlayer(int position);
     
+    Unit* getUnit(int id);
+    
     Player* nextPlayer();
 
     //Define this colors as a global static type

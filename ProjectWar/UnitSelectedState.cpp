@@ -69,11 +69,8 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
         case ATTACK_CLICKED:
         {
             //TODO pretty much the same code here and in OnMovedState attack event
-            Unit* unit = player->getSelectedUnit();
             //TODO At this point i should have and enemy unit, but i don't know how...
-            Command* attackCommand = new AttackCommand(unit, nullptr);
-            attackCommand->execute();
-            player->updateState(new OnAttackState(player, player->getState(), attackCommand));
+            player->updateState(new OnAttackState(player, player->getState()));
         }
             break;
         case WAIT_CLICKED:

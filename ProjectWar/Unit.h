@@ -49,6 +49,9 @@ public:
     void setAttackRange(int attackRange);
     int getAttackRange();
     
+    void setHP(int hp);
+    int getHP();
+    
     void addCommand(UnitCommand command);
     UnitCommand getCommand(int position);
     void updateCommands(List<UnitCommand> commands);
@@ -56,7 +59,7 @@ public:
     int getNumCommands();
     
     bool canReach(Point destination);
-
+    bool canAttack(Point destination);
 private:
     bool selected;
     bool active;

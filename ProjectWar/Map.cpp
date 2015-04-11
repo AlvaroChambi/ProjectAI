@@ -214,3 +214,9 @@ void Map::moveUnit(Unit *unit, Point destination){
     destinationTile->text->setTextResource("Unit: " + std::to_string(destinationTile->ownerID));
     destinationTile->text->setPosition(this->getAbsolutePosition(destination));
 }
+
+void Map::removeUnit(Unit *unit)
+{
+    InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
+    unitTile->cleanTile();
+}

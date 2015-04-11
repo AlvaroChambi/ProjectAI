@@ -52,6 +52,9 @@ public:
     void setHP(int hp);
     int getHP();
     
+    //update his state whether is alive(set visible) or is dead(set visible false)
+    void updateState();
+    
     void addCommand(UnitCommand command);
     UnitCommand getCommand(int position);
     void updateCommands(List<UnitCommand> commands);

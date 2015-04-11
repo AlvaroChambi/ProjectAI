@@ -104,12 +104,12 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
-    //TODO Solve error assigning id to the sprites and models
+    //TODO fix error assigning id to the sprites and models
     //Load player data model, view
-    Player* player = new Player(0);
+    Player* player = new Player();
     Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
     playerSprite->setModel(player);
-    Texture* texture = renderer->loadTexture("target_tile.png");
+    Texture* texture = renderer->loadTexture("target_tile_white.png");
     playerSprite->setTexture(texture);
     playerSprite->resize(40, 40);
     texture->setPosition(map->getAbsolutePosition(8,8));
@@ -118,9 +118,10 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Player* player2 = new Player(1);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
-    Texture* texture2 = renderer->loadShape(RECTANGLE, CIAN, 40, 40);
+    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
     texture2->setVisible(false);
     playerSprite2->setTexture(texture2);
+    playerSprite2->resize(40, 40);
     texture2->setPosition(map->getAbsolutePosition(3,8));
     player2->setMap(map);
     
@@ -130,7 +131,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     /////////  PLAYER 1 UNITS //////////
     Unit* unit = new Unit();
-    unit->setResource("animate.bmp");
+    unit->setResource("animate.png");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
     unit->setMovement(4);
     unit->setAttackRange(1);
@@ -144,7 +145,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();
-    unit3->setResource("animate.bmp");
+    unit3->setResource("animate.png");
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
     unit3->setMovement(4);
     unit3->setAttackRange(1);
@@ -158,7 +159,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player->addUnit(unit3);
     
     Unit* unit4 = new Unit();
-    unit4->setResource("animate.bmp");
+    unit4->setResource("animate.png");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
     unit4->setMovement(4);
     unit4->setAttackRange(1);
@@ -173,7 +174,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     ///////////  PLAYER 2 UNITS ///////////
     Unit* unit2 = new Unit();
-    unit2->setResource("link.bmp");
+    unit2->setResource("link.png");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
     unit2->setMovement(3);
     unit2->setAttackRange(1);
@@ -186,7 +187,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player2->addUnit(unit2);
     
     Unit* unit5 = new Unit();
-    unit5->setResource("link.bmp");
+    unit5->setResource("link.png");
     Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
     unit5->setMovement(3);
     unit5->setAttackRange(1);

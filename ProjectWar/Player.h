@@ -47,9 +47,6 @@ public:
     void setActive(bool active);
     bool isActive();
     
-    void setID( int id );
-    int getID();
-    
     bool hasUnit(int id);
     
     //Add units data to the info map
@@ -60,7 +57,6 @@ private:
     Tile tile;
     List<Unit*> units;
     
-    int id;
     State* state;
     //TODO Dont need to have a selected unit instance if i have a player with an active param
     Unit* selectedUnit;

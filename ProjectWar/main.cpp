@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include "Game.h"
 
-const int FPS = 60;
+const int FPS = 30;
 const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char * arg[])

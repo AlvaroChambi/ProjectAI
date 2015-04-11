@@ -27,6 +27,13 @@ public:
     InfoTile(Entity entity, int ownerID) : entity(entity), ownerID(ownerID), text(new Text)
     {}
     virtual ~InfoTile(){}
+    
+    void cleanTile(){
+        entity = NOT_DEFINED;
+        ownerID = -1;
+        text->setVisible(false);
+    }
+    
     Entity entity;
     int ownerID;
     Text* text;

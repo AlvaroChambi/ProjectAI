@@ -52,6 +52,8 @@ public:
     
     //Change unit position in the infomap, must be called before the unit position has been changed
     void moveUnit(Unit* unit, Point destination);
+    
+    void removeUnit(Unit* unit); //removes unit from the info map
 private:
     TileMap matrix;
     InfoMap infoMap;

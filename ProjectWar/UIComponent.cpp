@@ -85,9 +85,20 @@ void UIComponent::updatePosition()
             down(parent->getPosition(), parent->getWidth(), parent->getHeight());
         }
             break;
+        case CENTER_DOWN:
+        {
+            //TODO implement
+        }
+            break;
         default:
             break;
     }
+}
+
+void UIComponent::centerDown(Point parentPosition, int parentWidth, int parentHeight)
+{
+    down(parentPosition, parentWidth, parentHeight);
+    center(getPosition(), parentWidth, getHeight());
 }
 
 void UIComponent::center(Point parentPosition, int parentWidth, int parentHeight)

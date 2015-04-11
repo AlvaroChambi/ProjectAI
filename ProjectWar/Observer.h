@@ -19,6 +19,7 @@ enum Update
     ACTIVE_UPDATE,
     COMMANDS_UPDATE,
     HP_UPDATE,
+    STATE_UPDATE,
 };
 
 class Observer

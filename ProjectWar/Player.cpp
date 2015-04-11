@@ -135,6 +135,7 @@ bool Player::hasUnit(int id)
 
 void Player::populateInfoMap(InfoMap& infoMap)
 {
+    //Maybe place this code in the Map
     for (int i = 0; i < units.getSize(); i++) {
         Unit* unit = units.getElement(i);
         Point position = unit->getPosition();

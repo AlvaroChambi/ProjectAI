@@ -18,6 +18,8 @@
 #include "InfoTile.h"
 #include "List.h"
 #include "Unit.h"
+#include "Building.h"
+#include "SpriteFactory.h"
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
@@ -43,6 +45,12 @@ public:
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
     
+    void addBuilding(Building* building);
+    Building* getBuilding(int id);
+    Building* getBuilding(Point position);
+    
+    void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);
+    
     //Initializes the values of the strategic info map
     void loadInfoMap( List<Player*> & players);
     InfoMap& getInfoMap();
@@ -57,6 +65,9 @@ public:
 private:
     TileMap matrix;
     InfoMap infoMap;
-};
+    
+    List<Building*> buildings;
+    List<Sprite*> sprites;
+ };
 
 #endif /* defined(__ProjectWar__Map__) */

@@ -48,6 +48,15 @@ void Sprite::render(Renderer *renderer)
     }
 }
 
+//Set the frame of the texture that will be rendered
+void Sprite::setRenderFrame(Point position)
+{
+    int frameWidth = getTexture()->getFrameWidth();
+    int frameHeight = getTexture()->getFrameHeight();
+    
+    getTexture()->setFramePosition(Point(position.x * frameWidth, position.y * frameHeight));
+}
+
 //Try to set a fixed frame rate for animations...
 void Sprite::updateFrame()
 {

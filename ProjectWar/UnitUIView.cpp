@@ -66,6 +66,10 @@ void UnitUIView::updateComponents()
                 button = new Button(ProjectAI::END_BUTTON);
                 button->setImageResource("end_button.bmp");
                 break;
+            case CAPTURE:
+                button = new Button(ProjectAI::CAPTURE_BUTTON);
+                button->setImageResource("capture_button.png");
+                break;
             default:
                 break;
         }

@@ -26,6 +26,9 @@ public:
     virtual void setModel(Model* model) = 0;
     void setID( int id );
     int getID();
+    
+    void setRenderFrame(Point position);
+    
     void setTexture(Texture* texture);
     Texture* getTexture();
     void updateAnimated(bool animated);

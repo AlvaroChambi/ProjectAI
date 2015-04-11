@@ -25,6 +25,22 @@ Map::~Map()
 
 }
 
+void Map::addBuilding(Building *building)
+{
+    buildings.add(building);
+}
+
+Building* Map::getBuilding(int id)
+{
+    Building* result = nullptr;
+    for (int i = 0; i < buildings.getSize(); i++) {
+        if(buildings.getElement(i)->getId() == id){
+            result = buildings.getElement(i);
+        }
+    }
+    return result;
+}
+
 //Using static map width and height for now
 void Map::loadMap(Renderer* renderer, int width, int height)
 {
@@ -44,7 +60,44 @@ void Map::loadMap(Renderer* renderer, int width, int height)
     }
 }
 
-//pretty much the same code herer and in the updateUnitAvailableArea method...
+void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
+{
+    Building* building = new Building();
+    Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
+    building->setCapturePoints(20);
+    buildingSprite->setModel(building);
+    buildingSprite->setTexture(renderer->loadSprite("building.png", 32, 32));
+    buildingSprite->resize(40, 40);
+    building->setPosition(getTile(2, 2));
+    buildingSprite->setRenderFrame(Point(3,0));
+    this->addBuilding(building);
+    
+    Building* building2 = new Building();
+    Sprite* buildingSprite2 = spriteFactory->createSprite(BUILDING);
+    building2->setCapturePoints(20);
+    buildingSprite2->setModel(building2);
+    buildingSprite2->setTexture(renderer->loadSprite("building.png", 32, 32));
+    buildingSprite2->resize(40, 40);
+    buildingSprite2->setRenderFrame(Point(3,0));
+    building2->setPosition(getTile(12,6));
+    this->addBuilding(building2);
+    
+    sprites.add(buildingSprite);
+    sprites.add(buildingSprite2);
+}
+
+Building* Map::getBuilding(Point position)
+{
+    Building* result = nullptr;
+    for (int i = 0; i < buildings.getSize(); i++) {
+        if (buildings.getElement(i)->getPosition() == position) {
+            result = buildings.getElement(i);
+        }
+    }
+    return result;
+}
+
+//pretty much the same code here and in the updateUnitAvailableArea method...
 //We can also have always referenced the updated tiles in the map, so we can clean them whenever we want
 
 void Map::cleanUnitAvailableArea(Unit *unit)
@@ -95,6 +148,11 @@ void Map::drawMap(Renderer* renderer)
                 renderer->drawTexture(matrix[i][j]->getTexture());
             }
         }
+        
+    }
+    
+    for (int i = 0; i < sprites.getSize(); i++) {
+        sprites.getElement(i)->render(renderer);
     }
 }
 
@@ -154,12 +212,21 @@ void Map::loadInfoMap(List<Player *> &players)
     for (int i = 0; i < players.getSize(); i++ ) {
         players.getElement(i)->populateInfoMap(infoMap);
     }
-    //Creating a texture for each defined text" entity : owner"
+    
+    for (int i = 0; i < buildings.getSize(); i++) {
+        Building* building = buildings.getElement(i);
+        InfoTile* tile = infoMap[building->getPosition().x][building->getPosition().y];
+        tile->entity = BUILDING_ENTITY;
+        tile->text->setTextResource("Build.: " + std::to_string(tile->ownerID));
+    }
+    
+    //Placing the tiles in his absolute position(maybe we could avoid this...)
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
             InfoTile* tile = infoMap[i][j];
             switch (tile->entity) {
                 case UNIT_ENTITY:
+                case BUILDING_ENTITY:
                 {
                     tile->text->setPosition(this->getAbsolutePosition(i, j));
                     break;
@@ -199,6 +266,9 @@ void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
                 }
             }
         }
+    }
+    if (unitTile->entity == BUILDING_ENTITY) {
+        commands.add(CAPTURE);
     }
 }
 

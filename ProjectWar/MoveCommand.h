@@ -17,7 +17,7 @@ class Map;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand(Unit* unit,Map* map ,Tile destination);
+    MoveCommand(Unit* unit,Map* map ,Point destination);
     virtual ~MoveCommand();
     
     void execute();

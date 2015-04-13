@@ -34,6 +34,8 @@ public:
     void addUnit( Unit* unit );
     Unit* getUnit(int id);
     
+    List<Unit*> getUnitList();
+    
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
     

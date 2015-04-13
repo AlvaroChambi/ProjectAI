@@ -42,6 +42,7 @@ public:
     void center(Point parentPosition, int parentWidth, int parentHeight);
     void up(Point parentPosition, int parentWidth, int parentHeight);
     void down(Point parentPosition, int parentWidth, int parentHeight);
+    void centerDown(Point parentPosition, int parentWidth, int parentHeight);
     
     virtual void updateValues();
     virtual void updatePosition();

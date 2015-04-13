@@ -23,6 +23,7 @@ public:
     void render(Renderer* renderer);
     UIComponent* matchEvent(Point position);
     void setTextResource(std::string text);
+    void setVisible(bool visible);
     
     Texture* texture;
     std::string resource;

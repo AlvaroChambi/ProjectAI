@@ -15,6 +15,7 @@ enum Gravity{
     CENTER,
     UP,
     DOWN,
+    CENTER_DOWN,
 };
 
 class Params

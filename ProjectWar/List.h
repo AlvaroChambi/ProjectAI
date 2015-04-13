@@ -33,6 +33,7 @@ public:
     List():list(nullptr), size(0){}
     ~List(){}
     //TODO implement method contains(T) that returns true if the given object is  already in the list
+    //TODO implement remove(T)
     void add(T value)
     {
         Node<T> *newNode, *previousNode;

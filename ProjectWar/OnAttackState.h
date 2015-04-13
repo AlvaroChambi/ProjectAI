@@ -20,6 +20,8 @@ public:
     void handleInput(Input input, int id, Tile position);
     void handleInput(Input input, int id, Tile position, Unit* unit);
     void enter();
+private:
+    Unit* targetUnit;
 };
 
 #endif /* defined(__ProjectWar__OnAttackState__) */

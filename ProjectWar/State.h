@@ -22,6 +22,7 @@ enum Input
     CANCEL_CLICKED,
     WAIT_CLICKED,
     ATTACK_CLICKED,
+    CAPTURE_CLICKED,
     NOT_HANDLED,
 };
 

@@ -17,6 +17,7 @@ enum SpriteType
 {
     UNIT,
     PLAYER,
+    BUILDING,
 };
 
 //TODO Make sprite factory a static class 

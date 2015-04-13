@@ -59,6 +59,9 @@ void PlayerController::onUIEventReceived(int id)
             //here i would need an enemy unit(but i don't know which one of them)
             player->getState()->handleInput(ATTACK_CLICKED, -1,nullptr);
             break;
+        case ProjectAI::CAPTURE_BUTTON:
+            player->getState()->handleInput(CAPTURE_CLICKED, -1, nullptr);
+            break;
         default:
             break;
     }

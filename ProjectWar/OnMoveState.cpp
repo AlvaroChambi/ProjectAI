@@ -11,6 +11,7 @@
 #include "Map.h"
 #include "OnAttackState.h"
 #include "AttackCommand.h"
+#include "CaptureCommand.h"
 
 OnMoveState::OnMoveState(Model* model,State* savedState, Command* command)
                         : OnCommandState(model, savedState,command)
@@ -45,6 +46,14 @@ void OnMoveState::handleInput(Input input, int id, Tile position)
         {
             //TODO pretty much the same code here and in OnMovedState attack event
             player->updateState(new OnAttackState(player, player->getState()));
+        }
+            break;
+        case CAPTURE_CLICKED:
+        {
+            //Picking the building thats is placed in the selected unit position
+            Building* building = player->getMap()->getBuilding(player->getSelectedUnit()->getPosition());
+            executeCommand(new CaptureCommand(player, player->getSelectedUnit(), building));
+            OnCommandState::handleInput(WAIT_CLICKED, -1, nullptr);
         }
             break;
         default:

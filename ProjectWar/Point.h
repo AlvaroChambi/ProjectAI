@@ -33,6 +33,14 @@ public:
         this->z = z;
     }
     
+    bool operator ==(Point point)
+    {
+        bool result= false;
+        if ( x == point.x && y == point.y) {
+            result = true;
+        }
+        return result;
+    }
 };
 
 #endif /* defined(__ProjectWar__Point__) */

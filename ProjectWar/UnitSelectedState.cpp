@@ -12,6 +12,7 @@
 #include "OnMoveState.h"
 #include "MoveCommand.h"
 #include "AttackCommand.h"
+#include "CaptureCommand.h"
 
 UnitSelectedState::UnitSelectedState(Player* player) : State(player)
 {
@@ -77,6 +78,15 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
         {
             player->getSelectedUnit()->setActive(false);
             player->updateState(new NothingSelectedState(player));
+        }
+            break;
+        case CAPTURE_CLICKED:
+        {
+            //Picking the building thats is placed in the selected unit position
+            Building* building = player->getMap()->getBuilding(player->getSelectedUnit()->getPosition());
+            CaptureCommand* captureCommand = new CaptureCommand(player, player->getSelectedUnit(), building);
+            captureCommand->execute();
+            handleInput(WAIT_CLICKED, -1, nullptr);
         }
             break;
         default:

@@ -139,3 +139,8 @@ bool Unit::canAttack(Point destination)
     }
     return result;
 }
+
+void Unit::updateState()
+{
+    this->notifyObservers(STATE_UPDATE);
+}

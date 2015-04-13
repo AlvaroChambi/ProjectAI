@@ -7,6 +7,7 @@
 //
 
 #include "SpriteFactory.h"
+#include "BuildingView.h"
 
 SpriteFactory::SpriteFactory() : idCount(0)
 {
@@ -30,6 +31,9 @@ Sprite* SpriteFactory::createSprite(SpriteType type)
             sprite = new PlayerView();
             sprite->setID(idCount++);
             break;
+        case BUILDING:
+            sprite = new BuildingView();
+            sprite->setID(idCount++);
         default:
             break;
     }

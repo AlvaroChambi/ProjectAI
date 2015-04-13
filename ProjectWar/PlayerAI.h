@@ -13,6 +13,8 @@
 #include "Player.h"
 #include "List.h"
 #include "Command.h"
+#include "MoveCommand.h"
+#include "AttackCommand.h"
 
 class PlayerAI : public Player
 {

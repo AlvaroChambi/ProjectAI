@@ -8,12 +8,12 @@
 
 #include "Text.h"
 
-Text::Text() : UIComponent(-1), resource(""), texture(nullptr), changed(false)
+Text::Text() : UIComponent(-1), resource(""), texture(nullptr), changed(false), color(WHITE)
 {
 
 }
 
-Text::Text(int id) : UIComponent(id), resource(""), texture(nullptr), changed(false)
+Text::Text(int id) : UIComponent(id), resource(""), texture(nullptr), changed(false), color(WHITE)
 {
     
 }
@@ -27,7 +27,7 @@ void Text::render(Renderer *renderer)
 {
     //if the text has been changed create new texture with the new text
     if (changed && resource != "") {
-        this->texture = renderer->loadText(resource, Color(255,255,255));
+        this->texture = renderer->loadText(resource, getColor());
         this->setWidth(texture->getWidth());
         this->setHeight(texture->getHeight());
         this->changed = false;
@@ -42,6 +42,16 @@ void Text::render(Renderer *renderer)
 void Text::setVisible(bool visible)
 {
     this->texture->setVisible(visible);
+}
+
+void Text::setColor(Color color)
+{
+    this->color = color;
+}
+
+Color Text::getColor()
+{
+    return color;
 }
 
 UIComponent* Text::matchEvent(Point position)

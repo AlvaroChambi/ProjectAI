@@ -17,6 +17,7 @@
 class Text : public UIComponent
 {
 public:
+    const Color WHITE = Color(255,255,255);
     Text();
     Text(int id);
     virtual ~Text();
@@ -25,10 +26,14 @@ public:
     void setTextResource(std::string text);
     void setVisible(bool visible);
     
+    void setColor(Color color);
+    Color getColor();
+private:
     Texture* texture;
     std::string resource;
     //Flag to know if the text resource has been changed
     bool changed;
+    Color color;
 };
 
 #endif /* defined(__ProjectWar__Text__) */

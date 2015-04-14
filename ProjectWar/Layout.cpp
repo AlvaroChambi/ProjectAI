@@ -53,6 +53,11 @@ void Layout::setBackground(Texture *background)
     this->background = background;
 }
 
+void Layout::setBackground(Color color)
+{
+    //TODO implement
+}
+
 //Not really sure if this will work with more layouts and buttons...
 UIComponent* Layout::matchEvent(Point position)
 {

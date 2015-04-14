@@ -25,6 +25,7 @@ public:
     void render(Renderer* renderer);
     void addComponent(UIComponent* component);
     void setBackground(Texture* background);
+    void setBackground(Color color);
     UIComponent* matchEvent(Point position);
     void cleanComponents();
 protected:

@@ -65,7 +65,7 @@ void Scene::render()
     
     //InfoMap
     //TODO hiding info map
-    //map->drawInfoMap(renderer);
+    map->drawInfoMap(renderer);
     
     rootLayout->render(renderer);
 }

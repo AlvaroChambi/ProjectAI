@@ -16,6 +16,7 @@
 #include "Color.h"
 #include "Button.h"
 #include "UnitUIView.h"
+#include "GameUI.h"
 
 class ProjectAI : public GameImplementation
 {
@@ -61,6 +62,7 @@ private:
     int day;
     
     UnitUIView* layout;
+    GameUI* gameLayout;
 };
 
 #endif /* defined(__ProjectWar__ProjectAI__) */

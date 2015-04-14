@@ -65,6 +65,11 @@ Unit* Player::getUnit(int id)
     return unit;
 }
 
+List<Unit*> Player::getUnitList()
+{
+    return this->units;
+}
+
 //Update the unit selected flag and the player reference to the unit
 //nullptr if there isn't any unit selected
 void Player::setSelectedUnit(Unit *unit)

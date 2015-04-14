@@ -20,8 +20,9 @@ class PlayerAI : public Player
 {
 public:
     PlayerAI();
+    PlayerAI(int id);
     ~PlayerAI();
-    List<Command> play ();
+    List<Command*> play ();
     
 private:
 

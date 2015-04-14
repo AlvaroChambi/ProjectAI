@@ -10,7 +10,7 @@
 #include "Map.h"
 
 Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
-                    active(false), map(nullptr)
+                    active(false), map(nullptr), type(HUMAN_PLAYER)
 {
     
 }
@@ -65,7 +65,7 @@ Unit* Player::getUnit(int id)
     return unit;
 }
 
-List<Unit*> Player::getUnitList()
+List<Unit*>& Player::getUnitList()
 {
     return this->units;
 }
@@ -102,6 +102,16 @@ void Player::setMap(Map *map)
 Map* Player::getMap()
 {
     return map;
+}
+
+void Player::setType(PlayerType type)
+{
+    this->type = type;
+}
+
+PlayerType Player::getType()
+{
+    return type;
 }
 
 //Update the player actual state and enter in it

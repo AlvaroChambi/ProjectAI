@@ -18,6 +18,12 @@
 #include "List.h"
 #include "InfoTile.h"
 
+enum PlayerType
+{
+    AI_PLAYER,
+    HUMAN_PLAYER,
+};
+
 class Map;
 class Player : public Model
 {
@@ -34,7 +40,7 @@ public:
     void addUnit( Unit* unit );
     Unit* getUnit(int id);
     
-    List<Unit*> getUnitList();
+    List<Unit*>& getUnitList();
     
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
@@ -48,6 +54,9 @@ public:
     
     void setActive(bool active);
     bool isActive();
+    
+    PlayerType getType();
+    void setType( PlayerType type );
     
     bool hasUnit(int id);
     
@@ -64,6 +73,7 @@ private:
     Unit* selectedUnit;
     Map* map;
     bool active;
+    PlayerType type;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

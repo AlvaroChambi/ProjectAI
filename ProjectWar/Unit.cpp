@@ -36,7 +36,7 @@ void Unit::setMovement(int movement)
     this->movement = movement;
 }
 
-int Unit::getmovement()
+int Unit::getMovement()
 {
     return movement;
 }

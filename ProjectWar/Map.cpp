@@ -102,13 +102,13 @@ Building* Map::getBuilding(Point position)
 
 void Map::cleanUnitAvailableArea(Unit *unit)
 {
-    int x = unit->getPosition().x - unit->getmovement();
-    int y = unit->getPosition().y - unit->getmovement();
+    int x = unit->getPosition().x - unit->getMovement();
+    int y = unit->getPosition().y - unit->getMovement();
     
-    for (int i = x; i <= x + (unit->getmovement() * 2) ; i++) {
-        for (int j = y; j <= y + (unit->getmovement() * 2); j++) {
+    for (int i = x; i <= x + (unit->getMovement() * 2) ; i++) {
+        for (int j = y; j <= y + (unit->getMovement() * 2); j++) {
             int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
-            if(distance >= 0 && distance <= unit->getmovement()){
+            if(distance >= 0 && distance <= unit->getMovement()){
                 //TODO Update tile of the [i][j] position, just hiding tiles now...
                 //maybe create a tile pool and draw a new one for each position
                 
@@ -122,13 +122,13 @@ void Map::cleanUnitAvailableArea(Unit *unit)
 
 void Map::updateUnitAvailableArea(Unit *unit)
 {
-    int x = unit->getPosition().x - unit->getmovement();
-    int y = unit->getPosition().y - unit->getmovement();
+    int x = unit->getPosition().x - unit->getMovement();
+    int y = unit->getPosition().y - unit->getMovement();
     
-    for (int i = x; i <= x + (unit->getmovement() * 2) ; i++) {
-        for (int j = y; j <= y + (unit->getmovement() * 2) ; j++) {
+    for (int i = x; i <= x + (unit->getMovement() * 2) ; i++) {
+        for (int j = y; j <= y + (unit->getMovement() * 2) ; j++) {
             int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
-            if(distance >= 0 && distance <= unit->getmovement()){
+            if(distance >= 0 && distance <= unit->getMovement()){
                 //TODO Update tile of the [i][j] position, just hiding tiles now...
                 //maybe create a tile pool and draw a new one for each position
                 
@@ -281,7 +281,8 @@ void Map::moveUnit(Unit *unit, Point destination){
     tile->ownerID = -1;
     //update new tile
     destinationTile->ownerID = ownerID;
-    destinationTile->text->setTextResource("Unit: " + std::to_string(destinationTile->ownerID));
+    destinationTile->unitID = unit->getId();
+    destinationTile->text->setTextResource("Unit: " + std::to_string(destinationTile->ownerID)+"-"+std::to_string(destinationTile->unitID));
     destinationTile->text->setPosition(this->getAbsolutePosition(destination));
 }
 

@@ -15,6 +15,8 @@
 #include "Command.h"
 #include "MoveCommand.h"
 #include "AttackCommand.h"
+#include "CaptureCommand.h"
+#include "Building.h"
 
 class PlayerAI : public Player
 {
@@ -22,10 +24,13 @@ public:
     PlayerAI();
     PlayerAI(int id);
     ~PlayerAI();
+    void setPlayerList(List<Player*> *players);
     List<Command*> play ();
+    List<Unit*> canAttack(Unit *unit);
+    List<Building*> canConquer(Unit *unit);
     
 private:
-
+    List<Player*> *playersList;
 };
 
 

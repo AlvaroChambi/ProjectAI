@@ -135,7 +135,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture2->setPosition(map->getAbsolutePosition(3,8));
     player2->setMap(map);*/
     
-    Player* player2 = new PlayerAI(1);
+    PlayerAI* player2 = new PlayerAI(1);
+    player2->setPlayerList(&players);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
     Texture* texture2 = renderer->loadTexture("target_tile_white.png");

@@ -35,7 +35,7 @@ public:
     void setPosition(int x, int y);
     
     void setMovement(int movement);
-    int getmovement();
+    int getMovement();
     
     Tile getTile();
     Point getPosition();

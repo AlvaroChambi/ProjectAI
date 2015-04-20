@@ -37,6 +37,7 @@ public:
     Entity entity;
     int ownerID;
     Text* text;
+    int unitID;
 };
 
 #endif /* defined(__ProjectWar__InfoTile__) */

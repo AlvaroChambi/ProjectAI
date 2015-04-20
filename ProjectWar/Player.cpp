@@ -157,6 +157,8 @@ void Player::populateInfoMap(InfoMap& infoMap)
         InfoTile* tile = infoMap[position.x][position.y];
         tile->entity = UNIT_ENTITY;
         tile->ownerID = getId();
-        tile->text->setTextResource("Unit: " + std::to_string(tile->ownerID));
+        tile->unitID = unit->getId();
+        tile->text->setTextResource("Unit: " + std::to_string(tile->ownerID)+"-"+std::to_string(tile->unitID));
+        
     }
 }

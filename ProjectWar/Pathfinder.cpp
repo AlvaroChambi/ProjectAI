@@ -51,13 +51,13 @@ bool findElement(std::list<NodePath*> list, NodePath* node)
 
 void Pathfinder::setSource(int x, int y)
 {
-    source->setPoint(new Point(x,y));
+    source->setPoint(Point(x,y));
     openSet.push_back(source);
 }
 
 void Pathfinder::setTarget(int x, int y)
 {
-    target->setPoint(new Point(x,y));
+    target->setPoint(Point(x,y));
 }
 
 std::list<NodePath*> Pathfinder::find(int sourceX, int sourceY, int targetX, int targetY)
@@ -75,7 +75,7 @@ std::list<NodePath*> Pathfinder::find(int sourceX, int sourceY, int targetX, int
         openSet.remove(cur);
         closedSet.push_back(cur);
         
-        if(cur->getPoint()->x == target->getPoint()->x && cur->getPoint()->y == target->getPoint()->y) {
+        if(cur->getPoint() == target->getPoint()) {
             finish();
         }
         //consider(cur, -1, -1);
@@ -114,7 +114,7 @@ void Pathfinder::finish()
 void Pathfinder::consider(NodePath* parent, int x, int y)
 {
     NodePath* cur = new NodePath();
-    cur->setPoint(new Point(parent->getPoint()->x + x, parent->getPoint()->y + y));
+    cur->setPoint(Point(parent->getPoint().x + x, parent->getPoint().y + y));
     if(cur->accesible(map)) {
         if(!findElement(closedSet,cur)) {
             int g = parent->getG() + cur->getCost();
@@ -134,7 +134,7 @@ void Pathfinder::consider(NodePath* parent, int x, int y)
                     openSet.sort(sort_by_f);
                 
                 } else {
-                    if(cur->getPoint()->x == target->getPoint()->x && cur->getPoint()->y == target->getPoint()->y){
+                    if(cur->getPoint() == target->getPoint()){
                         target->setParent(parent);
                     }
                     cur->setG(g);

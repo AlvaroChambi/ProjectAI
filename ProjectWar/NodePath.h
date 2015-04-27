@@ -23,12 +23,12 @@ public:
         
     }
     
-    Point* getPoint()
+    Point getPoint()
     {
         return point;
     }
     
-    void setPoint(Point* point)
+    void setPoint(Point point)
     {
         this->point = point;
     }
@@ -80,14 +80,19 @@ public:
     
     int calculateH(NodePath *target)
     {
-        return sqrt( ((target->getPoint()->x)-(this->getPoint()->x))*((target->getPoint()->x)-(this->getPoint()->x))
-                    + ((target->getPoint()->y)-(this->getPoint()->y))*((target->getPoint()->y)-(this->getPoint()->y)));
+        return sqrt( ((target->getPoint().x)-(this->getPoint().x))*((target->getPoint().x)-(this->getPoint().x))
+                    + ((target->getPoint().y)-(this->getPoint().y))*((target->getPoint().y)-(this->getPoint().y)));
     }
     
     int calculateH2(NodePath *target)
     {
-        int dx = abs(target->getPoint()->x - this->getPoint()->x), dy = abs(target->getPoint()->y - this->getPoint()->y);
+        int dx = abs(target->getPoint().x - this->getPoint().x), dy = abs(target->getPoint().y - this->getPoint().y);
         return abs(dx - dy) + sqrt(2) * std::min(dx, dy);
+    }
+    
+    int calculateH3(NodePath *target)
+    {
+        return point.distance(target->getPoint());
     }
 
     void setCost(float cost)
@@ -99,10 +104,10 @@ public:
     {
         /*
         bool accesible = true;
-        if(point->x <0 || point->y<0){
+        if(point.x <0 || point.y<0){
             accesible = false;
         }else{
-            InfoTile* infoTile = map->getInfoMap()[point->x][point->y];
+            InfoTile* infoTile = map->getInfoMap()[point.x][point.y];
             if(infoTile->entity==UNIT_ENTITY) {
                 accesible = false;
             }
@@ -114,7 +119,7 @@ public:
     
 private:
 
-    Point *point;
+    Point point;
     NodePath *parent;
 
     int cost;

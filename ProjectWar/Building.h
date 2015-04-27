@@ -30,6 +30,8 @@ public:
     
     void setOwnerID(int id);
     int getOwnerID();
+    
+    bool isCaptured(int playerID);
 private:
     int ownerID;
     Tile tile;

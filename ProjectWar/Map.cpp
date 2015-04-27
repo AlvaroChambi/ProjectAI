@@ -41,6 +41,11 @@ Building* Map::getBuilding(int id)
     return result;
 }
 
+List<Building*>& Map::getBuildings()
+{
+    return buildings;
+}
+
 //Using static map width and height for now
 void Map::loadMap(Renderer* renderer, int width, int height)
 {
@@ -70,6 +75,8 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
     buildingSprite->resize(40, 40);
     building->setPosition(getTile(2, 2));
     buildingSprite->setRenderFrame(Point(3,0));
+    building->setOwnerID(0);
+    building->setCaptureValue(20);
     this->addBuilding(building);
     
     Building* building2 = new Building();
@@ -79,6 +86,8 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
     buildingSprite2->setTexture(renderer->loadSprite("building.png", 32, 32));
     buildingSprite2->resize(40, 40);
     buildingSprite2->setRenderFrame(Point(3,0));
+    building2->setOwnerID(1);
+    building2->setCaptureValue(20);
     building2->setPosition(getTile(12,6));
     this->addBuilding(building2);
     
@@ -202,6 +211,21 @@ Tile Map::getTile(int x, int y)
     return *matrix[x][y];
 }
 
+Tile Map::getTile(Point point)
+{
+    return getTile(point.x, point.y);
+}
+
+bool Map::isValidPosition(Point position)
+{
+    bool result = false;
+    if (position.x >= 0 && position.x < MAP_WIDTH
+            && position.y >= 0 && position.y < MAP_HEIGHT) {
+        result = true;
+    }
+    return result;
+}
+
 void Map::loadInfoMap(List<Player *> &players)
 {
     for(int i = 0; i < MAP_WIDTH; i++){
@@ -217,6 +241,7 @@ void Map::loadInfoMap(List<Player *> &players)
         Building* building = buildings.getElement(i);
         InfoTile* tile = infoMap[building->getPosition().x][building->getPosition().y];
         tile->entity = BUILDING_ENTITY;
+        tile->ownerID = building->getOwnerID();
         tile->text->setTextResource("Build.: " + std::to_string(tile->ownerID));
     }
     
@@ -282,7 +307,11 @@ void Map::moveUnit(Unit *unit, Point destination){
     //update new tile
     destinationTile->ownerID = ownerID;
     destinationTile->unitID = unit->getId();
-    destinationTile->text->setTextResource("Unit: " + std::to_string(destinationTile->ownerID)+"-"+std::to_string(destinationTile->unitID));
+    destinationTile->text->setTextResource(
+                "Unit: " +
+                std::to_string(destinationTile->ownerID)+
+                "-"+
+                std::to_string(destinationTile->unitID));
     destinationTile->text->setPosition(this->getAbsolutePosition(destination));
 }
 

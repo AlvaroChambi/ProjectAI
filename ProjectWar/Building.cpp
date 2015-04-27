@@ -69,3 +69,13 @@ int Building::getOwnerID()
     return ownerID;
 }
 
+//returns wether the building is capture for the given player or not
+bool Building::isCaptured(int playerID)
+{
+    bool result = false;
+    if(captureValue == capturePoints && ownerID == playerID){
+        result = true;
+    }
+    return result;
+}
+

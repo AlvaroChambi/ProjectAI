@@ -148,6 +148,31 @@ bool Player::hasUnit(int id)
     return result;
 }
 
+bool Player::hasUnitAlive()
+{
+    bool result = false;
+    for (int i = 0; i < units.getSize(); i++) {
+        Unit* unit = units.getElement(i);
+        if (unit->getHP() > 0) {
+            result = true;
+        }
+    }
+    return result;
+}
+
+bool Player::hasCapturedHQ()
+{
+    bool result = true;
+    for (int i = 0 ; i < map->getBuildings().getSize(); i++) {
+        Building* building = map->getBuildings().getElement(i);
+        if (building->getOwnerID() != getId() || building->getCaptureValue() < building->getCapturePoints()) {
+            //as soon as we find a build that isn't captured for the player set the flag to false
+            result = false;
+        }
+    }
+    return result;
+}
+
 void Player::populateInfoMap(InfoMap& infoMap)
 {
     //Maybe place this code in the Map

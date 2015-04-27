@@ -41,6 +41,9 @@ public:
     Point getAbsolutePosition(int x, int y);
     
     Tile getTile(int x, int y);
+    Tile getTile(Point point);
+    
+    bool isValidPosition(Point position);
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
@@ -48,6 +51,7 @@ public:
     void addBuilding(Building* building);
     Building* getBuilding(int id);
     Building* getBuilding(Point position);
+    List<Building*>& getBuildings();
     
     void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);
     

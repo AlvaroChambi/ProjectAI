@@ -140,6 +140,20 @@ bool Unit::canAttack(Point destination)
     return result;
 }
 
+//Movement added to the attack to know if the unit can attack the targeted unit in this turn
+bool Unit::canAttack(Unit* unit)
+{
+    bool result;
+    Point destination = unit->getPosition();
+    int distance = std::abs(destination.x - this->getPosition().x) +
+    std::abs(destination.y - this->getPosition().y);
+    
+    if (distance <= attackRange + movement) {
+        result = true;
+    }
+    return result;
+}
+
 void Unit::updateState()
 {
     this->notifyObservers(STATE_UPDATE);

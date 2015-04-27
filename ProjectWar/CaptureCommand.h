@@ -26,6 +26,8 @@ private:
     Player* player;
     Unit* unit;
     Building* building;
+    int savedOwner;
+    int savedCaptureValue;
 };
 
 #endif /* defined(__ProjectWar__CaptureCommand__) */

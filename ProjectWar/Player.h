@@ -62,6 +62,11 @@ public:
     
     //Add units data to the info map
     void populateInfoMap(InfoMap& infoMap);
+    
+    //return whether the player has some unit still alive or not
+    bool hasUnitAlive();
+    
+    bool hasCapturedHQ();
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
@@ -69,7 +74,7 @@ private:
     List<Unit*> units;
     
     State* state;
-    //TODO Dont need to have a selected unit instance if i have a player with an active param
+    //TODO Dont need to have a selected unit instance if i already have a player with an active param
     Unit* selectedUnit;
     Map* map;
     bool active;

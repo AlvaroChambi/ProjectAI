@@ -154,7 +154,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Unit* unit = new Unit();
     unit->setResource("animate.png");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
-    unit->setMovement(4);
+    unit->setMovement(3);
     unit->setAttackRange(1);
     unit->setHP(10);
     unitSprite->setModel(unit);
@@ -162,13 +162,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
-    unit->setPosition(map->getTile(4, 4));
+    unit->setPosition(map->getTile(1, 1));
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();
     unit3->setResource("animate.png");
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
-    unit3->setMovement(4);
+    unit3->setMovement(3);
     unit3->setAttackRange(1);
     unit3->setHP(10);
     unitSprite3->setModel(unit3);
@@ -176,13 +176,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite3->setTexture(unitTexture3);
     //resize to fit in a map tile
     unitSprite3->resize(40, 40);
-    unit3->setPosition(map->getTile(8, 9));
+    unit3->setPosition(map->getTile(4, 4));
     player->addUnit(unit3);
     
     Unit* unit4 = new Unit();
     unit4->setResource("animate.png");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
-    unit4->setMovement(4);
+    unit4->setMovement(3);
     unit4->setAttackRange(1);
     unit4->setHP(10);
     unitSprite4->setModel(unit4);
@@ -190,7 +190,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite4->setTexture(unitTexture4);
     //resize to fit in a map tile
     unitSprite4->resize(40, 40);
-    unit4->setPosition(map->getTile(4, 9));
+    unit4->setPosition(map->getTile(3, 8));
     player->addUnit(unit4);
     
     ///////////  PLAYER 2 UNITS ///////////
@@ -204,7 +204,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
-    unit2->setPosition(map->getTile(4, 3));
+    unit2->setPosition(map->getTile(13, 3));
     player2->addUnit(unit2);
     
     Unit* unit5 = new Unit();
@@ -214,11 +214,24 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit5->setAttackRange(1);
     unit5->setHP(10);
     unitSprite5->setModel(unit5);
-    Texture* unitTexture5 = renderer->loadSprite(unit2->getResource(), 90, 90);
+    Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 90, 90);
     unitSprite5->setTexture(unitTexture5);
     unitSprite5->resize(40, 40);
-    unit5->setPosition(map->getTile(6, 6));
+    unit5->setPosition(map->getTile(12, 5));
     player2->addUnit(unit5);
+    
+    Unit* unit6 = new Unit();
+    unit6->setResource("link.png");
+    Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
+    unit6->setMovement(3);
+    unit6->setAttackRange(1);
+    unit6->setHP(10);
+    unitSprite6->setModel(unit6);
+    Texture* unitTexture6 = renderer->loadSprite(unit6->getResource(), 90, 90);
+    unitSprite6->setTexture(unitTexture6);
+    unitSprite6->resize(40, 40);
+    unit6->setPosition(map->getTile(11, 8));
+    player2->addUnit(unit6);
     
     //Load buildings
     map->loadBuildings(spriteFactory, renderer);
@@ -233,6 +246,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     scene->attachSprite(unitSprite3);
     scene->attachSprite(unitSprite4);
     scene->attachSprite(unitSprite5);
+    scene->attachSprite(unitSprite6);
     scene->attachSprite(unitSprite);
     
     scene->attachSprite(playerSprite2);

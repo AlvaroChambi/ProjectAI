@@ -95,7 +95,7 @@ void TacticBuilder::genMovements(Unit *unit, Player *player, Player *enemy, Tact
         iterator = nodes.begin();
         std::advance(iterator,unit->getMovement());
         NodePath* node = *iterator;
-        MoveCommand* move = new MoveCommand(unit, map, *node->getPoint());
+        MoveCommand* move = new MoveCommand(unit, map, node->getPoint());
         commands->add(move);
         movements->insert(new Movement(commands, tactic->attackScore), tactic->attackScore);
     }
@@ -123,7 +123,7 @@ void TacticBuilder::genMovements(Unit *unit, Player *player, Player *enemy, Tact
             std::advance(iterator, unit->getMovement());
             
             NodePath* node = *iterator;
-            MoveCommand* move = new MoveCommand(unit, map, *node->getPoint());
+            MoveCommand* move = new MoveCommand(unit, map, node->getPoint());
             commands->add(move);
             movements->insert(new Movement(commands, tactic->captureScore), tactic->captureScore);
         }

@@ -46,7 +46,7 @@ List<Command*> PlayerAI::play()
     GameState* game = new GameState(this, enemy);
     TacticMinimax* tacticDecision = new TacticMinimax(*game);
     
-    tacticDecision->minimax(3);
+    tacticDecision->minimax(10);
     Tactic* movement = (Tactic*)tacticDecision->getMove();
     
     movement->execute();

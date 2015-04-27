@@ -36,7 +36,8 @@ bool findElement(std::list<NodePath*> list, NodePath* node)
     bool result = false;
     it = list.begin();
     while (!result && it!=list.end()) {
-        if(node==*it){
+        NodePath* nodeit = *it;
+        if(node->getPoint() == nodeit->getPoint()){
             result = true;
         }
         else{
@@ -115,8 +116,8 @@ void Pathfinder::finish()
 void Pathfinder::printList(std::list<NodePath *> nodePaths)
 {
     for (NodePath* node :  nodePaths) {
-        std::cout << "x: " + std::to_string(node->getPoint()->x)
-        + "y: " + std::to_string(node->getPoint()->y);
+        std::cout << "x: " + std::to_string(node->getPoint().x)
+        + "y: " + std::to_string(node->getPoint().y);
     }
 }
 

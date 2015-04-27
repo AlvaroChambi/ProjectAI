@@ -10,13 +10,14 @@
 #define __ProjectWar__PlayerAI__
 
 #include <stdio.h>
+
 #include "Player.h"
-#include "List.h"
 #include "Command.h"
 #include "MoveCommand.h"
 #include "AttackCommand.h"
 #include "CaptureCommand.h"
 #include "Building.h"
+#include <vector>
 
 class PlayerAI : public Player
 {

@@ -8,6 +8,12 @@
 
 #include "PlayerAI.h"
 #include "Map.h"
+#include "NodePath.h"
+#include <set>
+#include "Pathfinder.h"
+
+
+
 
 PlayerAI::PlayerAI() : Player(), playersList(nullptr)
 {
@@ -29,14 +35,37 @@ void PlayerAI::setPlayerList(List<Player*> *players)
     this->playersList = players;
 }
 
+
 List<Command*> PlayerAI::play()
 {
     List<Command*> commandsList;
     List<Unit*> unitsList = this->getUnitList();
-    int random1 = rand()%3;
-    int random2 = rand()%3;
+
     Unit* unit = nullptr;
     Point point;
+    
+   
+    Pathfinder *pathfinder = new Pathfinder(this->getMap());
+    std::list<NodePath*> path;
+    path = pathfinder->find(2, 2, 5, 9);
+    
+    std::list<NodePath*>::iterator it;
+    
+    NodePath* nod;
+    
+ 
+    std::cout << "myset contains:";
+    for (it=path.begin(); it!=path.end(); ++it){
+        nod=*it;
+        std::cout << ' ' << nod->getPoint()->x;
+        std::cout << '-';
+        std::cout << ' ' << nod->getPoint()->y;
+    }
+    std::cout << '\n';
+    
+
+    
+    
     for(int i=0; i< unitsList.getSize(); i++){
         unit = unitsList.getElement(i);
         point = unit->getPosition();
@@ -145,3 +174,5 @@ List<Building*> PlayerAI::canConquer(Unit *unit)
     
     return buildingList;
 }
+
+

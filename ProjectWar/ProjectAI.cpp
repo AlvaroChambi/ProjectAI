@@ -162,7 +162,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
-    unit->setPosition(map->getTile(1, 1));
+    unit->setPosition(map->getTile(2, 1));
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();

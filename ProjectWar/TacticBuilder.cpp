@@ -11,6 +11,7 @@
 #include "CaptureCommand.h"
 #include "AttackCommand.h"
 #include "Map.h"
+#include "Pathfinder.h"
 
 TacticBuilder::TacticBuilder(GameState& game) : game(game), count(0)
 {
@@ -57,14 +58,13 @@ void TacticBuilder::genMovements(Unit *unit, Player *player, Player *enemy, Tact
 {
     Map* map = player->getMap();
     List<Movement*>* movements = new List<Movement*>();
-    
+    List<Command*>* commands = new List<Command*>;
     for (int i = 0; i < enemy->getUnitList().getSize(); i++) {
         Unit* target = enemy->getUnitList().getElement(i);
         int targetUnit = -1;
         if (unit->canAttack(target) && target->getHP() > 0) {
             //generate move and attack command
             targetUnit = target->getId();
-            List<Command*>* commands = new List<Command*>;
             MoveCommand* move = nullptr;
             int incrementX[4] = {1,-1, 0, 0};
             int incrementY[4] = {0, 0, 1,-1};
@@ -82,54 +82,53 @@ void TacticBuilder::genMovements(Unit *unit, Player *player, Player *enemy, Tact
             movements->insert(new Movement(commands, tactic->attackScore), tactic->attackScore);
         }
     }
+    if (commands->isEmpty()) {
+        Unit* target = enemy->getUnitList().getElement(0);
+        Pathfinder* pathfinder = new Pathfinder(player->getMap());
+        Point origin = unit->getPosition();
+        Point destination = target->getPosition();
+        std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
+        
+        pathfinder->printList(nodes);
+        
+        std::list<NodePath*>::iterator iterator;
+        iterator = nodes.begin();
+        std::advance(iterator,unit->getMovement());
+        NodePath* node = *iterator;
+        MoveCommand* move = new MoveCommand(unit, map, *node->getPoint());
+        commands->add(move);
+        movements->insert(new Movement(commands, tactic->attackScore), tactic->attackScore);
+    }
     
     for (int i = 0; i < map->getBuildings().getSize(); i++) {
         Building* building = map->getBuildings().getElement(i);
-        
+        List<Command*>* commands = new List<Command*>;
         //if the unit can reach the building and the player doesn't already own it add the movement
         if (unit->canReach(building->getPosition()) && !building->isCaptured(player->getId())) {
             //Generate move and capture command
-            List<Command*>* commands = new List<Command*>;
             MoveCommand* move = new MoveCommand(unit,map,building->getPosition());
             CaptureCommand* capture = new CaptureCommand(player, unit, building);
             commands->add(move);
             commands->add(capture);
             movements->insert(new Movement(commands, tactic->captureScore), tactic->captureScore);
+        }else{
+            //Go to the nearest posible position to the building
+            Pathfinder pathfinder;
+            Point origin = unit->getPosition();
+            Point destination = building->getPosition();
+            std::list<NodePath*> nodes = pathfinder.find(origin.x, origin.y, destination.x, destination.y);
+            
+            std::list<NodePath*>::iterator iterator;
+            iterator = nodes.begin();
+            std::advance(iterator, unit->getMovement());
+            
+            NodePath* node = *iterator;
+            MoveCommand* move = new MoveCommand(unit, map, *node->getPoint());
+            commands->add(move);
+            movements->insert(new Movement(commands, tactic->captureScore), tactic->captureScore);
         }
+        
     }
     
-    for (int i = 0;i < map->getBuildings().getSize(); i++) {
-        Building* building = map->getBuildings().getElement(i);
-        
-        int distance = std::abs(building->getPosition().x - unit->getPosition().x) +
-        std::abs(building->getPosition().y - unit->getPosition().y);
-        
-        if (distance > unit->getMovement() && !building->isCaptured(player->getId())) {
-            //Move towards the building
-            List<Command*>* commands = new List<Command*>;
-            MoveCommand* move;
-            
-            if (building->getPosition().x - unit->getPosition().x < 0) {
-                //move left
-                Point destination = Point(unit->getPosition().x - 1, unit->getPosition().y);
-                move = new MoveCommand(unit, map, destination);
-            }else if (building->getPosition().x - unit->getPosition().x > 0){
-                //move right
-                Point destination = Point(unit->getPosition().x + 1, unit->getPosition().y);
-                move = new MoveCommand(unit, map, destination);
-            }else if (building->getPosition().y - unit->getPosition().y < 0){
-                //go up
-                Point destination = Point(unit->getPosition().x, unit->getPosition().y - 1);
-                move = new MoveCommand(unit, map, destination);
-            }else {
-                //go down
-                Point destination = Point(unit->getPosition().x, unit->getPosition().y + 1);
-                move = new MoveCommand(unit, map, destination);
-            }
-            commands->add(move);
-            movements->insert(new Movement(commands, tactic->moveScore), tactic->moveScore);
-        }
-    }
-    //For each unit just get the best option
     tactic->addMovement(movements->getElement(0));
 }

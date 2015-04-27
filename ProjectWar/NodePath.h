@@ -97,6 +97,7 @@ public:
      
     bool accesible(Map* map)
     {
+        /*
         bool accesible = true;
         if(point->x <0 || point->y<0){
             accesible = false;
@@ -106,7 +107,8 @@ public:
                 accesible = false;
             }
         }
-        return accesible;
+        return accesible;*/
+        return true;
     }
     
     

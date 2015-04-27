@@ -111,6 +111,15 @@ void Pathfinder::finish()
     NodePaths.push_back(source);
     NodePaths.reverse();
 }
+
+void Pathfinder::printList(std::list<NodePath *> nodePaths)
+{
+    for (NodePath* node :  nodePaths) {
+        std::cout << "x: " + std::to_string(node->getPoint()->x)
+        + "y: " + std::to_string(node->getPoint()->y);
+    }
+}
+
 void Pathfinder::consider(NodePath* parent, int x, int y)
 {
     NodePath* cur = new NodePath();

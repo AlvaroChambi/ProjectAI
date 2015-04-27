@@ -30,11 +30,13 @@ void PlayerAI::setPlayerList(List<Player*> *players)
     this->playersList = players;
 }
 
+
 List<Command*> PlayerAI::play()
 {
+
     List<Command*>* commands = new List<Command*>;
     Player* enemy = nullptr;
-    
+   
     for (int i = 0; i < playersList->getSize(); i++) {
         Player* player = playersList->getElement(i);
         if (this->getId() != player->getId()) {
@@ -50,3 +52,4 @@ List<Command*> PlayerAI::play()
     movement->execute();
     return *commands;
 }
+

@@ -18,7 +18,6 @@
 #include "Map.h"
 #include "Sprite.h"
 #include "Layout.h"
-#include "List.h"
 
 class Scene
 {
@@ -37,8 +36,8 @@ public:
     //animations
     void update();
 private:
-    List <Texture*> textureList;
-    List <Sprite*> sprites;
+    std::list <Texture*> textureList;
+    std::list <Sprite*> sprites;
     Renderer *renderer;
     IGameEventsListener* eventsListener;
     Map* map;

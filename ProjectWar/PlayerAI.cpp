@@ -25,20 +25,19 @@ PlayerAI::~PlayerAI()
 
 }
 
-void PlayerAI::setPlayerList(List<Player*> *players)
+void PlayerAI::setPlayerList(std::list<Player*> *players)
 {
     this->playersList = players;
 }
 
 
-List<Command*> PlayerAI::play()
+std::list<Command*> PlayerAI::play()
 {
 
-    List<Command*>* commands = new List<Command*>;
+    std::list<Command*>* commands = new std::list<Command*>;
     Player* enemy = nullptr;
    
-    for (int i = 0; i < playersList->getSize(); i++) {
-        Player* player = playersList->getElement(i);
+    for (Player* player : *playersList) {
         if (this->getId() != player->getId()) {
             enemy = player;
         }
@@ -46,7 +45,7 @@ List<Command*> PlayerAI::play()
     GameState* game = new GameState(this, enemy);
     TacticMinimax* tacticDecision = new TacticMinimax(*game);
     
-    tacticDecision->minimax(10);
+    tacticDecision->minimax(3);
     Tactic* movement = (Tactic*)tacticDecision->getMove();
     
     movement->execute();

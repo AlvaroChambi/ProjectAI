@@ -10,6 +10,7 @@
 #define __ProjectWar__PlayerAI__
 
 #include <stdio.h>
+#include <list>
 
 #include "Player.h"
 #include "Command.h"
@@ -26,16 +27,16 @@ public:
     PlayerAI();
     PlayerAI(int id);
     ~PlayerAI();
-    void setPlayerList(List<Player*> *players);
-    List<Movement*>* genMovements(Unit* unit, Player* players, Map* map);
+    void setPlayerList(std::list<Player*> *players);
+    std::list<Movement*>* genMovements(Unit* unit, Player* players, Map* map);
     
-    List<Command*> play ();
-    List<Unit*> canAttack(Unit *unit);
-    List<Building*> canConquer(Unit *unit);
+    std::list<Command*> play ();
+    std::list<Unit*> canAttack(Unit *unit);
+    std::list<Building*> canConquer(Unit *unit);
     
     
 private:
-    List<Player*> *playersList;
+    std::list<Player*> *playersList;
 };
 
 

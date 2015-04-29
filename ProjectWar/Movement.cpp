@@ -18,7 +18,7 @@ Movement::Movement(int score) : commands(), score(score)
 
 }
 
-Movement::Movement(List<Command*>* commands, int score) : commands(commands), score(score)
+Movement::Movement(std::list<Command*>* commands, int score) : commands(commands), score(score)
 {
     
 }
@@ -31,8 +31,7 @@ Movement::~Movement()
 void Movement::execute()
 {
     std::cout << "      Movement executed\n";
-    for (int i = 0; i < commands->getSize(); i++) {
-        Command* command = commands->getElement(i);
+    for (Command* command : *commands) {
         command->execute();
     }
 }
@@ -40,10 +39,14 @@ void Movement::execute()
 void Movement::cancel()
 {
     std::cout << "      Movement canceled\n";
-    for (int i = 0; i < commands->getSize(); i++) {
-        Command* command = commands->getElement(i);
+    for (Command* command : *commands) {
         command->cancel();
     }
+}
+
+int Movement::getScore()
+{
+    return this->score;
 }
 
 

@@ -15,7 +15,6 @@
 #include "Unit.h"
 #include "Tile.h"
 #include "State.h"
-#include "List.h"
 #include "InfoTile.h"
 
 enum PlayerType
@@ -40,7 +39,7 @@ public:
     void addUnit( Unit* unit );
     Unit* getUnit(int id);
     
-    List<Unit*>& getUnitList();
+    std::list<Unit*>& getUnitList();
     
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
@@ -71,7 +70,7 @@ private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
     Tile tile;
-    List<Unit*> units;
+    std::list<Unit*> units;
     
     State* state;
     //TODO Dont need to have a selected unit instance if i already have a player with an active param

@@ -58,13 +58,13 @@ void ProjectAI::onSpriteClicked(const int id)
 Unit* ProjectAI::getUnit(int id)
 {
     Unit* unit = nullptr;
-    for (int i = 0; i < players.getSize(); i++) {
-        unit = players.getElement(i)->getUnit(id);
+    for (Player* player : players) {
+        unit = player->getUnit(id);
         if (unit != nullptr) {
             //Change the way to stop when we get a match...
-             i = players.getSize();
+            return unit;
         }
-       
+        
     }
     return unit;
 }
@@ -266,13 +266,17 @@ Player* ProjectAI::nextPlayer()
     if(activePlayer != nullptr){
         activePlayer->setActive(false);
     }
-    if(playerTurn >= players.getSize()){
+    std::list<Player*>::iterator iterator;
+    iterator = players.begin();
+    if(playerTurn >= players.size()){
         playerTurn = 0;
+        std::advance(iterator, playerTurn);
         day++;
-        result = players.getElement(playerTurn);
+        result = *iterator;
         playerTurn++;
     }else{
-        result = players.getElement(playerTurn);
+        std::advance(iterator, playerTurn);
+        result = *iterator;
         playerTurn++;
     }
     //Update active player and the player controller
@@ -287,7 +291,7 @@ Input ProjectAI::getPlayerEvent(int id)
 {
     Input result = ENEMY_UNIT_CLICKED;
     //If the active player doesn't have a unity with that id then it's a enemy
-    for (int i = 0; i < players.getSize(); i++) {
+    for (int i = 0; i < players.size(); i++) {
         if (activePlayer->hasUnit(id)) {
             result = UNIT_CLICKED;
         }
@@ -302,10 +306,14 @@ Input ProjectAI::getPlayerEvent(int id)
 
 void ProjectAI::addPlayer(Player *player)
 {
-    players.add(player);
+    players.push_back(player);
 }
 
 Player* ProjectAI::getPlayer(int position)
 {
-    return players.getElement(position);
+    std::list<Player*>::iterator iterator;
+    iterator = players.begin();
+    std::advance(iterator, position);
+    Player* player = *iterator;
+    return player;
 }

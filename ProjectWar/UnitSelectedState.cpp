@@ -31,8 +31,8 @@ void UnitSelectedState::enter()
     Unit* unit = player->getSelectedUnit();
     //Update available area and set unit as selected
     player->getMap()->updateUnitAvailableArea(unit);
-    List<UnitCommand> commands;
-    commands.add(WAIT);
+    std::list<UnitCommand> commands;
+    commands.push_back(WAIT);
     //Check if there are any unit around
     player->getMap()->checkNearEntities(unit, commands);
     //Update commands

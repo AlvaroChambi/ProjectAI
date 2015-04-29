@@ -94,7 +94,7 @@ int Unit::getHP()
     return hp;
 }
 
-void Unit::updateCommands(List<UnitCommand> commands)
+void Unit::updateCommands(std::list<UnitCommand> commands)
 {
     //Clean previous commands and set the new ones
     this->commands = commands;
@@ -103,17 +103,22 @@ void Unit::updateCommands(List<UnitCommand> commands)
 
 void Unit::addCommand(UnitCommand command)
 {
-    commands.add(command);
+    commands.push_back(command);
 }
 
 UnitCommand Unit::getCommand(int position)
 {
-    return commands.getElement(position);
+    std::list<UnitCommand>::iterator iterator;
+    iterator = commands.begin();
+    std::advance(iterator, position);
+    UnitCommand unit = *iterator;
+    return unit;
+
 }
 
 int Unit::getNumCommands()
 {
-    return commands.getSize();
+    return (int)commands.size();
 }
 
 //TODO duplicated code here...

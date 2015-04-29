@@ -21,7 +21,7 @@ Observable::~Observable()
 
 void Observable::registerObserver( Observer* observer )
 {
-    observers.add(observer);
+    observers.push_back(observer);
 }
 
 void Observable::unRegisterObserver( Observer* observer )
@@ -31,8 +31,8 @@ void Observable::unRegisterObserver( Observer* observer )
 
 void Observable::notifyObservers(Update update)
 {
-    for (int i = 0; i < observers.getSize(); i++) {
-        observers.getElement(i)->update(update);
+    for (Observer* observer : observers) {
+        observer->update(update);
     }
 }
 

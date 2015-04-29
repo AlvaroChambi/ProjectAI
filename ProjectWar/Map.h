@@ -11,12 +11,13 @@
 
 #include <stdio.h>
 #include <vector>
+#include <list>
+
 #include "Texture.h"
 #include "Renderer.h"
 #include "SDLTexture.h"
 #include "Tile.h"
 #include "InfoTile.h"
-#include "List.h"
 #include "Unit.h"
 #include "Building.h"
 #include "SpriteFactory.h"
@@ -51,16 +52,16 @@ public:
     void addBuilding(Building* building);
     Building* getBuilding(int id);
     Building* getBuilding(Point position);
-    List<Building*>& getBuildings();
+    std::list<Building*>& getBuildings();
     
     void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);
     
     //Initializes the values of the strategic info map
-    void loadInfoMap( List<Player*> & players);
+    void loadInfoMap( std::list<Player*> & players);
     InfoMap& getInfoMap();
     
     //Check entities near the given unit(units, buildings...) and update his commands
-    void checkNearEntities(Unit* unit, List<UnitCommand>& commands);
+    void checkNearEntities(Unit* unit, std::list<UnitCommand>& commands);
     
     //Change unit position in the infomap, must be called before the unit position has been changed
     void moveUnit(Unit* unit, Point destination);
@@ -70,8 +71,8 @@ private:
     TileMap matrix;
     InfoMap infoMap;
     
-    List<Building*> buildings;
-    List<Sprite*> sprites;
+    std::list<Building*> buildings;
+    std::list<Sprite*> sprites;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

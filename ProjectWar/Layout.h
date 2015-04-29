@@ -10,7 +10,7 @@
 #define __ProjectWar__Layout__
 
 #include <stdio.h>
-#include "List.h"
+#include <list>
 #include "Params.h"
 
 
@@ -29,7 +29,7 @@ public:
     UIComponent* matchEvent(Point position);
     void cleanComponents();
 protected:
-    List <UIComponent*> components;
+    std::list<UIComponent*> components;
 private:
     Texture* background;
 };

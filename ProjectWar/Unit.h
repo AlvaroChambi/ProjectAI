@@ -11,10 +11,10 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <list>
 
 #include "Model.h"
 #include "Tile.h"
-#include "List.h"
 #include "InfoTile.h"
 
 enum UnitCommand
@@ -57,7 +57,7 @@ public:
     
     void addCommand(UnitCommand command);
     UnitCommand getCommand(int position);
-    void updateCommands(List<UnitCommand> commands);
+    void updateCommands(std::list<UnitCommand> commands);
     
     int getNumCommands();
     
@@ -71,7 +71,7 @@ private:
     int movement;
     int hp;
     int attackRange;
-    List<UnitCommand> commands;
+    std::list<UnitCommand> commands;
 };
 
 #endif /* defined(__ProjectWar__Unit__) */

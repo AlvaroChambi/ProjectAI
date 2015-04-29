@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include <vector>
+#include <list>
 
 #include "Observer.h"
-#include "List.h"
 
 class Observable
 {
@@ -25,7 +25,7 @@ public:
     void notifyObservers(Update update);
     void notify(Observer* observer);
 private:
-    List <Observer*> observers;
+    std::list <Observer*> observers;
 };
 
 #endif /* defined(__ProjectWar__Observable__) */

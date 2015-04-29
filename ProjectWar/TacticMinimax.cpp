@@ -18,7 +18,7 @@ TacticMinimax::~TacticMinimax()
 
 }
 
-void TacticMinimax::getMovesList(int depth, List<Option*>& moves)
+void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
 {
     Player* player = nullptr;
     Player* enemy = nullptr;
@@ -33,8 +33,8 @@ void TacticMinimax::getMovesList(int depth, List<Option*>& moves)
     Tactic* attackTactic = tacticBuilder.createTactic(ATTACK_TACTIC, player, enemy);
     Tactic* captureTactic = tacticBuilder.createTactic(CAPTURE_TACTIC, player, enemy);
     
-    moves.add(attackTactic);
-    moves.add(captureTactic);
+    moves.push_back(attackTactic);
+    moves.push_back(captureTactic);
 }
 
 int TacticMinimax::minOrMax(int bestSofar, int score, int depth)

@@ -10,7 +10,6 @@
 #define __ProjectWar__GameState__
 
 #include <stdio.h>
-#include "List.h"
 #include "Option.h"
 #include "Player.h"
 

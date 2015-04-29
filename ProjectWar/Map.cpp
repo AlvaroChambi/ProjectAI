@@ -27,21 +27,21 @@ Map::~Map()
 
 void Map::addBuilding(Building *building)
 {
-    buildings.add(building);
+    buildings.push_back(building);
 }
 
 Building* Map::getBuilding(int id)
 {
     Building* result = nullptr;
-    for (int i = 0; i < buildings.getSize(); i++) {
-        if(buildings.getElement(i)->getId() == id){
-            result = buildings.getElement(i);
+    for (Building* building : buildings) {
+        if(building->getId() == id){
+            result = building;
         }
     }
     return result;
 }
 
-List<Building*>& Map::getBuildings()
+std::list<Building*>& Map::getBuildings()
 {
     return buildings;
 }
@@ -91,16 +91,16 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
     building2->setPosition(getTile(12,6));
     this->addBuilding(building2);
     
-    sprites.add(buildingSprite);
-    sprites.add(buildingSprite2);
+    sprites.push_back(buildingSprite);
+    sprites.push_back(buildingSprite2);
 }
 
 Building* Map::getBuilding(Point position)
 {
     Building* result = nullptr;
-    for (int i = 0; i < buildings.getSize(); i++) {
-        if (buildings.getElement(i)->getPosition() == position) {
-            result = buildings.getElement(i);
+    for (Building* building : buildings) {
+        if (building->getPosition() == position) {
+            result = building;
         }
     }
     return result;
@@ -160,8 +160,8 @@ void Map::drawMap(Renderer* renderer)
         
     }
     
-    for (int i = 0; i < sprites.getSize(); i++) {
-        sprites.getElement(i)->render(renderer);
+    for (Sprite* sprite : sprites) {
+        sprite->render(renderer);
     }
 }
 
@@ -226,19 +226,18 @@ bool Map::isValidPosition(Point position)
     return result;
 }
 
-void Map::loadInfoMap(List<Player *> &players)
+void Map::loadInfoMap(std::list<Player *> &players)
 {
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
             infoMap[i][j] = new InfoTile();
         }
     }
-    for (int i = 0; i < players.getSize(); i++ ) {
-        players.getElement(i)->populateInfoMap(infoMap);
+    for (Player* player : players) {
+        player->populateInfoMap(infoMap);
     }
     
-    for (int i = 0; i < buildings.getSize(); i++) {
-        Building* building = buildings.getElement(i);
+    for (Building* building : buildings) {
         InfoTile* tile = infoMap[building->getPosition().x][building->getPosition().y];
         tile->entity = BUILDING_ENTITY;
         tile->ownerID = building->getOwnerID();
@@ -268,7 +267,7 @@ Map::InfoMap& Map::getInfoMap()
     return infoMap;
 }
 
-void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
+void Map::checkNearEntities(Unit *unit, std::list<UnitCommand>& commands)
 {
     InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     int x = unit->getPosition().x - unit->getAttackRange();
@@ -285,7 +284,7 @@ void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
                     
                     if(infoTile->ownerID != -1 && infoTile->ownerID != unitTile->ownerID
                        && !commandAdded){
-                        commands.add(ATTACK);
+                        commands.push_back(ATTACK);
                         commandAdded = true;
                     }
                 }
@@ -293,7 +292,7 @@ void Map::checkNearEntities(Unit *unit, List<UnitCommand>& commands)
         }
     }
     if (unitTile->entity == BUILDING_ENTITY) {
-        commands.add(CAPTURE);
+        commands.push_back(CAPTURE);
     }
 }
 

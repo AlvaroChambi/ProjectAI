@@ -28,9 +28,9 @@ void OnMoveState::enter()
 {
     Player* player = (Player*)model;
     Unit* unit = player->getSelectedUnit();
-    List<UnitCommand> commands;
-    commands.add(CANCEL);
-    commands.add(WAIT);
+    std::list<UnitCommand> commands;
+    commands.push_back(CANCEL);
+    commands.push_back(WAIT);
     //Check if there are any enemy aroud
     player->getMap()->checkNearEntities(unit,commands);
     //update commands

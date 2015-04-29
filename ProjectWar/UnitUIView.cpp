@@ -82,14 +82,14 @@ void UnitUIView::updateComponents()
 void UnitUIView::updatePosition()
 {
     UIComponent::updatePosition();
-    if(components.getSize() > 0){
-        int subParentWidth = getWidth() / components.getSize();
-        
-        for (int i = 0; i < components.getSize(); i++) {
+    if(components.size() > 0){
+        int subParentWidth = getWidth() / components.size();
+        int i = 0;
+        for (UIComponent* component : components) {
             int subParentX = getPosition().x + subParentWidth * i;
             Point subParentPosition = Point(subParentX, getPosition().y);
-            components.getElement(i)->center(subParentPosition, subParentWidth, getHeight());
+            component->center(subParentPosition, subParentWidth, getHeight());
+            i++;
         }
-        
     }
 }

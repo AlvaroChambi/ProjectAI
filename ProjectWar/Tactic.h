@@ -36,7 +36,7 @@ public:
     int captureScore;
     int moveScore;
 private:
-    List<Movement*> movements;
+    std::list<Movement*> movements;
     int id;
 protected:
     

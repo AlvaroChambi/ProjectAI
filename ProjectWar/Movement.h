@@ -10,21 +10,22 @@
 #define __ProjectWar__Movement__
 
 #include <stdio.h>
+#include <list>
 #include "Command.h"
-#include "List.h"
 
 class Movement
 {
 public:
     Movement();
     Movement(int score);
-    Movement(List<Command*>* commands, int score);
+    Movement(std::list<Command*>* commands, int score);
     void execute();
     void cancel();
+    int getScore();
     virtual ~Movement();
 
     int score;
-    List<Command*>* commands;
+    std::list<Command*>* commands;
 };
 
 #endif /* defined(__ProjectWar__Movement__) */

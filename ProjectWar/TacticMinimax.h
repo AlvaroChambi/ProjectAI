@@ -22,7 +22,7 @@ public:
     Minimax* makeMinimax();
     int getGameOverScore();
     int getWorstScore();
-    void getMovesList(int depth, List<Option*>& moves);
+    void getMovesList(int depth, std::list<Option*>& moves);
 private:
     TacticBuilder tacticBuilder;
 };

@@ -22,8 +22,7 @@ void Tactic::execute()
 {
     std::cout << "Tactic ID: " +  std::to_string(this->id) +"\n";
     std::cout << "attack score: " + std::to_string(attackScore) + "capture score" +std::to_string(captureScore) + "\n";
-    for (int i = 0 ; i < movements.getSize(); i++) {
-        Movement* movement = movements.getElement(i);
+    for (Movement* movement : movements) {
         movement->execute();
     }
 }
@@ -31,14 +30,13 @@ void Tactic::execute()
 void Tactic::cancel()
 {
     std::cout << "Tactic ID: " +  std::to_string(this->id) +"\n";
-    for (int i = 0; i < movements.getSize(); i++) {
-        Movement* movement = movements.getElement(i);
+    for (Movement* movement : movements) {
         movement->cancel();
     }
 }
 
 void Tactic::addMovement(Movement *movement)
 {
-    this->movements.add(movement);
+    this->movements.push_back(movement);
 }
 

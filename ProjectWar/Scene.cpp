@@ -24,13 +24,13 @@ Scene::~Scene()
 void Scene::attachTexture(Texture* texture)
 {
     
-    textureList.add(texture);
+    textureList.push_back(texture);
 
 }
 
 void Scene::attachSprite(Sprite *sprite)
 {
-    sprites.add(sprite);
+    sprites.push_back(sprite);
 }
 
 void Scene::attachMap(Map *map)
@@ -53,14 +53,14 @@ void Scene::render()
         map->drawMap(renderer);
     }
     
-    for(int i = 0; i < textureList.getSize(); i++){
-        if(textureList.getElement(i)->isVisible()){
-            renderer->drawTexture(textureList.getElement(i));
+    for(Texture* texture : textureList){
+        if(texture->isVisible()){
+            renderer->drawTexture(texture);
         }
     }
     //Sprites in this case are mvc oriented 
-    for(int i = 0; i < sprites.getSize(); i++){
-        sprites.getElement(i)->render(renderer);
+    for(Sprite* sprite : sprites){
+        sprite->render(renderer);
     }
     
     //InfoMap
@@ -73,8 +73,8 @@ void Scene::render()
 //Sprites animations ticks
 void Scene::update()
 {
-    for (int i = 0; i < sprites.getSize(); i++) {
-        sprites.getElement(i)->updateFrame();
+    for (Sprite* sprite : sprites) {
+        sprite->updateFrame();
     }
 }
 
@@ -91,17 +91,17 @@ void Scene::handleEvent(const Event event)
     switch (event.type) {
         case ON_MOUSE_DOWN_EVENT:
             if(this->eventsListener != nullptr){
-                for (int i = 0; i < textureList.getSize(); i++) {
+                for (Texture* texture : textureList) {
                     //if clicked position match with the given texture area notify event
-                    if(textureList.getElement(i)->matchPosition(position) && textureList.getElement(i)->isVisible()){
-                        eventsListener->onTextureClicked(*textureList.getElement(i));
+                    if(texture->matchPosition(position) && texture->isVisible()){
+                        eventsListener->onTextureClicked(*texture);
                         eventHandled = true;
                     }
                 }
-                for(int i = 0; i < sprites.getSize(); i++){
+                for(Sprite* sprite : sprites){
                     //if clicked position match with the given sprite size notify event
-                    if(sprites.getElement(i)->matchPosition(position) && sprites.getElement(i)->getTexture()->isVisible()){
-                        eventsListener->onSpriteClicked(sprites.getElement(i)->getID());
+                    if(sprite->matchPosition(position) && sprite->getTexture()->isVisible()){
+                        eventsListener->onSpriteClicked(sprite->getID());
                         eventHandled = true;
                     }
 

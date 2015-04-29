@@ -51,21 +51,21 @@ Tile Player::getTile()
 
 void Player::addUnit(Unit *unit)
 {
-    units.add(unit);
+    units.push_back(unit);
 }
 
 Unit* Player::getUnit(int id)
 {
-    Unit* unit = nullptr;
-    for (int i = 0; i < units.getSize(); i++) {
-        if (units.getElement(i)->getId() == id) {
-            unit = units.getElement(i);
+    Unit* result = nullptr;
+    for (Unit* unit : units) {
+        if (unit->getId() == id) {
+            result = unit;
         }
     }
-    return unit;
+    return result;
 }
 
-List<Unit*>& Player::getUnitList()
+std::list<Unit*>& Player::getUnitList()
 {
     return this->units;
 }
@@ -140,8 +140,8 @@ bool Player::isActive()
 bool Player::hasUnit(int id)
 {
     bool result = false;
-    for (int i = 0; i < units.getSize(); i++) {
-        if(units.getElement(i)->getId() == id){
+    for (Unit* unit : units) {
+        if(unit->getId() == id){
             result = true;
         }
     }
@@ -151,8 +151,7 @@ bool Player::hasUnit(int id)
 bool Player::hasUnitAlive()
 {
     bool result = false;
-    for (int i = 0; i < units.getSize(); i++) {
-        Unit* unit = units.getElement(i);
+    for (Unit* unit : units) {
         if (unit->getHP() > 0) {
             result = true;
         }
@@ -163,8 +162,7 @@ bool Player::hasUnitAlive()
 bool Player::hasCapturedHQ()
 {
     bool result = true;
-    for (int i = 0 ; i < map->getBuildings().getSize(); i++) {
-        Building* building = map->getBuildings().getElement(i);
+    for (Building* building : map->getBuildings()) {
         if (building->getOwnerID() != getId() || building->getCaptureValue() < building->getCapturePoints()) {
             //as soon as we find a build that isn't captured for the player set the flag to false
             result = false;
@@ -176,8 +174,7 @@ bool Player::hasCapturedHQ()
 void Player::populateInfoMap(InfoMap& infoMap)
 {
     //Maybe place this code in the Map
-    for (int i = 0; i < units.getSize(); i++) {
-        Unit* unit = units.getElement(i);
+    for (Unit* unit : units) {
         Point position = unit->getPosition();
         InfoTile* tile = infoMap[position.x][position.y];
         tile->entity = UNIT_ENTITY;

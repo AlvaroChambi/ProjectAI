@@ -23,8 +23,8 @@ void NothingSelectedState::enter()
 {
     Player* player = (Player*)model;
     player->getMap()->cleanUnitAvailableArea(player->getSelectedUnit());
-    List<UnitCommand> commands;
-    commands.add(END);
+    std::list<UnitCommand> commands;
+    commands.push_back(END);
     player->getSelectedUnit()->updateCommands(commands);
     player->setSelectedUnit(nullptr); //Nothing selected
 }

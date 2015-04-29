@@ -10,9 +10,9 @@
 #define ProjectWar_Minimax_h
 
 #include "GameState.h"
-#include "List.h"
 #include "Option.h"
 #include <limits>
+#include <list>
 
 class Minimax
 {
@@ -41,10 +41,10 @@ public:
         }
         Minimax* child = makeMinimax();
         int bestSoFar = getWorstScore();
-        List<Option*> moves;
+        std::list<Option*> moves;
         getMovesList(depth, moves); //Tactic list for the given player
-        for (int i = 0; i < moves.getSize(); i ++) {
-            move = moves.getElement(i);
+        for (Option* option : moves) {
+            move = option;
             game.processMove(move);
             int score = child->minimax( depthSearch -1, depth +1 );
             
@@ -71,7 +71,7 @@ protected:
     virtual Minimax* makeMinimax() = 0;
     virtual int getGameOverScore() = 0;
     virtual int getWorstScore() = 0;
-    virtual void getMovesList(int depth, List<Option*>&) = 0;
+    virtual void getMovesList(int depth, std::list<Option*>&) = 0;
     GameState& game;
     
 private:

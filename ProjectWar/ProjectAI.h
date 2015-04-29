@@ -53,7 +53,7 @@ public:
 private:
     Input getPlayerEvent(int id);
     
-    List<Player*> players;
+    std::list<Player*> players;
     
     PlayerController* playerController;
     Player* activePlayer;

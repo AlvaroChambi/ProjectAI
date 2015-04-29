@@ -31,21 +31,21 @@ void Layout::render(Renderer* renderer)
         background->setPosition(this->getPosition());
         renderer->drawTexture(background, getWidth(), getHeight());
     }
-    for (int i = 0; i < components.getSize(); i++) {
-        components.getElement(i)->render(renderer);
+    for (UIComponent* component : components) {
+        component->render(renderer);
     }
 }
 
 void Layout::addComponent(UIComponent *component)
 {
-    components.add(component);
+    components.push_back(component);
     //Update parent value: first use of the params
     component->setParent(this);
 }
 
 void Layout::cleanComponents()
 {
-    this->components.deleteList();
+    this->components.clear();
 }
 
 void Layout::setBackground(Texture *background)
@@ -62,11 +62,11 @@ void Layout::setBackground(Color color)
 UIComponent* Layout::matchEvent(Point position)
 {
     UIComponent* result = nullptr;
-    for (int i = 0; i < components.getSize() ; i++) {
-        result = components.getElement(i)->matchEvent(position);
+    for (UIComponent* component : components) {
+        result = component->matchEvent(position);
         //Stop when i found a match, i dont really like the way i'm doing this...
         if (result != nullptr) {
-            i = components.getSize();
+            return result;
         }
     }
     return result;

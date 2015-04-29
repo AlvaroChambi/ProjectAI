@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "Layout.h"
-#include "List.h"
 #include "Unit.h"
 
 class UnitUIView : public Observer, public Layout

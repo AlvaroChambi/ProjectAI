@@ -34,13 +34,11 @@ bool GameState::isGameOver()
 int GameState::getStaticEvaluation()
 {
     int result = DRAW_VALUE;
-    for (int i = 0; i < player->getUnitList().getSize(); i++) {
-        Unit* unit = player->getUnitList().getElement(i);
+    for (Unit* unit : player->getUnitList()) {
         result = result + unit->getHP() * 0.1;
     }
     
-    for (int i = 0; i < enemy->getUnitList().getSize(); i++) {
-        Unit* unit = player->getUnitList().getElement(i);
+    for (Unit* unit : enemy->getUnitList()) {
         result = result - unit->getHP() * 0.1;
     }
 

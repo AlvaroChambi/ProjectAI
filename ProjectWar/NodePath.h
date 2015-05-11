@@ -102,7 +102,6 @@ public:
      
     bool accesible(Map* map)
     {
-   
         return map->isValidPosition(getPoint());
     }
     

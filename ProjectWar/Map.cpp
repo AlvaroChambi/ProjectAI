@@ -219,12 +219,22 @@ Tile Map::getTile(Point point)
     return getTile(point.x, point.y);
 }
 
+InfoTile& Map::getInfoTile(Point position)
+{
+    return *infoMap[position.x][position.y];
+}
+
 bool Map::isValidPosition(Point position)
 {
     bool result = false;
     if (position.x >= 0 && position.x < MAP_WIDTH
             && position.y >= 0 && position.y < MAP_HEIGHT) {
-        result = true;
+        InfoTile tile = getInfoTile(position);
+        
+        if (tile.entity != UNIT_ENTITY) {
+            result = true;
+        }
+
     }
     return result;
 }

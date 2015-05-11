@@ -24,6 +24,7 @@ class Tactic : public Option
 {
     
 public:
+    Tactic(TacticType type);
     Tactic( int id );
     virtual ~Tactic();
     void execute();

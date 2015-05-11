@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <ostream>
 
 class Point
 {
@@ -42,9 +43,15 @@ public:
         return result;
     }
     
+    friend std::ostream& operator<<(std::ostream& os, const Point& point)
+    {
+        os << "( "<< point.x << " , " << point.y << " )";
+        return os;
+    }
+    
     int distance(Point point)
     {
-         return std::abs(point.x - this->x) +
+        return std::abs(point.x - this->x) +
         std::abs(point.y - this->y);
     }
 };

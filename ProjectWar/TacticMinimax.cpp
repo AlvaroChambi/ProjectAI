@@ -30,7 +30,9 @@ void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
         player = game.enemy;
         enemy = game.player;
     }
+    std::cout << "Attack tactic movements: \n";
     Tactic* attackTactic = tacticBuilder.createTactic(ATTACK_TACTIC, player, enemy);
+    std::cout << "Capture tactic movements: \n";
     Tactic* captureTactic = tacticBuilder.createTactic(CAPTURE_TACTIC, player, enemy);
     
     moves.push_back(attackTactic);

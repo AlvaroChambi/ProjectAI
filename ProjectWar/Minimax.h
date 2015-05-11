@@ -14,6 +14,8 @@
 #include <limits>
 #include <list>
 
+#include <chrono>
+#include <thread>
 class Minimax
 {
 public:
@@ -46,9 +48,10 @@ public:
         for (Option* option : moves) {
             move = option;
             game.processMove(move);
+            std::this_thread::sleep_for(std::chrono::milliseconds(250));
             int score = child->minimax( depthSearch -1, depth +1 );
             
-            std::cout << "//////////////NEW NODE///////////////////\n";
+            std::cout << "//////////////NODE (on back)///////////////////\n";
             std::cout << "score: " + std::to_string(score) + "\n";
             std::cout << "depth: " + std::to_string(depth) + "\n";
             std::cout << "depthSearch: " + std::to_string(depthSearch) + "\n";

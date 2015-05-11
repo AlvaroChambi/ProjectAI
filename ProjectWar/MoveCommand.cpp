@@ -26,7 +26,7 @@ MoveCommand::~MoveCommand()
 void MoveCommand::execute()
 {
     std::cout << "              executing move command\n";
-    std::cout <<"                   unit: " + std::to_string(unit->getId()) + "\n";
+    std::cout <<"                   unit: " + std::to_string(unit->getId()) <<  "  " << destination.position << "\n";
     map->cleanUnitAvailableArea(unit);
     map->moveUnit(unit, destination.position);
     unit->setPosition(destination);

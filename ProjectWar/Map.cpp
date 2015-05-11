@@ -9,6 +9,8 @@
 #include "Map.h"
 #include "Player.h"
 #include <iostream>
+#include "Path.h"
+#include "Pathfinder.h"
 
 Map::Map()
 {
@@ -18,6 +20,7 @@ Map::Map()
         matrix.at(i).resize(MAP_HEIGHT, 0);
         infoMap.at(i).resize(MAP_HEIGHT);
     }
+    pathfinder = new Pathfinder(this);
 }
 
 Map::~Map()
@@ -318,4 +321,20 @@ void Map::removeUnit(Unit *unit)
 {
     InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     unitTile->cleanTile();
+}
+
+Path* Map::getPath(Point origin, Point destination)
+{
+    std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
+    Path* path = new Path(nodes);
+    return path;
+}
+
+//TODO Check if the complete path is larger or equals to the unit movement
+Path* Map::getUnitPath(Unit *unit, Point destination)
+{
+    Path* completePath = getPath(unit->getPosition(), destination);
+    Path* unitPath = completePath->splice(unit->getMovement());
+    
+    return unitPath;
 }

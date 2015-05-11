@@ -135,7 +135,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture2->setPosition(map->getAbsolutePosition(3,8));
     player2->setMap(map);*/
     
-    PlayerAI* player2 = new PlayerAI(1);
+    PlayerAI* player2 = new PlayerAI(1, scene ,renderer);
     player2->setPlayerList(&players);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);

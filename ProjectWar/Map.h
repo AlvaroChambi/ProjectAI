@@ -24,6 +24,10 @@
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
+
+
+class Path;
+class Pathfinder;
 class Player;
 class Map
 {
@@ -67,12 +71,17 @@ public:
     void moveUnit(Unit* unit, Point destination);
     
     void removeUnit(Unit* unit); //removes unit from the info map
+    
+    Path* getPath(Point origin, Point destination);
+    //Return the path for the given unit, this means just the nodes that the unit can reach
+    Path* getUnitPath(Unit* unit, Point destination);
 private:
     TileMap matrix;
     InfoMap infoMap;
     
     std::list<Building*> buildings;
     std::list<Sprite*> sprites;
+    Pathfinder* pathfinder;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

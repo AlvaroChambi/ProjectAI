@@ -17,7 +17,9 @@ class Movement
 {
 public:
     Movement();
+    //TODO maybe remove score...
     Movement(int score);
+    Movement(std::list<Command*>* commands);
     Movement(std::list<Command*>* commands, int score);
     void execute();
     void cancel();

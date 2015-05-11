@@ -13,11 +13,13 @@
 #include "Option.h"
 #include "Player.h"
 
+#include "Scene.h"
+
 class GameState
 {
 public:
     //TODO implement copy constructor
-    GameState(Player* player, Player* enemy);
+    GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer);
     virtual ~GameState();
     
     static const int WIN_VALUE = 20;
@@ -32,6 +34,10 @@ public:
     Player* enemy;
     Player* player;
 private:
+    //TODO Minimax debug : remove
+    Scene* scene;
+    Renderer* renderer;
+    
 protected:
     
 };

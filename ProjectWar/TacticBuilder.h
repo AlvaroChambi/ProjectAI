@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Tactic.h"
+#include "Building.h"
 #include "GameState.h"
 
 class TacticBuilder
@@ -21,7 +22,9 @@ public:
     Tactic* createTactic(TacticType type, Player* player, Player* enemy);;
 private:
     void buildTactic(Player* player, Player* enemy, Tactic* tactic);
-    void genMovements(Unit* unit, Player* player, Player* enemy, Tactic* tactic);
+    void genUnitMovement(Unit* unit, Player* player, Player* enemy, Tactic* tactic);
+    Building* getBuilding(Player* player, Unit*, Map* map);
+    Unit* getTarget(Unit* unit, Player* enemy);
     GameState& game;
     int count;
 };

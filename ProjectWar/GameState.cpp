@@ -8,7 +8,11 @@
 
 #include "GameState.h"
 
-GameState::GameState(Player* player, Player* enemy) : player(player), enemy(enemy)
+GameState::GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer)
+        :player(player),
+        enemy(enemy),
+        scene(scene),
+        renderer(renderer)
 {
 
 }
@@ -50,6 +54,10 @@ void GameState::processMove(Option *move)
     std::cout << "//////////////MOVE FORWARD//////////\n";
     std::cout << "Option executed \n";
     move->execute();
+    //TODO Minimax debug : remove
+    renderer->renderClear();
+    scene->render();
+    renderer->renderPresent();
 }
 
 void GameState::unprocessMove(Option *move)

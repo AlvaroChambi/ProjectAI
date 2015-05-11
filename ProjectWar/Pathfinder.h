@@ -30,7 +30,7 @@ public:
     void consider(NodePath* parent, int x, int y);
     bool compare_points(NodePath *start);
     void printList(std::list<NodePath*> NodePaths);
-
+    void printPath(Path* path);
 private:
 
     std::list<NodePath*> NodePaths;

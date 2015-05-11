@@ -8,6 +8,11 @@
 
 #include "Tactic.h"
 
+Tactic::Tactic(TacticType type) : type(type), movements(), attackScore(0), captureScore(0), moveScore(0)
+{
+
+}
+
 Tactic::Tactic(int id) : movements(), attackScore(0), captureScore(0), moveScore(0), id(id)
 {
 
@@ -20,8 +25,7 @@ Tactic::~Tactic()
 
 void Tactic::execute()
 {
-    std::cout << "Tactic ID: " +  std::to_string(this->id) +"\n";
-    std::cout << "attack score: " + std::to_string(attackScore) + "capture score" +std::to_string(captureScore) + "\n";
+    std::cout << type << "\n";
     for (Movement* movement : movements) {
         movement->execute();
     }

@@ -18,6 +18,11 @@ Movement::Movement(int score) : commands(), score(score)
 
 }
 
+Movement::Movement(std::list<Command*>* commands) : commands(commands)
+{
+    
+}
+
 Movement::Movement(std::list<Command*>* commands, int score) : commands(commands), score(score)
 {
     

@@ -102,18 +102,8 @@ public:
      
     bool accesible(Map* map)
     {
-        /*
-        bool accesible = true;
-        if(point.x <0 || point.y<0){
-            accesible = false;
-        }else{
-            InfoTile* infoTile = map->getInfoMap()[point.x][point.y];
-            if(infoTile->entity==UNIT_ENTITY) {
-                accesible = false;
-            }
-        }
-        return accesible;*/
-        return true;
+   
+        return map->isValidPosition(getPoint());
     }
     
     

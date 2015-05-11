@@ -219,6 +219,12 @@ Tile Map::getTile(Point point)
     return getTile(point.x, point.y);
 }
 
+void Map::hideTile(Point position)
+{
+    Tile* tile = matrix[position.x][position.y];
+    tile->getTexture()->setVisible(false);
+}
+
 bool Map::isValidPosition(Point position)
 {
     bool result = false;

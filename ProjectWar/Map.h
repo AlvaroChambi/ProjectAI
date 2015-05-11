@@ -52,6 +52,7 @@ public:
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
+    InfoTile& getInfoTile(Point position);
     
     void addBuilding(Building* building);
     Building* getBuilding(int id);

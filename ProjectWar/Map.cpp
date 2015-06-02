@@ -230,10 +230,11 @@ bool Map::isValidPosition(Point position)
     if (position.x >= 0 && position.x < MAP_WIDTH
             && position.y >= 0 && position.y < MAP_HEIGHT) {
         InfoTile tile = getInfoTile(position);
-        
+        result = true;
+        /* Avoiding unit checking at this point
         if (tile.entity != UNIT_ENTITY) {
             result = true;
-        }
+        }*/
 
     }
     return result;

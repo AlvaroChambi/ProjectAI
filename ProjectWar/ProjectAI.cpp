@@ -9,6 +9,7 @@
 #include "ProjectAI.h"
 #include "UnitUIView.h"
 #include "PlayerAI.h"
+#include "UnitFactory.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
 {
@@ -151,12 +152,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //For each player load unit and buildings data model and view resources
     
     /////////  PLAYER 1 UNITS //////////
-    Unit* unit = new Unit();
-    unit->setResource("animate.png");
+    UnitFactory unitFactory;
+    Unit* unit = unitFactory.createUnit("unit.lua");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
-    unit->setMovement(3);
-    unit->setAttackRange(1);
-    unit->setHP(10);
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
     unitSprite->setTexture(unitTexture);
@@ -165,12 +163,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit->setPosition(map->getTile(2, 1));
     player->addUnit(unit);
     
-    Unit* unit3 = new Unit();
-    unit3->setResource("animate.png");
+    Unit* unit3 = unitFactory.createUnit("unit.lua");;
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
-    unit3->setMovement(3);
-    unit3->setAttackRange(1);
-    unit3->setHP(10);
     unitSprite3->setModel(unit3);
     Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 82);
     unitSprite3->setTexture(unitTexture3);
@@ -179,12 +173,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit3->setPosition(map->getTile(4, 4));
     player->addUnit(unit3);
     
-    Unit* unit4 = new Unit();
-    unit4->setResource("animate.png");
+    Unit* unit4 = unitFactory.createUnit("unit.lua");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
-    unit4->setMovement(3);
-    unit4->setAttackRange(1);
-    unit4->setHP(10);
     unitSprite4->setModel(unit4);
     Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 82);
     unitSprite4->setTexture(unitTexture4);

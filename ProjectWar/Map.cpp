@@ -219,6 +219,13 @@ Tile Map::getTile(Point point)
     return getTile(point.x, point.y);
 }
 
+
+void Map::hideTile(Point position)
+{
+    Tile* tile = matrix[position.x][position.y];
+    tile->getTexture()->setVisible(false);
+}
+
 InfoTile& Map::getInfoTile(Point position)
 {
     return *infoMap[position.x][position.y];

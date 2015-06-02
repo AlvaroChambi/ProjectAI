@@ -14,6 +14,23 @@
 		9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A5A771AC1E9AF00BF793E /* sprites.bmp */; };
 		9C0A5A7A1AC2D13F00BF793E /* link.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A5A791AC2D13F00BF793E /* link.bmp */; };
 		9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A5A7D1AC32E4600BF793E /* mario.bmp */; };
+		9C3B95F11B1DCA4E00859538 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95E41B1DCA4E00859538 /* GameState.cpp */; };
+		9C3B95F21B1DCA4E00859538 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95E71B1DCA4E00859538 /* Movement.cpp */; };
+		9C3B95F31B1DCA4E00859538 /* PlayerAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95E91B1DCA4E00859538 /* PlayerAI.cpp */; };
+		9C3B95F41B1DCA4E00859538 /* Tactic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95EB1B1DCA4E00859538 /* Tactic.cpp */; };
+		9C3B95F51B1DCA4E00859538 /* TacticBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95ED1B1DCA4E00859538 /* TacticBuilder.cpp */; };
+		9C3B95F61B1DCA4E00859538 /* TacticMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95EF1B1DCA4E00859538 /* TacticMinimax.cpp */; };
+		9C3B95FB1B1DCA6500859538 /* LuaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95F71B1DCA6500859538 /* LuaScript.cpp */; };
+		9C3B95FC1B1DCA6500859538 /* UnitFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */; };
+		9C3B95FF1B1DCA6E00859538 /* building.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B95FD1B1DCA6E00859538 /* building.lua */; };
+		9C3B96001B1DCA6E00859538 /* unit.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B95FE1B1DCA6E00859538 /* unit.lua */; };
+		9C3B96021B1DCA8800859538 /* Lua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3B96011B1DCA8800859538 /* Lua.framework */; };
+		9C3B96071B1DCAAF00859538 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96031B1DCAAF00859538 /* Path.cpp */; };
+		9C3B96081B1DCAAF00859538 /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96051B1DCAAF00859538 /* Pathfinder.cpp */; };
+		9C3B960B1B1DCAD200859538 /* BuildingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96091B1DCAD200859538 /* BuildingView.cpp */; };
+		9C3B960E1B1DCADE00859538 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B960C1B1DCADE00859538 /* Building.cpp */; };
+		9C3B96111B1DCAEF00859538 /* CaptureCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B960F1B1DCAEF00859538 /* CaptureCommand.cpp */; };
+		9C3B96141B1DCB4500859538 /* GameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96121B1DCB4500859538 /* GameUI.cpp */; };
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
@@ -85,6 +102,38 @@
 		9C0A5A791AC2D13F00BF793E /* link.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = link.bmp; sourceTree = "<group>"; };
 		9C0A5A7D1AC32E4600BF793E /* mario.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mario.bmp; sourceTree = "<group>"; };
 		9C0A5A811AC57C5D00BF793E /* InfoTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTile.h; sourceTree = "<group>"; };
+		9C3B95E41B1DCA4E00859538 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		9C3B95E51B1DCA4E00859538 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		9C3B95E61B1DCA4E00859538 /* Minimax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Minimax.h; sourceTree = "<group>"; };
+		9C3B95E71B1DCA4E00859538 /* Movement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
+		9C3B95E81B1DCA4E00859538 /* Movement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
+		9C3B95E91B1DCA4E00859538 /* PlayerAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerAI.cpp; sourceTree = "<group>"; };
+		9C3B95EA1B1DCA4E00859538 /* PlayerAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAI.h; sourceTree = "<group>"; };
+		9C3B95EB1B1DCA4E00859538 /* Tactic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tactic.cpp; sourceTree = "<group>"; };
+		9C3B95EC1B1DCA4E00859538 /* Tactic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tactic.h; sourceTree = "<group>"; };
+		9C3B95ED1B1DCA4E00859538 /* TacticBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TacticBuilder.cpp; sourceTree = "<group>"; };
+		9C3B95EE1B1DCA4E00859538 /* TacticBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TacticBuilder.h; sourceTree = "<group>"; };
+		9C3B95EF1B1DCA4E00859538 /* TacticMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TacticMinimax.cpp; sourceTree = "<group>"; };
+		9C3B95F01B1DCA4E00859538 /* TacticMinimax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TacticMinimax.h; sourceTree = "<group>"; };
+		9C3B95F71B1DCA6500859538 /* LuaScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaScript.cpp; sourceTree = "<group>"; };
+		9C3B95F81B1DCA6500859538 /* LuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaScript.h; sourceTree = "<group>"; };
+		9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitFactory.cpp; sourceTree = "<group>"; };
+		9C3B95FA1B1DCA6500859538 /* UnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFactory.h; sourceTree = "<group>"; };
+		9C3B95FD1B1DCA6E00859538 /* building.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = building.lua; sourceTree = "<group>"; };
+		9C3B95FE1B1DCA6E00859538 /* unit.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unit.lua; sourceTree = "<group>"; };
+		9C3B96011B1DCA8800859538 /* Lua.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lua.framework; path = ../../../../Library/Frameworks/Lua.framework; sourceTree = "<group>"; };
+		9C3B96031B1DCAAF00859538 /* Path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Path.cpp; sourceTree = "<group>"; };
+		9C3B96041B1DCAAF00859538 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		9C3B96051B1DCAAF00859538 /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
+		9C3B96061B1DCAAF00859538 /* Pathfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pathfinder.h; sourceTree = "<group>"; };
+		9C3B96091B1DCAD200859538 /* BuildingView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingView.cpp; sourceTree = "<group>"; };
+		9C3B960A1B1DCAD200859538 /* BuildingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingView.h; sourceTree = "<group>"; };
+		9C3B960C1B1DCADE00859538 /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
+		9C3B960D1B1DCADE00859538 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		9C3B960F1B1DCAEF00859538 /* CaptureCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CaptureCommand.cpp; sourceTree = "<group>"; };
+		9C3B96101B1DCAEF00859538 /* CaptureCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureCommand.h; sourceTree = "<group>"; };
+		9C3B96121B1DCB4500859538 /* GameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUI.cpp; sourceTree = "<group>"; };
+		9C3B96131B1DCB4500859538 /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
@@ -152,7 +201,6 @@
 		9CAE2DF61AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectWarTests.m; sourceTree = "<group>"; };
 		9CAE2E031AA76FE700B6279D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9CCD60AF1AC58A57004537F8 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 		9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		9CCD60B61AC80DD8004537F8 /* OnCommandState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnCommandState.cpp; sourceTree = "<group>"; };
@@ -180,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3B96021B1DCA8800859538 /* Lua.framework in Frameworks */,
 				9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */,
 				9CCD60B21AC6A659004537F8 /* SDL2_ttf.framework in Frameworks */,
 				9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */,
@@ -223,11 +272,46 @@
 		9C0A5A7F1AC57C3B00BF793E /* map */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B96031B1DCAAF00859538 /* Path.cpp */,
+				9C3B96041B1DCAAF00859538 /* Path.h */,
+				9C3B96051B1DCAAF00859538 /* Pathfinder.cpp */,
+				9C3B96061B1DCAAF00859538 /* Pathfinder.h */,
 				9C800B1C1AB74485003FE2AA /* Map.cpp */,
 				9C800B1D1AB74485003FE2AA /* Map.h */,
 				9C0A5A811AC57C5D00BF793E /* InfoTile.h */,
 			);
 			name = map;
+			sourceTree = "<group>";
+		};
+		9C3B95E21B1DC9CA00859538 /* ai */ = {
+			isa = PBXGroup;
+			children = (
+				9C3B95E41B1DCA4E00859538 /* GameState.cpp */,
+				9C3B95E51B1DCA4E00859538 /* GameState.h */,
+				9C3B95E61B1DCA4E00859538 /* Minimax.h */,
+				9C3B95E71B1DCA4E00859538 /* Movement.cpp */,
+				9C3B95E81B1DCA4E00859538 /* Movement.h */,
+				9C3B95E91B1DCA4E00859538 /* PlayerAI.cpp */,
+				9C3B95EA1B1DCA4E00859538 /* PlayerAI.h */,
+				9C3B95EB1B1DCA4E00859538 /* Tactic.cpp */,
+				9C3B95EC1B1DCA4E00859538 /* Tactic.h */,
+				9C3B95ED1B1DCA4E00859538 /* TacticBuilder.cpp */,
+				9C3B95EE1B1DCA4E00859538 /* TacticBuilder.h */,
+				9C3B95EF1B1DCA4E00859538 /* TacticMinimax.cpp */,
+				9C3B95F01B1DCA4E00859538 /* TacticMinimax.h */,
+			);
+			name = ai;
+			sourceTree = "<group>";
+		};
+		9C3B95E31B1DCA2500859538 /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				9C3B95F71B1DCA6500859538 /* LuaScript.cpp */,
+				9C3B95F81B1DCA6500859538 /* LuaScript.h */,
+				9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */,
+				9C3B95FA1B1DCA6500859538 /* UnitFactory.h */,
+			);
+			name = lua;
 			sourceTree = "<group>";
 		};
 		9C800AFB1AB74311003FE2AA /* graphic */ = {
@@ -253,7 +337,6 @@
 				9C800B1E1AB74485003FE2AA /* Tile.cpp */,
 				9C800B1F1AB74485003FE2AA /* Tile.h */,
 				9C8FBFE21AAEF19C00C4EB1F /* Game.cpp */,
-				9CCD60AF1AC58A57004537F8 /* List.h */,
 				9C8FBFE31AAEF19C00C4EB1F /* Game.h */,
 				9C8FBFF11AAF048D00C4EB1F /* Scene.cpp */,
 				9C8FBFF21AAF048D00C4EB1F /* Scene.h */,
@@ -270,6 +353,10 @@
 		9C800AFD1AB74335003FE2AA /* gamelogic */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B96121B1DCB4500859538 /* GameUI.cpp */,
+				9C3B96131B1DCB4500859538 /* GameUI.h */,
+				9C3B95E31B1DCA2500859538 /* lua */,
+				9C3B95E21B1DC9CA00859538 /* ai */,
 				9C800B011AB743D0003FE2AA /* controller */,
 				9C800B001AB743CB003FE2AA /* view */,
 				9C800AFF1AB743C0003FE2AA /* model */,
@@ -292,6 +379,8 @@
 		9C800AFF1AB743C0003FE2AA /* model */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B960C1B1DCADE00859538 /* Building.cpp */,
+				9C3B960D1B1DCADE00859538 /* Building.h */,
 				9C800B0C1AB7443C003FE2AA /* Model.cpp */,
 				9C800B0D1AB7443C003FE2AA /* Model.h */,
 				9C800B0E1AB7443C003FE2AA /* Observable.cpp */,
@@ -307,6 +396,8 @@
 		9C800B001AB743CB003FE2AA /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B96091B1DCAD200859538 /* BuildingView.cpp */,
+				9C3B960A1B1DCAD200859538 /* BuildingView.h */,
 				9CCD60C51ACFE31B004537F8 /* UnitUIView.cpp */,
 				9CCD60C61ACFE31B004537F8 /* UnitUIView.h */,
 				9C800B0B1AB7441C003FE2AA /* Observer.h */,
@@ -391,6 +482,8 @@
 		9C800B4C1ABD829F003FE2AA /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B960F1B1DCAEF00859538 /* CaptureCommand.cpp */,
+				9C3B96101B1DCAEF00859538 /* CaptureCommand.h */,
 				9C800B4D1ABD8323003FE2AA /* MoveCommand.cpp */,
 				9C800B4E1ABD8323003FE2AA /* MoveCommand.h */,
 				9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */,
@@ -402,6 +495,8 @@
 		9C8FBFFD1AB04AF400C4EB1F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C3B95FD1B1DCA6E00859538 /* building.lua */,
+				9C3B95FE1B1DCA6E00859538 /* unit.lua */,
 				9C6685C71AD6E49C00C9DFAD /* target_tile.png */,
 				9CCD60C81ACFF37F004537F8 /* attack_button.bmp */,
 				9CCD60C91ACFF37F004537F8 /* cancel_button.bmp */,
@@ -422,6 +517,7 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				9C3B96011B1DCA8800859538 /* Lua.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
 				9C6613861AA771930094B72F /* SDL2.framework */,
@@ -568,10 +664,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3B96001B1DCA6E00859538 /* unit.lua in Resources */,
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
 				9CCD60CD1ACFF37F004537F8 /* cancel_button.bmp in Resources */,
 				9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */,
 				9CCD60CC1ACFF37F004537F8 /* attack_button.bmp in Resources */,
+				9C3B95FF1B1DCA6E00859538 /* building.lua in Resources */,
 				9C8FBFFF1AB056D700C4EB1F /* rider.bmp in Resources */,
 				9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */,
 				9C800B251AB74989003FE2AA /* test.bmp in Resources */,
@@ -598,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,
+				9C3B96141B1DCB4500859538 /* GameUI.cpp in Sources */,
 				9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */,
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,
 				9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */,
@@ -605,15 +704,21 @@
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,
 				9C800B2D1AB86A97003FE2AA /* UnitController.cpp in Sources */,
 				9C800B3F1ABADC7F003FE2AA /* NothingSelectedState.cpp in Sources */,
+				9C3B960E1B1DCADE00859538 /* Building.cpp in Sources */,
 				9CCD60C11AC80FE2004537F8 /* OnAttackState.cpp in Sources */,
 				9CAE2E051AA76FE700B6279D /* main.cpp in Sources */,
+				9C3B96071B1DCAAF00859538 /* Path.cpp in Sources */,
 				9C0A5A711AC174E700BF793E /* Layout.cpp in Sources */,
+				9C3B96081B1DCAAF00859538 /* Pathfinder.cpp in Sources */,
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,
 				9C8FBFF91AAF44E500C4EB1F /* SDLTexture.cpp in Sources */,
 				9C800B281AB86673003FE2AA /* UnitView.cpp in Sources */,
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
+				9C3B95FB1B1DCA6500859538 /* LuaScript.cpp in Sources */,
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
 				9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */,
+				9C3B95F61B1DCA4E00859538 /* TacticMinimax.cpp in Sources */,
+				9C3B96111B1DCAEF00859538 /* CaptureCommand.cpp in Sources */,
 				9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */,
 				9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */,
 				9C0A5A761AC17A8D00BF793E /* UIComponent.cpp in Sources */,
@@ -621,15 +726,22 @@
 				9CCD60BE1AC80FD4004537F8 /* OnMoveState.cpp in Sources */,
 				9C800B431ABADE3B003FE2AA /* UnitSelectedState.cpp in Sources */,
 				9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */,
+				9C3B960B1B1DCAD200859538 /* BuildingView.cpp in Sources */,
+				9C3B95F31B1DCA4E00859538 /* PlayerAI.cpp in Sources */,
 				9C800B161AB7443C003FE2AA /* Player.cpp in Sources */,
+				9C3B95F11B1DCA4E00859538 /* GameState.cpp in Sources */,
+				9C3B95FC1B1DCA6500859538 /* UnitFactory.cpp in Sources */,
 				9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */,
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,
 				9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */,
+				9C3B95F21B1DCA4E00859538 /* Movement.cpp in Sources */,
 				9C800B141AB7443C003FE2AA /* Model.cpp in Sources */,
+				9C3B95F51B1DCA4E00859538 /* TacticBuilder.cpp in Sources */,
 				9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */,
 				9C800B171AB7443C003FE2AA /* Unit.cpp in Sources */,
 				9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */,
+				9C3B95F41B1DCA4E00859538 /* Tactic.cpp in Sources */,
 				9C800B331AB88B48003FE2AA /* SpriteFactory.cpp in Sources */,
 				9C0A5A741AC176A300BF793E /* Button.cpp in Sources */,
 			);

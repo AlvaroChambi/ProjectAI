@@ -22,8 +22,8 @@ public:
     Layout();
     Layout(int id);
     virtual ~Layout();
+    virtual void addComponent(UIComponent* component);
     void render(Renderer* renderer);
-    void addComponent(UIComponent* component);
     void setBackground(Texture* background);
     void setBackground(Color color);
     UIComponent* matchEvent(Point position);

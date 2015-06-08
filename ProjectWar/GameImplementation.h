@@ -10,13 +10,13 @@
 #define ProjectWar_GameImplementation_h
 
 #include "IGameEventsListener.h"
-#include "Scene.h"
+#include "SceneManager.h"
 
 class GameImplementation : public IGameEventsListener
 {
     
 public:
-    virtual void onGameStarted( Scene* scene, Renderer* renderer ) = 0;
+    virtual void onGameStarted( SceneManager* sceneManager, Renderer* renderer ) = 0;
 };
 
 #endif

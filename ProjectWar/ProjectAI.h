@@ -29,7 +29,7 @@ public:
     void onSpriteClicked(const int id);
     void onUIComponentClicked(UIComponent component);
     
-    void onGameStarted(Scene* scene, Renderer* renderer);
+    void onGameStarted(SceneManager* sceneManager, Renderer* renderer);
     
     void addPlayer(Player* player);
     Player* getPlayer(int position);
@@ -52,7 +52,12 @@ public:
     static const int CAPTURE_BUTTON = 5;
 private:
     Input getPlayerEvent(int id);
+    Scene* mainMenuScene(SceneManager* manager, Renderer* renderer);
+    Scene* gameScene(Scene* scene, Renderer* renderer);
+    Player* prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, Renderer* renderer, Map* map);
     
+    SceneManager* sceneManager;
+    Renderer* renderer;
     std::list<Player*> players;
     
     PlayerController* playerController;

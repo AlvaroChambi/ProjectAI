@@ -10,6 +10,7 @@
 #include "UnitUIView.h"
 #include "PlayerAI.h"
 #include "UnitFactory.h"
+#include "VerticalLayout.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
 {
@@ -87,15 +88,51 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
                 this->onUIComponentClicked(*new Button(END_BUTTON));
             }
             break;
+            //TODO DEBUG!
+        case 10:
+            std::cout << "player_player\n";
+            //TODO inherit from scene and make a callback for a scene created, started, destroyed...
+            sceneManager->changeScene("game_scene", 0);
+            gameScene(sceneManager->getScene("game_scene"), renderer);
+            //Set the first active player and starts the game
+            nextPlayer();
+            break;
+        case 11:
+            std::cout << "player_ai\n";
+            sceneManager->changeScene("game_scene", 1);
+            gameScene(sceneManager->getScene("game_scene"), renderer);
+            //Set the first active player and starts the game
+            nextPlayer();
+            break;
         default:
             playerController->onUIEventReceived(component.getID());
             break;
     }
 }
 
-void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
+Scene* ProjectAI::mainMenuScene( SceneManager* sceneManager, Renderer* renderer )
 {
+    Scene* menuScene = new Scene(renderer);
+    VerticalLayout* menuLayout = new VerticalLayout;
+    //TODO Change the way to set the ui components id
+    Button* menuButton = new Button(10);
+    Button* menuButton2 = new Button(11);
+    menuButton->setParams(Params(256,128,CENTER));
+    menuButton2->setParams(Params(256,128,CENTER));
+    //TODO Animate on click
+    menuButton->setImageResource("player_player_button.png");
+    menuButton2->setImageResource("player_ai_button.png");
     
+    menuScene->setUIHUD(menuLayout);
+    menuLayout->addComponent(menuButton);
+    menuLayout->addComponent(menuButton2);
+    
+    menuScene->registerListener(this);
+    return menuScene;
+}
+
+Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
+{
     //Set scene ui
     layout = new UnitUIView();
     gameLayout = new GameUI();
@@ -125,27 +162,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     playerSprite->resize(40, 40);
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
-    /*
-    Player* player2 = new Player(1);
-    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
-    playerSprite2->setModel(player2);
-    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
-    texture2->setVisible(false);
-    playerSprite2->setTexture(texture2);
-    playerSprite2->resize(40, 40);
-    texture2->setPosition(map->getAbsolutePosition(3,8));
-    player2->setMap(map);*/
     
-    PlayerAI* player2 = new PlayerAI(1, scene ,renderer);
-    player2->setPlayerList(&players);
-    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
-    playerSprite2->setModel(player2);
-    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
-    texture2->setVisible(false);
-    playerSprite2->setTexture(texture2);
-    playerSprite2->resize(40, 40);
-    texture2->setPosition(map->getAbsolutePosition(3,8));
-    player2->setMap(map);
+    Player* player2 = prepareOpponent(spriteFactory, scene, renderer, map);
     
     this->addPlayer(player);
     this->addPlayer(player2);
@@ -239,14 +257,48 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     scene->attachSprite(unitSprite6);
     scene->attachSprite(unitSprite);
     
-    scene->attachSprite(playerSprite2);
     scene->attachSprite(playerSprite);
     
     scene->registerListener(this);
     
-    //Set the first active player and starts the game
-    nextPlayer();
+    return scene;
+}
+
+Player* ProjectAI::prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, Renderer* renderer, Map* map)
+{
+    Player* player2 = nullptr;
+    if (scene->getExtras() == 0) {
+        player2 = new Player(1);
+    }else if(scene->getExtras() == 1){
+        player2 = new PlayerAI(1, scene ,renderer);
+        PlayerAI* playerAI = (PlayerAI*)player2;
+        playerAI->setPlayerList(&players);
+    }
+    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
+    playerSprite2->setModel(player2);
+    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
+    texture2->setVisible(false);
+    playerSprite2->setTexture(texture2);
+    playerSprite2->resize(40, 40);
+    texture2->setPosition(map->getAbsolutePosition(3,8));
+    player2->setMap(map);
     
+    scene->attachSprite(playerSprite2);
+    return player2;
+}
+
+void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
+{
+    this->renderer = renderer;
+    this->sceneManager = sceneManager;
+    Scene* menuScene = mainMenuScene(sceneManager, renderer);
+    sceneManager->setActualScene(menuScene, "menu_scene");
+    
+    Scene* gameScene = new Scene(renderer);
+    sceneManager->registerScene(gameScene, "game_scene");
+    /*
+    Scene* scene = gameScene(sceneManager, renderer);
+    sceneManager->registerScene(scene, "game_scene");*/
 }
 
 Player* ProjectAI::nextPlayer()

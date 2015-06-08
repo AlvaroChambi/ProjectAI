@@ -29,6 +29,8 @@ public:
     void attachSprite(Sprite* sprite);
     void handleEvent(const Event event);
     void registerListener(IGameEventsListener* listener);
+    int getExtras();
+    void setExtras(int extras);
     
     void setUIHUD(UIComponent* component);
     void attachMap(Map* map);
@@ -36,6 +38,7 @@ public:
     //animations
     void update();
 private:
+    int extras;
     std::list <Texture*> textureList;
     std::list <Sprite*> sprites;
     Renderer *renderer;

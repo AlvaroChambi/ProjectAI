@@ -13,7 +13,7 @@
 #include <list>
 
 #include "SDLRenderer.h"
-#include "Scene.h"
+#include "SceneManager.h"
 #include "SDLInputHandler.h"
 #include "GameImplementation.h"
 #include "ProjectAI.h"
@@ -35,7 +35,7 @@ private:
     bool gameRunning;
     SDLRenderer* renderer;
     SDLInputHandler* inputHandler;
-    Scene* scene;
+    SceneManager* manager;
     GameImplementation* gameImplementation;    
 };
 

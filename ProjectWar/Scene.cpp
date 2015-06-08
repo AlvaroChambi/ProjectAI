@@ -8,6 +8,11 @@
 
 #include "Scene.h"
 
+Scene::Scene()
+{
+
+}
+
 Scene::Scene(Renderer* renderer) :textureList(), sprites()
 {
     this->renderer = renderer;
@@ -19,6 +24,16 @@ Scene::Scene(Renderer* renderer) :textureList(), sprites()
 Scene::~Scene()
 {
     
+}
+
+void Scene::setExtras(int extras)
+{
+    this->extras = extras;
+}
+
+int Scene::getExtras()
+{
+    return extras;
 }
 
 void Scene::attachTexture(Texture* texture)
@@ -65,7 +80,9 @@ void Scene::render()
     
     //InfoMap
     //TODO hiding info map
-    map->drawInfoMap(renderer);
+    if(map != nullptr){
+        map->drawInfoMap(renderer);
+    }
     
     rootLayout->render(renderer);
 }

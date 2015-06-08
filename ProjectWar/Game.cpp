@@ -22,17 +22,18 @@ Game::~Game()
 void Game::onInit()
 {
     renderer = new SDLRenderer;
-    scene = new Scene(renderer);
+    manager = new SceneManager();
     inputHandler = new SDLInputHandler();
     renderer->init();
     
     gameImplementation = new ProjectAI;
-    gameImplementation->onGameStarted(scene, renderer);
+    gameImplementation->onGameStarted(manager, renderer);
 }
 
 void Game::onProcessInput()
 {
     Event* event = inputHandler->poolEvent();
+    Scene* scene = manager->getActualScene();
     scene->handleEvent(*event);
     switch (event->type) {
         case ON_WINDOW_CLOSED:
@@ -43,15 +44,17 @@ void Game::onProcessInput()
     }
 }
 
-//use detal time and call entities update time method to handle animations
+//TODO use delta time and call entities update time method to handle animations
 void Game::onUpdate()
 {
-    this->scene->update();
+    Scene* scene = manager->getActualScene();
+    scene->update();
 }
 
 void Game::onRender()
 {
     renderer->renderClear();
+    Scene* scene = manager->getActualScene();
     scene->render();
     renderer->renderPresent();
 }

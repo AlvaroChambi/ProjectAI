@@ -21,7 +21,7 @@ Button::~Button()
 void Button::render(Renderer *renderer)
 {
     if (resourceChanged && resource != "") {
-        texture = renderer->loadTexture(resource);
+        setTexture(renderer->loadTexture(resource));
         resourceChanged= false;
     }
     //Update texture with the adjusted values for position and dimensions
@@ -31,6 +31,7 @@ void Button::render(Renderer *renderer)
 
 void Button::setTexture(Texture *texture)
 {
+    texture->hud = this->isHUD();
     this->texture = texture;
 }
 

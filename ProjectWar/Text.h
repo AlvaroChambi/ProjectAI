@@ -25,6 +25,7 @@ public:
     UIComponent* matchEvent(Point position);
     void setTextResource(std::string text);
     void setVisible(bool visible);
+    void setTexture(Texture* texture);
     
     void setColor(Color color);
     Color getColor();

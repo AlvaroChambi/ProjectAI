@@ -20,6 +20,8 @@ public:
     virtual ~SDLInputHandler();
     void initInputHandler();
     Event* poolEvent();
+    
+    bool onClickDown;
 };
 
 #endif /* defined(__ProjectWar__SDLInputHandler__) */

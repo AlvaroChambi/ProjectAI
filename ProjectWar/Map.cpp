@@ -152,11 +152,13 @@ void Map::updateUnitAvailableArea(Unit *unit)
     }
 }
 
-void Map::drawMap(Renderer* renderer)
+void Map::drawMap(Renderer* renderer, Camera* camera)
 {
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
             if(matrix[i][j]->getTexture()->isVisible()){
+                //TODO Debug, change the way to implement the camera
+                //TODO just draw if the texture is on the camera area
                 renderer->drawTexture(matrix[i][j]->getTexture());
             }
         }

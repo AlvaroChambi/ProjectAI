@@ -8,7 +8,7 @@
 
 #include "UIComponent.h"
 
-UIComponent::UIComponent(int id) : id(id), width(0), height(0)
+UIComponent::UIComponent(int id) : id(id), width(0), height(0), hud(false)
 {
 
 }
@@ -16,6 +16,16 @@ UIComponent::UIComponent(int id) : id(id), width(0), height(0)
 UIComponent::~UIComponent()
 {
 
+}
+
+void UIComponent::setHUD(bool hud)
+{
+    this->hud = hud;
+}
+
+bool UIComponent::isHUD()
+{
+    return hud;
 }
 
 void UIComponent::setParams(Params params)

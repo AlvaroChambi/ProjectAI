@@ -291,10 +291,15 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
 {
     this->renderer = renderer;
     this->sceneManager = sceneManager;
+    
+    //Default camera
+    Camera* camera = new Camera(Point(0, 0), 640, 480);
+    
     Scene* menuScene = mainMenuScene(sceneManager, renderer);
     sceneManager->setActualScene(menuScene, "menu_scene");
     
     Scene* gameScene = new Scene(renderer);
+    gameScene->registerCamera(camera);
     sceneManager->registerScene(gameScene, "game_scene");
     /*
     Scene* scene = gameScene(sceneManager, renderer);

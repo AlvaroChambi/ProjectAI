@@ -35,6 +35,8 @@ public:
     void setFrameHeight(int height);
     void setVisible(bool visibility);
     bool isVisible();
+    //TODO debug flag for ui components
+    bool hud;
     
     bool matchPosition(Point position);
 private:

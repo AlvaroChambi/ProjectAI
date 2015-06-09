@@ -18,6 +18,7 @@
 #include "Map.h"
 #include "Sprite.h"
 #include "Layout.h"
+#include "Camera.h"
 
 class Scene
 {
@@ -29,8 +30,12 @@ public:
     void attachSprite(Sprite* sprite);
     void handleEvent(const Event event);
     void registerListener(IGameEventsListener* listener);
+    
     int getExtras();
     void setExtras(int extras);
+    
+    void registerCamera(Camera* camera);
+    Camera* getCamera();
     
     void setUIHUD(UIComponent* component);
     void attachMap(Map* map);
@@ -45,6 +50,8 @@ private:
     IGameEventsListener* eventsListener;
     Map* map;
     Layout* rootLayout;
+    //TODO not sure if we are gonna need this here...
+    Camera* camera;
 };
 
 #endif /* defined(__ProjectWar__Scene__) */

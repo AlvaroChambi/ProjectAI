@@ -44,6 +44,7 @@
 		9C3B96521B25B3C200859538 /* player_ai_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B96511B25B3C200859538 /* player_ai_button.png */; };
 		9C3B96541B25B3D000859538 /* player_player_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B96531B25B3D000859538 /* player_player_button.png */; };
 		9C3B96571B25B46200859538 /* VerticalLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96551B25B46200859538 /* VerticalLayout.cpp */; };
+		9C3B965D1B25C94A00859538 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B965B1B25C94A00859538 /* Camera.cpp */; };
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
@@ -66,7 +67,6 @@
 		9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B4D1ABD8323003FE2AA /* MoveCommand.cpp */; };
 		9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFE21AAEF19C00C4EB1F /* Game.cpp */; };
 		9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFE81AAEF47700C4EB1F /* InputHandler.cpp */; };
-		9C8FBFED1AAF043A00C4EB1F /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFEB1AAF043A00C4EB1F /* Renderer.cpp */; };
 		9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFEE1AAF047A00C4EB1F /* Texture.cpp */; };
 		9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFF11AAF048D00C4EB1F /* Scene.cpp */; };
 		9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFF41AAF06DF00C4EB1F /* SDLRenderer.cpp */; };
@@ -173,6 +173,8 @@
 		9C3B96531B25B3D000859538 /* player_player_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_player_button.png; sourceTree = "<group>"; };
 		9C3B96551B25B46200859538 /* VerticalLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalLayout.cpp; sourceTree = "<group>"; };
 		9C3B96561B25B46200859538 /* VerticalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalLayout.h; sourceTree = "<group>"; };
+		9C3B965B1B25C94A00859538 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		9C3B965C1B25C94A00859538 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
@@ -216,7 +218,6 @@
 		9C8FBFE31AAEF19C00C4EB1F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		9C8FBFE81AAEF47700C4EB1F /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
 		9C8FBFE91AAEF47700C4EB1F /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
-		9C8FBFEB1AAF043A00C4EB1F /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		9C8FBFEC1AAF043A00C4EB1F /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		9C8FBFEE1AAF047A00C4EB1F /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		9C8FBFEF1AAF047A00C4EB1F /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -384,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				9C800B2A1AB86753003FE2AA /* implementation */,
-				9C8FBFEB1AAF043A00C4EB1F /* Renderer.cpp */,
 				9C8FBFEC1AAF043A00C4EB1F /* Renderer.h */,
 				9C8FBFEE1AAF047A00C4EB1F /* Texture.cpp */,
 				9C8FBFEF1AAF047A00C4EB1F /* Texture.h */,
@@ -414,6 +414,8 @@
 				9C0A5A6A1AC0416700BF793E /* GameImplementation.h */,
 				9C3B96311B205FC700859538 /* SceneManager.cpp */,
 				9C3B96321B205FC700859538 /* SceneManager.h */,
+				9C3B965B1B25C94A00859538 /* Camera.cpp */,
+				9C3B965C1B25C94A00859538 /* Camera.h */,
 			);
 			name = engine;
 			sourceTree = "<group>";
@@ -802,12 +804,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3B965D1B25C94A00859538 /* Camera.cpp in Sources */,
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,
 				9C3B96141B1DCB4500859538 /* GameUI.cpp in Sources */,
 				9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */,
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,
 				9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */,
-				9C8FBFED1AAF043A00C4EB1F /* Renderer.cpp in Sources */,
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,
 				9C800B2D1AB86A97003FE2AA /* UnitController.cpp in Sources */,
 				9C800B3F1ABADC7F003FE2AA /* NothingSelectedState.cpp in Sources */,

@@ -21,6 +21,7 @@
 #include "Unit.h"
 #include "Building.h"
 #include "SpriteFactory.h"
+#include "Camera.h"
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
@@ -38,7 +39,7 @@ public:
     virtual ~Map();
     //Width and height in tiles
     void loadMap(Renderer* renderer, int width, int height);
-    void drawMap(Renderer* renderer);
+    void drawMap(Renderer* renderer, Camera* camera);
     void drawInfoMap(Renderer* renderer);
     Tile* matchEvent(Point position);
     //cast tile map position to absolute window coordinate position

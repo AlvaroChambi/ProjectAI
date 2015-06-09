@@ -27,7 +27,7 @@ void Text::render(Renderer *renderer)
 {
     //if the text has been changed create new texture with the new text
     if (changed && resource != "") {
-        this->texture = renderer->loadText(resource, getColor());
+        setTexture(renderer->loadText(resource, getColor()));
         this->setWidth(texture->getWidth());
         this->setHeight(texture->getHeight());
         this->changed = false;
@@ -37,6 +37,12 @@ void Text::render(Renderer *renderer)
         texture->setPosition(getPosition().x, getPosition().y);
         renderer->drawTexture(texture);
     }
+}
+
+void Text::setTexture(Texture *texture)
+{
+    texture->hud = this->isHUD();
+    this->texture = texture;
 }
 
 void Text::setVisible(bool visible)

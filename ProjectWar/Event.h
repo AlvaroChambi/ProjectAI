@@ -15,6 +15,7 @@ enum EventType
 {
     ON_WINDOW_CLOSED,
     ON_MOUSE_DOWN_EVENT,
+    ON_MOUSE_DRAG,
     EVENT_NONE
 };
 
@@ -25,6 +26,9 @@ public:
     EventType type;
     int x;
     int y;
+    
+    int xRelative;
+    int yRelative;
 private:
     
 };

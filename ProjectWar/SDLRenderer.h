@@ -30,11 +30,14 @@ public:
     void drawTexture(Texture* texture, int width, int height);
     void renderClear();
     void renderPresent();
+    
+    void registerCamera(Camera* camera);
 private:
     void drawTexture(Texture* texture, SDL_Rect destRect);
     SDL_Window* sdlWindow;
     SDL_Renderer* sdlRenderer;
     TTF_Font *sdlFont;
+    Camera* camera;
 };
 
 #endif /* defined(__ProjectWar__SDLRenderer__) */

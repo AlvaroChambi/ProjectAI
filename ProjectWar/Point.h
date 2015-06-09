@@ -43,6 +43,14 @@ public:
         return result;
     }
     
+    Point operator +(Point point)
+    {
+        Point* result = new Point();
+        result->x = this->x + point.x;
+        result->y = this->y + point.y;
+        return *result;
+    }
+    
     friend std::ostream& operator<<(std::ostream& os, const Point& point)
     {
         os << "( "<< point.x << " , " << point.y << " )";

@@ -10,12 +10,17 @@
 
 SDLRenderer::SDLRenderer() : sdlWindow(nullptr), sdlRenderer(nullptr), sdlFont(nullptr)
 {
-    
+    camera = new Camera();
 }
 
 SDLRenderer::~SDLRenderer()
 {
     
+}
+
+void SDLRenderer::registerCamera(Camera *camera)
+{
+    this->camera = camera;
 }
 
 //TODO Change ir to return a boolean or a exception if something fails
@@ -193,8 +198,15 @@ void SDLRenderer::drawTexture(Texture* texture, SDL_Rect destRect)
     
     srcRect.x = texture->getFramePosition().x;
     srcRect.y = texture->getFramePosition().y;
-    destRect.x = texture->getPosition().x;
-    destRect.y = texture->getPosition().y;
+    //TODO not working when forcing ai to render his process(black screen)
+    if (texture->hud) {
+        destRect.x = texture->getPosition().x;
+        destRect.y = texture->getPosition().y;
+    }else{
+        //camera offset
+        destRect.x = texture->getPosition().x - camera->position.x;
+        destRect.y = texture->getPosition().y - camera->position.y;
+    }
     
     srcRect.w = texture->getFrameWidth();
     srcRect.h = texture->getFrameHeight();

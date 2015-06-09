@@ -17,6 +17,7 @@ Scene::Scene(Renderer* renderer) :textureList(), sprites()
 {
     this->renderer = renderer;
     this->map = nullptr;
+    camera = new Camera();
     //Create a virtual layout parent just to hold the screen dimensions
     rootLayout = new Layout;
 }
@@ -24,6 +25,17 @@ Scene::Scene(Renderer* renderer) :textureList(), sprites()
 Scene::~Scene()
 {
     
+}
+
+void Scene::registerCamera(Camera *camera)
+{
+    this->camera = camera;
+    renderer->registerCamera(camera);
+}
+
+Camera* Scene::getCamera()
+{
+    return camera;
 }
 
 void Scene::setExtras(int extras)
@@ -55,17 +67,21 @@ void Scene::attachMap(Map *map)
 
 void Scene::setUIHUD(UIComponent *component)
 {
-    //Fixed windows dimensions, change it...
+    //TODO Fixed windows dimensions, change it...
     rootLayout->setWidth(640);
     rootLayout->setHeight(480);
     
+    //everything here is rendered without any offset
+    //hud flag must be update before adding any component
+    rootLayout->setHUD(true);
     rootLayout->addComponent(component);
 }
 
 void Scene::render()
 {
+    //TODO maybe send the offset to the renderer instead of the camera itself
     if( map != nullptr ){
-        map->drawMap(renderer);
+        map->drawMap(renderer, camera);
     }
     
     for(Texture* texture : textureList){
@@ -100,12 +116,19 @@ void Scene::registerListener(IGameEventsListener *listener)
     this->eventsListener = listener;
 }
 
+//TODO handle events in a higher level
 void Scene::handleEvent(const Event event)
 {
     //TODO Do not trigger event if the texture is not visible
     bool eventHandled = false;
     Point position = Point(event.x, event.y);
     switch (event.type) {
+        case ON_MOUSE_DRAG:
+        {
+            Point newPosition = camera->position + Point(event.xRelative, event.yRelative);
+            camera->position = newPosition;
+        }
+            break;
         case ON_MOUSE_DOWN_EVENT:
             if(this->eventsListener != nullptr){
                 for (Texture* texture : textureList) {

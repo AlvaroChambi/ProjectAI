@@ -20,6 +20,9 @@ public:
     virtual void render(Renderer* renderer) = 0;
     virtual UIComponent* matchEvent(Point position) = 0;
     
+    void setHUD(bool hud);
+    bool isHUD();
+    
     void setParams(Params params);
     Params getParams();
     
@@ -54,6 +57,7 @@ public:
     Point position;
     int width;
     int height;
+    bool hud;
 };
 
 #endif

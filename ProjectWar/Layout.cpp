@@ -39,6 +39,8 @@ void Layout::render(Renderer* renderer)
 void Layout::addComponent(UIComponent *component)
 {
     components.push_back(component);
+    //update children hud value
+    component->setHUD(this->isHUD());
     //Update parent value: first use of the params
     component->setParent(this);
 }
@@ -50,6 +52,7 @@ void Layout::cleanComponents()
 
 void Layout::setBackground(Texture *background)
 {
+    background->hud = this->isHUD();
     this->background = background;
 }
 

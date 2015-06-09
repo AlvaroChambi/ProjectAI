@@ -135,15 +135,11 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
 {
     //Set scene ui
     layout = new UnitUIView();
-    gameLayout = new GameUI();
-    gameLayout->setParams(Params(FILL, 20, DOWN));
-    gameLayout->setBackground(renderer->loadShape(RECTANGLE, Color(255,255,255), 256, 256));
     Button* button = new Button(END_BUTTON);
     button->setParams(Params(60,40,CENTER));
     layout->setParams(Params(FILL,100,DOWN));
     scene->setUIHUD(layout);
     layout->addComponent(button);
-    layout->addComponent(gameLayout);
     button->setImageResource("end_button.bmp");
     
     //Load map data model and view resources

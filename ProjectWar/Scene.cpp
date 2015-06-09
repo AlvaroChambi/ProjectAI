@@ -121,11 +121,12 @@ void Scene::handleEvent(const Event event)
 {
     //TODO Do not trigger event if the texture is not visible
     bool eventHandled = false;
-    Point position = Point(event.x, event.y);
+    //Position of the event adding the camera offset
+    Point position = Point(event.x , event.y) + camera->position;
     switch (event.type) {
         case ON_MOUSE_DRAG:
         {
-            Point newPosition = camera->position + Point(event.xRelative, event.yRelative);
+            Point newPosition = camera->position - Point(event.xRelative, event.yRelative);
             camera->position = newPosition;
         }
             break;
@@ -147,7 +148,8 @@ void Scene::handleEvent(const Event event)
 
                 }
                 
-                UIComponent* component = rootLayout->matchEvent(position);
+                //Avoiding camera offset in HUD elements
+                UIComponent* component = rootLayout->matchEvent(Point(event.x, event.y));
                 if(component != nullptr){
                     eventsListener->onUIComponentClicked(*component);
                 }

@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+
+//TODO make this an enum...
 class Color
 {
 public:

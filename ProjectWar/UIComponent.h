@@ -39,6 +39,9 @@ public:
     void setHeight(int height);
     int getHeight();
     
+    void setVisible(bool visible);
+    bool isVisible();
+    
     void setParent(UIComponent* component);
     UIComponent* getParent();
 
@@ -58,6 +61,7 @@ public:
     int width;
     int height;
     bool hud;
+    bool visible;
 };
 
 #endif

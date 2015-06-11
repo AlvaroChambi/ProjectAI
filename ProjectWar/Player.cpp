@@ -137,6 +137,16 @@ bool Player::isActive()
     return active;
 }
 
+bool Player::hasBuilding(int id)
+{
+    bool result = false;
+    Building* building = map->getBuilding(id);
+    if(building->getOwnerID() == getId()){
+        return true;
+    }
+    return result;
+}
+
 bool Player::hasUnit(int id)
 {
     bool result = false;

@@ -25,6 +25,11 @@ void PlayerController::setPlayer(Player *player)
     player->setState(new NothingSelectedState(player));
 }
 
+void PlayerController::onBuildingClicked(const int id)
+{
+    player->getState()->handleInput(BUILDING_CLICKED, id, nullptr);
+}
+
 void PlayerController::onMapClicked(const Tile tile)
 {
     //ID not needed
@@ -56,7 +61,6 @@ void PlayerController::onUIEventReceived(int id)
             player->getState()->handleInput(CANCEL_CLICKED, -1,nullptr);
             break;
         case ProjectAI::ATTACK_BUTTON:
-            //here i would need an enemy unit(but i don't know which one of them)
             player->getState()->handleInput(ATTACK_CLICKED, -1,nullptr);
             break;
         case ProjectAI::CAPTURE_BUTTON:

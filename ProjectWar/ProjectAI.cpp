@@ -12,7 +12,7 @@
 #include "UnitFactory.h"
 #include "VerticalLayout.h"
 
-ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
+ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0), founds(1000)
 {
     //Just one instance of the player controller, the player reference will be update according to the player turn
     playerController = new PlayerController;
@@ -51,6 +51,16 @@ void ProjectAI::onSpriteClicked(const int id)
             break;
         case ENEMY_UNIT_CLICKED:
             playerController->onEnemyUnitClicked(getUnit(id));
+            break;
+        case BUILDING_CLICKED:
+            playerController->onBuildingClicked(id);
+        {
+            Building* building = map->getBuilding(id);
+            
+            if (building->getType() == "Factory" && activePlayer->hasBuilding(id)) {
+                sceneManager->getActualScene()->showPopup();
+            }
+        }
             break;
         default:
             break;
@@ -133,17 +143,42 @@ Scene* ProjectAI::mainMenuScene( SceneManager* sceneManager, Renderer* renderer 
 
 Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
 {
+    Layout* mainLayout = new Layout();
+    mainLayout->setParams(Params(FILL, FILL, UP));
+    scene->setUIHUD(mainLayout);
     //Set scene ui
     layout = new UnitUIView();
     Button* button = new Button(END_BUTTON);
     button->setParams(Params(60,40,CENTER));
     layout->setParams(Params(FILL,100,DOWN));
-    scene->setUIHUD(layout);
+    mainLayout->addComponent(layout);
     layout->addComponent(button);
     button->setImageResource("end_button.bmp");
     
+    Layout* gameLayout = new VerticalLayout();
+    gameLayout->setBackground(Color(0,0,0));
+    Text* foundsText = new Text();
+    Text* playerText = new Text();
+    //TODO update with actual player info
+    foundsText->setTextResource("Founds: " + std::to_string(founds));
+    playerText->setTextResource("Player1");
+    playerText->setParams(Params(50,5,CENTER));
+    foundsText->setParams(Params(50,5,CENTER));
+    gameLayout->setParams(Params(200,40,UP));
+    
+    mainLayout->addComponent(gameLayout);
+    gameLayout->addComponent(foundsText);
+    gameLayout->addComponent(playerText);
+    
+    //Prepare popup
+    Layout* popUp = new Layout();
+    popUp->setParams(Params(100,200,CENTER));
+    popUp->setBackground(Color(0,0,0));
+    
+    scene->registerPopUp(popUp);
+    
     //Load map data model and view resources
-    Map* map = new Map();
+    map = new Map();
     map->loadMap(renderer, 40, 40);
     
     SpriteFactory* spriteFactory = new SpriteFactory;
@@ -170,17 +205,17 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     Unit* unit = unitFactory.createUnit("unit.lua");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
     unitSprite->setModel(unit);
-    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 128);
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
     unit->setPosition(map->getTile(2, 1));
     player->addUnit(unit);
     
-    Unit* unit3 = unitFactory.createUnit("unit.lua");;
+    Unit* unit3 = unitFactory.createUnit("tank.lua");;
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
     unitSprite3->setModel(unit3);
-    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 128);
     unitSprite3->setTexture(unitTexture3);
     //resize to fit in a map tile
     unitSprite3->resize(40, 40);
@@ -190,7 +225,7 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     Unit* unit4 = unitFactory.createUnit("unit.lua");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
     unitSprite4->setModel(unit4);
-    Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    Texture* unitTexture4 = renderer->loadSprite(unit4->getResource(), 128, 128);
     unitSprite4->setTexture(unitTexture4);
     //resize to fit in a map tile
     unitSprite4->resize(40, 40);
@@ -297,6 +332,10 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
     Scene* gameScene = new Scene(renderer);
     gameScene->registerCamera(camera);
     sceneManager->registerScene(gameScene, "game_scene");
+    
+    Scene* gameConfig = new Scene(renderer);
+    sceneManager->registerScene(gameConfig, "game_config_scene");
+    
     /*
     Scene* scene = gameScene(sceneManager, renderer);
     sceneManager->registerScene(scene, "game_scene");*/
@@ -333,12 +372,18 @@ Player* ProjectAI::nextPlayer()
 Input ProjectAI::getPlayerEvent(int id)
 {
     Input result = ENEMY_UNIT_CLICKED;
+    
+    if (map->getBuilding(id) != nullptr) {
+        result = BUILDING_CLICKED;
+    }
+    
     //If the active player doesn't have a unity with that id then it's a enemy
     for (int i = 0; i < players.size(); i++) {
         if (activePlayer->hasUnit(id)) {
             result = UNIT_CLICKED;
         }
     }
+    
     //TODO Handle events filters somewhere else...
     //If the sprite clicked is not a valid unit(Player sprite)
     if (activePlayer->getId() == id) {

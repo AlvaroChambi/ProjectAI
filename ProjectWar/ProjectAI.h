@@ -60,6 +60,8 @@ private:
     Renderer* renderer;
     std::list<Player*> players;
     
+    Map* map;
+    
     PlayerController* playerController;
     Player* activePlayer;
     
@@ -67,7 +69,7 @@ private:
     int day;
     
     UnitUIView* layout;
-    GameUI* gameLayout;
+    int founds;
 };
 
 #endif /* defined(__ProjectWar__ProjectAI__) */

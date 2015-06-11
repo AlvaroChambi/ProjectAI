@@ -53,7 +53,7 @@ void BuildingView::update(Update update)
                 updateBuildingOwner();
             }else{
                 //if no one has completed the capture the building sprite is set to neutral
-                setRenderFrame(Point(3,0));
+                setRenderFrame(Point(0,0));
             }
         }
             break;
@@ -67,13 +67,17 @@ void BuildingView::updateBuildingOwner()
     //TODO Change this, just for test...
     const int PLAYER_ONE = 0;
     const int PLAYER_TWO = 1;
+    const int NEUTRAL = -1;
     
     switch (building->getOwnerID()) {
-        case PLAYER_ONE:
+        case NEUTRAL:
             setRenderFrame(Point(0,0));
             break;
-        case PLAYER_TWO:
+        case PLAYER_ONE:
             setRenderFrame(Point(1,0));
+            break;
+        case PLAYER_TWO:
+            setRenderFrame(Point(2,0));
             break;
         default:
             

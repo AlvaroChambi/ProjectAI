@@ -8,7 +8,7 @@
 
 #include "UIComponent.h"
 
-UIComponent::UIComponent(int id) : id(id), width(0), height(0), hud(false)
+UIComponent::UIComponent(int id) : id(id), width(0), height(0), hud(false), visible(true)
 {
 
 }
@@ -117,7 +117,7 @@ void UIComponent::center(Point parentPosition, int parentWidth, int parentHeight
     int centerY = parentPosition.y + parentHeight / 2;
     int offsetX = width / 2;
     int offsetY = height / 2;
-    this->setPosition(centerX - offsetX, centerY -offsetY);
+    this->setPosition(centerX - offsetX, centerY - offsetY);
 }
 
 void UIComponent::down(Point parentPosition, int parentWidth, int parentHeight)
@@ -166,6 +166,16 @@ void UIComponent::setHeight(int height)
 int UIComponent::getHeight()
 {
     return height;
+}
+
+bool UIComponent::isVisible()
+{
+    return visible;
+}
+
+void UIComponent::setVisible(bool visible)
+{
+    this->visible = visible;
 }
 
 void UIComponent::setParent(UIComponent *component)

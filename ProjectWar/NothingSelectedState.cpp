@@ -7,6 +7,7 @@
 //
 
 #include "NothingSelectedState.h"
+#include "FactorySelectedState.h"
 #include "Map.h"
 
 NothingSelectedState::NothingSelectedState(Player* player) : State(player)
@@ -22,6 +23,7 @@ NothingSelectedState::~NothingSelectedState()
 void NothingSelectedState::enter()
 {
     Player* player = (Player*)model;
+    //TODO bad acces when entering this state with no unit selected
     player->getMap()->cleanUnitAvailableArea(player->getSelectedUnit());
     std::list<UnitCommand> commands;
     commands.push_back(END);
@@ -31,6 +33,7 @@ void NothingSelectedState::enter()
 
 void NothingSelectedState::handleInput(Input input, int id, Tile position)
 {
+    Player* player = (Player*)model;
     switch (input) {
         case UNIT_CLICKED:
         {
@@ -45,13 +48,23 @@ void NothingSelectedState::handleInput(Input input, int id, Tile position)
         case MAP_CLICKED:
         {
             //Move player - keep state
-            Player* player = (Player*)model;
             player->setTile(position);
         }
             break;
         case ENEMY_UNIT_CLICKED:
         {
         }
+            break;
+        case BUILDING_CLICKED:
+        {
+            std::cout << "Building clicked: " << std::to_string(id) << std::endl;
+            Building* building = player->getMap()->getBuilding(id);
+           
+            if (building->getType() == "Factory" && player->hasBuilding(id)) {
+                player->updateState(new FactorySelectedState(player));
+            }
+        }
+            break;
         default:
             break;
     }

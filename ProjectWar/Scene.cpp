@@ -20,6 +20,7 @@ Scene::Scene(Renderer* renderer) :textureList(), sprites()
     camera = new Camera();
     //Create a virtual layout parent just to hold the screen dimensions
     rootLayout = new Layout;
+    popUp = new Layout;
 }
 
 Scene::~Scene()
@@ -65,6 +66,26 @@ void Scene::attachMap(Map *map)
     this->map = map;
 }
 
+void Scene::registerPopUp(Layout *popUp)
+{
+    this->popUp->setWidth(640);
+    this->popUp->setHeight(480);
+    
+    this->popUp->setHUD(true);
+    this->popUp->addComponent(popUp);
+    this->popUp->setVisible(false);
+}
+
+void Scene::showPopup()
+{
+    popUp->setVisible(true);
+}
+
+void Scene::hidePopUp()
+{
+    popUp->setVisible(false);
+}
+
 void Scene::setUIHUD(UIComponent *component)
 {
     //TODO Fixed windows dimensions, change it...
@@ -101,6 +122,8 @@ void Scene::render()
     }
     
     rootLayout->render(renderer);
+    
+    popUp->render(renderer);
 }
 
 //Sprites animations ticks
@@ -153,16 +176,30 @@ void Scene::handleEvent(const Event event)
                 if(component != nullptr){
                     eventsListener->onUIComponentClicked(*component);
                 }
+                //TODO maybe check if the event hasnt been handled yet
+                component = popUp->matchEvent(Point(event.x, event.y));
+                if (component != nullptr) {
+                    eventsListener->onUIComponentClicked(*component);
+                }
                 
                 if(!eventHandled){
                     Tile* tile = nullptr;
+                    int id = -1;
                     // if there are no previous matches just send scene clicked event
                     if (map != nullptr) {
                         tile = map->matchEvent(position);
                     }
                     
+                    if (map != nullptr){
+                        id = map->matchSpriteEvent(position);
+                    }
+                    
                     if(tile != nullptr){
                         eventsListener->onMapClicked(*tile);
+                    }
+                    
+                    if (id != -1) {
+                        eventsListener->onSpriteClicked(id);
                     }
                 }
                 

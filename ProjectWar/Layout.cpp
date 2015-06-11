@@ -9,12 +9,12 @@
 #include "Layout.h"
 
 //Instancing an layout with an undefined id
-Layout::Layout() : UIComponent(-1), background(nullptr)
+Layout::Layout() : UIComponent(-1), background(nullptr), backgroundColor(nullptr)
 {
 
 }
 
-Layout::Layout(int id) : UIComponent(id), background(nullptr)
+Layout::Layout(int id) : UIComponent(id), background(nullptr), backgroundColor(nullptr)
 {
 
 }
@@ -26,13 +26,20 @@ Layout::~Layout()
 
 void Layout::render(Renderer* renderer)
 {
-    //If background defined render
-    if( background != nullptr ){
-        background->setPosition(this->getPosition());
-        renderer->drawTexture(background, getWidth(), getHeight());
-    }
-    for (UIComponent* component : components) {
-        component->render(renderer);
+    if (this->isVisible()) {
+        //If background color defined
+        if (backgroundColor != nullptr) {
+            background = renderer->loadShape(RECTANGLE, *backgroundColor, this->getWidth(), this->getHeight());
+            background->hud = this->isHUD();
+        }
+        //If background defined render
+        if( background != nullptr ){
+            background->setPosition(this->getPosition());
+            renderer->drawTexture(background, getWidth(), getHeight());
+        }
+        for (UIComponent* component : components) {
+            component->render(renderer);
+        }
     }
 }
 
@@ -58,18 +65,20 @@ void Layout::setBackground(Texture *background)
 
 void Layout::setBackground(Color color)
 {
-    //TODO implement
+    this->backgroundColor = new Color(color.r,color.g,color.b);
 }
 
 //Not really sure if this will work with more layouts and buttons...
 UIComponent* Layout::matchEvent(Point position)
 {
     UIComponent* result = nullptr;
-    for (UIComponent* component : components) {
-        result = component->matchEvent(position);
-        //Stop when i found a match, i dont really like the way i'm doing this...
-        if (result != nullptr) {
-            return result;
+    if(isVisible()){
+        for (UIComponent* component : components) {
+            result = component->matchEvent(position);
+            //Stop when i found a match, i dont really like the way i'm doing this...
+            if (result != nullptr) {
+                return result;
+            }
         }
     }
     return result;

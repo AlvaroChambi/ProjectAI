@@ -194,25 +194,27 @@ void SDLRenderer::drawTexture(Texture* texture, int width, int height)
 
 void SDLRenderer::drawTexture(Texture* texture, SDL_Rect destRect)
 {
-    SDL_Rect srcRect;
-    
-    srcRect.x = texture->getFramePosition().x;
-    srcRect.y = texture->getFramePosition().y;
-    //TODO not working when forcing ai to render his process(black screen)
-    if (texture->hud) {
-        destRect.x = texture->getPosition().x;
-        destRect.y = texture->getPosition().y;
-    }else{
-        //camera offset
-        destRect.x = texture->getPosition().x - camera->position.x;
-        destRect.y = texture->getPosition().y - camera->position.y;
+    if (texture->isVisible()) {
+        SDL_Rect srcRect;
+        
+        srcRect.x = texture->getFramePosition().x;
+        srcRect.y = texture->getFramePosition().y;
+        //TODO not working when forcing ai to render his process(black screen)
+        if (texture->hud) {
+            destRect.x = texture->getPosition().x;
+            destRect.y = texture->getPosition().y;
+        }else{
+            //camera offset
+            destRect.x = texture->getPosition().x - camera->position.x;
+            destRect.y = texture->getPosition().y - camera->position.y;
+        }
+        
+        srcRect.w = texture->getFrameWidth();
+        srcRect.h = texture->getFrameHeight();
+        
+        SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
+        SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
     }
-    
-    srcRect.w = texture->getFrameWidth();
-    srcRect.h = texture->getFrameHeight();
-    
-    SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
-    SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
 }
 
 void SDLRenderer::renderPresent()

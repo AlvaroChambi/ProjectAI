@@ -42,6 +42,7 @@ public:
     void drawMap(Renderer* renderer, Camera* camera);
     void drawInfoMap(Renderer* renderer);
     Tile* matchEvent(Point position);
+    int matchSpriteEvent(Point position);
     //cast tile map position to absolute window coordinate position
     Point getAbsolutePosition(Point tilePosition);
     Point getAbsolutePosition(int x, int y);

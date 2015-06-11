@@ -22,7 +22,7 @@
 		9C3B95F61B1DCA4E00859538 /* TacticMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95EF1B1DCA4E00859538 /* TacticMinimax.cpp */; };
 		9C3B95FB1B1DCA6500859538 /* LuaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95F71B1DCA6500859538 /* LuaScript.cpp */; };
 		9C3B95FC1B1DCA6500859538 /* UnitFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */; };
-		9C3B95FF1B1DCA6E00859538 /* building.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B95FD1B1DCA6E00859538 /* building.lua */; };
+		9C3B95FF1B1DCA6E00859538 /* city.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B95FD1B1DCA6E00859538 /* city.lua */; };
 		9C3B96001B1DCA6E00859538 /* unit.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C3B95FE1B1DCA6E00859538 /* unit.lua */; };
 		9C3B96021B1DCA8800859538 /* Lua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3B96011B1DCA8800859538 /* Lua.framework */; };
 		9C3B96071B1DCAAF00859538 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96031B1DCAAF00859538 /* Path.cpp */; };
@@ -48,6 +48,16 @@
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
+		9C7B4EB01B270415005D3903 /* tank.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EAF1B270415005D3903 /* tank.lua */; };
+		9C7B4EB21B270C28005D3903 /* infantry_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB11B270C28005D3903 /* infantry_green.png */; };
+		9C7B4EB41B271F74005D3903 /* anti_tank.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB31B271F74005D3903 /* anti_tank.lua */; };
+		9C7B4EB71B273277005D3903 /* factory.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB61B273277005D3903 /* factory.lua */; };
+		9C7B4EB91B27328A005D3903 /* headquarter.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB81B27328A005D3903 /* headquarter.lua */; };
+		9C7B4EBC1B273306005D3903 /* BuildingFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBA1B273306005D3903 /* BuildingFactory.cpp */; };
+		9C7B4EC01B298842005D3903 /* city.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBD1B298842005D3903 /* city.png */; };
+		9C7B4EC11B298842005D3903 /* factory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBE1B298842005D3903 /* factory.png */; };
+		9C7B4EC21B298842005D3903 /* headquarter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBF1B298842005D3903 /* headquarter.png */; };
+		9C7B4EC51B29A2B7005D3903 /* FactorySelectedState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4EC31B29A2B7005D3903 /* FactorySelectedState.cpp */; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -144,7 +154,7 @@
 		9C3B95F81B1DCA6500859538 /* LuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaScript.h; sourceTree = "<group>"; };
 		9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitFactory.cpp; sourceTree = "<group>"; };
 		9C3B95FA1B1DCA6500859538 /* UnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFactory.h; sourceTree = "<group>"; };
-		9C3B95FD1B1DCA6E00859538 /* building.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = building.lua; sourceTree = "<group>"; };
+		9C3B95FD1B1DCA6E00859538 /* city.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = city.lua; sourceTree = "<group>"; };
 		9C3B95FE1B1DCA6E00859538 /* unit.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unit.lua; sourceTree = "<group>"; };
 		9C3B96011B1DCA8800859538 /* Lua.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lua.framework; path = ../../../../Library/Frameworks/Lua.framework; sourceTree = "<group>"; };
 		9C3B96031B1DCAAF00859538 /* Path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Path.cpp; sourceTree = "<group>"; };
@@ -178,6 +188,18 @@
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
+		9C7B4EAF1B270415005D3903 /* tank.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tank.lua; sourceTree = "<group>"; };
+		9C7B4EB11B270C28005D3903 /* infantry_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infantry_green.png; sourceTree = "<group>"; };
+		9C7B4EB31B271F74005D3903 /* anti_tank.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anti_tank.lua; sourceTree = "<group>"; };
+		9C7B4EB61B273277005D3903 /* factory.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = factory.lua; sourceTree = "<group>"; };
+		9C7B4EB81B27328A005D3903 /* headquarter.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = headquarter.lua; sourceTree = "<group>"; };
+		9C7B4EBA1B273306005D3903 /* BuildingFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingFactory.cpp; sourceTree = "<group>"; };
+		9C7B4EBB1B273306005D3903 /* BuildingFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingFactory.h; sourceTree = "<group>"; };
+		9C7B4EBD1B298842005D3903 /* city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = city.png; sourceTree = "<group>"; };
+		9C7B4EBE1B298842005D3903 /* factory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = factory.png; sourceTree = "<group>"; };
+		9C7B4EBF1B298842005D3903 /* headquarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headquarter.png; sourceTree = "<group>"; };
+		9C7B4EC31B29A2B7005D3903 /* FactorySelectedState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FactorySelectedState.cpp; sourceTree = "<group>"; };
+		9C7B4EC41B29A2B7005D3903 /* FactorySelectedState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactorySelectedState.h; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		9C800B031AB743F3003FE2AA /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		9C800B051AB7440E003FE2AA /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerView.cpp; sourceTree = "<group>"; };
@@ -365,6 +387,8 @@
 				9C3B95F81B1DCA6500859538 /* LuaScript.h */,
 				9C3B95F91B1DCA6500859538 /* UnitFactory.cpp */,
 				9C3B95FA1B1DCA6500859538 /* UnitFactory.h */,
+				9C7B4EBA1B273306005D3903 /* BuildingFactory.cpp */,
+				9C7B4EBB1B273306005D3903 /* BuildingFactory.h */,
 			);
 			name = lua;
 			sourceTree = "<group>";
@@ -536,6 +560,8 @@
 				9CCD60BD1AC80FD4004537F8 /* OnMoveState.h */,
 				9CCD60BF1AC80FE2004537F8 /* OnAttackState.cpp */,
 				9CCD60C01AC80FE2004537F8 /* OnAttackState.h */,
+				9C7B4EC31B29A2B7005D3903 /* FactorySelectedState.cpp */,
+				9C7B4EC41B29A2B7005D3903 /* FactorySelectedState.h */,
 			);
 			name = playerstates;
 			sourceTree = "<group>";
@@ -565,9 +591,14 @@
 		9C8FBFFD1AB04AF400C4EB1F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C7B4EBD1B298842005D3903 /* city.png */,
+				9C7B4EBE1B298842005D3903 /* factory.png */,
+				9C7B4EBF1B298842005D3903 /* headquarter.png */,
+				9C7B4EB11B270C28005D3903 /* infantry_green.png */,
 				9C3B96531B25B3D000859538 /* player_player_button.png */,
 				9C3B96511B25B3C200859538 /* player_ai_button.png */,
-				9C3B95FD1B1DCA6E00859538 /* building.lua */,
+				9C3B95FD1B1DCA6E00859538 /* city.lua */,
+				9C7B4EB61B273277005D3903 /* factory.lua */,
 				9C3B95FE1B1DCA6E00859538 /* unit.lua */,
 				9C6685C71AD6E49C00C9DFAD /* target_tile.png */,
 				9CCD60C81ACFF37F004537F8 /* attack_button.bmp */,
@@ -582,6 +613,9 @@
 				9C800B441ABC3542003FE2AA /* animate.png */,
 				9C800B241AB74989003FE2AA /* test.bmp */,
 				9C8FBFFE1AB056D700C4EB1F /* rider.bmp */,
+				9C7B4EAF1B270415005D3903 /* tank.lua */,
+				9C7B4EB31B271F74005D3903 /* anti_tank.lua */,
+				9C7B4EB81B27328A005D3903 /* headquarter.lua */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -761,18 +795,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C7B4EC21B298842005D3903 /* headquarter.png in Resources */,
+				9C7B4EC01B298842005D3903 /* city.png in Resources */,
+				9C7B4EB21B270C28005D3903 /* infantry_green.png in Resources */,
 				9C3B96001B1DCA6E00859538 /* unit.lua in Resources */,
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
+				9C7B4EB01B270415005D3903 /* tank.lua in Resources */,
 				9CCD60CD1ACFF37F004537F8 /* cancel_button.bmp in Resources */,
+				9C7B4EC11B298842005D3903 /* factory.png in Resources */,
 				9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */,
 				9CCD60CC1ACFF37F004537F8 /* attack_button.bmp in Resources */,
-				9C3B95FF1B1DCA6E00859538 /* building.lua in Resources */,
+				9C3B95FF1B1DCA6E00859538 /* city.lua in Resources */,
 				9C8FBFFF1AB056D700C4EB1F /* rider.bmp in Resources */,
 				9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */,
 				9C800B251AB74989003FE2AA /* test.bmp in Resources */,
 				9C0A5A7A1AC2D13F00BF793E /* link.bmp in Resources */,
 				9C3B96521B25B3C200859538 /* player_ai_button.png in Resources */,
+				9C7B4EB41B271F74005D3903 /* anti_tank.lua in Resources */,
 				9C800B451ABC3542003FE2AA /* animate.png in Resources */,
+				9C7B4EB91B27328A005D3903 /* headquarter.lua in Resources */,
+				9C7B4EB71B273277005D3903 /* factory.lua in Resources */,
 				9CCD60CF1ACFF37F004537F8 /* wait_button.bmp in Resources */,
 				9C800B471ABC366E003FE2AA /* animate.bmp in Resources */,
 				9CCD60CE1ACFF37F004537F8 /* end_button.bmp in Resources */,
@@ -834,6 +876,7 @@
 				9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */,
 				9CCD60BE1AC80FD4004537F8 /* OnMoveState.cpp in Sources */,
 				9C800B431ABADE3B003FE2AA /* UnitSelectedState.cpp in Sources */,
+				9C7B4EBC1B273306005D3903 /* BuildingFactory.cpp in Sources */,
 				9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */,
 				9C3B960B1B1DCAD200859538 /* BuildingView.cpp in Sources */,
 				9C3B96571B25B46200859538 /* VerticalLayout.cpp in Sources */,
@@ -849,6 +892,7 @@
 				9C3B95F21B1DCA4E00859538 /* Movement.cpp in Sources */,
 				9C800B141AB7443C003FE2AA /* Model.cpp in Sources */,
 				9C3B95F51B1DCA4E00859538 /* TacticBuilder.cpp in Sources */,
+				9C7B4EC51B29A2B7005D3903 /* FactorySelectedState.cpp in Sources */,
 				9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */,
 				9C800B171AB7443C003FE2AA /* Unit.cpp in Sources */,
 				9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */,
@@ -1059,6 +1103,7 @@
 				9C3B963E1B20647500859538 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9CAE2DD91AA76F8B00B6279D /* Build configuration list for PBXProject "ProjectWar" */ = {
 			isa = XCConfigurationList;

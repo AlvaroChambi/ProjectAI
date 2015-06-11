@@ -17,6 +17,7 @@
 #include "State.h"
 #include "InfoTile.h"
 
+//TODO Move the type to a controller instead of the player itself
 enum PlayerType
 {
     AI_PLAYER,
@@ -58,6 +59,7 @@ public:
     void setType( PlayerType type );
     
     bool hasUnit(int id);
+    bool hasBuilding(int id);
     
     //Add units data to the info map
     void populateInfoMap(InfoMap& infoMap);

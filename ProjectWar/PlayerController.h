@@ -27,6 +27,7 @@ public:
     void onMapClicked(const Tile tile);
     void onUnitClicked(const int id);
     void onEnemyUnitClicked(Unit* targetUnit);
+    void onBuildingClicked(const int id);
     
     void onUIEventReceived(int id);
     

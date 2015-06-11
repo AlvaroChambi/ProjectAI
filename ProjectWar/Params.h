@@ -10,6 +10,7 @@
 #define ProjectWar_Params_h
 
 static const int FILL = 0;
+static const int WRAP = 1;
 
 enum Gravity{
     CENTER,

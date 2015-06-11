@@ -8,7 +8,7 @@
 
 #include "Building.h"
 
-Building::Building() : Model(), tile(nullptr), capturePoints(0), captureValue(0)
+Building::Building() : Model(), tile(nullptr), capturePoints(0), captureValue(0), type("")
 {
 
 }
@@ -26,6 +26,16 @@ Tile Building::getTile()
 Point Building::getPosition()
 {
     return tile.position;
+}
+
+void Building::setType(std::string type)
+{
+    this->type = type;
+}
+
+std::string Building::getType()
+{
+    return type;
 }
 
 void Building::setPosition(Tile position)

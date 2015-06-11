@@ -29,6 +29,8 @@ public:
     
     void setColor(Color color);
     Color getColor();
+    //TODO implement set font
+    //TODO implement set text size
 private:
     Texture* texture;
     std::string resource;

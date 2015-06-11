@@ -37,6 +37,10 @@ public:
     void registerCamera(Camera* camera);
     Camera* getCamera();
     
+    void registerPopUp(Layout* popUp);
+    void showPopup();
+    void hidePopUp();
+    
     void setUIHUD(UIComponent* component);
     void attachMap(Map* map);
     void render();
@@ -52,6 +56,7 @@ private:
     Layout* rootLayout;
     //TODO not sure if we are gonna need this here...
     Camera* camera;
+    Layout* popUp;
 };
 
 #endif /* defined(__ProjectWar__Scene__) */

@@ -19,6 +19,7 @@ public:
     virtual void onUnitClicked(const int id) = 0;
     virtual void onEnemyUnitClicked(Unit* targetUnit) = 0;
     virtual void onMapClicked(const Tile tile) = 0;
+    virtual void onBuildingClicked(const int id) = 0;
 };
 
 #endif /* defined(__ProjectWar__IPlayerEventsListener__) */

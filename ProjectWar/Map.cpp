@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Path.h"
 #include "Pathfinder.h"
+#include "BuildingFactory.h"
 
 Map::Map()
 {
@@ -70,32 +71,49 @@ void Map::loadMap(Renderer* renderer, int width, int height)
 
 void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
 {
-    Building* building = new Building();
+    BuildingFactory factory = BuildingFactory();
+    
+    Building* building = factory.createBuilding("headquarter.lua");
     Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
-    building->setCapturePoints(20);
     buildingSprite->setModel(building);
-    buildingSprite->setTexture(renderer->loadSprite("building.png", 32, 32));
+    buildingSprite->setTexture(renderer->loadSprite(building->getResource(), 64, 64));
     buildingSprite->resize(40, 40);
     building->setPosition(getTile(2, 2));
-    buildingSprite->setRenderFrame(Point(3,0));
     building->setOwnerID(0);
-    building->setCaptureValue(20);
     this->addBuilding(building);
     
-    Building* building2 = new Building();
+    Building* building2 = factory.createBuilding("headquarter.lua");
     Sprite* buildingSprite2 = spriteFactory->createSprite(BUILDING);
-    building2->setCapturePoints(20);
     buildingSprite2->setModel(building2);
-    buildingSprite2->setTexture(renderer->loadSprite("building.png", 32, 32));
+    buildingSprite2->setTexture(renderer->loadSprite(building2->getResource(), 64, 64));
     buildingSprite2->resize(40, 40);
-    buildingSprite2->setRenderFrame(Point(3,0));
-    building2->setOwnerID(1);
-    building2->setCaptureValue(20);
     building2->setPosition(getTile(12,6));
+    building2->setOwnerID(1);
     this->addBuilding(building2);
     
+    Building* factory1 = factory.createBuilding("factory.lua");
+    Sprite* factorySprite = spriteFactory->createSprite(BUILDING);
+    factorySprite->setModel(factory1);
+    factorySprite->setTexture(renderer->loadSprite(factory1->getResource(), 64, 64));
+    factorySprite->resize(40, 40);
+    factory1->setPosition(getTile(3, 4));
+    factory1->setOwnerID(0);
+    this->addBuilding(factory1);
+    
+    Building* city = factory.createBuilding("city.lua");
+    Sprite* citySprite = spriteFactory->createSprite(BUILDING);
+    citySprite->setModel(city);
+    citySprite->setTexture(renderer->loadSprite(city->getResource(), 64, 64));
+    citySprite->resize(40, 40);
+    city->setPosition(getTile(8, 8));
+    city->setOwnerID(0);
+    this->addBuilding(city);
+    
+    //Add all sprite to the scene?
+    sprites.push_back(citySprite);
     sprites.push_back(buildingSprite);
     sprites.push_back(buildingSprite2);
+    sprites.push_back(factorySprite);
 }
 
 Building* Map::getBuilding(Point position)
@@ -192,6 +210,17 @@ Tile* Map::matchEvent(Point position)
         }
     }
     return tile;
+}
+
+int Map::matchSpriteEvent(Point position)
+{
+    int id = -1;
+    for (Sprite* sprite: sprites) {
+        if (sprite->matchPosition(position)) {
+            id = sprite->getID();
+        }
+    }
+    return id;
 }
 
 Point Map::getAbsolutePosition(Point tilePosition)

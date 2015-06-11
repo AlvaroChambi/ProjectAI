@@ -32,6 +32,7 @@ protected:
     std::list<UIComponent*> components;
 private:
     Texture* background;
+    Color* backgroundColor;
 };
 
 #endif /* defined(__ProjectWar__Layout__) */

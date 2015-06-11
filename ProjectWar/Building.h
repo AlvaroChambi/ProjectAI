@@ -32,11 +32,16 @@ public:
     int getOwnerID();
     
     bool isCaptured(int playerID);
+    
+    std::string getType();
+    void setType(std::string type);
+    
 private:
     int ownerID;
     Tile tile;
     int capturePoints;
     int captureValue;
+    std::string type;
 };
 
 #endif /* defined(__ProjectWar__Building__) */

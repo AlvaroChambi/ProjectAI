@@ -77,8 +77,10 @@ void UIComponent::updateDimensions()
     }
 }
 
+//TODO: let the layout set the children positions, no te item itself...
 void UIComponent::updatePosition()
 {
+    std::cout << "UIComponent::updatePosition\n";
     switch (params.gravity) {
         case CENTER:
         {
@@ -97,7 +99,7 @@ void UIComponent::updatePosition()
             break;
         case CENTER_DOWN:
         {
-            //TODO implement
+            centerDown(parent->getPosition(), parent->getWidth(), parent->getHeight());
         }
             break;
         default:
@@ -181,7 +183,8 @@ void UIComponent::setVisible(bool visible)
 void UIComponent::setParent(UIComponent *component)
 {
     this->parent = component;
-    this->updateValues();
+    //TODO: moved to addComponent
+    //this->updateValues();
 }
 
 UIComponent* UIComponent::getParent()

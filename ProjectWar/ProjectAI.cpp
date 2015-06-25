@@ -11,6 +11,9 @@
 #include "PlayerAI.h"
 #include "UnitFactory.h"
 #include "VerticalLayout.h"
+#include "HorizontalLayout.h"
+#include "Button.h"
+#include "MessageManager.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0), founds(1000)
 {
@@ -42,6 +45,7 @@ void ProjectAI::onSpriteClicked(const int id)
         case UNIT_CLICKED:
         {
             Unit* unit = activePlayer->getSelectedUnit();
+            //TODO: change it so it can be notified with the message system
             //Updating unit ui reference to the new selected unit
             if(unit == nullptr || unit->getId() != id){
                 layout->setModel(activePlayer->getUnit(id));
@@ -53,14 +57,8 @@ void ProjectAI::onSpriteClicked(const int id)
             playerController->onEnemyUnitClicked(getUnit(id));
             break;
         case BUILDING_CLICKED:
+            std::cout << "building clicked\n";
             playerController->onBuildingClicked(id);
-        {
-            Building* building = map->getBuilding(id);
-            
-            if (building->getType() == "Factory" && activePlayer->hasBuilding(id)) {
-                sceneManager->getActualScene()->showPopup();
-            }
-        }
             break;
         default:
             break;
@@ -120,27 +118,6 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
     }
 }
 
-Scene* ProjectAI::mainMenuScene( SceneManager* sceneManager, Renderer* renderer )
-{
-    Scene* menuScene = new Scene(renderer);
-    VerticalLayout* menuLayout = new VerticalLayout;
-    //TODO Change the way to set the ui components id
-    Button* menuButton = new Button(10);
-    Button* menuButton2 = new Button(11);
-    menuButton->setParams(Params(256,128,CENTER));
-    menuButton2->setParams(Params(256,128,CENTER));
-    //TODO Animate on click
-    menuButton->setImageResource("player_player_button.png");
-    menuButton2->setImageResource("player_ai_button.png");
-    
-    menuScene->setUIHUD(menuLayout);
-    menuLayout->addComponent(menuButton);
-    menuLayout->addComponent(menuButton2);
-    
-    menuScene->registerListener(this);
-    return menuScene;
-}
-
 Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
 {
     Layout* mainLayout = new Layout();
@@ -170,12 +147,66 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     gameLayout->addComponent(foundsText);
     gameLayout->addComponent(playerText);
     
+
+    std::cout << "POP_UP_LAYOUT\n";
     //Prepare popup
-    Layout* popUp = new Layout();
-    popUp->setParams(Params(100,200,CENTER));
-    popUp->setBackground(Color(0,0,0));
+    Layout* popUp = new VerticalLayout();
+    popUp->setParams(Params(300,350,CENTER));
+    popUp->setBackground(Color(0,255,255));
     
     scene->registerPopUp(popUp);
+    
+    Params params = Params(290, 110, CENTER);
+    HorizontalLayout* item0 = new HorizontalLayout();
+    HorizontalLayout* item1 = new HorizontalLayout();
+    HorizontalLayout* item2 = new HorizontalLayout();
+    
+    item0->setBackground(Color(255,100,100));
+    item1->setBackground(Color(255,0,255));
+    item2->setBackground(Color(10,90,0));
+    
+    item0->setParams(params);
+    item1->setParams(params);
+    item2->setParams(params);
+
+    popUp->addComponent(item0);
+    popUp->addComponent(item1);
+    popUp->addComponent(item2);
+
+    Params imageParams = Params(40,40,CENTER);
+    Button* item0Image = new Button(-1);
+    Button* item1Image = new Button(-1);
+    Button* item2Image = new Button(-1);
+    
+    item0Image->setImageResource("soldier_avatar.png");
+    item1Image->setImageResource("tank_avatar.png");
+    item2Image->setImageResource("anti_tank_avatar.png");
+    
+    item0Image->setParams(imageParams);
+    item1Image->setParams(imageParams);
+    item2Image->setParams(imageParams);
+    
+    Params textParams = Params(30, 10, CENTER);
+    Text* item0Text = new Text();
+    Text* item1Text = new Text();
+    Text* item2Text = new Text();
+    
+    item0Text->setTextResource("1000");
+    item1Text->setTextResource("3000");
+    item2Text->setTextResource("4000");
+    
+    item0Text->setParams(textParams);
+    item1Text->setParams(textParams);
+    item2Text->setParams(textParams);
+    
+    item0->addComponent(item0Image);
+    item0->addComponent(item0Text);
+    
+    item1->addComponent(item1Image);
+    item1->addComponent(item1Text);
+    
+    item2->addComponent(item2Image);
+    item2->addComponent(item2Text);
     
     //Load map data model and view resources
     map = new Map();
@@ -183,15 +214,8 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
-    //TODO fix error assigning id to the sprites and models
-    //Load player data model, view
-    Player* player = new Player();
-    Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
-    playerSprite->setModel(player);
-    Texture* texture = renderer->loadTexture("target_tile_white.png");
-    playerSprite->setTexture(texture);
-    playerSprite->resize(40, 40);
-    texture->setPosition(map->getAbsolutePosition(8,8));
+    //TODO fix how we set the id to the sprites and models
+    Player* player = new Player(0);
     player->setMap(map);
     
     Player* player2 = prepareOpponent(spriteFactory, scene, renderer, map);
@@ -288,7 +312,7 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     scene->attachSprite(unitSprite6);
     scene->attachSprite(unitSprite);
     
-    scene->attachSprite(playerSprite);
+    //scene->attachSprite(playerSprite);
     
     scene->registerListener(this);
     
@@ -305,16 +329,6 @@ Player* ProjectAI::prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, R
         PlayerAI* playerAI = (PlayerAI*)player2;
         playerAI->setPlayerList(&players);
     }
-    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
-    playerSprite2->setModel(player2);
-    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
-    texture2->setVisible(false);
-    playerSprite2->setTexture(texture2);
-    playerSprite2->resize(40, 40);
-    texture2->setPosition(map->getAbsolutePosition(3,8));
-    player2->setMap(map);
-    
-    scene->attachSprite(playerSprite2);
     return player2;
 }
 
@@ -323,18 +337,21 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
     this->renderer = renderer;
     this->sceneManager = sceneManager;
     
+    
     //Default camera
     Camera* camera = new Camera(Point(0, 0), 640, 480);
     
-    Scene* menuScene = mainMenuScene(sceneManager, renderer);
+   // Scene* menuScene = mainMenuScene(sceneManager, renderer);
+    Scene* menuScene = new MenuScene(renderer);
+    menuScene->registerListener(this);
     sceneManager->setActualScene(menuScene, "menu_scene");
     
-    Scene* gameScene = new Scene(renderer);
+    Scene* gameScene = new GameScene(renderer);
     gameScene->registerCamera(camera);
     sceneManager->registerScene(gameScene, "game_scene");
     
-    Scene* gameConfig = new Scene(renderer);
-    sceneManager->registerScene(gameConfig, "game_config_scene");
+    MessageManager::getInstance().registerForMessage(MESSAGE_SHOW_POPUP, new ShowPopUpCallback(sceneManager));
+    MessageManager::getInstance().registerForMessage(MESSAGE_HIDE_POPUP, new HidePopUpCallback(sceneManager));
     
     /*
     Scene* scene = gameScene(sceneManager, renderer);
@@ -404,4 +421,14 @@ Player* ProjectAI::getPlayer(int position)
     std::advance(iterator, position);
     Player* player = *iterator;
     return player;
+}
+
+void ShowPopUpCallback::function()
+{
+    sceneManager->getActualScene()->showPopup();
+}
+
+void HidePopUpCallback::function()
+{
+    sceneManager->getActualScene()->hidePopUp();
 }

@@ -9,7 +9,8 @@
 #include "SpriteFactory.h"
 #include "BuildingView.h"
 
-SpriteFactory::SpriteFactory() : idCount(0)
+//TODO think a better way to assign an id to the game objects
+SpriteFactory::SpriteFactory() : idCount(1)
 {
 
 }

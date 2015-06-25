@@ -8,11 +8,6 @@
 
 #include "Scene.h"
 
-Scene::Scene()
-{
-
-}
-
 Scene::Scene(Renderer* renderer) :textureList(), sprites()
 {
     this->renderer = renderer;

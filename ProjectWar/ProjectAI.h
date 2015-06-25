@@ -14,9 +14,9 @@
 #include "PlayerController.h"
 #include "SpriteFactory.h"
 #include "Color.h"
-#include "Button.h"
 #include "UnitUIView.h"
-#include "GameUI.h"
+#include "MenuScene.h"
+#include "GameScene.h"
 
 class ProjectAI : public GameImplementation
 {
@@ -52,7 +52,6 @@ public:
     static const int CAPTURE_BUTTON = 5;
 private:
     Input getPlayerEvent(int id);
-    Scene* mainMenuScene(SceneManager* manager, Renderer* renderer);
     Scene* gameScene(Scene* scene, Renderer* renderer);
     Player* prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, Renderer* renderer, Map* map);
     

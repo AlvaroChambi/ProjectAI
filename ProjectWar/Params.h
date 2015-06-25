@@ -22,6 +22,7 @@ enum Gravity{
 class Params
 {
 public:
+    //TODO implement wrap content
     Params() : width(FILL), height(FILL), gravity(CENTER)
     {}
     Params(int width, int height, Gravity gravity) : width(width), height(height), gravity(gravity)
@@ -30,6 +31,11 @@ public:
     int width;
     int height;
     Gravity gravity;
+  /*  int margin;
+    int marginLeft;
+    int marginRight;
+    int marginTop;
+    int marginDown;*/
 };
 
 #endif

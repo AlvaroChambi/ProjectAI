@@ -10,10 +10,10 @@
 #define __ProjectWar__UnitUIView__
 
 #include <stdio.h>
-#include "Layout.h"
+#include "HorizontalLayout.h"
 #include "Unit.h"
 
-class UnitUIView : public Observer, public Layout
+class UnitUIView : public Observer, public HorizontalLayout
 {
 public:
     UnitUIView();
@@ -22,7 +22,6 @@ public:
     void update(Update update);
     void setModel(Model* model);
 private:
-    void updatePosition();
     void updateComponents();
     Unit* unit;
 };

@@ -58,6 +58,16 @@
 		9C7B4EC11B298842005D3903 /* factory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBE1B298842005D3903 /* factory.png */; };
 		9C7B4EC21B298842005D3903 /* headquarter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EBF1B298842005D3903 /* headquarter.png */; };
 		9C7B4EC51B29A2B7005D3903 /* FactorySelectedState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4EC31B29A2B7005D3903 /* FactorySelectedState.cpp */; };
+		9C7B4EC91B29EC94005D3903 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4EC71B29EC94005D3903 /* MenuScene.cpp */; };
+		9C7B4ECC1B29ECA0005D3903 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4ECA1B29ECA0005D3903 /* GameScene.cpp */; };
+		9C7B4ECF1B29FA49005D3903 /* GameModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4ECD1B29FA49005D3903 /* GameModel.cpp */; };
+		9C7B4ED31B2A0348005D3903 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4ED11B2A0348005D3903 /* MessageManager.cpp */; };
+		9C7B4ED61B2A03BD005D3903 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4ED41B2A03BD005D3903 /* Message.cpp */; };
+		9C7B4EDA1B2A10F6005D3903 /* MessageRegistration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4ED81B2A10F6005D3903 /* MessageRegistration.cpp */; };
+		9C7B4EDD1B2ADA2F005D3903 /* HorizontalLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B4EDB1B2ADA2F005D3903 /* HorizontalLayout.cpp */; };
+		9C7B4EE41B2AE2E4005D3903 /* anti_tank_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EE11B2AE2E4005D3903 /* anti_tank_avatar.png */; };
+		9C7B4EE51B2AE2E4005D3903 /* soldier_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EE21B2AE2E4005D3903 /* soldier_avatar.png */; };
+		9C7B4EE61B2AE2E4005D3903 /* tank_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EE31B2AE2E4005D3903 /* tank_avatar.png */; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -200,6 +210,24 @@
 		9C7B4EBF1B298842005D3903 /* headquarter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headquarter.png; sourceTree = "<group>"; };
 		9C7B4EC31B29A2B7005D3903 /* FactorySelectedState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FactorySelectedState.cpp; sourceTree = "<group>"; };
 		9C7B4EC41B29A2B7005D3903 /* FactorySelectedState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactorySelectedState.h; sourceTree = "<group>"; };
+		9C7B4EC71B29EC94005D3903 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScene.cpp; sourceTree = "<group>"; };
+		9C7B4EC81B29EC94005D3903 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		9C7B4ECA1B29ECA0005D3903 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		9C7B4ECB1B29ECA0005D3903 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		9C7B4ECD1B29FA49005D3903 /* GameModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameModel.cpp; sourceTree = "<group>"; };
+		9C7B4ECE1B29FA49005D3903 /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		9C7B4ED11B2A0348005D3903 /* MessageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageManager.cpp; sourceTree = "<group>"; };
+		9C7B4ED21B2A0348005D3903 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		9C7B4ED41B2A03BD005D3903 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
+		9C7B4ED51B2A03BD005D3903 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		9C7B4ED71B2A044F005D3903 /* Callback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Callback.h; sourceTree = "<group>"; };
+		9C7B4ED81B2A10F6005D3903 /* MessageRegistration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageRegistration.cpp; sourceTree = "<group>"; };
+		9C7B4ED91B2A10F6005D3903 /* MessageRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageRegistration.h; sourceTree = "<group>"; };
+		9C7B4EDB1B2ADA2F005D3903 /* HorizontalLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HorizontalLayout.cpp; sourceTree = "<group>"; };
+		9C7B4EDC1B2ADA2F005D3903 /* HorizontalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalLayout.h; sourceTree = "<group>"; };
+		9C7B4EE11B2AE2E4005D3903 /* anti_tank_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anti_tank_avatar.png; sourceTree = "<group>"; };
+		9C7B4EE21B2AE2E4005D3903 /* soldier_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_avatar.png; sourceTree = "<group>"; };
+		9C7B4EE31B2AE2E4005D3903 /* tank_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank_avatar.png; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		9C800B031AB743F3003FE2AA /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		9C800B051AB7440E003FE2AA /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerView.cpp; sourceTree = "<group>"; };
@@ -342,6 +370,8 @@
 				9CCD60C31ACDCCC3004537F8 /* Text.h */,
 				9C3B96551B25B46200859538 /* VerticalLayout.cpp */,
 				9C3B96561B25B46200859538 /* VerticalLayout.h */,
+				9C7B4EDB1B2ADA2F005D3903 /* HorizontalLayout.cpp */,
+				9C7B4EDC1B2ADA2F005D3903 /* HorizontalLayout.h */,
 			);
 			name = implementation;
 			sourceTree = "<group>";
@@ -405,6 +435,33 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		9C7B4EC61B29EC79005D3903 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9C7B4EC71B29EC94005D3903 /* MenuScene.cpp */,
+				9C7B4EC81B29EC94005D3903 /* MenuScene.h */,
+				9C7B4ECA1B29ECA0005D3903 /* GameScene.cpp */,
+				9C7B4ECB1B29ECA0005D3903 /* GameScene.h */,
+				9C7B4ECD1B29FA49005D3903 /* GameModel.cpp */,
+				9C7B4ECE1B29FA49005D3903 /* GameModel.h */,
+			);
+			name = scenes;
+			sourceTree = "<group>";
+		};
+		9C7B4ED01B2A0334005D3903 /* messages */ = {
+			isa = PBXGroup;
+			children = (
+				9C7B4ED11B2A0348005D3903 /* MessageManager.cpp */,
+				9C7B4ED21B2A0348005D3903 /* MessageManager.h */,
+				9C7B4ED41B2A03BD005D3903 /* Message.cpp */,
+				9C7B4ED51B2A03BD005D3903 /* Message.h */,
+				9C7B4ED71B2A044F005D3903 /* Callback.h */,
+				9C7B4ED81B2A10F6005D3903 /* MessageRegistration.cpp */,
+				9C7B4ED91B2A10F6005D3903 /* MessageRegistration.h */,
+			);
+			name = messages;
+			sourceTree = "<group>";
+		};
 		9C800AFB1AB74311003FE2AA /* graphic */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +504,8 @@
 		9C800AFD1AB74335003FE2AA /* gamelogic */ = {
 			isa = PBXGroup;
 			children = (
+				9C7B4ED01B2A0334005D3903 /* messages */,
+				9C7B4EC61B29EC79005D3903 /* scenes */,
 				9C3B96121B1DCB4500859538 /* GameUI.cpp */,
 				9C3B96131B1DCB4500859538 /* GameUI.h */,
 				9C3B95E31B1DCA2500859538 /* lua */,
@@ -591,6 +650,9 @@
 		9C8FBFFD1AB04AF400C4EB1F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C7B4EE11B2AE2E4005D3903 /* anti_tank_avatar.png */,
+				9C7B4EE21B2AE2E4005D3903 /* soldier_avatar.png */,
+				9C7B4EE31B2AE2E4005D3903 /* tank_avatar.png */,
 				9C7B4EBD1B298842005D3903 /* city.png */,
 				9C7B4EBE1B298842005D3903 /* factory.png */,
 				9C7B4EBF1B298842005D3903 /* headquarter.png */,
@@ -796,13 +858,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C7B4EC21B298842005D3903 /* headquarter.png in Resources */,
+				9C7B4EE51B2AE2E4005D3903 /* soldier_avatar.png in Resources */,
 				9C7B4EC01B298842005D3903 /* city.png in Resources */,
 				9C7B4EB21B270C28005D3903 /* infantry_green.png in Resources */,
 				9C3B96001B1DCA6E00859538 /* unit.lua in Resources */,
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
 				9C7B4EB01B270415005D3903 /* tank.lua in Resources */,
+				9C7B4EE61B2AE2E4005D3903 /* tank_avatar.png in Resources */,
 				9CCD60CD1ACFF37F004537F8 /* cancel_button.bmp in Resources */,
 				9C7B4EC11B298842005D3903 /* factory.png in Resources */,
+				9C7B4EE41B2AE2E4005D3903 /* anti_tank_avatar.png in Resources */,
 				9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */,
 				9CCD60CC1ACFF37F004537F8 /* attack_button.bmp in Resources */,
 				9C3B95FF1B1DCA6E00859538 /* city.lua in Resources */,
@@ -848,6 +913,7 @@
 			files = (
 				9C3B965D1B25C94A00859538 /* Camera.cpp in Sources */,
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,
+				9C7B4ED31B2A0348005D3903 /* MessageManager.cpp in Sources */,
 				9C3B96141B1DCB4500859538 /* GameUI.cpp in Sources */,
 				9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */,
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,
@@ -863,6 +929,7 @@
 				9C3B96081B1DCAAF00859538 /* Pathfinder.cpp in Sources */,
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,
 				9C8FBFF91AAF44E500C4EB1F /* SDLTexture.cpp in Sources */,
+				9C7B4ECF1B29FA49005D3903 /* GameModel.cpp in Sources */,
 				9C800B281AB86673003FE2AA /* UnitView.cpp in Sources */,
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
 				9C3B95FB1B1DCA6500859538 /* LuaScript.cpp in Sources */,
@@ -876,8 +943,10 @@
 				9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */,
 				9CCD60BE1AC80FD4004537F8 /* OnMoveState.cpp in Sources */,
 				9C800B431ABADE3B003FE2AA /* UnitSelectedState.cpp in Sources */,
+				9C7B4ECC1B29ECA0005D3903 /* GameScene.cpp in Sources */,
 				9C7B4EBC1B273306005D3903 /* BuildingFactory.cpp in Sources */,
 				9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */,
+				9C7B4EDA1B2A10F6005D3903 /* MessageRegistration.cpp in Sources */,
 				9C3B960B1B1DCAD200859538 /* BuildingView.cpp in Sources */,
 				9C3B96571B25B46200859538 /* VerticalLayout.cpp in Sources */,
 				9C3B95F31B1DCA4E00859538 /* PlayerAI.cpp in Sources */,
@@ -889,10 +958,13 @@
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,
 				9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */,
+				9C7B4EC91B29EC94005D3903 /* MenuScene.cpp in Sources */,
+				9C7B4ED61B2A03BD005D3903 /* Message.cpp in Sources */,
 				9C3B95F21B1DCA4E00859538 /* Movement.cpp in Sources */,
 				9C800B141AB7443C003FE2AA /* Model.cpp in Sources */,
 				9C3B95F51B1DCA4E00859538 /* TacticBuilder.cpp in Sources */,
 				9C7B4EC51B29A2B7005D3903 /* FactorySelectedState.cpp in Sources */,
+				9C7B4EDD1B2ADA2F005D3903 /* HorizontalLayout.cpp in Sources */,
 				9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */,
 				9C800B171AB7443C003FE2AA /* Unit.cpp in Sources */,
 				9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #include "Game.h"
-
+#include "MessageManager.h"
 
 Game::Game()
 {
@@ -47,6 +47,7 @@ void Game::onProcessInput()
 //TODO use delta time and call entities update time method to handle animations
 void Game::onUpdate()
 {
+    MessageManager::getInstance().update();
     Scene* scene = manager->getActualScene();
     scene->update();
 }

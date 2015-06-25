@@ -43,6 +43,47 @@ void Layout::render(Renderer* renderer)
     }
 }
 
+void Layout::updateValues(UIComponent* component)
+{
+    this->updateDimensions(component);
+    this->updatePosition(component);
+}
+
+void Layout::updateDimensions(UIComponent* component)
+{
+    component->updateDimensions();
+}
+
+void Layout::updatePosition(UIComponent* component)
+{
+    std::cout << "Layout::updatePosition\n";
+    switch (component->params.gravity) {
+        case CENTER:
+        {
+            component->center(getPosition(), getWidth(), getHeight());
+            break;
+        }
+        case UP:
+        {
+            component->up(getPosition(), getWidth(), getHeight());
+        }
+            break;
+        case DOWN:
+        {
+            component->down(getPosition(), getWidth(), getHeight());
+        }
+            break;
+        case CENTER_DOWN:
+        {
+            component->centerDown(getPosition(), getWidth(), getHeight());
+        }
+            break;
+        default:
+            break;
+    }
+
+}
+
 void Layout::addComponent(UIComponent *component)
 {
     components.push_back(component);
@@ -50,6 +91,8 @@ void Layout::addComponent(UIComponent *component)
     component->setHUD(this->isHUD());
     //Update parent value: first use of the params
     component->setParent(this);
+    //Measure the childen position
+    this->updateValues(component);
 }
 
 void Layout::cleanComponents()

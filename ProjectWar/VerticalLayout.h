@@ -19,8 +19,7 @@ public:
     VerticalLayout();
     virtual ~VerticalLayout();
     
-    void addComponent(UIComponent* component);
-    void updatePosition();
+    void updatePosition(UIComponent* component);
 
 };
 

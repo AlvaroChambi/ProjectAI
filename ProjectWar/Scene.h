@@ -23,9 +23,13 @@
 class Scene
 {
 public:
-    Scene();
     Scene(Renderer *renderer);
     virtual ~Scene();
+    
+    virtual void onSceneStarted() = 0;
+    virtual void onScenePaused() = 0;
+    virtual void onSceneFinished() = 0;
+    
     void attachTexture(Texture* texture);
     void attachSprite(Sprite* sprite);
     void handleEvent(const Event event);

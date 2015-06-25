@@ -19,15 +19,9 @@ VerticalLayout::~VerticalLayout()
 
 }
 
-void VerticalLayout::addComponent(UIComponent *component)
+void VerticalLayout::updatePosition(UIComponent* component)
 {
-    Layout::addComponent(component);
-    this->updatePosition();
-}
-
-void VerticalLayout::updatePosition()
-{
-    UIComponent::updatePosition();
+    std::cout << "VerticalLayout::updatePosition\n";
     if(components.size() > 0){
         int subParentHeight = getHeight() / components.size();
         int i = 0;

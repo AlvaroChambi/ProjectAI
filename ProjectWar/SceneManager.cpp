@@ -22,18 +22,24 @@ void SceneManager::setActualScene(Scene* newScene, std::string tag)
 {
     this->registerScene(newScene, tag);
     this->actualScene = newScene;
+    //TODO maybe make this call assynchronous
+    this->actualScene->onSceneStarted();
 }
 
 void SceneManager::changeScene(std::string actualScene, std::string newScene)
 {
+    this->actualScene->onScenePaused();
     this->actualScene = scenes[newScene];
+    this->actualScene->onSceneStarted();
 }
 
 void SceneManager::changeScene(std::string newScene, int extras)
 {
+    this->actualScene->onScenePaused();
     Scene* scene = scenes[newScene];
     scene->setExtras(extras);
     this->actualScene = scene;
+    this->actualScene->onSceneStarted();
 }
 
 void SceneManager::registerScene(Scene *scene, std::string tag)

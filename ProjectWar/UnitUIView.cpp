@@ -10,12 +10,12 @@
 #include "Button.h"
 #include "ProjectAI.h"
 
-UnitUIView::UnitUIView() : Layout(-1), unit(nullptr)
+UnitUIView::UnitUIView() : HorizontalLayout(), unit(nullptr)
 {
 
 }
 
-UnitUIView::UnitUIView(int id) : Layout(id), unit(nullptr)
+UnitUIView::UnitUIView(int id) : HorizontalLayout(), unit(nullptr)
 {
 
 }
@@ -75,21 +75,5 @@ void UnitUIView::updateComponents()
         }
         button->setParams(Params(60,40,CENTER));
         this->addComponent(button);
-    }
-    this->updatePosition();
-}
-
-void UnitUIView::updatePosition()
-{
-    UIComponent::updatePosition();
-    if(components.size() > 0){
-        int subParentWidth = getWidth() / components.size();
-        int i = 0;
-        for (UIComponent* component : components) {
-            int subParentX = getPosition().x + subParentWidth * i;
-            Point subParentPosition = Point(subParentX, getPosition().y);
-            component->center(subParentPosition, subParentWidth, getHeight());
-            i++;
-        }
     }
 }

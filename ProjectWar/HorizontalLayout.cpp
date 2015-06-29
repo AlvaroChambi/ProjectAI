@@ -20,7 +20,6 @@ HorizontalLayout::~HorizontalLayout()
 
 void HorizontalLayout::updatePosition(UIComponent* component)
 {
-    std::cout << "HorizontalLayout::updatePosition\n";
     if(components.size() > 0){
         int subParentWidth = getWidth() / components.size();
         int i = 0;

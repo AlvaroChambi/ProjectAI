@@ -21,7 +21,6 @@ VerticalLayout::~VerticalLayout()
 
 void VerticalLayout::updatePosition(UIComponent* component)
 {
-    std::cout << "VerticalLayout::updatePosition\n";
     if(components.size() > 0){
         int subParentHeight = getHeight() / components.size();
         int i = 0;

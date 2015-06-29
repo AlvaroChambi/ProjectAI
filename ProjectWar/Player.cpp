@@ -16,7 +16,7 @@ Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
 }
 
 Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
-                        active(false), map(nullptr)
+                        active(false), map(nullptr), type(HUMAN_PLAYER)
 {
     this->setid(id);
 }

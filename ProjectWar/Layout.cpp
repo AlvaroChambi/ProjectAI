@@ -56,7 +56,6 @@ void Layout::updateDimensions(UIComponent* component)
 
 void Layout::updatePosition(UIComponent* component)
 {
-    std::cout << "Layout::updatePosition\n";
     switch (component->params.gravity) {
         case CENTER:
         {

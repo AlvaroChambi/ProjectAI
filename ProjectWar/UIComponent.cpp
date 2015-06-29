@@ -80,7 +80,6 @@ void UIComponent::updateDimensions()
 //TODO: let the layout set the children positions, no te item itself...
 void UIComponent::updatePosition()
 {
-    std::cout << "UIComponent::updatePosition\n";
     switch (params.gravity) {
         case CENTER:
         {

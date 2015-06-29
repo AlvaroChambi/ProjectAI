@@ -329,6 +329,7 @@ Player* ProjectAI::prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, R
         PlayerAI* playerAI = (PlayerAI*)player2;
         playerAI->setPlayerList(&players);
     }
+    player2->setMap(map);
     return player2;
 }
 

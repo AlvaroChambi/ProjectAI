@@ -20,6 +20,53 @@ SpriteFactory::~SpriteFactory()
 
 }
 
+//Default frame width and height = 128
+Sprite* SpriteFactory::createSprite(SpriteType type, Renderer* renderer, Unit* unit)
+{
+    Sprite* sprite = nullptr;
+    switch (type) {
+        case UNIT:
+            sprite = new UnitView();
+            sprite->setID(idCount++);
+            break;
+        case PLAYER:
+            sprite = new PlayerView();
+            sprite->setID(idCount++);
+            break;
+        case BUILDING:
+            sprite = new BuildingView();
+            sprite->setID(idCount++);
+        default:
+            break;
+    }
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 128);
+    sprite->setTexture(unitTexture);
+    return sprite;
+}
+
+Sprite* SpriteFactory::createSprite(SpriteType type, Renderer* renderer, Unit* unit, int frameWidth, int frameHeight)
+{
+    Sprite* sprite = nullptr;
+    switch (type) {
+        case UNIT:
+            sprite = new UnitView();
+            sprite->setID(idCount++);
+            break;
+        case PLAYER:
+            sprite = new PlayerView();
+            sprite->setID(idCount++);
+            break;
+        case BUILDING:
+            sprite = new BuildingView();
+            sprite->setID(idCount++);
+        default:
+            break;
+    }
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), frameWidth, frameHeight);
+    sprite->setTexture(unitTexture);
+    return sprite;
+}
+
 Sprite* SpriteFactory::createSprite(SpriteType type)
 {
     Sprite* sprite = nullptr;

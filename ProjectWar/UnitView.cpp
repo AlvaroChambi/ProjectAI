@@ -26,8 +26,8 @@ void UnitView::setModel(Model *model)
     //Link game object id with the model id
     this->unit = (Unit*)model;
     model->setid(this->getID());
-    
     text->setTextResource(std::to_string(unit->getHP()));
+    this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
 }
 
 void UnitView::render(Renderer *renderer)

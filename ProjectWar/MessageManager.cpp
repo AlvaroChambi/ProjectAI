@@ -21,7 +21,7 @@ void MessageManager::update()
         //Get registered callback for the message type
         for (MessageRegistration* msgRegistration : registrationQueue) {
             if (msgRegistration->type == type) {
-                msgRegistration->callback->function();
+                msgRegistration->callback->function(message);
             }
         }
     }

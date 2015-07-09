@@ -135,6 +135,7 @@ void Scene::registerListener(IGameEventsListener *listener)
 }
 
 //TODO handle events in a higher level
+//TODO think a better way to handle events...
 void Scene::handleEvent(const Event event)
 {
     //TODO Do not trigger event if the texture is not visible
@@ -175,6 +176,7 @@ void Scene::handleEvent(const Event event)
                 component = popUp->matchEvent(Point(event.x, event.y));
                 if (component != nullptr) {
                     eventsListener->onUIComponentClicked(*component);
+                    eventHandled = true;
                 }
                 
                 if(!eventHandled){

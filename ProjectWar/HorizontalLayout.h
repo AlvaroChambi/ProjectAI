@@ -15,6 +15,7 @@
 class HorizontalLayout : public Layout
 {
 public:
+    HorizontalLayout(int id);
     HorizontalLayout();
     ~HorizontalLayout();
     

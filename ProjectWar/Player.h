@@ -55,6 +55,9 @@ public:
     void setActive(bool active);
     bool isActive();
     
+    void setFounds(int founds);
+    int getFounds();
+    
     PlayerType getType();
     void setType( PlayerType type );
     
@@ -80,6 +83,8 @@ private:
     Map* map;
     bool active;
     PlayerType type;
+    int founds;
+    Color* color;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

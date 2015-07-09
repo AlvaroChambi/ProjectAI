@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 
+
 //TODO make this an enum...
 class Color
 {
@@ -31,6 +32,17 @@ public:
     int g;
     int b;
     int a;
+    /*
+    */
 };
+
+namespace Colors {
+    const Color RED = Color(255,0,0);
+    const Color GREEN = Color(0,153,0);
+    const Color BLUE = Color(0,0,255);
+    const Color YELLOW = Color(255,255,0);
+    const Color CIAN = Color(0,255,255);
+}
+
 
 #endif /* defined(__ProjectWar__Color__) */

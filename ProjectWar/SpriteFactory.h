@@ -26,7 +26,9 @@ class SpriteFactory
 public:
     SpriteFactory();
     virtual ~SpriteFactory();
-    Sprite* createSprite( SpriteType type );
+    Sprite* createSprite(SpriteType type);
+    Sprite* createSprite( SpriteType type, Renderer* renderer, Unit* unit);
+    Sprite* createSprite( SpriteType type, Renderer* renderer, Unit* unit, int frameWidth, int frameHeight);
 private:
     int idCount;
 };

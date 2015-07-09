@@ -13,6 +13,11 @@ HorizontalLayout::HorizontalLayout() : Layout(-1)
 
 }
 
+HorizontalLayout::HorizontalLayout(int id) : Layout(id)
+{
+    
+}
+
 HorizontalLayout::~HorizontalLayout()
 {
 

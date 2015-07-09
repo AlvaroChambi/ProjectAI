@@ -17,6 +17,7 @@
 #include "UnitUIView.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "Text.h"
 
 class ProjectAI : public GameImplementation
 {
@@ -38,31 +39,31 @@ public:
     
     Player* nextPlayer();
 
-    //Define this colors as a global static type
-    const Color RED = Color(255,0,0);
-    const Color GREEN = Color(0,153,0);
-    const Color BLUE = Color(0,0,255);
-    const Color YELLOW = Color(255,255,0);
-    const Color CIAN = Color(0,255,255);
     //UI button
     static const int END_BUTTON = 1;
     static const int WAIT_BUTTON = 2;
     static const int CANCEL_BUTTON = 3;
     static const int ATTACK_BUTTON = 4;
     static const int CAPTURE_BUTTON = 5;
+    
+    SpriteFactory* spriteFactory;
+    Renderer* renderer;
+    SceneManager* sceneManager;
+    
+    Player* activePlayer;
+    
+    Text* foundsText;
+    Text* playerText;
 private:
     Input getPlayerEvent(int id);
     Scene* gameScene(Scene* scene, Renderer* renderer);
     Player* prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, Renderer* renderer, Map* map);
     
-    SceneManager* sceneManager;
-    Renderer* renderer;
     std::list<Player*> players;
     
     Map* map;
     
     PlayerController* playerController;
-    Player* activePlayer;
     
     int playerTurn;
     int day;

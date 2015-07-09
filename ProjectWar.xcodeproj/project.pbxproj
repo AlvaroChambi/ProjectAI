@@ -107,6 +107,8 @@
 		9CCD60CE1ACFF37F004537F8 /* end_button.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60CA1ACFF37F004537F8 /* end_button.bmp */; };
 		9CCD60CF1ACFF37F004537F8 /* wait_button.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60CB1ACFF37F004537F8 /* wait_button.bmp */; };
 		9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
+		9CE1B8671B415F4F00F8D28D /* DataMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1B8651B415F4F00F8D28D /* DataMessage.cpp */; };
+		9CE1B8691B440F8400F8D28D /* link.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9CE1B8681B440F8400F8D28D /* link.lua */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -309,6 +311,9 @@
 		9CCD60CB1ACFF37F004537F8 /* wait_button.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wait_button.bmp; path = ../../Assets/wait_button.bmp; sourceTree = "<group>"; };
 		9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackCommand.cpp; sourceTree = "<group>"; };
 		9CCD60D11AD3DEF3004537F8 /* AttackCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackCommand.h; sourceTree = "<group>"; };
+		9CE1B8651B415F4F00F8D28D /* DataMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataMessage.cpp; sourceTree = "<group>"; };
+		9CE1B8661B415F4F00F8D28D /* DataMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMessage.h; sourceTree = "<group>"; };
+		9CE1B8681B440F8400F8D28D /* link.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.lua; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -458,6 +463,8 @@
 				9C7B4ED71B2A044F005D3903 /* Callback.h */,
 				9C7B4ED81B2A10F6005D3903 /* MessageRegistration.cpp */,
 				9C7B4ED91B2A10F6005D3903 /* MessageRegistration.h */,
+				9CE1B8651B415F4F00F8D28D /* DataMessage.cpp */,
+				9CE1B8661B415F4F00F8D28D /* DataMessage.h */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -678,6 +685,7 @@
 				9C7B4EAF1B270415005D3903 /* tank.lua */,
 				9C7B4EB31B271F74005D3903 /* anti_tank.lua */,
 				9C7B4EB81B27328A005D3903 /* headquarter.lua */,
+				9CE1B8681B440F8400F8D28D /* link.lua */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -863,6 +871,7 @@
 				9C7B4EB21B270C28005D3903 /* infantry_green.png in Resources */,
 				9C3B96001B1DCA6E00859538 /* unit.lua in Resources */,
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
+				9CE1B8691B440F8400F8D28D /* link.lua in Resources */,
 				9C7B4EB01B270415005D3903 /* tank.lua in Resources */,
 				9C7B4EE61B2AE2E4005D3903 /* tank_avatar.png in Resources */,
 				9CCD60CD1ACFF37F004537F8 /* cancel_button.bmp in Resources */,
@@ -930,6 +939,7 @@
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,
 				9C8FBFF91AAF44E500C4EB1F /* SDLTexture.cpp in Sources */,
 				9C7B4ECF1B29FA49005D3903 /* GameModel.cpp in Sources */,
+				9CE1B8671B415F4F00F8D28D /* DataMessage.cpp in Sources */,
 				9C800B281AB86673003FE2AA /* UnitView.cpp in Sources */,
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
 				9C3B95FB1B1DCA6500859538 /* LuaScript.cpp in Sources */,

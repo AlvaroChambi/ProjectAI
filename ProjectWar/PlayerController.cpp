@@ -67,6 +67,7 @@ void PlayerController::onUIEventReceived(int id)
             player->getState()->handleInput(CAPTURE_CLICKED, -1, nullptr);
             break;
         default:
+            player->getState()->handleInput(UI_COMPONENT_CLICKED, id, nullptr);
             break;
     }
 }

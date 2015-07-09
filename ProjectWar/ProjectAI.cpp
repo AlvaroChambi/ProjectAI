@@ -14,6 +14,7 @@
 #include "HorizontalLayout.h"
 #include "Button.h"
 #include "MessageManager.h"
+#include "DataMessage.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0), founds(1000)
 {
@@ -118,8 +119,16 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
     }
 }
 
+void pushCreateViewMessage(Unit* unit)
+{
+    //Sends message to create the view for the unit and attach it to the scene
+    DataMessage<Unit*> *message = new DataMessage<Unit*>(MESSAGE_CREATE_UNIT,unit);
+    MessageManager::getInstance().sendMessage(message);
+}
+
 Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
 {
+    //UI Commands
     Layout* mainLayout = new Layout();
     mainLayout->setParams(Params(FILL, FILL, UP));
     scene->setUIHUD(mainLayout);
@@ -132,10 +141,11 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     layout->addComponent(button);
     button->setImageResource("end_button.bmp");
     
+    //PLayer UI
     Layout* gameLayout = new VerticalLayout();
     gameLayout->setBackground(Color(0,0,0));
-    Text* foundsText = new Text();
-    Text* playerText = new Text();
+    foundsText = new Text();
+    playerText = new Text();
     //TODO update with actual player info
     foundsText->setTextResource("Founds: " + std::to_string(founds));
     playerText->setTextResource("Player1");
@@ -147,7 +157,9 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     gameLayout->addComponent(foundsText);
     gameLayout->addComponent(playerText);
     
-
+    //Factory Popup
+    //TODO think a way to measure the layouts when all the childrens are already defined
+    //TODO Move to factorySelectedState
     std::cout << "POP_UP_LAYOUT\n";
     //Prepare popup
     Layout* popUp = new VerticalLayout();
@@ -174,9 +186,9 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     popUp->addComponent(item2);
 
     Params imageParams = Params(40,40,CENTER);
-    Button* item0Image = new Button(-1);
-    Button* item1Image = new Button(-1);
-    Button* item2Image = new Button(-1);
+    Button* item0Image = new Button(12);
+    Button* item1Image = new Button(13);
+    Button* item2Image = new Button(14);
     
     item0Image->setImageResource("soldier_avatar.png");
     item1Image->setImageResource("tank_avatar.png");
@@ -212,7 +224,7 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     map = new Map();
     map->loadMap(renderer, 40, 40);
     
-    SpriteFactory* spriteFactory = new SpriteFactory;
+    spriteFactory = new SpriteFactory;
     
     //TODO fix how we set the id to the sprites and models
     Player* player = new Player(0);
@@ -227,73 +239,40 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     /////////  PLAYER 1 UNITS //////////
     UnitFactory unitFactory;
     Unit* unit = unitFactory.createUnit("unit.lua");
-    Sprite* unitSprite = spriteFactory->createSprite(UNIT);
-    unitSprite->setModel(unit);
-    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 128);
-    unitSprite->setTexture(unitTexture);
-    //resize to fit in a map tile
-    unitSprite->resize(40, 40);
     unit->setPosition(map->getTile(2, 1));
     player->addUnit(unit);
+    pushCreateViewMessage(unit);
     
     Unit* unit3 = unitFactory.createUnit("tank.lua");;
-    Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
-    unitSprite3->setModel(unit3);
-    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 128);
-    unitSprite3->setTexture(unitTexture3);
-    //resize to fit in a map tile
-    unitSprite3->resize(40, 40);
     unit3->setPosition(map->getTile(4, 4));
     player->addUnit(unit3);
+    pushCreateViewMessage(unit3);
     
     Unit* unit4 = unitFactory.createUnit("unit.lua");
-    Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
-    unitSprite4->setModel(unit4);
-    Texture* unitTexture4 = renderer->loadSprite(unit4->getResource(), 128, 128);
-    unitSprite4->setTexture(unitTexture4);
-    //resize to fit in a map tile
-    unitSprite4->resize(40, 40);
     unit4->setPosition(map->getTile(3, 8));
     player->addUnit(unit4);
+    pushCreateViewMessage(unit4);
     
     ///////////  PLAYER 2 UNITS ///////////
-    Unit* unit2 = new Unit();
-    unit2->setResource("link.png");
-    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
-    unit2->setMovement(3);
-    unit2->setAttackRange(1);
-    unit2->setHP(10);
-    unit2Sprite->setModel(unit2);
-    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
-    unit2Sprite->setTexture(unit2Texture);
-    unit2Sprite->resize(40, 40);
+    Unit* unit2 = unitFactory.createUnit("link.lua");
+    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT, renderer, unit2, 90, 90);
     unit2->setPosition(map->getTile(13, 3));
+    unit2Sprite->setModel(unit2);
+    unit2Sprite->resize(40, 40);
     player2->addUnit(unit2);
     
-    Unit* unit5 = new Unit();
-    unit5->setResource("link.png");
-    Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
-    unit5->setMovement(3);
-    unit5->setAttackRange(1);
-    unit5->setHP(10);
-    unitSprite5->setModel(unit5);
-    Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 90, 90);
-    unitSprite5->setTexture(unitTexture5);
-    unitSprite5->resize(40, 40);
+    Unit* unit5 = unitFactory.createUnit("link.lua");
+    Sprite* unitSprite5 = spriteFactory->createSprite(UNIT, renderer, unit5, 90, 90);
     unit5->setPosition(map->getTile(12, 5));
+    unitSprite5->setModel(unit5);
+    unitSprite5->resize(40, 40);
     player2->addUnit(unit5);
     
-    Unit* unit6 = new Unit();
-    unit6->setResource("link.png");
-    Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
-    unit6->setMovement(3);
-    unit6->setAttackRange(1);
-    unit6->setHP(10);
-    unitSprite6->setModel(unit6);
-    Texture* unitTexture6 = renderer->loadSprite(unit6->getResource(), 90, 90);
-    unitSprite6->setTexture(unitTexture6);
-    unitSprite6->resize(40, 40);
+    Unit* unit6 = unitFactory.createUnit("link.lua");
+    Sprite* unitSprite6 = spriteFactory->createSprite(UNIT, renderer, unit6, 90, 90);
     unit6->setPosition(map->getTile(11, 8));
+    unitSprite6->setModel(unit6);
+    unitSprite6->resize(40, 40);
     player2->addUnit(unit6);
     
     //Load buildings
@@ -306,13 +285,8 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     scene->attachMap(map);
     
     scene->attachSprite(unit2Sprite);
-    scene->attachSprite(unitSprite3);
-    scene->attachSprite(unitSprite4);
     scene->attachSprite(unitSprite5);
     scene->attachSprite(unitSprite6);
-    scene->attachSprite(unitSprite);
-    
-    //scene->attachSprite(playerSprite);
     
     scene->registerListener(this);
     
@@ -353,7 +327,8 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
     
     MessageManager::getInstance().registerForMessage(MESSAGE_SHOW_POPUP, new ShowPopUpCallback(sceneManager));
     MessageManager::getInstance().registerForMessage(MESSAGE_HIDE_POPUP, new HidePopUpCallback(sceneManager));
-    
+    MessageManager::getInstance().registerForMessage(MESSAGE_CREATE_UNIT, new CreateUnitCallback(this));
+    MessageManager::getInstance().registerForMessage(MESSAGE_UPDATE_PLAYER_INFO, new UpdateUICallback(this));
     /*
     Scene* scene = gameScene(sceneManager, renderer);
     sceneManager->registerScene(scene, "game_scene");*/
@@ -383,6 +358,7 @@ Player* ProjectAI::nextPlayer()
     activePlayer = result;
     activePlayer->setActive(true);
     playerController->setPlayer(activePlayer);
+    MessageManager::getInstance().sendMessage(new Message(MESSAGE_UPDATE_PLAYER_INFO));
     return result;
 }
 
@@ -424,12 +400,29 @@ Player* ProjectAI::getPlayer(int position)
     return player;
 }
 
-void ShowPopUpCallback::function()
+void ShowPopUpCallback::function(Message* message)
 {
     sceneManager->getActualScene()->showPopup();
 }
 
-void HidePopUpCallback::function()
+void HidePopUpCallback::function(Message* message)
 {
     sceneManager->getActualScene()->hidePopUp();
+}
+
+void CreateUnitCallback::function(Message* message)
+{
+    DataMessage<Unit*>* dataMessage = (DataMessage<Unit*>*)message;
+    Unit* unit = dataMessage->dataStorage;
+    //Create view
+    Sprite* unitSprite = game->spriteFactory->createSprite(UNIT, game->renderer, unit);
+    unitSprite->setModel(unit);
+    unitSprite->resize(40, 40);
+    game->sceneManager->getActualScene()->attachSprite(unitSprite);
+}
+
+void UpdateUICallback::function(Message *message)
+{
+    game->playerText->setTextResource("Player " + std::to_string(game->activePlayer->getId()));
+    game->foundsText->setTextResource(std::to_string(game->activePlayer->getFounds()));
 }

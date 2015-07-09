@@ -61,7 +61,7 @@ void NothingSelectedState::handleInput(Input input, int id, Tile position)
             Building* building = player->getMap()->getBuilding(id);
            
             if (building->getType() == "Factory" && player->hasBuilding(id)) {
-                player->updateState(new FactorySelectedState(player));
+                player->updateState(new FactorySelectedState(player, building));
             }
         }
             break;

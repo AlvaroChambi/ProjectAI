@@ -8,16 +8,18 @@
 
 #include "Player.h"
 #include "Map.h"
+#include "MessageManager.h"
 
 Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
-                    active(false), map(nullptr), type(HUMAN_PLAYER)
+                    active(false), map(nullptr), type(HUMAN_PLAYER), color(nullptr)
 {
-    
+    setFounds(3000);
 }
 
 Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
-                        active(false), map(nullptr), type(HUMAN_PLAYER)
+                        active(false), map(nullptr), type(HUMAN_PLAYER),color(nullptr)
 {
+    setFounds(3000);
     this->setid(id);
 }
 
@@ -36,6 +38,17 @@ void Player::setPosition(int x, int y)
 Point Player::getPosition()
 {
     return position;
+}
+
+void Player::setFounds(int founds)
+{
+    this->founds = founds;
+    MessageManager::getInstance().sendMessage(new Message(MESSAGE_UPDATE_PLAYER_INFO));
+}
+
+int Player::getFounds()
+{
+    return founds;
 }
 
 void Player::setTile(const Tile tile)

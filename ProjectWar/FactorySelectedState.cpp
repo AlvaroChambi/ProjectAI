@@ -65,6 +65,7 @@ void FactorySelectedState::handleUIEvent(int id)
         default:
             break;
     }
+    //unitScript = unitScript + building->getArmy()->name + ".lua";
     if(foundsAvailable(value)){
         createUnit(unitScript);
     }

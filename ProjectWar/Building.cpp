@@ -25,7 +25,7 @@ Tile Building::getTile()
 
 Point Building::getPosition()
 {
-    return tile.position;
+    return Point(tile.column, tile.row);
 }
 
 void Building::setType(std::string type)

@@ -25,10 +25,10 @@ MoveCommand::~MoveCommand()
 
 void MoveCommand::execute()
 {
-    std::cout << "              executing move command\n";
-    std::cout <<"                   unit: " + std::to_string(unit->getId()) <<  "  " << destination.position << "\n";
+  //  std::cout << "              executing move command\n";
+  //  std::cout <<"                   unit: " + std::to_string(unit->getId()) <<  "  " << destination.position << "\n";
     map->cleanUnitAvailableArea(unit);
-    map->moveUnit(unit, destination.position);
+    map->moveUnit(unit, Point(destination.column, destination.row));
     unit->setPosition(destination);
 }
 
@@ -36,6 +36,6 @@ void MoveCommand::cancel()
 {
     std::cout << "              canceling move command\n";
     std::cout <<"                   unit: " + std::to_string(unit->getId()) + "\n";
-    map->moveUnit(unit, savedPosition.position);
+    map->moveUnit(unit, Point(savedPosition.row, savedPosition.column));
     unit->setPosition(savedPosition);
 }

@@ -127,6 +127,16 @@ PlayerType Player::getType()
     return type;
 }
 
+void Player::setColor(Color* color)
+{
+    this->color = color;
+}
+
+Color* Player::getColor()
+{
+    return color;
+}
+
 //Update the player actual state and enter in it
 void Player::updateState(State *state)
 {

@@ -7,6 +7,7 @@
 //
 #include "UnitFactory.h"
 #include "LuaScript.h"
+#include <vector>
 
 UnitFactory::UnitFactory()
 {
@@ -22,10 +23,13 @@ Unit* UnitFactory::createUnit(std::string scriptFile)
 {
     Unit* unit = new Unit;
     LuaScript script(scriptFile);
+
     unit->setHP(script.get<int>("unit.hp"));
     unit->setMovement(script.get<int>("unit.movement"));
     unit->setResource(script.get<std::string>("unit.resource"));
     unit->setAttackRange(script.get<int>("unit.attack_range"));
+    
+   // std::vector<std::string> list = script.getTableKeys("unit");
     
     //TODO: iterate over the command list to update the available commands
     

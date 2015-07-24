@@ -15,12 +15,24 @@
 class Tile
 {
 public:
-    Point position;
     Tile();
     Tile(Texture* texture);
+    virtual ~Tile();
+    
     Texture* getTexture();
     void setTexture(Texture* texture);
-    virtual ~Tile();
+    
+    bool matchPosition(Point position);
+    
+    Point getPosition();
+    
+    Point srcPosition;
+    Point destPosition;
+    int width;
+    int height;
+    
+    int row;
+    int column;
 private:
     Texture* texture;
 };

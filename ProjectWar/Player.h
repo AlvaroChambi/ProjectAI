@@ -45,6 +45,9 @@ public:
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
     
+    Color* getColor();
+    void setColor(Color* color);
+    
     State* getState();
     void updateState(State* state);
     void setState(State* state);

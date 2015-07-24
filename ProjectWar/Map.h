@@ -84,6 +84,14 @@ private:
     TileMap matrix;
     InfoMap infoMap;
     
+    std::vector<Tile*> mapTiles;
+    std::vector<int> mapLayout;
+    std::vector<Tile*> map;
+    
+    Texture* texture;
+    int rows;
+    int columns;
+    
     std::list<Building*> buildings;
     std::list<Sprite*> sprites;
     Pathfinder* pathfinder;

@@ -192,6 +192,36 @@ void SDLRenderer::drawTexture(Texture* texture, int width, int height)
     drawTexture(texture, destRect);
 }
 
+void SDLRenderer::drawTexture(Texture *texture, Point srcPosition, Point destPosition ,int width, int height)
+{
+    SDL_Rect destRect;
+    
+    destRect.w = width;
+    destRect.h = height;
+    
+    if (texture->isVisible()) {
+        SDL_Rect srcRect;
+        
+        srcRect.x = srcPosition.x;
+        srcRect.y = srcPosition.y;
+        //TODO not working when forcing ai to render his process(black screen)
+        if (texture->hud) {
+            destRect.x = destPosition.x;
+            destRect.y = destPosition.y;
+        }else{
+            //camera offset
+            destRect.x = destPosition.x - camera->position.x;
+            destRect.y = destPosition.y - camera->position.y;
+        }
+        
+        srcRect.w = width;
+        srcRect.h = height;
+        
+        SDL_Texture* sdlTexture = (SDL_Texture*)texture->getTexture();
+        SDL_RenderCopy(sdlRenderer,sdlTexture, &srcRect, &destRect);
+    }
+}
+
 void SDLRenderer::drawTexture(Texture* texture, SDL_Rect destRect)
 {
     if (texture->isVisible()) {

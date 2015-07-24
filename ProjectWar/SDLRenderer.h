@@ -28,6 +28,7 @@ public:
     Texture* loadSprite(std::string resource, int width, int height);
     void drawTexture(Texture* texture);
     void drawTexture(Texture* texture, int width, int height);
+    void drawTexture(Texture* texture, Point srcPosition, Point destPosition, int width, int height);
     void renderClear();
     void renderPresent();
     

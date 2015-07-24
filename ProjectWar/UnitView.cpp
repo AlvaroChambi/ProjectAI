@@ -27,7 +27,7 @@ void UnitView::setModel(Model *model)
     this->unit = (Unit*)model;
     model->setid(this->getID());
     text->setTextResource(std::to_string(unit->getHP()));
-    this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+    this->getTexture()->setPosition(unit->getTile().getPosition());
 }
 
 void UnitView::render(Renderer *renderer)
@@ -40,7 +40,7 @@ void UnitView::update( Update update )
 {
     switch (update) {
         case POSITION_UPDATE:
-            this->getTexture()->setPosition(unit->getTile().getTexture()->getPosition());
+            this->getTexture()->setPosition(unit->getTile().getPosition());
             //Updating hp text position when the unit change his position
             text->centerDown(getTexture()->getPosition(), this->getWidth(), this->getHeight());
             break;

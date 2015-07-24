@@ -39,7 +39,7 @@ void BuildingView::update(Update update)
 {
     switch (update) {
         case POSITION_UPDATE:
-            this->getTexture()->setPosition(building->getTile().getTexture()->getPosition());
+            this->getTexture()->setPosition(building->getTile().getPosition());
             text->center(getTexture()->getPosition(), getWidth(), getHeight());
             break;
         case CAPTURE_UPDATE:

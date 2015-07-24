@@ -21,8 +21,8 @@ Unit::~Unit()
 //This method does not update the texture position, maybe we have to implement it
 void Unit::setPosition(int x, int y)
 {
-    this->tile.position.x = x;
-    this->tile.position.y = y;
+    this->tile.row = x;
+    this->tile.column = y;
 }
 
 void Unit::setPosition(const Tile tile)
@@ -70,7 +70,7 @@ Tile Unit::getTile()
 
 Point Unit::getPosition()
 {
-    return tile.position;
+    return Point(tile.column, tile.row);
 }
 
 void Unit::setAttackRange(int attackRange)

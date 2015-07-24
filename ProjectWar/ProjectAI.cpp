@@ -141,14 +141,11 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     layout->addComponent(button);
     button->setImageResource("end_button.bmp");
     
-    //PLayer UI
+    //Player UI
     Layout* gameLayout = new VerticalLayout();
     gameLayout->setBackground(Color(0,0,0));
     foundsText = new Text();
     playerText = new Text();
-    //TODO update with actual player info
-    foundsText->setTextResource("Founds: " + std::to_string(founds));
-    playerText->setTextResource("Player1");
     playerText->setParams(Params(50,5,CENTER));
     foundsText->setParams(Params(50,5,CENTER));
     gameLayout->setParams(Params(200,40,UP));
@@ -223,13 +220,14 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     //Load map data model and view resources
     map = new Map();
     map->loadMap(renderer, 40, 40);
+    scene->attachMap(map);
     
     spriteFactory = new SpriteFactory;
     
     //TODO fix how we set the id to the sprites and models
     Player* player = new Player(0);
     player->setMap(map);
-    
+    player->setColor(new Color(0,0,255));
     Player* player2 = prepareOpponent(spriteFactory, scene, renderer, map);
     
     this->addPlayer(player);
@@ -304,6 +302,7 @@ Player* ProjectAI::prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, R
         playerAI->setPlayerList(&players);
     }
     player2->setMap(map);
+    player2->setColor(new Color(255,0,0));
     return player2;
 }
 

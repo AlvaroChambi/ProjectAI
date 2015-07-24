@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>6E31169C-C7D3-437F-95BF-2117418B3B3D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>ProjectWar</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B3057BB8549E78C402A6976A9606683716E20CED</key>
 		<string>https://github.com/AlvaroChambi/ProjectAI.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ProjectWar.xcodeproj</string>
+	<string>ProjectWar.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B3057BB8549E78C402A6976A9606683716E20CED</key>

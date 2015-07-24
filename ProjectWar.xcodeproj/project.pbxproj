@@ -48,6 +48,9 @@
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
+		9C7407B01B4E9A5A0045E5B6 /* MapBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7407AE1B4E9A5A0045E5B6 /* MapBuilder.cpp */; };
+		9C7407B21B4EE7E70045E5B6 /* map.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7407B11B4EE7E70045E5B6 /* map.lua */; };
+		9C7407B41B4EEAB40045E5B6 /* building_layout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7407B31B4EEAB40045E5B6 /* building_layout.lua */; };
 		9C7B4EB01B270415005D3903 /* tank.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EAF1B270415005D3903 /* tank.lua */; };
 		9C7B4EB21B270C28005D3903 /* infantry_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB11B270C28005D3903 /* infantry_green.png */; };
 		9C7B4EB41B271F74005D3903 /* anti_tank.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B4EB31B271F74005D3903 /* anti_tank.lua */; };
@@ -200,6 +203,11 @@
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
+		9C7407AD1B4E98610045E5B6 /* Army.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Army.h; sourceTree = "<group>"; };
+		9C7407AE1B4E9A5A0045E5B6 /* MapBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapBuilder.cpp; sourceTree = "<group>"; };
+		9C7407AF1B4E9A5A0045E5B6 /* MapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBuilder.h; sourceTree = "<group>"; };
+		9C7407B11B4EE7E70045E5B6 /* map.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map.lua; sourceTree = "<group>"; };
+		9C7407B31B4EEAB40045E5B6 /* building_layout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = building_layout.lua; sourceTree = "<group>"; };
 		9C7B4EAF1B270415005D3903 /* tank.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tank.lua; sourceTree = "<group>"; };
 		9C7B4EB11B270C28005D3903 /* infantry_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infantry_green.png; sourceTree = "<group>"; };
 		9C7B4EB31B271F74005D3903 /* anti_tank.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anti_tank.lua; sourceTree = "<group>"; };
@@ -391,6 +399,8 @@
 				9C800B1C1AB74485003FE2AA /* Map.cpp */,
 				9C800B1D1AB74485003FE2AA /* Map.h */,
 				9C0A5A811AC57C5D00BF793E /* InfoTile.h */,
+				9C7407AE1B4E9A5A0045E5B6 /* MapBuilder.cpp */,
+				9C7407AF1B4E9A5A0045E5B6 /* MapBuilder.h */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -549,6 +559,7 @@
 				9C800B111AB7443C003FE2AA /* Player.h */,
 				9C800B121AB7443C003FE2AA /* Unit.cpp */,
 				9C800B131AB7443C003FE2AA /* Unit.h */,
+				9C7407AD1B4E98610045E5B6 /* Army.h */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -686,6 +697,8 @@
 				9C7B4EB31B271F74005D3903 /* anti_tank.lua */,
 				9C7B4EB81B27328A005D3903 /* headquarter.lua */,
 				9CE1B8681B440F8400F8D28D /* link.lua */,
+				9C7407B11B4EE7E70045E5B6 /* map.lua */,
+				9C7407B31B4EEAB40045E5B6 /* building_layout.lua */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -883,6 +896,7 @@
 				9C8FBFFF1AB056D700C4EB1F /* rider.bmp in Resources */,
 				9C0A5A7E1AC32E4600BF793E /* mario.bmp in Resources */,
 				9C800B251AB74989003FE2AA /* test.bmp in Resources */,
+				9C7407B21B4EE7E70045E5B6 /* map.lua in Resources */,
 				9C0A5A7A1AC2D13F00BF793E /* link.bmp in Resources */,
 				9C3B96521B25B3C200859538 /* player_ai_button.png in Resources */,
 				9C7B4EB41B271F74005D3903 /* anti_tank.lua in Resources */,
@@ -890,6 +904,7 @@
 				9C7B4EB91B27328A005D3903 /* headquarter.lua in Resources */,
 				9C7B4EB71B273277005D3903 /* factory.lua in Resources */,
 				9CCD60CF1ACFF37F004537F8 /* wait_button.bmp in Resources */,
+				9C7407B41B4EEAB40045E5B6 /* building_layout.lua in Resources */,
 				9C800B471ABC366E003FE2AA /* animate.bmp in Resources */,
 				9CCD60CE1ACFF37F004537F8 /* end_button.bmp in Resources */,
 				9C3B96541B25B3D000859538 /* player_player_button.png in Resources */,
@@ -946,6 +961,7 @@
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
 				9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */,
 				9C3B95F61B1DCA4E00859538 /* TacticMinimax.cpp in Sources */,
+				9C7407B01B4E9A5A0045E5B6 /* MapBuilder.cpp in Sources */,
 				9C3B96111B1DCAEF00859538 /* CaptureCommand.cpp in Sources */,
 				9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */,
 				9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */,

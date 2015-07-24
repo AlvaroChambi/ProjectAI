@@ -12,6 +12,7 @@
 #include "Path.h"
 #include "Pathfinder.h"
 #include "BuildingFactory.h"
+#include "MapBuilder.h"
 
 Map::Map()
 {
@@ -53,19 +54,23 @@ std::list<Building*>& Map::getBuildings()
 //Using static map width and height for now
 void Map::loadMap(Renderer* renderer, int width, int height)
 {
-    for(int i = 0; i < MAP_WIDTH ; i++){
-        int posX = i * width;
-        for(int j = 0; j < MAP_HEIGHT ; j++){
-            int posY = j * height;
-            //use static color !Change this¡
-            Color color = Color(0,153,0);
-            Texture * texture = renderer->loadShape(RECTANGLE, color,width, height);
-            texture->setPosition(posX, posY);
-            Tile* tile = new Tile(texture);
-            tile->position.x = i;
-            tile->position.y = j;
-            matrix[i][j] = tile;
-        }
+    //Load mapa render info from the script
+    MapBuilder mapBuilder = MapBuilder();
+    mapTiles = mapBuilder.buildMap("map.lua");
+    mapLayout = mapBuilder.mapLayout;
+    rows = mapBuilder.rows;
+    columns = mapBuilder.columns;
+    
+    //Load texture map
+    texture = renderer->loadTexture(mapBuilder.resource);
+    int position = 0;
+    //Load needed map tiles
+    for (Tile* tile : mapTiles) {
+        int actualRow = position /  columns;
+        int actualColumn = position % columns;
+        position++;
+        
+        matrix[actualColumn][actualRow] = tile;
     }
 }
 
@@ -109,7 +114,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
     city->setOwnerID(0);
     this->addBuilding(city);
     
-    //Add all sprite to the scene?
+    //Add all the sprite to the scene?
     sprites.push_back(citySprite);
     sprites.push_back(buildingSprite);
     sprites.push_back(buildingSprite2);
@@ -132,6 +137,7 @@ Building* Map::getBuilding(Point position)
 
 void Map::cleanUnitAvailableArea(Unit *unit)
 {
+    /*
     int x = unit->getPosition().x - unit->getMovement();
     int y = unit->getPosition().y - unit->getMovement();
     
@@ -147,11 +153,12 @@ void Map::cleanUnitAvailableArea(Unit *unit)
                 }
             }
         }
-    }
+    }*/
 }
 
 void Map::updateUnitAvailableArea(Unit *unit)
 {
+    /*
     int x = unit->getPosition().x - unit->getMovement();
     int y = unit->getPosition().y - unit->getMovement();
     
@@ -168,17 +175,15 @@ void Map::updateUnitAvailableArea(Unit *unit)
             }
         }
     }
+     */
 }
 
 void Map::drawMap(Renderer* renderer, Camera* camera)
 {
-    for(int i = 0; i < MAP_WIDTH; i++){
-        for(int j = 0; j < MAP_HEIGHT; j++){
-            if(matrix[i][j]->getTexture()->isVisible()){
-                //TODO Debug, change the way to implement the camera
-                //TODO just draw if the texture is on the camera area
-                renderer->drawTexture(matrix[i][j]->getTexture());
-            }
+    for(int i = 0; i < columns; i++){
+        for(int j = 0; j < rows; j++){
+            Tile* tile = matrix[i][j];
+            renderer->drawTexture( texture, tile->srcPosition, tile->destPosition, tile->width, tile->height);
         }
         
     }
@@ -190,13 +195,14 @@ void Map::drawMap(Renderer* renderer, Camera* camera)
 
 void Map::drawInfoMap(Renderer *renderer)
 {
+    /*
     //Draws info map over the map
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
             InfoTile* tile = infoMap[i][j];
             tile->text->render(renderer);
         }
-    }
+    }*/
 }
 
 Tile* Map::matchEvent(Point position)
@@ -204,7 +210,7 @@ Tile* Map::matchEvent(Point position)
     Tile* tile = nullptr;
     for (int i = 0; i < MAP_WIDTH; i++) {
         for (int j = 0; j < MAP_HEIGHT ; j++) {
-            if(matrix[i][j]->getTexture()->matchPosition(position)){
+            if(matrix[i][j]->matchPosition(position)){
                 tile = matrix[i][j];
             }
         }
@@ -227,7 +233,7 @@ Point Map::getAbsolutePosition(Point tilePosition)
 {
     Point point;
     if (tilePosition.x < MAP_WIDTH && tilePosition.y < MAP_HEIGHT) {
-        point = matrix[tilePosition.x][tilePosition.y]->getTexture()->getPosition();
+        point = matrix[tilePosition.x][tilePosition.y]->getPosition();
     }
     return point;
 }

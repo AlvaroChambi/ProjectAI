@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Model.h"
 #include "Tile.h"
+#include "Army.h"
 
 class Building : public Model
 {
@@ -36,6 +37,8 @@ public:
     std::string getType();
     void setType(std::string type);
     
+    void setArmy(Army* army);
+    Army* getArmy();
 private:
     int ownerID;
     Tile tile;

@@ -33,6 +33,7 @@ public:
     virtual void drawTexture(Texture* texture) = 0;
     //Draws the texture with a new width and heigth
     virtual void drawTexture(Texture* texture, int width, int height) = 0;
+    virtual void drawTexture(Texture* texture, Point srcPosition, Point destPosition, int width, int height) = 0;
     virtual void registerCamera(Camera* camera) = 0;
     virtual void renderClear() = 0;
     virtual void renderPresent() = 0;

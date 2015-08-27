@@ -8,7 +8,7 @@
 
 #include "Button.h"
 
-Button::Button(int id) : UIComponent(id), texture(nullptr), resource(""),resourceChanged(false)
+Button::Button(int id) : UIComponent(id), resource(""),resourceChanged(false)
 {
 
 }
@@ -20,11 +20,12 @@ Button::~Button()
 
 void Button::render(Renderer *renderer)
 {
+    //UIComponent::render(renderer);
     if (resourceChanged && resource != "") {
         setTexture(renderer->loadTexture(resource));
         resourceChanged= false;
     }
-    //Update texture with the adjusted values for position and dimensions
+    
     texture->setPosition(this->getPosition());
     renderer->drawTexture(texture, this->getWidth(), this->getHeight());
 }
@@ -33,15 +34,6 @@ void Button::setTexture(Texture *texture)
 {
     texture->hud = this->isHUD();
     this->texture = texture;
-}
-
-UIComponent* Button::matchEvent(Point position)
-{
-    UIComponent* result = nullptr;
-    if (texture != nullptr && texture->matchPosition(position)) {
-        result = this;
-    }
-    return result;
 }
 
 void Button::setImageResource(std::string resource)

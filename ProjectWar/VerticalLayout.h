@@ -19,7 +19,7 @@ public:
     VerticalLayout();
     virtual ~VerticalLayout();
     
-    void updatePosition(UIComponent* component);
+    void measurePosition();
 
 };
 

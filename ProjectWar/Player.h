@@ -45,9 +45,6 @@ public:
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
     
-    Color* getColor();
-    void setColor(Color* color);
-    
     State* getState();
     void updateState(State* state);
     void setState(State* state);
@@ -74,6 +71,8 @@ public:
     bool hasUnitAlive();
     
     bool hasCapturedHQ();
+    
+    std::string army;
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
@@ -87,7 +86,6 @@ private:
     bool active;
     PlayerType type;
     int founds;
-    Color* color;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

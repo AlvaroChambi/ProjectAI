@@ -26,6 +26,7 @@ public:
     Texture* loadShape(Shape shape, Color color, int width, int height);
     Texture* loadText(std::string text, Color color);
     Texture* loadSprite(std::string resource, int width, int height);
+    void renderDrawShape(Shape shape,  Point position ,Color color, int width, int height);
     void drawTexture(Texture* texture);
     void drawTexture(Texture* texture, int width, int height);
     void drawTexture(Texture* texture, Point srcPosition, Point destPosition, int width, int height);

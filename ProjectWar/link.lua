@@ -4,7 +4,7 @@ unit = {
 
     --Tiles that the unit can move in one turn
     movement = 3,
-    resource = "link.png",
+    resource = "soldier_blue.png",
     --Range of attack in tiles
     attack_range = 1,
     -- relative initial position in the map (row, column)

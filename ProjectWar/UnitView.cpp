@@ -12,7 +12,7 @@ UnitView::UnitView() : Sprite()
 {
     text = new Text();
     text->setParams(Params(10,10,DOWN));
-    text->updateDimensions();
+    text->measureDimension();
 }
 
 UnitView::~UnitView()
@@ -28,6 +28,7 @@ void UnitView::setModel(Model *model)
     model->setid(this->getID());
     text->setTextResource(std::to_string(unit->getHP()));
     this->getTexture()->setPosition(unit->getTile().getPosition());
+    //TODO Set wich row will be animated (facing left or facing right)
 }
 
 void UnitView::render(Renderer *renderer)

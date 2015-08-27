@@ -40,6 +40,7 @@ private:
     Texture* texture;
     int id;
     int frame;
+    int row;
     bool animated;
     int width;
     int height;

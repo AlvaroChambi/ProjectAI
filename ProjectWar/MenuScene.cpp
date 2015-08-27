@@ -11,24 +11,19 @@
 #include "Button.h"
 
 
-MenuScene::MenuScene(Renderer* renderer) : Scene(renderer)
+MenuScene::MenuScene(Renderer* renderer, SceneManager* manager) : Scene(renderer, manager)
 {
 
 }
 
 MenuScene::~MenuScene()
 {
-
+    //Listen scene events ad handle them here
+    //need an scene manager
 }
 
 void MenuScene::onSceneStarted()
 {
-  /*  Layout* layout = new Layout;
-    Params params = Params(200, 200, CENTER);
-    layout->setBackground(Color(255,0,0));
-    layout->setParams(params);
-    std::cout << "Adding menu layout\n";
-    this->setUIHUD(layout);*/
     VerticalLayout* menuLayout = new VerticalLayout;
     //TODO Change the way to set the ui components id
     Button* menuButton = new Button(10);

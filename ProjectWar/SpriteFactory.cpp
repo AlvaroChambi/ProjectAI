@@ -39,7 +39,7 @@ Sprite* SpriteFactory::createSprite(SpriteType type, Renderer* renderer, Unit* u
         default:
             break;
     }
-    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 128);
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 32, 32);
     sprite->setTexture(unitTexture);
     return sprite;
 }

@@ -60,11 +60,14 @@ void Sprite::setRenderFrame(Point position)
 //Try to set a fixed frame rate for animations...
 void Sprite::updateFrame()
 {
+    //TODO Set which row from the texture is being animated
+    int row = 0;
     int frameWidth = getTexture()->getFrameWidth();
+    int frameHeight = getTexture()->getFrameHeight();
     //Just animating in the "x axis"...
     if(animated){
         if (frame * frameWidth <= (getTexture()->getWidth() - frameWidth)) {
-            getTexture()->setFramePosition(Point( frame * frameWidth, 0 ));
+            getTexture()->setFramePosition(Point( frame * frameWidth, row * frameHeight ));
             frame++;
         }else{
             //restart the animation

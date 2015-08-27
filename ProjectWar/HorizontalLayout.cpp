@@ -23,7 +23,7 @@ HorizontalLayout::~HorizontalLayout()
 
 }
 
-void HorizontalLayout::updatePosition(UIComponent* component)
+void HorizontalLayout::measurePosition()
 {
     if(components.size() > 0){
         int subParentWidth = getWidth() / components.size();

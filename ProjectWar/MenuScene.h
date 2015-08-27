@@ -15,7 +15,7 @@
 class MenuScene : public Scene
 {
 public:
-    MenuScene(Renderer* renderer);
+    MenuScene(Renderer* renderer, SceneManager* manager);
     ~MenuScene();
     
     void onSceneStarted();

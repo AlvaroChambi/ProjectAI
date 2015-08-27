@@ -8,12 +8,12 @@
 
 #include "Text.h"
 
-Text::Text() : UIComponent(-1), resource(""), texture(nullptr), changed(false), color(WHITE)
+Text::Text() : UIComponent(-1), resource(""), changed(false), color(WHITE)
 {
 
 }
 
-Text::Text(int id) : UIComponent(id), resource(""), texture(nullptr), changed(false), color(WHITE)
+Text::Text(int id) : UIComponent(id), resource(""), changed(false), color(WHITE)
 {
     
 }
@@ -25,17 +25,16 @@ Text::~Text()
 
 void Text::render(Renderer *renderer)
 {
+    renderer->renderDrawShape(RECTANGLE_OUTLINE, position, Color(255, 0, 0), width, height);
     //if the text has been changed create new texture with the new text
     if (changed && resource != "") {
         setTexture(renderer->loadText(resource, getColor()));
-        this->setWidth(texture->getWidth());
-        this->setHeight(texture->getHeight());
         this->changed = false;
     }
     
     if(texture != nullptr && resource != "" && texture->isVisible()){
         texture->setPosition(getPosition().x, getPosition().y);
-        renderer->drawTexture(texture);
+        renderer->drawTexture(texture, width, height);
     }
 }
 
@@ -58,15 +57,6 @@ void Text::setColor(Color color)
 Color Text::getColor()
 {
     return color;
-}
-
-UIComponent* Text::matchEvent(Point position)
-{
-    UIComponent* result = nullptr;
-    if (texture->matchPosition(position)) {
-        result = this;
-    }
-    return result;
 }
 
 void Text::setTextResource(std::string text)

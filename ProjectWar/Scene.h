@@ -20,10 +20,11 @@
 #include "Layout.h"
 #include "Camera.h"
 
+class SceneManager;
 class Scene
 {
 public:
-    Scene(Renderer *renderer);
+    Scene(Renderer* renderer, SceneManager* manager);
     virtual ~Scene();
     
     virtual void onSceneStarted() = 0;
@@ -56,6 +57,7 @@ private:
     std::list <Sprite*> sprites;
     Renderer *renderer;
     IGameEventsListener* eventsListener;
+    SceneManager* manager;
     Map* map;
     Layout* rootLayout;
     //TODO not sure if we are gonna need this here...

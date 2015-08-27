@@ -39,7 +39,7 @@ void BuildingView::update(Update update)
 {
     switch (update) {
         case POSITION_UPDATE:
-            this->getTexture()->setPosition(building->getTile().getPosition());
+            updateBuildingPosition();
             text->center(getTexture()->getPosition(), getWidth(), getHeight());
             break;
         case CAPTURE_UPDATE:
@@ -62,25 +62,26 @@ void BuildingView::update(Update update)
     }
 }
 
+void BuildingView::updateBuildingPosition()
+{
+    Tile tile = building->getTile();
+    Point tilePosition = tile.getPosition();
+    int tileCenterX = tilePosition.x + (tile.width / 2);
+    int tileCenterY = tilePosition.y + (tile.height / 2);
+    
+    int buildingX = tileCenterX - getWidth();
+    int buildingY = tileCenterY - getHeight();
+    
+    this->getTexture()->setPosition(Point(buildingX, buildingY));
+
+}
+
 void BuildingView::updateBuildingOwner()
 {
     //TODO Change this, just for test...
-    const int PLAYER_ONE = 0;
-    const int PLAYER_TWO = 1;
-    const int NEUTRAL = -1;
-    
-    switch (building->getOwnerID()) {
-        case NEUTRAL:
-            setRenderFrame(Point(0,0));
-            break;
-        case PLAYER_ONE:
-            setRenderFrame(Point(1,0));
-            break;
-        case PLAYER_TWO:
-            setRenderFrame(Point(2,0));
-            break;
-        default:
-            
-            break;
+    if (building->army == "red") {
+        setRenderFrame(Point(1,0));
+    }else if (building->army == "blue"){
+        setRenderFrame(Point(2,0));
     }
 }

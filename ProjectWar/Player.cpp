@@ -11,13 +11,13 @@
 #include "MessageManager.h"
 
 Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
-                    active(false), map(nullptr), type(HUMAN_PLAYER), color(nullptr)
+                    active(false), map(nullptr), type(HUMAN_PLAYER), army("")
 {
     setFounds(3000);
 }
 
 Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
-                        active(false), map(nullptr), type(HUMAN_PLAYER),color(nullptr)
+                        active(false), map(nullptr), type(HUMAN_PLAYER), army("")
 {
     setFounds(3000);
     this->setid(id);
@@ -125,16 +125,6 @@ void Player::setType(PlayerType type)
 PlayerType Player::getType()
 {
     return type;
-}
-
-void Player::setColor(Color* color)
-{
-    this->color = color;
-}
-
-Color* Player::getColor()
-{
-    return color;
 }
 
 //Update the player actual state and enter in it

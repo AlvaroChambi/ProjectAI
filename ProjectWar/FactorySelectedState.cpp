@@ -76,6 +76,8 @@ void FactorySelectedState::createUnit(std::string unitScript)
     Player* player = (Player*)model;
     UnitFactory unitFactory;
     Unit* unit = unitFactory.createUnit(unitScript);
+    unit->army = player->army;
+    unit->setResource(unit->getResource() + "_" + unit->army + ".png");
     unit->setPosition(building->getTile());
     player->addUnit(unit);
     

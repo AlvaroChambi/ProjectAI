@@ -4,18 +4,13 @@ unit = {
 
     --Tiles that the unit can move in one turn
     movement = 3,
-    resource = "infantry_green.png",
+    resource = "soldier_red.png",
     --Range of attack in tiles
     attack_range = 1,
-    -- relative initial position in the map (row, column)
-    position = {
-        row = 4,
-        column = 8
-    },
     --hitpoints (max: 10)
     hp = 10;
     --type of the unit (Soldier, Tank, Anti-tank)
-    type = "Soldier",
+    type = "soldier",
     --Commands available for the unit
     commands = {
         move = true,

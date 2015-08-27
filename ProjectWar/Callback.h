@@ -54,4 +54,15 @@ public:
     void function(Message* message);
 };
 
+class CreateBuildingCallback : public Callback
+{
+public:
+    ProjectAI* game;
+    CreateBuildingCallback(ProjectAI* game) : game(game)
+    {
+        
+    }
+    void function(Message* message);
+};
+
 #endif

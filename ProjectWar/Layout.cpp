@@ -26,13 +26,16 @@ Layout::~Layout()
 
 void Layout::render(Renderer* renderer)
 {
+    //UIComponent::render(renderer);
+    renderer->renderDrawShape(RECTANGLE_OUTLINE, position, Color(255, 0, 0), width, height);
+    
     if (this->isVisible()) {
         //If background color defined
         if (backgroundColor != nullptr) {
             background = renderer->loadShape(RECTANGLE, *backgroundColor, this->getWidth(), this->getHeight());
             background->hud = this->isHUD();
         }
-        //If background defined render
+        //If background defined 
         if( background != nullptr ){
             background->setPosition(this->getPosition());
             renderer->drawTexture(background, getWidth(), getHeight());
@@ -43,44 +46,26 @@ void Layout::render(Renderer* renderer)
     }
 }
 
-void Layout::updateValues(UIComponent* component)
+void Layout::measurePosition()
 {
-    this->updateDimensions(component);
-    this->updatePosition(component);
-}
-
-void Layout::updateDimensions(UIComponent* component)
-{
-    component->updateDimensions();
-}
-
-void Layout::updatePosition(UIComponent* component)
-{
-    switch (component->params.gravity) {
-        case CENTER:
-        {
-            component->center(getPosition(), getWidth(), getHeight());
-            break;
+    for (UIComponent* component : components) {
+        switch (component->params.gravity) {
+            case CENTER:
+                center(position, width, height);
+                break;
+            case UP:
+                up(position, width, height);
+                break;
+            case DOWN:
+                down(position, width, height);
+                break;
+            case CENTER_DOWN:
+                centerDown(position, width, height);
+                break;
+            default:
+                break;
         }
-        case UP:
-        {
-            component->up(getPosition(), getWidth(), getHeight());
-        }
-            break;
-        case DOWN:
-        {
-            component->down(getPosition(), getWidth(), getHeight());
-        }
-            break;
-        case CENTER_DOWN:
-        {
-            component->centerDown(getPosition(), getWidth(), getHeight());
-        }
-            break;
-        default:
-            break;
     }
-
 }
 
 void Layout::addComponent(UIComponent *component)
@@ -90,8 +75,11 @@ void Layout::addComponent(UIComponent *component)
     component->setHUD(this->isHUD());
     //Update parent value: first use of the params
     component->setParent(this);
-    //Measure the childen position
-    this->updateValues(component);
+    
+    //Dimension are not dependant on the type of layout
+    component->measureDimension();
+    //Position measure must consider the type of layout and the items in it
+    measurePosition();
 }
 
 void Layout::cleanComponents()
@@ -110,7 +98,6 @@ void Layout::setBackground(Color color)
     this->backgroundColor = new Color(color.r,color.g,color.b);
 }
 
-//Not really sure if this will work with more layouts and buttons...
 UIComponent* Layout::matchEvent(Point position)
 {
     UIComponent* result = nullptr;

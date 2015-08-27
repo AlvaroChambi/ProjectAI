@@ -22,7 +22,6 @@ public:
     Text(int id);
     virtual ~Text();
     void render(Renderer* renderer);
-    UIComponent* matchEvent(Point position);
     void setTextResource(std::string text);
     void setVisible(bool visible);
     void setTexture(Texture* texture);
@@ -32,7 +31,6 @@ public:
     //TODO implement set font
     //TODO implement set text size
 private:
-    Texture* texture;
     std::string resource;
     //Flag to know if the text resource has been changed
     bool changed;

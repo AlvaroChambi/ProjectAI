@@ -8,7 +8,7 @@
 
 #include "Unit.h"
 
-Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
+Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0), army("")
 {
     
 }

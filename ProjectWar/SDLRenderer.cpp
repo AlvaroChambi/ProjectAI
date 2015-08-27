@@ -140,17 +140,39 @@ Texture* SDLRenderer::loadText(std::string text, Color color)
     return texture;
 }
 
+void SDLRenderer::renderDrawShape(Shape shape,Point position ,Color color, int width, int height)
+{
+    SDL_Rect rect;
+    rect.x = position.x;
+    rect.y = position.y;
+    rect.w = width;
+    rect.h = height;
+    
+    SDL_SetRenderDrawColor( sdlRenderer, color.r, color.g, color.b, color.a );
+    switch (shape) {
+        case RECTANGLE:
+            SDL_RenderFillRect(sdlRenderer, &rect);
+            break;
+        case RECTANGLE_OUTLINE:
+            SDL_RenderDrawRect( sdlRenderer, &rect );
+            break;
+        default:
+            break;
+    }
+  
+}
+
 Texture* SDLRenderer::loadShape(Shape shape, Color color,int width, int height)
 {
     Texture *texture = new SDLTexture;
     SDL_Surface* pTempSurface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
     
-    /* Filling less than the surface defined just for the map appearance, change it! */
     SDL_Rect destRect;
-    destRect.x = 1;
-    destRect.y = 1;
-    destRect.w = width - 2;
-    destRect.h = height - 2;
+    destRect.x = 0;
+    destRect.y = 0;
+    destRect.w = width;
+    destRect.h = height;
+    
     SDL_FillRect(pTempSurface, &destRect, SDL_MapRGB(pTempSurface->format, color.r, color.g, color.b));
     if(pTempSurface == 0){
         std::cout << "surface creation failed\n";
@@ -254,10 +276,6 @@ void SDLRenderer::renderPresent()
 
 void SDLRenderer::renderClear()
 {
+    SDL_SetRenderDrawColor( sdlRenderer, 0x00, 0x00, 0x00, 0x00 );
     SDL_RenderClear(sdlRenderer);
 }
-
-
-
-
-

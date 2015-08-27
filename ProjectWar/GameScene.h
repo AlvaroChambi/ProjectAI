@@ -15,7 +15,7 @@
 class GameScene : public Scene
 {
 public:
-    GameScene(Renderer* renderer);
+    GameScene(Renderer* renderer, SceneManager* manager);
     ~GameScene();
     
     void onSceneStarted();

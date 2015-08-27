@@ -19,7 +19,7 @@ VerticalLayout::~VerticalLayout()
 
 }
 
-void VerticalLayout::updatePosition(UIComponent* component)
+void VerticalLayout::measurePosition()
 {
     if(components.size() > 0){
         int subParentHeight = getHeight() / components.size();

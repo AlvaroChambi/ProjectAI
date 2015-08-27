@@ -37,8 +37,8 @@ public:
     std::string getType();
     void setType(std::string type);
     
-    void setArmy(Army* army);
-    Army* getArmy();
+    std::string army;
+    
 private:
     int ownerID;
     Tile tile;

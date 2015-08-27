@@ -16,7 +16,10 @@ class Army
 public:
     const std::string ARMY_RED = "red";
     const std::string ARMY_BLUE = "blue";
+    const std::string NONE = "none";
     
+    Army() : name(NONE)
+    {}
     Army(std::string name) : name(name)
     {}
     ~Army(){}

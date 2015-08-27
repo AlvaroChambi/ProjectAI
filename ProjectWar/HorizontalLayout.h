@@ -19,7 +19,7 @@ public:
     HorizontalLayout();
     ~HorizontalLayout();
     
-    void updatePosition(UIComponent* component);
+    void measurePosition();
 };
 
 #endif /* defined(__ProjectWar__HorizontalLayout__) */

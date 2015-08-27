@@ -29,10 +29,7 @@ public:
     UIComponent* matchEvent(Point position);
     void cleanComponents();
     
-    //Measure components
-    virtual void updateValues(UIComponent* component);
-    virtual void updatePosition(UIComponent* component);
-    virtual void updateDimensions(UIComponent* component);
+    virtual void measurePosition();
     
 protected:
     std::list<UIComponent*> components;

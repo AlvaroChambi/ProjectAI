@@ -23,8 +23,10 @@ public:
     void update( Update update );
     void render(Renderer* renderer);
     
-    void updateBuildingOwner();
 private:
+    void updateBuildingPosition();
+    void updateBuildingOwner();
+    
     Building* building;
     Text* text;
 };

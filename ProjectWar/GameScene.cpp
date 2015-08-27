@@ -8,7 +8,7 @@
 
 #include "GameScene.h"
 
-GameScene::GameScene(Renderer* renderer) : Scene(renderer)
+GameScene::GameScene(Renderer* renderer, SceneManager* manager) : Scene(renderer, manager)
 {
 
 }

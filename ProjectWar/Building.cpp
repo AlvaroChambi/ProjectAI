@@ -8,7 +8,7 @@
 
 #include "Building.h"
 
-Building::Building() : Model(), tile(nullptr), capturePoints(0), captureValue(0), type("")
+Building::Building() : Model(), tile(nullptr), capturePoints(0), captureValue(0), type(""), army("")
 {
 
 }

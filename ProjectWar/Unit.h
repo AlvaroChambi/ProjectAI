@@ -64,6 +64,8 @@ public:
     bool canReach(Point destination);
     bool canAttack(Point destination);
     bool canAttack(Unit* unit);
+    
+    std::string army;
 private:
     bool selected;
     bool active;

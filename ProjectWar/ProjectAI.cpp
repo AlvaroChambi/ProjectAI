@@ -15,6 +15,9 @@
 #include "Button.h"
 #include "MessageManager.h"
 #include "DataMessage.h"
+#include "LuaScript.h"
+#include "Army.h"
+#include "MapSelectScene.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0), founds(1000)
 {
@@ -117,6 +120,34 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
             playerController->onUIEventReceived(component.getID());
             break;
     }
+}
+
+void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
+{
+    this->renderer = renderer;
+    this->sceneManager = sceneManager;
+    
+    
+    //Default camera
+    Camera* camera = new Camera(Point(0, 0), 640, 480);
+    
+    // Scene* menuScene = mainMenuScene(sceneManager, renderer);
+    Scene* menuScene = new MenuScene(renderer, sceneManager);
+    menuScene->registerListener(this);
+   // sceneManager->setActualScene(menuScene, "menu_scene");
+    
+    Scene* mapsSelecteScene = new MapSelectScene(renderer, sceneManager);
+    sceneManager->setActualScene(mapsSelecteScene, "maps_select_scene");
+    mapsSelecteScene->registerCamera(camera);
+    
+    Scene* gameScene = new GameScene(renderer, sceneManager);
+    gameScene->registerCamera(camera);
+    sceneManager->registerScene(gameScene, "game_scene");
+    
+    MessageManager::getInstance().registerForMessage(MESSAGE_SHOW_POPUP, new ShowPopUpCallback(sceneManager));
+    MessageManager::getInstance().registerForMessage(MESSAGE_HIDE_POPUP, new HidePopUpCallback(sceneManager));
+    MessageManager::getInstance().registerForMessage(MESSAGE_CREATE_UNIT, new CreateUnitCallback(this));
+    MessageManager::getInstance().registerForMessage(MESSAGE_UPDATE_PLAYER_INFO, new UpdateUICallback(this));
 }
 
 void pushCreateViewMessage(Unit* unit)
@@ -226,8 +257,8 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     
     //TODO fix how we set the id to the sprites and models
     Player* player = new Player(0);
+    player->army = "red";
     player->setMap(map);
-    player->setColor(new Color(0,0,255));
     Player* player2 = prepareOpponent(spriteFactory, scene, renderer, map);
     
     this->addPlayer(player);
@@ -236,42 +267,21 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     
     /////////  PLAYER 1 UNITS //////////
     UnitFactory unitFactory;
-    Unit* unit = unitFactory.createUnit("unit.lua");
-    unit->setPosition(map->getTile(2, 1));
-    player->addUnit(unit);
-    pushCreateViewMessage(unit);
     
-    Unit* unit3 = unitFactory.createUnit("tank.lua");;
-    unit3->setPosition(map->getTile(4, 4));
-    player->addUnit(unit3);
-    pushCreateViewMessage(unit3);
+    LuaScript script("units_layout.lua");
+    std::vector<std::string> codes = script.getTableKeys("units");
     
-    Unit* unit4 = unitFactory.createUnit("unit.lua");
-    unit4->setPosition(map->getTile(3, 8));
-    player->addUnit(unit4);
-    pushCreateViewMessage(unit4);
-    
-    ///////////  PLAYER 2 UNITS ///////////
-    Unit* unit2 = unitFactory.createUnit("link.lua");
-    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT, renderer, unit2, 90, 90);
-    unit2->setPosition(map->getTile(13, 3));
-    unit2Sprite->setModel(unit2);
-    unit2Sprite->resize(40, 40);
-    player2->addUnit(unit2);
-    
-    Unit* unit5 = unitFactory.createUnit("link.lua");
-    Sprite* unitSprite5 = spriteFactory->createSprite(UNIT, renderer, unit5, 90, 90);
-    unit5->setPosition(map->getTile(12, 5));
-    unitSprite5->setModel(unit5);
-    unitSprite5->resize(40, 40);
-    player2->addUnit(unit5);
-    
-    Unit* unit6 = unitFactory.createUnit("link.lua");
-    Sprite* unitSprite6 = spriteFactory->createSprite(UNIT, renderer, unit6, 90, 90);
-    unit6->setPosition(map->getTile(11, 8));
-    unitSprite6->setModel(unit6);
-    unitSprite6->resize(40, 40);
-    player2->addUnit(unit6);
+    for (std::string code : codes) {
+        std::string unitScript = script.get<std::string>("units."+code+".script");
+        Unit* unit = unitFactory.createUnit(unitScript);
+        int column = script.get<int>("units."+code+".position.column");
+        int row = script.get<int>("units."+code+".position.row");
+        
+        unit->army = script.get<std::string>("units."+code+".army");
+        unit->setPosition(map->getTile(column, row));
+        player->addUnit(unit);
+        pushCreateViewMessage(unit);
+    }
     
     //Load buildings
     map->loadBuildings(spriteFactory, renderer);
@@ -281,10 +291,6 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     
     //register game and player controller as an scene events listener
     scene->attachMap(map);
-    
-    scene->attachSprite(unit2Sprite);
-    scene->attachSprite(unitSprite5);
-    scene->attachSprite(unitSprite6);
     
     scene->registerListener(this);
     
@@ -302,35 +308,8 @@ Player* ProjectAI::prepareOpponent(SpriteFactory* spriteFactory, Scene* scene, R
         playerAI->setPlayerList(&players);
     }
     player2->setMap(map);
-    player2->setColor(new Color(255,0,0));
+    player2->army = "blue";
     return player2;
-}
-
-void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
-{
-    this->renderer = renderer;
-    this->sceneManager = sceneManager;
-    
-    
-    //Default camera
-    Camera* camera = new Camera(Point(0, 0), 640, 480);
-    
-   // Scene* menuScene = mainMenuScene(sceneManager, renderer);
-    Scene* menuScene = new MenuScene(renderer);
-    menuScene->registerListener(this);
-    sceneManager->setActualScene(menuScene, "menu_scene");
-    
-    Scene* gameScene = new GameScene(renderer);
-    gameScene->registerCamera(camera);
-    sceneManager->registerScene(gameScene, "game_scene");
-    
-    MessageManager::getInstance().registerForMessage(MESSAGE_SHOW_POPUP, new ShowPopUpCallback(sceneManager));
-    MessageManager::getInstance().registerForMessage(MESSAGE_HIDE_POPUP, new HidePopUpCallback(sceneManager));
-    MessageManager::getInstance().registerForMessage(MESSAGE_CREATE_UNIT, new CreateUnitCallback(this));
-    MessageManager::getInstance().registerForMessage(MESSAGE_UPDATE_PLAYER_INFO, new UpdateUICallback(this));
-    /*
-    Scene* scene = gameScene(sceneManager, renderer);
-    sceneManager->registerScene(scene, "game_scene");*/
 }
 
 Player* ProjectAI::nextPlayer()
@@ -416,8 +395,19 @@ void CreateUnitCallback::function(Message* message)
     //Create view
     Sprite* unitSprite = game->spriteFactory->createSprite(UNIT, game->renderer, unit);
     unitSprite->setModel(unit);
-    unitSprite->resize(40, 40);
     game->sceneManager->getActualScene()->attachSprite(unitSprite);
+}
+
+void CreateBuildingCallback::function(Message *message)
+{
+    DataMessage<Building*>* dataMessage = (DataMessage<Building*>*)message;
+    Building* building = dataMessage->dataStorage;
+    //Create view
+    Sprite* buildingSprite = game->spriteFactory->createSprite(BUILDING);
+    buildingSprite->setModel(building);
+    buildingSprite->setTexture(game->renderer->loadSprite(building->getResource(), 64, 64));
+    buildingSprite->setModel(building);
+    game->sceneManager->getActualScene()->attachSprite(buildingSprite);
 }
 
 void UpdateUICallback::function(Message *message)

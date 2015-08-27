@@ -21,9 +21,7 @@ public:
     void render(Renderer* renderer);
     void setTexture(Texture* texture);
     void setImageResource(std::string resource);
-    UIComponent* matchEvent(Point position);
 private:
-    Texture* texture;
     std::string resource;
     bool resourceChanged;
 };

@@ -13,6 +13,7 @@
 #include "Pathfinder.h"
 #include "BuildingFactory.h"
 #include "MapBuilder.h"
+#include "LuaScript.h"
 
 Map::Map()
 {
@@ -78,47 +79,25 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
 {
     BuildingFactory factory = BuildingFactory();
     
-    Building* building = factory.createBuilding("headquarter.lua");
-    Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
-    buildingSprite->setModel(building);
-    buildingSprite->setTexture(renderer->loadSprite(building->getResource(), 64, 64));
-    buildingSprite->resize(40, 40);
-    building->setPosition(getTile(2, 2));
-    building->setOwnerID(0);
-    this->addBuilding(building);
+    //Building layout attached to the map
+    LuaScript script("building_layout.lua");
+    std::vector<std::string> list = script.getTableKeys("buildings");
     
-    Building* building2 = factory.createBuilding("headquarter.lua");
-    Sprite* buildingSprite2 = spriteFactory->createSprite(BUILDING);
-    buildingSprite2->setModel(building2);
-    buildingSprite2->setTexture(renderer->loadSprite(building2->getResource(), 64, 64));
-    buildingSprite2->resize(40, 40);
-    building2->setPosition(getTile(12,6));
-    building2->setOwnerID(1);
-    this->addBuilding(building2);
-    
-    Building* factory1 = factory.createBuilding("factory.lua");
-    Sprite* factorySprite = spriteFactory->createSprite(BUILDING);
-    factorySprite->setModel(factory1);
-    factorySprite->setTexture(renderer->loadSprite(factory1->getResource(), 64, 64));
-    factorySprite->resize(40, 40);
-    factory1->setPosition(getTile(3, 4));
-    factory1->setOwnerID(0);
-    this->addBuilding(factory1);
-    
-    Building* city = factory.createBuilding("city.lua");
-    Sprite* citySprite = spriteFactory->createSprite(BUILDING);
-    citySprite->setModel(city);
-    citySprite->setTexture(renderer->loadSprite(city->getResource(), 64, 64));
-    citySprite->resize(40, 40);
-    city->setPosition(getTile(8, 8));
-    city->setOwnerID(0);
-    this->addBuilding(city);
-    
-    //Add all the sprite to the scene?
-    sprites.push_back(citySprite);
-    sprites.push_back(buildingSprite);
-    sprites.push_back(buildingSprite2);
-    sprites.push_back(factorySprite);
+    for (std::string code : list) {
+        std::string buildingScript = script.get<std::string>("buildings."+code+".script");
+        Building* building = factory.createBuilding(buildingScript);
+        building->army = script.get<std::string>("buildings."+code+".army");
+        int column = script.get<int>("buildings."+code+".position.column");
+        int row = script.get<int>("buildings."+code+".position.row");
+        Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
+        buildingSprite->setModel(building);
+        buildingSprite->setTexture(renderer->loadSprite(building->getResource(), 64, 64));
+        building->setPosition(getTile(column, row));
+        building->setOwnerID(0);
+        this->addBuilding(building);
+        
+        sprites.push_back(buildingSprite);
+    }
 }
 
 Building* Map::getBuilding(Point position)

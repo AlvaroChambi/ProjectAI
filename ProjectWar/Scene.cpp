@@ -8,7 +8,7 @@
 
 #include "Scene.h"
 
-Scene::Scene(Renderer* renderer) :textureList(), sprites()
+Scene::Scene(Renderer* renderer, SceneManager* sceneManager) :textureList(), sprites(), manager(sceneManager)
 {
     this->renderer = renderer;
     this->map = nullptr;

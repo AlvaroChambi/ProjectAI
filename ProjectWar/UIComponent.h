@@ -11,14 +11,22 @@
 
 #include "Renderer.h"
 #include "Params.h"
+#include "Texture.h"
 
 class UIComponent
 {
 public:
     UIComponent(int id);
     virtual ~UIComponent();
-    virtual void render(Renderer* renderer) = 0;
-    virtual UIComponent* matchEvent(Point position) = 0;
+    virtual void render(Renderer* renderer);
+    virtual UIComponent* matchEvent(Point position);
+    
+    void measureDimension();
+    
+    void center(Point parentPosition, int parentWidth, int parentHeight);
+    void up(Point parentPosition, int parentWidth, int parentHeight);
+    void down(Point parentPosition, int parentWidth, int parentHeight);
+    void centerDown(Point parentPosition, int parentWidth, int parentHeight);
     
     void setHUD(bool hud);
     bool isHUD();
@@ -44,20 +52,12 @@ public:
     
     void setParent(UIComponent* component);
     UIComponent* getParent();
-
-    void center(Point parentPosition, int parentWidth, int parentHeight);
-    void up(Point parentPosition, int parentWidth, int parentHeight);
-    void down(Point parentPosition, int parentWidth, int parentHeight);
-    void centerDown(Point parentPosition, int parentWidth, int parentHeight);
-    
-    virtual void updateValues();
-    virtual void updatePosition();
-    virtual void updateDimensions();
     
     int id;
     UIComponent* parent;
     Params params;
     Point position;
+    Texture* texture;
     int width;
     int height;
     bool hud;

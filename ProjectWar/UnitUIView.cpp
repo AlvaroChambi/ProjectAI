@@ -51,23 +51,23 @@ void UnitUIView::updateComponents()
         Button* button;
         switch (unit->getCommand(i)) {
             case ATTACK:
-                button = new Button(ProjectAI::ATTACK_BUTTON);
+                button = new Button();
                 button->setImageResource("attack_button.bmp");
                 break;
             case WAIT:
-                button = new Button(ProjectAI::WAIT_BUTTON);
+                button = new Button();
                 button->setImageResource("wait_button.bmp");
                 break;
             case CANCEL:
-                button = new Button(ProjectAI::CANCEL_BUTTON);
+                button = new Button();
                 button->setImageResource("cancel_button.bmp");
                 break;
             case END:
-                button = new Button(ProjectAI::END_BUTTON);
+                button = new Button();
                 button->setImageResource("end_button.bmp");
                 break;
             case CAPTURE:
-                button = new Button(ProjectAI::CAPTURE_BUTTON);
+                button = new Button();
                 button->setImageResource("capture_button.png");
                 break;
             default:

@@ -9,12 +9,7 @@
 #include "Layout.h"
 
 //Instancing an layout with an undefined id
-Layout::Layout() : UIComponent(-1), background(nullptr), backgroundColor(nullptr)
-{
-
-}
-
-Layout::Layout(int id) : UIComponent(id), background(nullptr), backgroundColor(nullptr)
+Layout::Layout() : UIComponent(), background(nullptr), backgroundColor(nullptr)
 {
 
 }
@@ -46,25 +41,11 @@ void Layout::render(Renderer* renderer)
     }
 }
 
-void Layout::measurePosition()
+//measure the distribution of the layout
+void Layout::measureDisposition()
 {
     for (UIComponent* component : components) {
-        switch (component->params.gravity) {
-            case CENTER:
-                center(position, width, height);
-                break;
-            case UP:
-                up(position, width, height);
-                break;
-            case DOWN:
-                down(position, width, height);
-                break;
-            case CENTER_DOWN:
-                centerDown(position, width, height);
-                break;
-            default:
-                break;
-        }
+        component->measurePosition(position, width, height);
     }
 }
 
@@ -79,7 +60,7 @@ void Layout::addComponent(UIComponent *component)
     //Dimension are not dependant on the type of layout
     component->measureDimension();
     //Position measure must consider the type of layout and the items in it
-    measurePosition();
+    this->measureDisposition();
 }
 
 void Layout::cleanComponents()

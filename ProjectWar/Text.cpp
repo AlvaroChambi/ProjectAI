@@ -8,14 +8,9 @@
 
 #include "Text.h"
 
-Text::Text() : UIComponent(-1), resource(""), changed(false), color(WHITE)
+Text::Text() : UIComponent(), resource(""), changed(false), color(WHITE)
 {
 
-}
-
-Text::Text(int id) : UIComponent(id), resource(""), changed(false), color(WHITE)
-{
-    
 }
 
 Text::~Text()

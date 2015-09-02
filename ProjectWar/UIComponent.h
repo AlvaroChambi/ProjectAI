@@ -16,16 +16,22 @@
 class UIComponent
 {
 public:
-    UIComponent(int id);
+    UIComponent();
     virtual ~UIComponent();
     virtual void render(Renderer* renderer);
     virtual UIComponent* matchEvent(Point position);
     
     void measureDimension();
+    void measurePosition(Point parentPosition, int parentWidth, int parentHeight);
+    
+    bool rescale(int parentWidth, int parentHeight);
+    void readjustPosition();
     
     void center(Point parentPosition, int parentWidth, int parentHeight);
     void up(Point parentPosition, int parentWidth, int parentHeight);
     void down(Point parentPosition, int parentWidth, int parentHeight);
+    void right(Point parentPosition, int parentWidth, int parentHeight);
+    void left(Point parentPosition, int parentWidth, int parentHeight);
     void centerDown(Point parentPosition, int parentWidth, int parentHeight);
     
     void setHUD(bool hud);
@@ -33,9 +39,6 @@ public:
     
     void setParams(Params params);
     Params getParams();
-    
-    void setID(int id);
-    int getID();
     
     void setPosition(int x, int y);
     void setPosition(Point position);
@@ -53,7 +56,6 @@ public:
     void setParent(UIComponent* component);
     UIComponent* getParent();
     
-    int id;
     UIComponent* parent;
     Params params;
     Point position;

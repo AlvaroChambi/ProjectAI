@@ -32,7 +32,7 @@
 		9C3B96111B1DCAEF00859538 /* CaptureCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B960F1B1DCAEF00859538 /* CaptureCommand.cpp */; };
 		9C3B96141B1DCB4500859538 /* GameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96121B1DCB4500859538 /* GameUI.cpp */; };
 		9C3B96331B205FC700859538 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B96311B205FC700859538 /* SceneManager.cpp */; };
-		9C3B963B1B20647500859538 /* UIComponent_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B963A1B20647500859538 /* UIComponent_Test.cpp */; };
+		9C3B963B1B20647500859538 /* UIComponentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B963A1B20647500859538 /* UIComponentTest.cpp */; };
 		9C3B96401B2064AE00859538 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3B963F1B2064AE00859538 /* gtest.framework */; };
 		9C3B96411B2064C900859538 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C3B96421B2064DE00859538 /* Lua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3B96011B1DCA8800859538 /* Lua.framework */; };
@@ -162,6 +162,7 @@
 		9C94BD251B6692B200048521 /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C94BD241B6692B200048521 /* soldier_blue.png */; };
 		9C94BD271B66974900048521 /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C94BD261B66974900048521 /* soldier_red.png */; };
 		9C94BD291B67E85700048521 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C94BD281B67E85700048521 /* map.png */; };
+		9CA64D3D1B9218380069B7F2 /* LayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */; };
 		9CAD93C51B62A7CA004099B9 /* units_layout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD93C41B62A7CA004099B9 /* units_layout.lua */; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
@@ -253,7 +254,7 @@
 		9C3B96311B205FC700859538 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
 		9C3B96321B205FC700859538 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		9C3B96381B20647500859538 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C3B963A1B20647500859538 /* UIComponent_Test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent_Test.cpp; sourceTree = "<group>"; };
+		9C3B963A1B20647500859538 /* UIComponentTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponentTest.cpp; sourceTree = "<group>"; };
 		9C3B963F1B2064AE00859538 /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
 		9C3B96481B206D6000859538 /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		9C3B96511B25B3C200859538 /* player_ai_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_ai_button.png; sourceTree = "<group>"; };
@@ -363,6 +364,7 @@
 		9C94BD241B6692B200048521 /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		9C94BD261B66974900048521 /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		9C94BD281B67E85700048521 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutTest.cpp; sourceTree = "<group>"; };
 		9CAD93C41B62A7CA004099B9 /* units_layout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = units_layout.lua; sourceTree = "<group>"; };
 		9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAE2DE21AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -513,7 +515,8 @@
 		9C3B96391B20647500859538 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				9C3B963A1B20647500859538 /* UIComponent_Test.cpp */,
+				9C3B963A1B20647500859538 /* UIComponentTest.cpp */,
+				9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				9C93C3E61B7F851200BA58AE /* PlayerController.cpp in Sources */,
 				9C93C3E71B7F851200BA58AE /* UnitController.cpp in Sources */,
 				9C93C3E81B7F851200BA58AE /* BuildingView.cpp in Sources */,
+				9CA64D3D1B9218380069B7F2 /* LayoutTest.cpp in Sources */,
 				9C93C3E91B7F851200BA58AE /* UnitUIView.cpp in Sources */,
 				9C93C3EA1B7F851200BA58AE /* PlayerView.cpp in Sources */,
 				9C93C3EB1B7F851200BA58AE /* UnitView.cpp in Sources */,
@@ -1073,7 +1077,7 @@
 				9C93C4051B7F851200BA58AE /* SDLRenderer.cpp in Sources */,
 				9C93C4061B7F851300BA58AE /* SDLTexture.cpp in Sources */,
 				9C93C4071B7F851300BA58AE /* Texture.cpp in Sources */,
-				9C3B963B1B20647500859538 /* UIComponent_Test.cpp in Sources */,
+				9C3B963B1B20647500859538 /* UIComponentTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

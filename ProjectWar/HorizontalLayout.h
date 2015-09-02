@@ -19,7 +19,7 @@ public:
     HorizontalLayout();
     ~HorizontalLayout();
     
-    void measurePosition();
+    void measureDisposition();
 };
 
 #endif /* defined(__ProjectWar__HorizontalLayout__) */

@@ -8,14 +8,9 @@
 
 #include "HorizontalLayout.h"
 
-HorizontalLayout::HorizontalLayout() : Layout(-1)
+HorizontalLayout::HorizontalLayout() : Layout()
 {
 
-}
-
-HorizontalLayout::HorizontalLayout(int id) : Layout(id)
-{
-    
 }
 
 HorizontalLayout::~HorizontalLayout()
@@ -23,7 +18,7 @@ HorizontalLayout::~HorizontalLayout()
 
 }
 
-void HorizontalLayout::measurePosition()
+void HorizontalLayout::measureDisposition()
 {
     if(components.size() > 0){
         int subParentWidth = getWidth() / components.size();
@@ -31,7 +26,7 @@ void HorizontalLayout::measurePosition()
         for (UIComponent* component : components) {
             int subParentX = getPosition().x + subParentWidth * i;
             Point subParentPosition = Point(subParentX, getPosition().y);
-            component->center(subParentPosition, subParentWidth, getHeight());
+            component->measurePosition(subParentPosition, subParentWidth, getHeight());
             i++;
         }
     }

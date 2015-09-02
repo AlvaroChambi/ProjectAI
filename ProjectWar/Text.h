@@ -19,7 +19,6 @@ class Text : public UIComponent
 public:
     const Color WHITE = Color(255,255,255);
     Text();
-    Text(int id);
     virtual ~Text();
     void render(Renderer* renderer);
     void setTextResource(std::string text);

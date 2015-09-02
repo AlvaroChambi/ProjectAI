@@ -90,14 +90,16 @@ void ProjectAI::onTextureClicked(const Texture texture)
 
 void ProjectAI::onUIComponentClicked(UIComponent component)
 {
-    switch (component.getID()) {
+    //TODO switch according to the component
+    switch (-1) {
         case END_BUTTON:
             //Pass the next player the turn
             activePlayer = this->nextPlayer();
             if (activePlayer->getType() == AI_PLAYER) {
                 PlayerAI* playerAI = (PlayerAI*)activePlayer;
                 playerAI->play();
-                this->onUIComponentClicked(*new Button(END_BUTTON));
+                //TODO Send end button event
+                this->onUIComponentClicked(*new Button());
             }
             break;
             //TODO DEBUG!
@@ -117,7 +119,8 @@ void ProjectAI::onUIComponentClicked(UIComponent component)
             nextPlayer();
             break;
         default:
-            playerController->onUIEventReceived(component.getID());
+            //TODO notify UIEvent to the player controller
+            playerController->onUIEventReceived(-1);
             break;
     }
 }
@@ -165,7 +168,8 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     scene->setUIHUD(mainLayout);
     //Set scene ui
     layout = new UnitUIView();
-    Button* button = new Button(END_BUTTON);
+    //TODO EndButton
+    Button* button = new Button();
     button->setParams(Params(60,40,CENTER));
     layout->setParams(Params(FILL,100,DOWN));
     mainLayout->addComponent(layout);
@@ -214,9 +218,9 @@ Scene* ProjectAI::gameScene(Scene* scene, Renderer* renderer)
     popUp->addComponent(item2);
 
     Params imageParams = Params(40,40,CENTER);
-    Button* item0Image = new Button(12);
-    Button* item1Image = new Button(13);
-    Button* item2Image = new Button(14);
+    Button* item0Image = new Button();
+    Button* item1Image = new Button();
+    Button* item2Image = new Button();
     
     item0Image->setImageResource("soldier_avatar.png");
     item1Image->setImageResource("tank_avatar.png");

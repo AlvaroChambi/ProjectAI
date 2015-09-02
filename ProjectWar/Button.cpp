@@ -8,7 +8,7 @@
 
 #include "Button.h"
 
-Button::Button(int id) : UIComponent(id), resource(""),resourceChanged(false)
+Button::Button( ) : resource(""),resourceChanged(false)
 {
 
 }

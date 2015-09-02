@@ -19,7 +19,7 @@ public:
     VerticalLayout();
     virtual ~VerticalLayout();
     
-    void measurePosition();
+    void measureDisposition();
 
 };
 

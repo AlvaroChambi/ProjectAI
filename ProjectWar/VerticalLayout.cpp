@@ -9,7 +9,7 @@
 #include "VerticalLayout.h"
 
 //TODO building with and undefined id
-VerticalLayout::VerticalLayout() : Layout(-1)
+VerticalLayout::VerticalLayout() : Layout()
 {
     
 }
@@ -19,7 +19,7 @@ VerticalLayout::~VerticalLayout()
 
 }
 
-void VerticalLayout::measurePosition()
+void VerticalLayout::measureDisposition()
 {
     if(components.size() > 0){
         int subParentHeight = getHeight() / components.size();
@@ -27,9 +27,8 @@ void VerticalLayout::measurePosition()
         for (UIComponent* component : components) {
             int subParentY = getPosition().y + subParentHeight * i;
             Point subParentPosition = Point(getPosition().x, subParentY);
-            component->center(subParentPosition, getWidth(), subParentHeight);
+            component->measurePosition(subParentPosition, getWidth(), subParentHeight);
             i++;
         }
     }
-
 }

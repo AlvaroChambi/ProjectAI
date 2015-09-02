@@ -26,8 +26,8 @@ void MenuScene::onSceneStarted()
 {
     VerticalLayout* menuLayout = new VerticalLayout;
     //TODO Change the way to set the ui components id
-    Button* menuButton = new Button(10);
-    Button* menuButton2 = new Button(11);
+    Button* menuButton = new Button();
+    Button* menuButton2 = new Button();
     menuButton->setParams(Params(256,128,CENTER));
     menuButton2->setParams(Params(256,128,CENTER));
     //TODO Animate on click

@@ -20,7 +20,6 @@ class Layout : public UIComponent
 {
 public:
     Layout();
-    Layout(int id);
     virtual ~Layout();
     virtual void addComponent(UIComponent* component);
     void render(Renderer* renderer);
@@ -29,7 +28,7 @@ public:
     UIComponent* matchEvent(Point position);
     void cleanComponents();
     
-    virtual void measurePosition();
+    virtual void measureDisposition();
     
 protected:
     std::list<UIComponent*> components;

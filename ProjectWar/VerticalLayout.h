@@ -10,6 +10,7 @@
 #define __ProjectWar__VerticalLayout__
 
 #include <stdio.h>
+#include <vector>
 #include "Layout.h"
 
 class VerticalLayout : public Layout
@@ -20,7 +21,10 @@ public:
     virtual ~VerticalLayout();
     
     void measureDisposition();
-
+    void populateLayout(std::vector<Point> dipositionPoints);
+    
+    std::vector<Point> wrapDisposition();
+    std::vector<Point> weightDisposition();
 };
 
 #endif /* defined(__ProjectWar__VerticalLayout__) */

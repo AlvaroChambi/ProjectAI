@@ -64,6 +64,7 @@ public:
     int height;
     bool hud;
     bool visible;
+    float weight;
 };
 
 #endif

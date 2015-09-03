@@ -49,21 +49,3 @@ public:
     UIComponent* component1;
     UIComponent* component2;
 };
-
-TEST_F(LayoutTest, ComponentsPositionVertical)
-{
-    verticalLayout->addComponent(component0);
-    verticalLayout->addComponent(component1);
-    verticalLayout->addComponent(component2);
-    
-    
-}
-
-TEST_F(LayoutTest, ComponentsPositionHorizontal)
-{
-    horizontalLayout->addComponent(component0);
-    horizontalLayout->addComponent(component1);
-    horizontalLayout->addComponent(component2);
-    
-    
-}

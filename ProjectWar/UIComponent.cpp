@@ -8,7 +8,7 @@
 
 #include "UIComponent.h"
 
-UIComponent::UIComponent() : width(0), height(0), hud(false), visible(true), texture(nullptr), parent(nullptr)
+UIComponent::UIComponent() : width(0), height(0), weight(0),hud(false), visible(true), texture(nullptr), parent(nullptr)
 {
 
 }

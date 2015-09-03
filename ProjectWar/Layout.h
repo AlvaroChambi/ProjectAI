@@ -29,8 +29,6 @@ public:
     void cleanComponents();
     
     virtual void measureDisposition();
-    
-protected:
     std::list<UIComponent*> components;
 private:
     Texture* background;

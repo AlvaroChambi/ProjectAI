@@ -21,14 +21,90 @@ VerticalLayout::~VerticalLayout()
 
 void VerticalLayout::measureDisposition()
 {
-    if(components.size() > 0){
-        int subParentHeight = getHeight() / components.size();
-        int i = 0;
-        for (UIComponent* component : components) {
-            int subParentY = getPosition().y + subParentHeight * i;
-            Point subParentPosition = Point(getPosition().x, subParentY);
-            component->measurePosition(subParentPosition, getWidth(), subParentHeight);
-            i++;
-        }
+    std::vector<Point> dispositionPoints;
+    switch (params.disposition) {
+        case WRAP_DISPOSITION:
+            dispositionPoints = wrapDisposition();
+            break;
+        case WEIGHT_DISPOSITION:
+            dispositionPoints = weightDisposition();
+            break;
+        default:
+            break;
     }
+    populateLayout(dispositionPoints);
+}
+
+void VerticalLayout::populateLayout(std::vector<Point> dispositionPoints)
+{
+    for (UIComponent* component : components) {
+        Point start = dispositionPoints.back();
+        dispositionPoints.pop_back();
+        Point end = dispositionPoints.back();
+        dispositionPoints.pop_back();
+        
+        component->measurePosition(start, end.x - start.x, end.y - start.y);
+    }
+}
+
+std::vector<Point> VerticalLayout::wrapDisposition()
+{
+    std::vector<Point> dispositionPoints;
+    for (UIComponent* component :  components) {
+        Point start = position;
+        Point end;
+        //If there are a previous end point start from there
+        if (!dispositionPoints.empty()) {
+            start.y = dispositionPoints.back().y;
+        }
+        dispositionPoints.push_back(start);
+        
+        end.x = position.x + component->width;
+        end.y = start.y + component->height;
+
+        if (end.x != position.x + width) {
+            end.x = position.x + width;
+        }else if(end.y > position.y + height){
+            //If height limit is reached add the last point adjusted and finish
+            //all the other elements will not be drawed
+            end.y = position.y + height;
+            dispositionPoints.push_back(end);
+            return dispositionPoints;
+        }
+        dispositionPoints.push_back(end);
+    }
+    return dispositionPoints;
+}
+
+std::vector<Point> VerticalLayout::weightDisposition()
+{
+    std::vector<Point> dispositionPoints;
+    float weightSum = 0;
+    float actualWeight = 0;
+    for (UIComponent* component :  components) {
+        if (component->weight < 0) {
+            component->weight = 0;
+        }
+        weightSum = weightSum + component->weight;
+    }
+    
+    for (UIComponent* component : components) {
+        Point start = position;
+        Point end;
+        
+        //If there are a previous end point start from there
+        if (!dispositionPoints.empty()) {
+            start.y = dispositionPoints.back().y;
+        }
+        
+        dispositionPoints.push_back(start);
+        if (weightSum > 0) {
+            actualWeight = component->weight / weightSum;
+        }
+        
+        end.x = position.x + component->width;
+        end.y = start.y + height * actualWeight;
+        dispositionPoints.push_back(end);
+    }
+    return dispositionPoints;
 }

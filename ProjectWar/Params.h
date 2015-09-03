@@ -12,7 +12,8 @@
 static const int FILL = 0;
 static const int WRAP = 1;
 
-enum Gravity{
+enum Gravity
+{
     CENTER,
     UP,
     DOWN,
@@ -20,12 +21,17 @@ enum Gravity{
     CENTER_DOWN,
 };
 
+enum LayoutDisposition
+{
+    WEIGHT_DISPOSITION,
+    WRAP_DISPOSITION,
+};
+
 class Params
 {
 public:
-    //TODO implement wrap content
     Params() : width(FILL), height(FILL), gravity(CENTER), margin(0), marginLeft(0), marginRight(0)
-                ,marginTop(0), marginDown(0)
+                ,marginTop(0), marginDown(0), disposition(WRAP_DISPOSITION)
     {}
     Params(int width, int height, Gravity gravity) : width(width), height(height), gravity(gravity)
     {}
@@ -33,11 +39,13 @@ public:
     int width;
     int height;
     Gravity gravity;
-    int margin;
+    LayoutDisposition disposition;
     int marginLeft;
     int marginRight;
     int marginTop;
     int marginDown;
+    //TODO margin not implemented
+    int margin;
 };
 
 #endif

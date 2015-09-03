@@ -164,6 +164,7 @@
 		9C94BD291B67E85700048521 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C94BD281B67E85700048521 /* map.png */; };
 		9CA64D3D1B9218380069B7F2 /* LayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */; };
 		9CA64D3F1B9849D60069B7F2 /* VerticalLayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */; };
+		9CA64D411B98610C0069B7F2 /* HorizontalLayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */; };
 		9CAD93C51B62A7CA004099B9 /* units_layout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD93C41B62A7CA004099B9 /* units_layout.lua */; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
@@ -367,6 +368,7 @@
 		9C94BD281B67E85700048521 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutTest.cpp; sourceTree = "<group>"; };
 		9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalLayoutTest.cpp; sourceTree = "<group>"; };
+		9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HorizontalLayoutTest.cpp; sourceTree = "<group>"; };
 		9CAD93C41B62A7CA004099B9 /* units_layout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = units_layout.lua; sourceTree = "<group>"; };
 		9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAE2DE21AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				9C3B963A1B20647500859538 /* UIComponentTest.cpp */,
 				9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */,
 				9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */,
+				9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				9C93C4041B7F851200BA58AE /* Camera.cpp in Sources */,
 				9C93C4051B7F851200BA58AE /* SDLRenderer.cpp in Sources */,
 				9C93C4061B7F851300BA58AE /* SDLTexture.cpp in Sources */,
+				9CA64D411B98610C0069B7F2 /* HorizontalLayoutTest.cpp in Sources */,
 				9C93C4071B7F851300BA58AE /* Texture.cpp in Sources */,
 				9C3B963B1B20647500859538 /* UIComponentTest.cpp in Sources */,
 			);

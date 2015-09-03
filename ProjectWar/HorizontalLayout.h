@@ -20,6 +20,9 @@ public:
     ~HorizontalLayout();
     
     void measureDisposition();
+    
+    std::vector<Point> wrapDisposition();
+    std::vector<Point> weightDisposition();
 };
 
 #endif /* defined(__ProjectWar__HorizontalLayout__) */

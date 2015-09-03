@@ -164,6 +164,39 @@ TEST_F(VerticalLayoutTest, WeightComponentsPositiveValues)
     ASSERT_EQ(1000 , end.y);
 }
 
+
+TEST_F(VerticalLayoutTest, WeightComponentsAdjustWidth)
+{
+    component0->width = 300;
+    component0->weight = 0.5;
+    
+    component1->width = 600;
+    component1->weight = 0.5;
+    
+    
+    verticalLayout->components.push_back(component0);
+    verticalLayout->components.push_back(component1);
+    
+    points = verticalLayout->weightDisposition();
+    
+    Point start = points.at(0);
+    Point end = points.at(1);
+    ASSERT_EQ(0 , start.x);
+    ASSERT_EQ(0 , start.y);
+    
+    ASSERT_EQ(500 , end.x);
+    ASSERT_EQ(500 , end.y);
+    
+    start = points.at(2);
+    end = points.at(3);
+    ASSERT_EQ(0, start.x);
+    ASSERT_EQ(500 , start.y);
+    
+    ASSERT_EQ(500 , end.x);
+    ASSERT_EQ(1000 , end.y);
+}
+
+
 TEST_F(VerticalLayoutTest, WeightComponentsSomeInvalidValues)
 {
     component0->width = 500;

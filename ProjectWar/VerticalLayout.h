@@ -21,7 +21,6 @@ public:
     virtual ~VerticalLayout();
     
     void measureDisposition();
-    void populateLayout(std::vector<Point> dipositionPoints);
     
     std::vector<Point> wrapDisposition();
     std::vector<Point> weightDisposition();

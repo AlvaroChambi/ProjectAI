@@ -35,18 +35,6 @@ void VerticalLayout::measureDisposition()
     populateLayout(dispositionPoints);
 }
 
-void VerticalLayout::populateLayout(std::vector<Point> dispositionPoints)
-{
-    for (UIComponent* component : components) {
-        Point start = dispositionPoints.back();
-        dispositionPoints.pop_back();
-        Point end = dispositionPoints.back();
-        dispositionPoints.pop_back();
-        
-        component->measurePosition(start, end.x - start.x, end.y - start.y);
-    }
-}
-
 std::vector<Point> VerticalLayout::wrapDisposition()
 {
     std::vector<Point> dispositionPoints;
@@ -104,6 +92,9 @@ std::vector<Point> VerticalLayout::weightDisposition()
         
         end.x = position.x + component->width;
         end.y = start.y + height * actualWeight;
+        if (end.x != position.x + width) {
+            end.x = position.x + width;
+        }
         dispositionPoints.push_back(end);
     }
     return dispositionPoints;

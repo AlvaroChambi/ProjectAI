@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <list>
+#include <vector>
 #include "Params.h"
 
 
@@ -29,6 +30,7 @@ public:
     void cleanComponents();
     
     virtual void measureDisposition();
+    void populateLayout(std::vector<Point> dispositionPoints);
     std::list<UIComponent*> components;
 private:
     Texture* background;

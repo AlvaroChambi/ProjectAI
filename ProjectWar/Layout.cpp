@@ -49,6 +49,21 @@ void Layout::measureDisposition()
     }
 }
 
+void Layout::populateLayout(std::vector<Point> dispositionPoints)
+{
+    std::list<UIComponent*>::const_iterator iterator;
+    for (iterator = components.begin(); iterator != components.end(); ++iterator) {
+        std::cout << *iterator;
+    }
+    
+    int i = 0;
+    for (UIComponent* component : components) {
+        Point start = dispositionPoints.at(i++);
+        Point end = dispositionPoints.at(i++);
+        component->measurePosition(start, end.x - start.x, end.y - start.y);
+    }
+}
+
 void Layout::addComponent(UIComponent *component)
 {
     components.push_back(component);

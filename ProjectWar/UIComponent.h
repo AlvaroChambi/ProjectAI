@@ -12,6 +12,7 @@
 #include "Renderer.h"
 #include "Params.h"
 #include "Texture.h"
+#include "Frame.h"
 
 class UIComponent
 {
@@ -65,6 +66,7 @@ public:
     bool hud;
     bool visible;
     float weight;
+    Frame frame;
 };
 
 #endif

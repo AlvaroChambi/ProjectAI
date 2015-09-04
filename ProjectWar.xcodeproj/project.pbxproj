@@ -165,6 +165,10 @@
 		9CA64D3D1B9218380069B7F2 /* LayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */; };
 		9CA64D3F1B9849D60069B7F2 /* VerticalLayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */; };
 		9CA64D411B98610C0069B7F2 /* HorizontalLayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */; };
+		9CA64D431B98A0840069B7F2 /* ProjectedLayoutTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D421B98A0840069B7F2 /* ProjectedLayoutTest.cpp */; };
+		9CA64D471B98A0F90069B7F2 /* ProjectedLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */; };
+		9CA64D481B98A7570069B7F2 /* ProjectedLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */; };
+		9CA64D4C1B9997850069B7F2 /* Frame.h in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D4B1B99956A0069B7F2 /* Frame.h */; };
 		9CAD93C51B62A7CA004099B9 /* units_layout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD93C41B62A7CA004099B9 /* units_layout.lua */; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
@@ -369,6 +373,10 @@
 		9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutTest.cpp; sourceTree = "<group>"; };
 		9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalLayoutTest.cpp; sourceTree = "<group>"; };
 		9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HorizontalLayoutTest.cpp; sourceTree = "<group>"; };
+		9CA64D421B98A0840069B7F2 /* ProjectedLayoutTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectedLayoutTest.cpp; sourceTree = "<group>"; };
+		9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectedLayout.cpp; sourceTree = "<group>"; };
+		9CA64D461B98A0F90069B7F2 /* ProjectedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectedLayout.h; sourceTree = "<group>"; };
+		9CA64D4B1B99956A0069B7F2 /* Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		9CAD93C41B62A7CA004099B9 /* units_layout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = units_layout.lua; sourceTree = "<group>"; };
 		9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAE2DE21AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -451,16 +459,12 @@
 		9C0A5A6E1AC174D700BF793E /* implementation */ = {
 			isa = PBXGroup;
 			children = (
-				9C0A5A6F1AC174E700BF793E /* Layout.cpp */,
-				9C0A5A701AC174E700BF793E /* Layout.h */,
+				9CA64D441B98A08E0069B7F2 /* layout */,
 				9C0A5A721AC176A300BF793E /* Button.cpp */,
+				9CA64D4B1B99956A0069B7F2 /* Frame.h */,
 				9C0A5A731AC176A300BF793E /* Button.h */,
 				9CCD60C21ACDCCC3004537F8 /* Text.cpp */,
 				9CCD60C31ACDCCC3004537F8 /* Text.h */,
-				9C3B96551B25B46200859538 /* VerticalLayout.cpp */,
-				9C3B96561B25B46200859538 /* VerticalLayout.h */,
-				9C7B4EDB1B2ADA2F005D3903 /* HorizontalLayout.cpp */,
-				9C7B4EDC1B2ADA2F005D3903 /* HorizontalLayout.h */,
 				9C93C3C41B7E0E7100BA58AE /* TextList.cpp */,
 				9C93C3C51B7E0E7100BA58AE /* TextList.h */,
 			);
@@ -519,10 +523,8 @@
 		9C3B96391B20647500859538 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				9C3B963A1B20647500859538 /* UIComponentTest.cpp */,
-				9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */,
-				9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */,
-				9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */,
+				9CA64D4A1B998E580069B7F2 /* integration_test */,
+				9CA64D491B998E360069B7F2 /* unit_test */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -794,6 +796,40 @@
 			name = shapes;
 			sourceTree = "<group>";
 		};
+		9CA64D441B98A08E0069B7F2 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				9C0A5A6F1AC174E700BF793E /* Layout.cpp */,
+				9C0A5A701AC174E700BF793E /* Layout.h */,
+				9C3B96551B25B46200859538 /* VerticalLayout.cpp */,
+				9C3B96561B25B46200859538 /* VerticalLayout.h */,
+				9C7B4EDB1B2ADA2F005D3903 /* HorizontalLayout.cpp */,
+				9C7B4EDC1B2ADA2F005D3903 /* HorizontalLayout.h */,
+				9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */,
+				9CA64D461B98A0F90069B7F2 /* ProjectedLayout.h */,
+			);
+			name = layout;
+			sourceTree = "<group>";
+		};
+		9CA64D491B998E360069B7F2 /* unit_test */ = {
+			isa = PBXGroup;
+			children = (
+				9C3B963A1B20647500859538 /* UIComponentTest.cpp */,
+				9CA64D3C1B9218380069B7F2 /* LayoutTest.cpp */,
+				9CA64D3E1B9849D60069B7F2 /* VerticalLayoutTest.cpp */,
+				9CA64D401B98610C0069B7F2 /* HorizontalLayoutTest.cpp */,
+				9CA64D421B98A0840069B7F2 /* ProjectedLayoutTest.cpp */,
+			);
+			name = unit_test;
+			sourceTree = "<group>";
+		};
+		9CA64D4A1B998E580069B7F2 /* integration_test */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = integration_test;
+			sourceTree = "<group>";
+		};
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
@@ -1020,6 +1056,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA64D4C1B9997850069B7F2 /* Frame.h in Sources */,
+				9CA64D481B98A7570069B7F2 /* ProjectedLayout.cpp in Sources */,
 				9C93C3CA1B7F851200BA58AE /* SDLInputHandler.cpp in Sources */,
 				9C93C3CB1B7F851200BA58AE /* InputHandler.cpp in Sources */,
 				9C93C3CC1B7F851200BA58AE /* MessageManager.cpp in Sources */,
@@ -1069,6 +1107,7 @@
 				9C93C3F61B7F851200BA58AE /* Map.cpp in Sources */,
 				9C93C3F71B7F851200BA58AE /* MapBuilder.cpp in Sources */,
 				9C93C3F81B7F851200BA58AE /* Layout.cpp in Sources */,
+				9CA64D431B98A0840069B7F2 /* ProjectedLayoutTest.cpp in Sources */,
 				9C93C3F91B7F851200BA58AE /* Button.cpp in Sources */,
 				9C93C3FA1B7F851200BA58AE /* Text.cpp in Sources */,
 				9C93C3FB1B7F851200BA58AE /* VerticalLayout.cpp in Sources */,
@@ -1135,6 +1174,7 @@
 				9C7B4EDA1B2A10F6005D3903 /* MessageRegistration.cpp in Sources */,
 				9C3B960B1B1DCAD200859538 /* BuildingView.cpp in Sources */,
 				9C3B96571B25B46200859538 /* VerticalLayout.cpp in Sources */,
+				9CA64D471B98A0F90069B7F2 /* ProjectedLayout.cpp in Sources */,
 				9C3B95F31B1DCA4E00859538 /* PlayerAI.cpp in Sources */,
 				9C800B161AB7443C003FE2AA /* Player.cpp in Sources */,
 				9C3B96331B205FC700859538 /* SceneManager.cpp in Sources */,

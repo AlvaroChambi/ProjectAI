@@ -70,6 +70,7 @@ public:
         return std::abs(point.x - this->x) +
         std::abs(point.y - this->y);
     }
+    
 };
 
 #endif /* defined(__ProjectWar__Point__) */

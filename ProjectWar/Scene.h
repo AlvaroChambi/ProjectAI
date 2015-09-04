@@ -51,11 +51,13 @@ public:
     void render();
     //animations
     void update();
+protected:
+    Renderer *renderer;
 private:
     int extras;
     std::list <Texture*> textureList;
     std::list <Sprite*> sprites;
-    Renderer *renderer;
+
     IGameEventsListener* eventsListener;
     SceneManager* manager;
     Map* map;

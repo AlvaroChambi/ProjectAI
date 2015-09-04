@@ -45,8 +45,83 @@ namespace {
         ASSERT_FALSE(uiComponent->isHUD());
         ASSERT_TRUE(uiComponent->isVisible());
         ASSERT_TRUE(uiComponent->parent == nullptr);
-        
     }
+    
+    TEST_F(UIComponentTest, MeasureDimensionFillTest)
+    {
+        UIComponent* layout = new UIComponent;
+        layout->width = 640;
+        layout->height = 480;
+        
+        component->setParent(layout);
+        component->measureDimension();
+        
+        ASSERT_EQ(640, component->width);
+        ASSERT_EQ(480, component->height);
+    }
+    
+    TEST_F(UIComponentTest, measureDimensionWrapTest)
+    {
+        UIComponent* layout = new UIComponent;
+        layout->params.width = 640;
+        layout->params.height = 480;
+        
+        component->texture = new Texture;
+        component->texture->setWidth(50);
+        component->texture->setHeight(50);
+        component->params.width = WRAP;
+        component->params.height = WRAP;
+        
+        component->setParent(layout);
+        component->measureDimension();
+        
+        ASSERT_EQ(50, component->width);
+        ASSERT_EQ(50, component->height);
+    }
+    
+    TEST_F(UIComponentTest, MeasureDimensionDefaultTest)
+    {
+        UIComponent* layout = new UIComponent;
+        layout->width = 640;
+        layout->height = 480;
+        
+        component->setParams(Params(50,50,CENTER));
+        component->setParent(layout);
+        component->measureDimension();
+        
+        ASSERT_EQ(50, component->width);
+        ASSERT_EQ(50, component->height);
+    }
+    
+    TEST_F(UIComponentTest, MeasureDimensionFillInvalidValues)
+    {
+        UIComponent* layout = new UIComponent;
+        layout->width = 0;
+        layout->height = -5;
+        
+        component->setParams(Params(FILL,FILL,CENTER));
+        component->setParent(layout);
+        component->measureDimension();
+        
+        ASSERT_EQ(0, component->width);
+        ASSERT_EQ(0, component->height);
+    }
+    
+    TEST_F(UIComponentTest, MeasureDimensionParamsInvalidValues)
+    {
+        UIComponent* layout = new UIComponent;
+        layout->width = 640;
+        layout->height = 480;
+        
+        component->setParams(Params(-50,0,CENTER));
+        component->setParent(layout);
+        component->measureDimension();
+        
+        ASSERT_EQ(0, component->width);
+        ASSERT_EQ(0, component->height);
+    }
+    
+    
     
     TEST_F(UIComponentTest,CenterComponentInParent)
     {
@@ -159,6 +234,17 @@ namespace {
         component->rescale(500, 500);
         
         ASSERT_EQ(500, component->height);
+        ASSERT_EQ(100, component->width);
+    }
+    
+    TEST_F(UIComponentTest, RescaleContentWiderHigherThanContainer)
+    {
+        component->width = 800;
+        component->height = 800;
+
+        component->rescale(100, 100);
+        
+        ASSERT_EQ(100, component->height);
         ASSERT_EQ(100, component->width);
     }
     

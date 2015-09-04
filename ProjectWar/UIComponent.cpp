@@ -10,7 +10,6 @@
 
 UIComponent::UIComponent() : width(0), height(0), weight(0),hud(false), visible(true), texture(nullptr), parent(nullptr)
 {
-
 }
 
 UIComponent::~UIComponent()
@@ -82,6 +81,12 @@ void UIComponent::measureDimension()
             this->height = params.height;
             break;
     }
+    if (width < 0) {
+        width = 0;
+    }
+    if (height < 0){
+        height = 0;
+    }
 }
 
 void UIComponent::measurePosition(Point parentPosition, int parentWidth, int parentHeight)
@@ -126,14 +131,16 @@ bool UIComponent::rescale(int parentWidth, int parentHeight)
     
     if (virtualWidth > parentWidth) {
         width = parentWidth - (params.marginLeft + params.marginRight);
-    }else if(virtualHeight > parentHeight){
+    }
+    if(virtualHeight > parentHeight){
         height = parentHeight - (params.marginTop + params.marginDown);
     }
     
     if (width < 0) {
         width = 0;
         result = false;
-    }else if(height < 0){
+    }
+    if(height < 0){
         height = 0;
         result = false;
     }

@@ -20,16 +20,19 @@ HorizontalLayout::~HorizontalLayout()
 
 void HorizontalLayout::measureDisposition()
 {
-    if(components.size() > 0){
-        int subParentWidth = getWidth() / components.size();
-        int i = 0;
-        for (UIComponent* component : components) {
-            int subParentX = getPosition().x + subParentWidth * i;
-            Point subParentPosition = Point(subParentX, getPosition().y);
-            component->measurePosition(subParentPosition, subParentWidth, getHeight());
-            i++;
-        }
+    std::vector<Point> dispositionPoints;
+    switch (params.disposition) {
+        case WRAP_DISPOSITION:
+            dispositionPoints = wrapDisposition();
+            break;
+        case WEIGHT_DISPOSITION:
+            dispositionPoints = weightDisposition();
+            break;
+        default:
+            break;
     }
+    assignFrames(dispositionPoints);
+    populateLayout(dispositionPoints);
 }
 
 std::vector<Point> HorizontalLayout::wrapDisposition()

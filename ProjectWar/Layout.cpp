@@ -44,24 +44,41 @@ void Layout::render(Renderer* renderer)
 //measure the distribution of the layout
 void Layout::measureDisposition()
 {
-    for (UIComponent* component : components) {
-        component->measurePosition(position, width, height);
-    }
+    std::vector<Point> dispositionPoints = layoutDisposition();
+    assignFrames(dispositionPoints);
+    populateLayout(dispositionPoints);
 }
 
 void Layout::populateLayout(std::vector<Point> dispositionPoints)
 {
-    std::list<UIComponent*>::const_iterator iterator;
-    for (iterator = components.begin(); iterator != components.end(); ++iterator) {
-        std::cout << *iterator;
+    for (UIComponent* component : components) {
+        Frame frame = component->frame;
+        component->measurePosition(frame.position, frame.width, frame.height);
     }
-    
+}
+
+void Layout::assignFrames(std::vector<Point> dispositionPoints)
+{
     int i = 0;
     for (UIComponent* component : components) {
         Point start = dispositionPoints.at(i++);
         Point end = dispositionPoints.at(i++);
-        component->measurePosition(start, end.x - start.x, end.y - start.y);
+        component->frame.position = start;
+        component->frame.width = end.x - start.x;
+        component->frame.height = end.y - start.y;
     }
+}
+
+std::vector<Point> Layout::layoutDisposition()
+{
+    std::vector<Point> dispositionPoints;
+    for (int i = 0; i < components.size(); i++) {
+        Point start(position);
+        Point end(position.x + width, position.y + height);
+        dispositionPoints.push_back(start);
+        dispositionPoints.push_back(end);
+    }
+    return dispositionPoints;
 }
 
 void Layout::addComponent(UIComponent *component)

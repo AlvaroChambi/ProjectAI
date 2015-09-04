@@ -18,6 +18,14 @@ Texture::~Texture()
     
 }
 
+void Texture::setTexture(void *texture)
+{}
+
+void* Texture::getTexture()
+{
+    return nullptr;
+}
+
 void Texture::setPosition(Point position)
 {
     this->position = position;

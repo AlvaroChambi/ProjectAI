@@ -9,8 +9,8 @@
 #ifndef ProjectWar_Params_h
 #define ProjectWar_Params_h
 
-static const int FILL = 0;
-static const int WRAP = 1;
+static const int FILL = -1;
+static const int WRAP = -2;
 
 enum Gravity
 {

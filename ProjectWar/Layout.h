@@ -31,6 +31,9 @@ public:
     
     virtual void measureDisposition();
     void populateLayout(std::vector<Point> dispositionPoints);
+    void assignFrames(std::vector<Point> dispositionPoints);
+    
+    std::vector<Point> layoutDisposition();
     std::list<UIComponent*> components;
 private:
     Texture* background;

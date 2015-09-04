@@ -17,8 +17,8 @@ class Texture
 public:
     Texture();
     virtual ~Texture();
-    virtual void* getTexture() = 0;
-    virtual void setTexture(void* texture) = 0;
+    virtual void* getTexture();
+    virtual void setTexture(void* texture);
     void setPosition(int x, int y);
     void setZorder(int z);
     Point getPosition();

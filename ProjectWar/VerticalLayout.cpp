@@ -32,6 +32,7 @@ void VerticalLayout::measureDisposition()
         default:
             break;
     }
+    assignFrames(dispositionPoints);
     populateLayout(dispositionPoints);
 }
 

@@ -29,6 +29,7 @@ public:
     UIComponent* matchEvent(Point position);
     void cleanComponents();
     
+    void resize(int widthRatio, int heightRatio);
     virtual void measureDisposition();
     void populateLayout(std::vector<Point> dispositionPoints);
     void assignFrames(std::vector<Point> dispositionPoints);

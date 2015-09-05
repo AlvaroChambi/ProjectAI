@@ -33,8 +33,12 @@ public:
     Params() : width(FILL), height(FILL), gravity(CENTER), margin(0), marginLeft(0), marginRight(0)
                 ,marginTop(0), marginDown(0), disposition(WRAP_DISPOSITION)
     {}
-    Params(int width, int height, Gravity gravity) : width(width), height(height), gravity(gravity)
-    {}
+    Params(int width, int height, Gravity gravity) : Params()
+    {
+        this->width = width;
+        this->height = height;
+        this->gravity = gravity;
+    }
     virtual ~Params(){}
     int width;
     int height;

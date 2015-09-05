@@ -56,6 +56,20 @@ UIComponent* UIComponent::matchEvent(Point position)
     return result;
 }
 
+void UIComponent::resize(float widthRatio, float heightRatio)
+{
+    //Resize according to the given ratio
+    //update texture dimension to match the component
+    if (widthRatio < 0) {
+        widthRatio = 0;
+    }
+    if (heightRatio < 0) {
+        heightRatio = 0;
+    }
+    width = width * widthRatio;
+    height = height * heightRatio;
+}
+
 void UIComponent::measureDimension()
 {
     switch (params.width) {
@@ -91,7 +105,7 @@ void UIComponent::measureDimension()
 
 void UIComponent::measurePosition(Point parentPosition, int parentWidth, int parentHeight)
 {
-    if (rescale(parentWidth, parentHeight)) {
+    if (readjustDimension(parentWidth, parentHeight)) {
         switch (params.gravity) {
             case CENTER:
                 center(parentPosition, parentWidth, parentHeight);
@@ -123,7 +137,7 @@ void UIComponent::readjustPosition()
 
 //rescale dimensions if needed (content bigger than container)
 //return if the component could be drawed before the rescale (width, height > 0)
-bool UIComponent::rescale(int parentWidth, int parentHeight)
+bool UIComponent::readjustDimension(int parentWidth, int parentHeight)
 {
     bool result = true;
     int virtualWidth = width + params.marginLeft + params.marginRight;

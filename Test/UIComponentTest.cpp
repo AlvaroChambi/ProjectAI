@@ -221,7 +221,7 @@ namespace {
     TEST_F(UIComponentTest, RescaleContentWiderThanContainer)
     {
         component->width = 600;
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(500, component->width);
         ASSERT_EQ(100, component->height);
@@ -231,7 +231,7 @@ namespace {
     TEST_F(UIComponentTest, RescaleContentHigherThanContainer)
     {
         component->height = 600;
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(500, component->height);
         ASSERT_EQ(100, component->width);
@@ -242,7 +242,7 @@ namespace {
         component->width = 800;
         component->height = 800;
 
-        component->rescale(100, 100);
+        component->readjustDimension(100, 100);
         
         ASSERT_EQ(100, component->height);
         ASSERT_EQ(100, component->width);
@@ -253,7 +253,7 @@ namespace {
         component->params.marginLeft = 250;
         component->params.marginRight = 250;
         
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(100, component->height);
         ASSERT_EQ(0, component->width);
@@ -264,7 +264,7 @@ namespace {
         component->params.marginTop = 250;
         component->params.marginDown = 250;
         
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(0, component->height);
         ASSERT_EQ(100, component->width);
@@ -274,7 +274,7 @@ namespace {
     {
         component->params.marginLeft = 450;
         
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(50, component->width);
         ASSERT_EQ(100, component->height);
@@ -283,7 +283,7 @@ namespace {
     TEST_F(UIComponentTest, RescaleContentMarginRigth)
     {
         component->params.marginRight = 450;
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         ASSERT_EQ(50, component->width);
         ASSERT_EQ(100, component->height);
     }
@@ -291,7 +291,7 @@ namespace {
     TEST_F(UIComponentTest, RescaleContentMarginTop)
     {
         component->params.marginTop = 450;
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(100, component->width);
         ASSERT_EQ(50, component->height);
@@ -300,7 +300,7 @@ namespace {
     TEST_F(UIComponentTest, RescaleContentMarginDown)
     {
         component->params.marginDown = 450;
-        component->rescale(500, 500);
+        component->readjustDimension(500, 500);
         
         ASSERT_EQ(100, component->width);
         ASSERT_EQ(50, component->height);
@@ -350,6 +350,40 @@ namespace {
         
         ASSERT_EQ(100, component->position.x);
         ASSERT_EQ(100, component->position.y);
+    }
+    
+    TEST_F(UIComponentTest, ResizeWidthTest)
+    {
+        
+        component->resize(0.5, 1);
+        
+        ASSERT_EQ(50, component->width);
+        ASSERT_EQ(100, component->height);
+    }
+    
+    TEST_F(UIComponentTest, ResizeHeightTest)
+    {
+        component->resize(1, 0.5);
+        
+        ASSERT_EQ(100, component->width);
+        ASSERT_EQ(50, component->height);
+    }
+    
+    TEST_F(UIComponentTest, ResizeWidthHeightTest)
+    {
+        
+        component->resize(0.7, 1.5);
+        
+        ASSERT_EQ(70, component->width);
+        ASSERT_EQ(150, component->height);
+    }
+    
+    TEST_F(UIComponentTest, ResizeInvalidValues)
+    {
+        component->resize(-1, 0);
+        
+        ASSERT_EQ(0, component->width);
+        ASSERT_EQ(0, component->height);
     }
 }
 

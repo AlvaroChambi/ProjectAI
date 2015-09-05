@@ -27,13 +27,33 @@ public:
     
     virtual void TearDown()
     {
-        
+        dispositionPoints.clear();
+        layout->components.clear();
     }
     
     std::vector<Point> dispositionPoints;
     Layout* layout;
     
 };
+
+TEST_F(LayoutTest, LayoutDispositionTest)
+{
+    layout->width = 640;
+    layout->height = 480;
+    dispositionPoints = layout->layoutDisposition();
+    
+    ASSERT_EQ(0, dispositionPoints.at(0).x);
+    ASSERT_EQ(0, dispositionPoints.at(0).y);
+    
+    ASSERT_EQ(640, dispositionPoints.at(1).x);
+    ASSERT_EQ(480, dispositionPoints.at(1).y);
+    
+    ASSERT_EQ(0, dispositionPoints.at(2).x);
+    ASSERT_EQ(0, dispositionPoints.at(2).y);
+    
+    ASSERT_EQ(640, dispositionPoints.at(3).x);
+    ASSERT_EQ(480, dispositionPoints.at(3).y);
+}
 
 TEST_F(LayoutTest, assignFramesTest)
 {

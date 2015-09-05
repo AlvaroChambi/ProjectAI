@@ -41,6 +41,14 @@ void Layout::render(Renderer* renderer)
     }
 }
 
+void Layout::resize(int widthRatio, int heightRatio)
+{
+    UIComponent::resize(widthRatio, heightRatio);
+    for (UIComponent* component : components) {
+        component->resize(widthRatio, heightRatio);
+    }
+}
+
 //measure the distribution of the layout
 void Layout::measureDisposition()
 {

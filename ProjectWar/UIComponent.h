@@ -22,10 +22,14 @@ public:
     virtual void render(Renderer* renderer);
     virtual UIComponent* matchEvent(Point position);
     
+    virtual void resize(float widthRatio, float heightRatio);
+    
     void measureDimension();
     void measurePosition(Point parentPosition, int parentWidth, int parentHeight);
     
-    bool rescale(int parentWidth, int parentHeight);
+    //readjust dimension when needed, never allowes a component higher or wider than the parent
+    bool readjustDimension(int parentWidth, int parentHeight);
+    //readjust component position to fix the margin displacement
     void readjustPosition();
     
     void center(Point parentPosition, int parentWidth, int parentHeight);

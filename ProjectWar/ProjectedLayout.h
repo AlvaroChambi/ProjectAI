@@ -21,7 +21,13 @@ public:
     void measureDisposition();
     
     std::vector<Point> projectedLayoutsDisposition();
+    std::vector<Layout*> layoutFrames;
     int maxDepthLevel;
+    int actualDepthLevel;
+    
+    void addComponent(UIComponent* component);
+    void moveToUpperLevel();
+    void moveToLowerLevel();
 };
 
 #endif /* defined(__ProjectWar__ProjectedLayout__) */

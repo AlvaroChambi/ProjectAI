@@ -29,7 +29,7 @@ public:
     UIComponent* matchEvent(Point position);
     void cleanComponents();
     
-    void resize(int widthRatio, int heightRatio);
+    void resize(float widthRatio, float heightRatio);
     virtual void measureDisposition();
     void populateLayout(std::vector<Point> dispositionPoints);
     void assignFrames(std::vector<Point> dispositionPoints);
@@ -37,6 +37,7 @@ public:
     std::vector<Point> layoutDisposition();
     std::list<UIComponent*> components;
 private:
+    //TODO remove
     Texture* background;
     Color* backgroundColor;
 };

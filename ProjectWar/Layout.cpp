@@ -41,7 +41,7 @@ void Layout::render(Renderer* renderer)
     }
 }
 
-void Layout::resize(int widthRatio, int heightRatio)
+void Layout::resize(float widthRatio, float heightRatio)
 {
     UIComponent::resize(widthRatio, heightRatio);
     for (UIComponent* component : components) {
@@ -49,7 +49,7 @@ void Layout::resize(int widthRatio, int heightRatio)
     }
 }
 
-//measure the distribution of the layout
+//measure the distribution of the layout and places his components
 void Layout::measureDisposition()
 {
     std::vector<Point> dispositionPoints = layoutDisposition();
@@ -96,8 +96,6 @@ void Layout::addComponent(UIComponent *component)
     component->setHUD(this->isHUD());
     //Update parent value: first use of the params
     component->setParent(this);
-    
-    //Dimension are not dependant on the type of layout
     component->measureDimension();
     //Position measure must consider the type of layout and the items in it
     this->measureDisposition();

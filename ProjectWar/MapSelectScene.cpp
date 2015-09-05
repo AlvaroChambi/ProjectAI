@@ -71,30 +71,36 @@ void MapSelectScene::onSceneStarted()
     item4->texture = quad1;
     
     ProjectedLayout* projectedlayout = new ProjectedLayout;
+    VerticalLayout* verticalLayout = new VerticalLayout;
+    verticalLayout->weight = 1;
     HorizontalLayout* depth0Layout = new HorizontalLayout;
     depth0Layout->params.disposition = WEIGHT_DISPOSITION;
     Layout* depth1Layout= new Layout;
     Layout* depth2Layout = new Layout;
     
     
-    //this->setUIHUD(projectedlayout);
+    this->setUIHUD(depth0Layout);
     
-    projectedlayout->addComponent(depth0Layout);
-    projectedlayout->addComponent(depth1Layout);
-    projectedlayout->addComponent(depth2Layout);
+    //projectedlayout->addComponent(depth0Layout);
+    //projectedlayout->addComponent(depth1Layout);
+    //projectedlayout->addComponent(depth2Layout);
     
     depth0Layout->addComponent(item1);
     depth0Layout->addComponent(item2);
+    depth0Layout->addComponent(verticalLayout);
     
-    depth1Layout->addComponent(item3);
-    depth1Layout->addComponent(item4);
+    verticalLayout->addComponent(item3);
+    verticalLayout->addComponent(item4);
     
-    depth2Layout->addComponent(item);
+    //depth1Layout->addComponent(item3);
+    //depth1Layout->addComponent(item4);
     
-    Layout* layout = new Layout();
-    layout->params = Params(200,200,CENTER);
+    //depth2Layout->addComponent(item);
     
-    this->setUIHUD(layout);
+    depth0Layout->resize(0.5, 0.5);
+    depth0Layout->measureDisposition();
+    verticalLayout->measureDisposition();
+    
 }
 
 void MapSelectScene::onScenePaused()

@@ -9,12 +9,27 @@
 #include "ProjectedLayout.h"
 
 
-ProjectedLayout::ProjectedLayout() : Layout(), maxDepthLevel(3)
+ProjectedLayout::ProjectedLayout() : Layout(), maxDepthLevel(2), actualDepthLevel(0)
 {
 
 }
 
 ProjectedLayout::~ProjectedLayout()
+{
+
+}
+
+void ProjectedLayout::addComponent(UIComponent *component)
+{
+
+}
+
+void ProjectedLayout::moveToLowerLevel()
+{
+
+}
+
+void ProjectedLayout::moveToUpperLevel()
 {
 
 }

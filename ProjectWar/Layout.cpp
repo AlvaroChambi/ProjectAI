@@ -41,12 +41,26 @@ void Layout::render(Renderer* renderer)
     }
 }
 
+//When the layout and dimensions and position has been succesfully measured
+void Layout::onMeasureCompleted()
+{
+    this->measureDisposition();
+}
+
+//Whenever a layout dimensions or position is changed
+void Layout::onMeasureChanged()
+{
+    this->measureDisposition();
+}
+
 void Layout::resize(float widthRatio, float heightRatio)
 {
     UIComponent::resize(widthRatio, heightRatio);
     for (UIComponent* component : components) {
         component->resize(widthRatio, heightRatio);
+        component->onMeasureChanged();
     }
+    onMeasureChanged();
 }
 
 //measure the distribution of the layout and places his components
@@ -62,10 +76,18 @@ void Layout::populateLayout(std::vector<Point> dispositionPoints)
     for (UIComponent* component : components) {
         Frame frame = component->frame;
         component->measurePosition(frame.position, frame.width, frame.height);
+        //Notify finished measurement
+        component->onMeasureCompleted();
     }
 }
 
 void Layout::assignFrames(std::vector<Point> dispositionPoints)
+{
+    std::vector<UIComponent*> vector(components.begin(), components.end());
+    assignFrames(dispositionPoints, vector);
+}
+
+void Layout::assignFrames(std::vector<Point> dispositionPoints, std::vector<UIComponent*> components)
 {
     int i = 0;
     for (UIComponent* component : components) {

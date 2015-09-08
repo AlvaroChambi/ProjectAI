@@ -17,25 +17,14 @@ UIComponent::~UIComponent()
 
 }
 
-void UIComponent::setHUD(bool hud)
+void UIComponent::onMeasureCompleted()
 {
-    this->hud = hud;
+    
 }
 
-bool UIComponent::isHUD()
+void UIComponent::onMeasureChanged()
 {
-    return hud;
-}
 
-void UIComponent::setParams(Params params)
-{
-    this->params = params;
-}
-
-
-Params UIComponent::getParams()
-{
-    return this->params;
 }
 
 void UIComponent::render(Renderer *renderer)
@@ -277,4 +266,25 @@ void UIComponent::setParent(UIComponent *component)
 UIComponent* UIComponent::getParent()
 {
     return parent;
+}
+
+void UIComponent::setHUD(bool hud)
+{
+    this->hud = hud;
+}
+
+bool UIComponent::isHUD()
+{
+    return hud;
+}
+
+void UIComponent::setParams(Params params)
+{
+    this->params = params;
+}
+
+
+Params UIComponent::getParams()
+{
+    return this->params;
 }

@@ -22,6 +22,9 @@ public:
     virtual void render(Renderer* renderer);
     virtual UIComponent* matchEvent(Point position);
     
+    virtual void onMeasureCompleted();
+    virtual void onMeasureChanged();
+    
     virtual void resize(float widthRatio, float heightRatio);
     
     void measureDimension();

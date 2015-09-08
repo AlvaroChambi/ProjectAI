@@ -75,32 +75,24 @@ void MapSelectScene::onSceneStarted()
     verticalLayout->weight = 1;
     HorizontalLayout* depth0Layout = new HorizontalLayout;
     depth0Layout->params.disposition = WEIGHT_DISPOSITION;
-    Layout* depth1Layout= new Layout;
+    VerticalLayout* depth1Layout= new VerticalLayout;
     Layout* depth2Layout = new Layout;
-    
-    
+ /*
+    projectedlayout->addComponent(depth0Layout);
+    projectedlayout->addComponent(depth1Layout);
+    projectedlayout->addComponent(depth2Layout);
+    */
     this->setUIHUD(depth0Layout);
-    
-    //projectedlayout->addComponent(depth0Layout);
-    //projectedlayout->addComponent(depth1Layout);
-    //projectedlayout->addComponent(depth2Layout);
     
     depth0Layout->addComponent(item1);
     depth0Layout->addComponent(item2);
+    
     depth0Layout->addComponent(verticalLayout);
     
     verticalLayout->addComponent(item3);
     verticalLayout->addComponent(item4);
     
-    //depth1Layout->addComponent(item3);
-    //depth1Layout->addComponent(item4);
-    
-    //depth2Layout->addComponent(item);
-    
     depth0Layout->resize(0.5, 0.5);
-    depth0Layout->measureDisposition();
-    verticalLayout->measureDisposition();
-    
 }
 
 void MapSelectScene::onScenePaused()

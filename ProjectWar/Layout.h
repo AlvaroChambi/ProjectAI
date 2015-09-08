@@ -30,9 +30,12 @@ public:
     void cleanComponents();
     
     void resize(float widthRatio, float heightRatio);
+    virtual void onMeasureCompleted();
+    virtual void onMeasureChanged();
     virtual void measureDisposition();
     void populateLayout(std::vector<Point> dispositionPoints);
     void assignFrames(std::vector<Point> dispositionPoints);
+    void assignFrames(std::vector<Point>dispositionPoints, std::vector<UIComponent*> components);
     
     std::vector<Point> layoutDisposition();
     std::list<UIComponent*> components;

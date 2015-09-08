@@ -18,16 +18,19 @@ public:
     ProjectedLayout();
     virtual ~ProjectedLayout();
     
+    void render(Renderer* renderer);
     void measureDisposition();
     
     std::vector<Point> projectedLayoutsDisposition();
-    std::vector<Layout*> layoutFrames;
+    std::vector<UIComponent*> layoutFrames;
+    void assignFrames(std::vector<Point>dispositionPoints, std::vector<UIComponent*> components);
     int maxDepthLevel;
     int actualDepthLevel;
     
     void addComponent(UIComponent* component);
     void moveToUpperLevel();
     void moveToLowerLevel();
+    void project();
 };
 
 #endif /* defined(__ProjectWar__ProjectedLayout__) */

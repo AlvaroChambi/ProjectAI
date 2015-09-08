@@ -169,6 +169,8 @@
 		9CA64D471B98A0F90069B7F2 /* ProjectedLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */; };
 		9CA64D481B98A7570069B7F2 /* ProjectedLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */; };
 		9CA64D4C1B9997850069B7F2 /* Frame.h in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D4B1B99956A0069B7F2 /* Frame.h */; };
+		9CA64D4F1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D4D1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp */; };
+		9CA64D501B9ED59E0069B7F2 /* LayoutIntegrationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA64D4D1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp */; };
 		9CAD93C51B62A7CA004099B9 /* units_layout.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD93C41B62A7CA004099B9 /* units_layout.lua */; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
@@ -377,6 +379,8 @@
 		9CA64D451B98A0F90069B7F2 /* ProjectedLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectedLayout.cpp; sourceTree = "<group>"; };
 		9CA64D461B98A0F90069B7F2 /* ProjectedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectedLayout.h; sourceTree = "<group>"; };
 		9CA64D4B1B99956A0069B7F2 /* Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		9CA64D4D1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutIntegrationTest.cpp; sourceTree = "<group>"; };
+		9CA64D4E1B9ED1E00069B7F2 /* LayoutIntegrationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutIntegrationTest.h; sourceTree = "<group>"; };
 		9CAD93C41B62A7CA004099B9 /* units_layout.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = units_layout.lua; sourceTree = "<group>"; };
 		9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAE2DE21AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -826,6 +830,8 @@
 		9CA64D4A1B998E580069B7F2 /* integration_test */ = {
 			isa = PBXGroup;
 			children = (
+				9CA64D4D1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp */,
+				9CA64D4E1B9ED1E00069B7F2 /* LayoutIntegrationTest.h */,
 			);
 			name = integration_test;
 			sourceTree = "<group>";
@@ -1080,6 +1086,7 @@
 				9C93C3DC1B7F851200BA58AE /* TacticMinimax.cpp in Sources */,
 				9C93C3DD1B7F851200BA58AE /* CaptureCommand.cpp in Sources */,
 				9C93C3DE1B7F851200BA58AE /* MoveCommand.cpp in Sources */,
+				9CA64D4F1B9ED1E00069B7F2 /* LayoutIntegrationTest.cpp in Sources */,
 				9C93C3DF1B7F851200BA58AE /* AttackCommand.cpp in Sources */,
 				9C93C3E01B7F851200BA58AE /* NothingSelectedState.cpp in Sources */,
 				9C93C3E11B7F851200BA58AE /* UnitSelectedState.cpp in Sources */,
@@ -1132,6 +1139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA64D501B9ED59E0069B7F2 /* LayoutIntegrationTest.cpp in Sources */,
 				9C93C3C61B7E0E7100BA58AE /* TextList.cpp in Sources */,
 				9C3B965D1B25C94A00859538 /* Camera.cpp in Sources */,
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,

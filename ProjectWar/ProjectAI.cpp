@@ -18,6 +18,7 @@
 #include "LuaScript.h"
 #include "Army.h"
 #include "MapSelectScene.h"
+#include "LayoutIntegrationTest.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0), founds(1000)
 {
@@ -134,13 +135,17 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
     //Default camera
     Camera* camera = new Camera(Point(0, 0), 640, 480);
     
+    Scene* testScene = new LayoutIntegrationTest(renderer, sceneManager);
+    sceneManager->setActualScene(testScene, "test_scene");
+    testScene->registerCamera(camera);
+    
     // Scene* menuScene = mainMenuScene(sceneManager, renderer);
     Scene* menuScene = new MenuScene(renderer, sceneManager);
     menuScene->registerListener(this);
    // sceneManager->setActualScene(menuScene, "menu_scene");
     
     Scene* mapsSelecteScene = new MapSelectScene(renderer, sceneManager);
-    sceneManager->setActualScene(mapsSelecteScene, "maps_select_scene");
+   // sceneManager->setActualScene(mapsSelecteScene, "maps_select_scene");
     mapsSelecteScene->registerCamera(camera);
     
     Scene* gameScene = new GameScene(renderer, sceneManager);

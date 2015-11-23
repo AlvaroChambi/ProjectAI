@@ -9,6 +9,7 @@
 #include "UIComponent.h"
 
 UIComponent::UIComponent() : width(0), height(0), weight(0),hud(false), visible(true), texture(nullptr), parent(nullptr)
+                , listener(nullptr)
 {
 }
 
@@ -25,6 +26,20 @@ void UIComponent::onMeasureCompleted()
 void UIComponent::onMeasureChanged()
 {
 
+}
+
+bool UIComponent::handleEvent(const Event event)
+{
+    bool result = false;
+    Point position = Point(event.x, event.y);
+    if (texture->matchPosition(position)) {
+        result = true;
+        if (listener != nullptr) {
+            listener->onItemClicked(this);
+        }
+    }
+
+    return result;
 }
 
 void UIComponent::render(Renderer *renderer)
@@ -49,14 +64,13 @@ void UIComponent::resize(float widthRatio, float heightRatio)
 {
     //Resize according to the given ratio
     //update texture dimension to match the component
-    if (widthRatio < 0) {
-        widthRatio = 0;
-    }
-    if (heightRatio < 0) {
-        heightRatio = 0;
-    }
-    width = width * widthRatio;
-    height = height * heightRatio;
+    resizeCommand = new ResizeCommand(this, widthRatio, heightRatio);
+    resizeCommand->execute();
+}
+
+void UIComponent::resetSize()
+{
+    resizeCommand->cancel();
 }
 
 void UIComponent::measureDimension()

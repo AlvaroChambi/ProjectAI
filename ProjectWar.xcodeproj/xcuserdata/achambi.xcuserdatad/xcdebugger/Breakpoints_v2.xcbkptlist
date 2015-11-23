@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/Layout.cpp"
-            timestampString = "463392706.378277"
+            timestampString = "464175194.797718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "Layout::setBackground(Color color)"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -440,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/UIComponent.cpp"
-            timestampString = "463392111.332288"
+            timestampString = "464175194.797718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "UIComponent::center(Point parentPosition, int parentWidth, int parentHeight)"
             landmarkType = "5">
          </BreakpointContent>
@@ -504,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/Scene.cpp"
-            timestampString = "457268071.526631"
+            timestampString = "464091869.762407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "Scene::handleEvent(const Event event)"
             landmarkType = "5">
          </BreakpointContent>
@@ -520,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "HidePopUpCallback::function(Message* message)"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -584,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -600,11 +600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -638,38 +638,6 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "ProjectAI::onUIComponentClicked(UIComponent component)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectWar/Scene.cpp"
-            timestampString = "457268071.526631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "Scene::handleEvent(const Event event)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectWar/Scene.cpp"
-            timestampString = "457268071.526631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "Scene::handleEvent(const Event event)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -728,11 +696,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "CreateUnitCallback::function(Message* message)"
             landmarkType = "5">
          </BreakpointContent>
@@ -744,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409">
+            startingLineNumber = "410"
+            endingLineNumber = "410">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -918,11 +886,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -982,11 +950,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1046,11 +1014,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1062,11 +1030,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectAI.cpp"
-            timestampString = "463394114.884692"
+            timestampString = "467372440.886866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "ProjectAI::gameScene(Scene* scene, Renderer* renderer)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1270,12 +1238,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectedLayout.cpp"
-            timestampString = "463397926.51554"
+            timestampString = "467372306.162169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "ProjectedLayout::projectedLayoutsDisposition()"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "ProjectedLayout::project(UIComponent* component)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1302,11 +1270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/Layout.cpp"
-            timestampString = "463392706.378277"
+            timestampString = "464175194.797718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "Layout::populateLayout(std::vector&lt;Point&gt; dispositionPoints)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1334,11 +1302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/UIComponent.cpp"
-            timestampString = "463392111.332288"
+            timestampString = "464175194.797718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "UIComponent::measurePosition(Point parentPosition, int parentWidth, int parentHeight)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1366,13 +1334,233 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectWar/ProjectedLayout.cpp"
-            timestampString = "463397926.51554"
+            timestampString = "467372306.162169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "ProjectedLayout::assignFrames(std::vector&lt;Point&gt; dispositionPoints, std::vector&lt;UIComponent *&gt; components)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "ProjectedLayout::project(UIComponent* component)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/MenuContainer.cpp"
+            timestampString = "464084263.173307"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "MenuContainer::getRootChilds()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/LayoutIntegrationTest.cpp"
+            timestampString = "464091869.762407"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "LayoutIntegrationTest::onSceneStarted()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/MenuContainer.cpp"
+            timestampString = "464084263.173307"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "MenuContainer::MenuContainer()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "ProjectedLayout::moveFrameDown(ProjectedLayoutFrame* frame)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "464087354.89612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "ProjectedLayout::ProjectedLayout()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "ProjectedLayout::moveFrameDown(ProjectedLayoutFrame* frame)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "ProjectedLayout::onItemClicked(UIComponent *component)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "ProjectedLayout::getFrameBundle(int frameLevel)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "ProjectedLayout::moveFrameDown(ProjectedLayoutFrame* frame)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "ProjectedLayout::projectedLayoutsDisposition()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectWar/ProjectedLayout.cpp"
+            timestampString = "467372306.162169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "ProjectedLayout::moveFrameUp(ProjectedLayoutFrame* frame)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/UIComponentTest.cpp"
+            timestampString = "467373334.815659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "TEST_F(UIComponentTest, ResizeWidthTest)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

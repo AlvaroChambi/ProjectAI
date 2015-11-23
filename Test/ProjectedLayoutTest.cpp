@@ -62,3 +62,13 @@ TEST_F(ProjectedLayoutTest, ProjectedLayoutsDispositionTest)
     ASSERT_EQ(480, end.x);
     ASSERT_EQ(180, end.y);
 }
+
+TEST_F(ProjectedLayoutTest, MoveFrameDownTest)
+{
+    Layout* frame = new HorizontalLayout();
+    frame->position = Point(0,120);
+    frame->width = 640;
+    frame->height = 240;
+    
+    //layout->moveFrameDown(frame);
+}

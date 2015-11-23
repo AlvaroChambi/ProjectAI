@@ -26,7 +26,7 @@ void Layout::render(Renderer* renderer)
     
     if (this->isVisible()) {
         //If background color defined
-        if (backgroundColor != nullptr) {
+        if (background != nullptr && backgroundColor != nullptr) {
             background = renderer->loadShape(RECTANGLE, *backgroundColor, this->getWidth(), this->getHeight());
             background->hud = this->isHUD();
         }
@@ -53,11 +53,41 @@ void Layout::onMeasureChanged()
     this->measureDisposition();
 }
 
+void Layout::onContentMeasureCompleted()
+{
+
+}
+
+bool Layout::handleEvent(const Event event)
+{
+    bool result = false;
+    for (UIComponent* component :  components) {
+        if (component->handleEvent(event)) {
+            result = true;
+            if (listener != nullptr) {
+                listener->onItemClicked(component);
+            }
+        }
+    }
+    
+    return result;
+}
+
 void Layout::resize(float widthRatio, float heightRatio)
 {
     UIComponent::resize(widthRatio, heightRatio);
     for (UIComponent* component : components) {
         component->resize(widthRatio, heightRatio);
+        component->onMeasureChanged();
+    }
+    onMeasureChanged();
+}
+
+void Layout::resetSize()
+{
+    UIComponent::resetSize();
+    for (UIComponent* component : components) {
+        component->resetSize();
         component->onMeasureChanged();
     }
     onMeasureChanged();
@@ -79,6 +109,8 @@ void Layout::populateLayout(std::vector<Point> dispositionPoints)
         //Notify finished measurement
         component->onMeasureCompleted();
     }
+    //All the components in the layout has been succesfully measured (just the first inner level)
+    this->onContentMeasureCompleted();
 }
 
 void Layout::assignFrames(std::vector<Point> dispositionPoints)

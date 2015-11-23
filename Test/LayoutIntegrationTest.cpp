@@ -10,6 +10,11 @@
 #include "VerticalLayout.h"
 #include "ProjectedLayout.h"
 #include "HorizontalLayout.h"
+#include "Node.h"
+#include "MenuContainer.h"
+#include <boost/graph/graph_traits.hpp>
+#include <boost/graph/adjacency_list.hpp>
+
 
 LayoutIntegrationTest::LayoutIntegrationTest(Renderer* renderer, SceneManager* sceneManager) : Scene(renderer, sceneManager)
 {
@@ -23,24 +28,23 @@ LayoutIntegrationTest::~LayoutIntegrationTest()
 
 void LayoutIntegrationTest::onSceneStarted()
 {
-    Texture* quad = renderer->loadShape(RECTANGLE, Color(255,0,0), 100, 100);
-    Texture* quad1 = renderer->loadShape(RECTANGLE, Color(0,255,0), 100, 100);
-    Texture* quad2 = renderer->loadShape(RECTANGLE, Color(0,0,255), 100, 100);
+    Texture* quad = renderer->loadSprite("a_bubble.png", 100, 100);
+    Texture* quad1 = renderer->loadSprite("b_bubble.png", 100, 100);
+    Texture* quad2 = renderer->loadSprite("c_bubble.png", 100, 100);
+    Texture* quad3 = renderer->loadSprite("d_bubble.png", 100, 100);
+    Texture* quad4 = renderer->loadSprite("e_bubble.png", 100, 100);
+    Texture* quad5 = renderer->loadSprite("f_bubble.png", 100, 100);
     
     UIComponent* item = new UIComponent;
     item->params.width = WRAP;
     item->params.height = WRAP;
     item->weight = 1;
     
-    item->texture = quad2;
+    item->texture = quad;
     
     UIComponent* item1 = new UIComponent;
     item1->params.width = WRAP;
     item1->params.height = WRAP;
- /*   item1->params.marginTop = 10;
-    item1->params.marginDown = 10;
-    item1->params.marginLeft = 20;
-    item1->params.marginRight = 20;*/
     item1->weight = 1;
     
     item1->texture = quad1;
@@ -57,45 +61,39 @@ void LayoutIntegrationTest::onSceneStarted()
     item3->params.height = WRAP;
     item3->weight = 1;
     
-    item3->texture = quad;
+    item3->texture = quad3;
     
     UIComponent* item4 = new UIComponent;
     item4->params.width = WRAP;
     item4->params.height = WRAP;
     item4->weight = 1;
     
-    item4->texture = quad1;
+    item4->texture = quad4;
     
+    UIComponent* item5 = new UIComponent;
+    item5->params.width = WRAP;
+    item5->params.height = WRAP;
+    item5->weight = 1;
+    
+    item5->texture = quad5;
+ 
     ProjectedLayout* projectedlayout = new ProjectedLayout;
-    VerticalLayout* verticalLayout = new VerticalLayout;
-    verticalLayout->weight = 1;
-    HorizontalLayout* depth0Layout = new HorizontalLayout;
-    depth0Layout->params.disposition = WEIGHT_DISPOSITION;
-    Layout* depth1Layout= new Layout;
-    Layout* depth2Layout = new Layout;
+    
+    MenuContainer* menuContainer = new MenuContainer;
+    //maybe add trigger and not add to root
+    menuContainer->addToRoot(item);
+    menuContainer->addToRoot(item1);
+    
+    menuContainer->addNode(item2, item1);
+    menuContainer->addNode(item3, item1);
+    
+    menuContainer->addNode(item4, item2);
+    menuContainer->addNode(item5, item2);
+    
+    //Graph building end
+    projectedlayout->menuContainer = menuContainer;
     
     this->setUIHUD(projectedlayout);
-    
-    projectedlayout->addComponent(depth0Layout);
-    projectedlayout->addComponent(depth1Layout);
-    projectedlayout->addComponent(depth2Layout);
-    
-    depth0Layout->addComponent(item1);
-    depth0Layout->addComponent(item2);
-    
-    depth1Layout->addComponent(item3);
-    
-    depth2Layout->addComponent(item4);
-    
-    projectedlayout->project();
-    
-    
-   /* depth0Layout->addComponent(verticalLayout);
-    
-    verticalLayout->addComponent(item3);
-    verticalLayout->addComponent(item4);
-    
-    depth0Layout->resize(0.5, 0.5);*/
 }
 
 void LayoutIntegrationTest::onScenePaused()

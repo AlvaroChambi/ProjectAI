@@ -150,6 +150,7 @@ void ProjectAI::onGameStarted(SceneManager* sceneManager, Renderer* renderer)
     
     Scene* gameScene = new GameScene(renderer, sceneManager);
     gameScene->registerCamera(camera);
+    //sceneManager->setActualScene(gameScene, "game_scene");
     sceneManager->registerScene(gameScene, "game_scene");
     
     MessageManager::getInstance().registerForMessage(MESSAGE_SHOW_POPUP, new ShowPopUpCallback(sceneManager));

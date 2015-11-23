@@ -13,6 +13,9 @@
 #include "Params.h"
 #include "Texture.h"
 #include "Frame.h"
+#include "Event.h"
+#include "OnItemClickedListener.h"
+#include "ResizeCommand.h"
 
 class UIComponent
 {
@@ -22,10 +25,13 @@ public:
     virtual void render(Renderer* renderer);
     virtual UIComponent* matchEvent(Point position);
     
+    virtual bool handleEvent(const Event event);
+    
     virtual void onMeasureCompleted();
     virtual void onMeasureChanged();
     
     virtual void resize(float widthRatio, float heightRatio);
+    virtual void resetSize();
     
     void measureDimension();
     void measurePosition(Point parentPosition, int parentWidth, int parentHeight);
@@ -74,6 +80,9 @@ public:
     bool visible;
     float weight;
     Frame frame;
+    OnItemClickedListener* listener;
+    Frame menuFrame;
+    ResizeCommand* resizeCommand;
 };
 
 #endif

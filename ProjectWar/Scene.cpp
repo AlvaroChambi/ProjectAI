@@ -145,63 +145,17 @@ void Scene::handleEvent(const Event event)
     switch (event.type) {
         case ON_MOUSE_DRAG:
         {
+            //move camera
             Point newPosition = camera->position - Point(event.xRelative, event.yRelative);
             camera->position = newPosition;
         }
             break;
         case ON_MOUSE_DOWN_EVENT:
-            if(this->eventsListener != nullptr){
-                for (Texture* texture : textureList) {
-                    //if clicked position match with the given texture area notify event
-                    if(texture->matchPosition(position) && texture->isVisible()){
-                        eventsListener->onTextureClicked(*texture);
-                        eventHandled = true;
-                    }
-                }
-                for(Sprite* sprite : sprites){
-                    //if clicked position match with the given sprite size notify event
-                    if(sprite->matchPosition(position) && sprite->getTexture()->isVisible()){
-                        eventsListener->onSpriteClicked(sprite->getID());
-                        eventHandled = true;
-                    }
-
-                }
-                
-                //Avoiding camera offset in HUD elements
-                UIComponent* component = rootLayout->matchEvent(Point(event.x, event.y));
-                if(component != nullptr){
-                    eventsListener->onUIComponentClicked(*component);
-                }
-                //TODO maybe check if the event hasnt been handled yet
-                component = popUp->matchEvent(Point(event.x, event.y));
-                if (component != nullptr) {
-                    eventsListener->onUIComponentClicked(*component);
-                    eventHandled = true;
-                }
-                
-                if(!eventHandled){
-                    Tile* tile = nullptr;
-                    int id = -1;
-                    // if there are no previous matches just send scene clicked event
-                    if (map != nullptr) {
-                        tile = map->matchEvent(position);
-                    }
-                    
-                    if (map != nullptr){
-                        id = map->matchSpriteEvent(position);
-                    }
-                    
-                    if(tile != nullptr){
-                        eventsListener->onMapClicked(*tile);
-                    }
-                    
-                    if (id != -1) {
-                        eventsListener->onSpriteClicked(id);
-                    }
-                }
-                
-                eventsListener->onSceneClicked(position);
-            }
+            //TODO handle sprites clicked event
+            
+            //TODO handle tile clicked event
+            
+            eventHandled = rootLayout->handleEvent(event);
             break;
         default:
             break;

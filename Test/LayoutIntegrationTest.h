@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Scene.h"
+#include <boost/lambda/lambda.hpp>
 
 class LayoutIntegrationTest : public Scene
 {

@@ -16,6 +16,7 @@
 
 
 #include "UIComponent.h"
+#include "Event.h"
 
 class Layout : public UIComponent
 {
@@ -30,10 +31,16 @@ public:
     void cleanComponents();
     
     void resize(float widthRatio, float heightRatio);
+    void resetSize();
+    
+    virtual void onContentMeasureCompleted();
+    
+    bool handleEvent(const Event event);
+    
     virtual void onMeasureCompleted();
     virtual void onMeasureChanged();
     virtual void measureDisposition();
-    void populateLayout(std::vector<Point> dispositionPoints);
+    virtual void populateLayout(std::vector<Point> dispositionPoints);
     void assignFrames(std::vector<Point> dispositionPoints);
     virtual void assignFrames(std::vector<Point>dispositionPoints, std::vector<UIComponent*> components);
     

@@ -50,6 +50,7 @@ public:
     static const int CANCEL_BUTTON = 3;
     static const int ATTACK_BUTTON = 4;
     static const int CAPTURE_BUTTON = 5;
+    
 private:
     Input getPlayerEvent(int id);
     

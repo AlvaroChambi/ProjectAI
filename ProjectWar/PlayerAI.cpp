@@ -49,6 +49,8 @@ std::list<Command*> PlayerAI::play()
     return commands;
 }
 
+
+
 void PlayerAI::executeMinimax()
 {
     Player* enemy = nullptr;
@@ -61,7 +63,7 @@ void PlayerAI::executeMinimax()
     GameState* game = new GameState(this, enemy, scene, renderer);
     TacticMinimax* tacticDecision = new TacticMinimax(*game);
     
-    tacticDecision->minimax(5);
+    tacticDecision->minimax(2);
     Tactic* movement = (Tactic*)tacticDecision->getMove();
     
     movement->execute();

@@ -39,12 +39,17 @@ void ProjectAI::onSpriteClicked(const int id)
     switch (this->getPlayerEvent(id)) {
         case UNIT_CLICKED:
         {
-            Unit* unit = activePlayer->getSelectedUnit();
-            //Updating unit ui reference to the new selected unit
-            if(unit == nullptr || unit->getId() != id){
-                layout->setModel(activePlayer->getUnit(id));
+            if(!playerController->getUnitCurrentlyClicked()){
+                //TODO Control if an unit has moved already
+                    Unit* unit = activePlayer->getSelectedUnit();
+                    
+                    //Updating unit ui reference to the new selected unit
+                    if(unit == nullptr || unit->getId() != id){
+                        layout->setModel(activePlayer->getUnit(id));
+                    }
+                    playerController->onUnitClicked(id);
+                
             }
-            playerController->onUnitClicked(id);
         }
             break;
         case ENEMY_UNIT_CLICKED:
@@ -152,13 +157,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     /////////  PLAYER 1 UNITS //////////
     Unit* unit = new Unit();
-    unit->setResource("animate.png");
+    unit->setResource("soldier_red.png");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
     unit->setMovement(3);
     unit->setAttackRange(1);
     unit->setHP(10);
     unitSprite->setModel(unit);
-    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 82);
+    Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 90);
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
@@ -166,13 +171,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();
-    unit3->setResource("animate.png");
+    unit3->setResource("soldier_red.png");
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
     unit3->setMovement(3);
     unit3->setAttackRange(1);
     unit3->setHP(10);
     unitSprite3->setModel(unit3);
-    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 90);
     unitSprite3->setTexture(unitTexture3);
     //resize to fit in a map tile
     unitSprite3->resize(40, 40);
@@ -180,13 +185,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player->addUnit(unit3);
     
     Unit* unit4 = new Unit();
-    unit4->setResource("animate.png");
+    unit4->setResource("soldier_red.png");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
     unit4->setMovement(3);
     unit4->setAttackRange(1);
     unit4->setHP(10);
     unitSprite4->setModel(unit4);
-    Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 82);
+    Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 90);
     unitSprite4->setTexture(unitTexture4);
     //resize to fit in a map tile
     unitSprite4->resize(40, 40);
@@ -195,39 +200,39 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     ///////////  PLAYER 2 UNITS ///////////
     Unit* unit2 = new Unit();
-    unit2->setResource("link.png");
+    unit2->setResource("soldier_blue.png");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
     unit2->setMovement(3);
     unit2->setAttackRange(1);
     unit2->setHP(10);
     unit2Sprite->setModel(unit2);
-    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 90, 90);
+    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 128, 90);
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
     unit2->setPosition(map->getTile(13, 3));
     player2->addUnit(unit2);
     
     Unit* unit5 = new Unit();
-    unit5->setResource("link.png");
+    unit5->setResource("soldier_blue.png");
     Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
     unit5->setMovement(3);
     unit5->setAttackRange(1);
     unit5->setHP(10);
     unitSprite5->setModel(unit5);
-    Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 90, 90);
+    Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 128, 90);
     unitSprite5->setTexture(unitTexture5);
     unitSprite5->resize(40, 40);
     unit5->setPosition(map->getTile(12, 5));
     player2->addUnit(unit5);
     
     Unit* unit6 = new Unit();
-    unit6->setResource("link.png");
+    unit6->setResource("soldier_blue.png");
     Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
     unit6->setMovement(3);
     unit6->setAttackRange(1);
     unit6->setHP(10);
     unitSprite6->setModel(unit6);
-    Texture* unitTexture6 = renderer->loadSprite(unit6->getResource(), 90, 90);
+    Texture* unitTexture6 = renderer->loadSprite(unit6->getResource(), 128, 90);
     unitSprite6->setTexture(unitTexture6);
     unitSprite6->resize(40, 40);
     unit6->setPosition(map->getTile(11, 8));

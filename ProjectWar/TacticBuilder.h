@@ -13,19 +13,23 @@
 #include "Tactic.h"
 #include "Building.h"
 #include "GameState.h"
+#include "PlayerAI.h"
 
 class TacticBuilder
 {
 public:
     TacticBuilder(GameState& game);
     ~TacticBuilder();
-    Tactic* createTactic(TacticType type, Player* player, Player* enemy);;
+    Tactic* createTactic(Player* player, Player* enemy, std::string gray);;
 private:
-    void buildTactic(Player* player, Player* enemy, Tactic* tactic);
-    void genUnitMovement(Unit* unit, Player* player, Player* enemy, Tactic* tactic);
+    void genUnitMovement(Unit* unit, Player* player, Player* enemy, Tactic* tactic, TacticType type);
+    void printInfluenceMap();
+    void calculateInfluenceMap(Player* player, Player* enemy);
+    void resetInfluenceMap();
     Building* getBuilding(Player* player, Unit*, Map* map);
     Unit* getTarget(Unit* unit, Player* enemy);
     GameState& game;
+    float influenceMap[MAP_HEIGHT][MAP_WIDTH];
     int count;
 };
 

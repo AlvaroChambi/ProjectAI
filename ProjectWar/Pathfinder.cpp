@@ -125,7 +125,7 @@ void Pathfinder::consider(NodePath* parent, int x, int y)
 {
     NodePath* cur = new NodePath();
     cur->setPoint(Point(parent->getPoint().x + x, parent->getPoint().y + y));
-    if(cur->accesible(map)) {
+    if(cur->accesible(map)||(cur->getPoint()==target->getPoint())) {
         if(!findElement(closedSet,cur)) {
             int g = parent->getG() + cur->getCost();
             int h = cur->calculateH2(target);

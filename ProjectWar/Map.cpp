@@ -355,3 +355,10 @@ Path* Map::getUnitPath(Unit *unit, Point destination)
     
     return unitPath;
 }
+
+int Map::getShortestDistance(Point origin, Point destination)
+{
+    std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
+    Path* path = new Path(nodes);
+    return path->size();
+}

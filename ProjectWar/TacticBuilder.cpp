@@ -24,29 +24,96 @@ TacticBuilder::~TacticBuilder()
 
 }
 
-Tactic* TacticBuilder::createTactic(TacticType type, Player* player, Player* enemy)
+void TacticBuilder::resetInfluenceMap()
 {
-    Tactic* tactic = new Tactic(type);
-    buildTactic(player, enemy, tactic);
-    return tactic;
-}
-
-void TacticBuilder::buildTactic(Player* player, Player* enemy ,Tactic *tactic)
-{
-    //for each unit generate a movement
-    for (Unit* unit : player->getUnitList()) {
-        genUnitMovement(unit, player, enemy, tactic);
+    for (int i =0; i<MAP_HEIGHT; i++) {
+        for (int j = 0; j<MAP_WIDTH; j++) {
+            influenceMap[i][j]=0;
+        }
     }
 }
 
-void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player* enemy, Tactic *tactic)
+void TacticBuilder::printInfluenceMap()
+{
+    for (int i = 0; i<10; i++) {
+        for (int j=0; j<15; j++) {
+            std::cout << influenceMap[i][j];
+        }
+        std::cout <<"\n";
+    }
+}
+
+void TacticBuilder::calculateInfluenceMap(Player* player, Player* enemy)
+{
+    resetInfluenceMap();
+    std::list<Player*> players;
+    players.push_back(enemy);
+    players.push_back(player);
+    for (Player* player : players) {
+        for(Unit* unit : player->getUnitList()){
+            int posX = unit->getPosition().x;
+            int posY = unit->getPosition().y;
+            int x = unit->getPosition().x - unit->getMovement();
+            int y = unit->getPosition().y - unit->getMovement();
+            
+            for (int i = x; i <= x + (unit->getMovement() * 2) ; i++) {
+                for (int j = y; j <= y + (unit->getMovement() * 2) ; j++) {
+                    int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
+                    if(distance >= 0 && distance <= unit->getMovement()){
+                        if( i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT ){ //Avoiding negative and outside map positions
+                            if(player->getType()==AI_PLAYER){
+                                Path *path = player->getMap()->getPath(Point (i,j), Point (posX,posY));
+                                influenceMap[j][i]+=unit->getHP()*unit->getAttackRange() - path->size();
+                            } else{
+                                Path *path = player->getMap()->getPath(Point (i,j), Point (posX,posY));
+                                influenceMap[j][i]-=unit->getHP()*unit->getAttackRange() - path->size();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+Tactic* TacticBuilder::createTactic(Player* player, Player* enemy, std::string gray)
+{
+    Tactic* tactic= new Tactic(ATTACK_TACTIC);
+    for (Unit* unit : player->getUnitList()) {
+        char c= gray.back();
+        gray.pop_back();
+        switch (c) {
+            case 'A':
+            {
+                genUnitMovement(unit, player, enemy, tactic, ATTACK_TACTIC);
+            }
+            break;
+            case 'C':
+            {
+                genUnitMovement(unit, player, enemy, tactic, CAPTURE_TACTIC);
+            }
+            break;
+            
+
+        
+        }
+    }
+    
+    return tactic;
+}
+
+
+void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player *enemy, Tactic *tactic, TacticType type)
 {
     std::list<Command*>* commands = new std::list<Command*>;
     Map* map = player->getMap();
     MoveCommand* move = nullptr;
-    switch (tactic->type) {
+    switch (type) {
         case ATTACK_TACTIC:
         {
+            
             //If can reach some enemy unit
             Unit* target = getTarget(unit, enemy);
             if (target != nullptr) {
@@ -55,7 +122,7 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player* enemy, T
                 //Get the previous to last node
                 Point destination = path->getNode(path->size() - 2)->getPoint();
                 std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"(attack)\n";
-                path->printPath();
+                //path->printPath();
                 move = new MoveCommand(unit, map, destination);
                 //create attack command
                 AttackCommand* attack = new AttackCommand(unit, target);
@@ -67,7 +134,7 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player* enemy, T
                 //create a move command with the given path
                 Path* path = map->getUnitPath(unit, target->getPosition());
                 std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"\n";
-                path->printPath();
+                //path->printPath();
                 Point destination = path->getLastNode()->getPoint();
                 move = new MoveCommand(unit, map, destination);
                 commands->push_back(move);
@@ -77,22 +144,31 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player* enemy, T
         case CAPTURE_TACTIC:
         {
             //Get the nearest building that the player hasn't captured yet
-            Building* building = getBuilding(player, unit, map);
+            
+            Building* building = getBuilding(player, unit, map);   
+            if(building!= nullptr){
+            
             if (unit->canReach(building->getPosition())) {
                 //create a capture command
                 move = new MoveCommand(unit, map, building->getPosition());
                 CaptureCommand* capture = new CaptureCommand(player,unit, building);
                 commands->push_back(move);
                 commands->push_back(capture);
-            }else{
+            }
+            else{
                  //create a move command with the given path
                 Path* path = map->getUnitPath(unit, building->getPosition());
                 std::cout << "Unit " << unit->getId() << " to building " << building->getPosition() <<"\n";
-                path->printPath();
+                //path->printPath();
                 Point destination = path->getLastNode()->getPoint();
                 move = new MoveCommand(unit, map, destination);
                 commands->push_back(move);
             }
+            }
+            
+                
+           
+            
         }
             break;
         default:
@@ -122,7 +198,7 @@ Unit* TacticBuilder::getTarget(Unit* unit, Player* enemy)
 Building* TacticBuilder::getBuilding(Player* player, Unit* unit, Map* map)
 {
     Building* result = nullptr;
-    int shortestDistance = INFINITY;
+    int shortestDistance = std::numeric_limits<int>::max();
     int nearestBuilding = -1;
     //find nearest building to the unit
     for (Building* building : map->getBuildings()) {

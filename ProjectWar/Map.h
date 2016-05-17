@@ -76,6 +76,8 @@ public:
     Path* getPath(Point origin, Point destination);
     //Return the path for the given unit, this means just the nodes that the unit can reach
     Path* getUnitPath(Unit* unit, Point destination);
+    //Return the minium distance between two points in the map
+    int getShortestDistance(Point origin, Point destination);
     
     void hideTile(Point position);
 private:

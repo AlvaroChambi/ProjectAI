@@ -11,7 +11,7 @@
 
 PlayerController::PlayerController() : player(nullptr)
 {
-    
+    unitClicked=false;
 }
 
 PlayerController::~PlayerController()
@@ -25,6 +25,10 @@ void PlayerController::setPlayer(Player *player)
     player->setState(new NothingSelectedState(player));
 }
 
+bool PlayerController::getUnitCurrentlyClicked()
+{
+    return unitClicked;
+}
 void PlayerController::onMapClicked(const Tile tile)
 {
     //ID not needed
@@ -35,6 +39,7 @@ void PlayerController::onUnitClicked(const int id)
 {
     //Position not needed
     player->getState()->handleInput(UNIT_CLICKED, id, nullptr);
+    unitClicked=true;
 }
 
 void PlayerController::onEnemyUnitClicked(Unit* targetUnit)
@@ -48,6 +53,7 @@ void PlayerController::onEnemyUnitClicked(Unit* targetUnit)
 void PlayerController::onUIEventReceived(int id)
 {
     //Just input needed
+    unitClicked=false;
     switch (id) {
         case ProjectAI::WAIT_BUTTON:
             player->getState()->handleInput(WAIT_CLICKED, -1,nullptr);

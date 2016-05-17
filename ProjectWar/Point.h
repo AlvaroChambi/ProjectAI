@@ -43,6 +43,15 @@ public:
         return result;
     }
     
+    bool operator !=(Point point)
+    {
+        bool result= false;
+        if ( x != point.x || y != point.y) {
+            result = true;
+        }
+        return result;
+    }
+    
     friend std::ostream& operator<<(std::ostream& os, const Point& point)
     {
         os << "( "<< point.x << " , " << point.y << " )";

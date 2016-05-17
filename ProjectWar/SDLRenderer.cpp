@@ -27,7 +27,7 @@ void SDLRenderer::init()
     }
     
     // create a window
-    sdlWindow = SDL_CreateWindow(   "SDL 2 window",             // window title
+    sdlWindow = SDL_CreateWindow(   "Project War",             // window title
                                  SDL_WINDOWPOS_CENTERED,     // x position, centered
                                  SDL_WINDOWPOS_CENTERED,     // y position, centered
                                  640,                        // width, in pixels

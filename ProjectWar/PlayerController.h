@@ -27,11 +27,13 @@ public:
     void onMapClicked(const Tile tile);
     void onUnitClicked(const int id);
     void onEnemyUnitClicked(Unit* targetUnit);
+    bool getUnitCurrentlyClicked();
     
     void onUIEventReceived(int id);
     
 private:
     Player* player;
+    bool unitClicked;
 };
 
 #endif /* defined(__ProjectWar__PlayerController__) */

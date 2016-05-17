@@ -58,5 +58,5 @@ void Path::printPath()
 
 int Path::size()
 {
-    return pathNodes.size();
+    return (int)pathNodes.size();
 }

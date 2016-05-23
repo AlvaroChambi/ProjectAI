@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Path.h"
 #include "Pathfinder.h"
+#include "GameException.h"
 
 Map::Map()
 {
@@ -316,28 +317,42 @@ void Map::checkNearEntities(Unit *unit, std::list<UnitCommand>& commands)
     }
 }
 
-void Map::moveUnit(Unit *unit, Point destination){
-    InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    InfoTile* destinationTile = infoMap[destination.x][destination.y];
-    int ownerID = tile->ownerID;
-    //clean tile
-    tile->text->setTextResource("");
-    tile->ownerID = -1;
-    //update new tile
-    destinationTile->ownerID = ownerID;
-    destinationTile->unitID = unit->getId();
-    destinationTile->text->setTextResource(
-                "Unit: " +
-                std::to_string(destinationTile->ownerID)+
-                "-"+
-                std::to_string(destinationTile->unitID));
-    destinationTile->text->setPosition(this->getAbsolutePosition(destination));
+void Map::moveUnit(Unit *unit, Point destination) {
+    //if unit has a valid position
+    if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
+        && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
+        InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
+        InfoTile* destinationTile = infoMap[destination.x][destination.y];
+        int ownerID = tile->ownerID;
+        //clean tile
+        tile->text->setTextResource("");
+        tile->ownerID = -1;
+        //update new tile
+        destinationTile->ownerID = ownerID;
+        destinationTile->unitID = unit->getId();
+        destinationTile->text->setTextResource(
+                                               "Unit: " +
+                                               std::to_string(destinationTile->ownerID)+
+                                               "-"+
+                                               std::to_string(destinationTile->unitID));
+        destinationTile->text->setPosition(this->getAbsolutePosition(destination));
+    } else {
+        throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
+                                        MAP_WIDTH, MAP_HEIGHT );
+    }
 }
 
 void Map::removeUnit(Unit *unit)
 {
-    InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    unitTile->cleanTile();
+    if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
+       && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
+        
+        InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
+        unitTile->cleanTile();
+    } else {
+        throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
+                                       MAP_WIDTH, MAP_HEIGHT );
+    }
 }
 
 Path* Map::getPath(Point origin, Point destination)

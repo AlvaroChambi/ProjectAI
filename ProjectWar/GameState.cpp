@@ -55,9 +55,9 @@ void GameState::processMove(Option *move)
     std::cout << "Option executed \n";
     move->execute();
     //TODO Minimax debug : remove
-    renderer->renderClear();
-    scene->render();
-    renderer->renderPresent();
+//    renderer->renderClear();
+//    scene->render();
+//    renderer->renderPresent();
 }
 
 void GameState::unprocessMove(Option *move)

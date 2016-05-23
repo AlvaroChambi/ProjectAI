@@ -43,11 +43,6 @@ void OnAttackState::handleInput(Input input, int id, Tile position)
             OnCommandState::handleInput(WAIT_CLICKED, id, position);
             //TODO just allow attack if a command has already been executed
             //clean all unit resource if the unit hp is 0
-            //Add this behaviour in the command attack
-            this->targetUnit->updateState();
-            if(targetUnit->getHP() == 0){
-                player->getMap()->removeUnit(targetUnit);
-            }
             break;
         default:
             break;
@@ -68,7 +63,9 @@ void OnAttackState::handleInput(Input input, int id, Tile position, Unit* target
                 this->targetUnit = targetUnit;
                 //cancel previous executed command if there is one(Once cancelled the command is set to null)
                 this->cancelCommand();
-                executeCommand(new AttackCommand(player->getSelectedUnit(), targetUnit));
+                executeCommand( new AttackCommand( player->getSelectedUnit(),
+                                                   targetUnit,
+                                                   player->getMap() ) );
             }
             break;
         }

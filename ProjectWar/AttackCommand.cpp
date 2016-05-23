@@ -7,11 +7,11 @@
 //
 
 #include "AttackCommand.h"
+#include "Map.h"
 
-AttackCommand::AttackCommand(Unit* unit, Unit* targetUnit) : unit(unit), targetUnit(targetUnit)
+AttackCommand::AttackCommand(Unit* unit, Unit* targetUnit, Map* map)
+: unit(unit), targetUnit(targetUnit), map( map )
 {
-    this->unit = unit;
-    this->targetUnit = targetUnit;
     this->savedUnitHP = unit->getHP();
     this->savedTargetHP = targetUnit->getHP();
 }
@@ -27,10 +27,14 @@ void AttackCommand::execute()
     updateHP(unit, targetUnit);
     if (targetUnit->getHP() < 0) {
         targetUnit->setHP(0);
+        targetUnit->updateState();
+        map->removeUnit( targetUnit );
     }
     updateHP(targetUnit, unit);
     if (unit->getHP() < 0) {
         unit->setHP(0);
+        unit->updateState();
+        map->removeUnit( unit );
     }
 }
 

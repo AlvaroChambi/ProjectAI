@@ -40,6 +40,7 @@ public:
     Unit* getUnit(int id);
     
     std::list<Unit*>& getUnitList();
+    std::vector<Unit*>& getAliveUnits();
     
     Unit* getSelectedUnit();
     void setSelectedUnit(Unit* unit);
@@ -71,6 +72,7 @@ private:
     //Now that the player has a map maybe we can remove the tile 
     Tile tile;
     std::list<Unit*> units;
+    std::vector<Unit*> aliveUnits;
     
     State* state;
     //TODO Dont need to have a selected unit instance if i already have a player with an active param

@@ -32,6 +32,7 @@ void AttackCommand::execute()
     if (unit->getHP() < 0) {
         unit->setHP(0);
     }
+      
 }
 
 void AttackCommand::cancel()

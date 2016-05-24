@@ -35,15 +35,25 @@ bool GameState::isGameOver()
     return result;
 }
 
+
 int GameState::getStaticEvaluation()
 {
-    int result = DRAW_VALUE;
+    Point point;
+    //int result = DRAW_VALUE;
+    int result = 100;
     for (Unit* unit : player->getUnitList()) {
+        point.x = 2;
+        point.y = 2;
         result = result + unit->getHP() * 0.1;
+        result = result - unit->getPosition().distance(point);
+
     }
     
     for (Unit* unit : enemy->getUnitList()) {
+        point.x = 12;
+        point.y = 6;
         result = result - unit->getHP() * 0.1;
+        result = result + unit->getPosition().distance(point);
     }
 
     return result;

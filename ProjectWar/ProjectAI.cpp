@@ -167,7 +167,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->setTexture(unitTexture);
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
-    unit->setPosition(map->getTile(2, 1));
+    //unit->setPosition(map->getTile(2, 1));
+    unit->setPosition(map->getTile(7, 9));
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();
@@ -181,7 +182,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite3->setTexture(unitTexture3);
     //resize to fit in a map tile
     unitSprite3->resize(40, 40);
-    unit3->setPosition(map->getTile(4, 4));
+    //unit3->setPosition(map->getTile(4, 4));
+    unit3->setPosition(map->getTile(9, 8));
     player->addUnit(unit3);
     
     Unit* unit4 = new Unit();
@@ -195,7 +197,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite4->setTexture(unitTexture4);
     //resize to fit in a map tile
     unitSprite4->resize(40, 40);
-    unit4->setPosition(map->getTile(3, 8));
+    //unit4->setPosition(map->getTile(3, 8));
+    unit4->setPosition(map->getTile(8, 8));
     player->addUnit(unit4);
     
     ///////////  PLAYER 2 UNITS ///////////

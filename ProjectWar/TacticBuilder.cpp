@@ -95,8 +95,6 @@ Tactic* TacticBuilder::createTactic(Player* player, Player* enemy, std::string g
                 genUnitMovement(unit, player, enemy, tactic, CAPTURE_TACTIC);
             }
             break;
-            
-
         
         }
     }
@@ -120,14 +118,22 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player *enemy, T
                 //Get path to the given target
                 Path* path = map->getPath(unit->getPosition(), target->getPosition());
                 //Get the previous to last node
-                Point destination = path->getNode(path->size() - 2)->getPoint();
-                std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"(attack)\n";
-                //path->printPath();
-                move = new MoveCommand(unit, map, destination);
-                //create attack command
-                AttackCommand* attack = new AttackCommand(unit, target);
-                commands->push_back(move);
-                commands->push_back(attack);
+
+                if(path->size() >= 2){
+                    Point destination = path->getNode(path->size() - 2)->getPoint();
+                    std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"(attack)\n";
+                    //path->printPath();
+                    move = new MoveCommand(unit, map, destination);
+                    //create attack command
+                    AttackCommand* attack = new AttackCommand(unit, target);
+                    commands->push_back(move);
+                    commands->push_back(attack);
+                }
+                else{
+                    AttackCommand* attack = new AttackCommand(unit, target);
+                    commands->push_back(attack);
+                }
+
             }else{
                 //else pick some enemy unit and get a path to reach it
                 target = enemy->getUnitList().front();

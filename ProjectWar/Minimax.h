@@ -33,6 +33,10 @@ public:
     
     int minimax(int depthSearch, int depth){
         
+        int bestChildrenScore= 0;
+        Option* bestChildrenMove = nullptr;
+        
+        
         if (game.isGameOver()) {
             return getGameOverScore();
         }
@@ -42,27 +46,69 @@ public:
             return game.getStaticEvaluation();
         }
         Minimax* child = makeMinimax();
-        int bestSoFar = getWorstScore();
+        //int bestSoFar = getWorstScore();
+        
         std::list<Option*> moves;
         getMovesList(depth, moves); //Tactic list for the given player
         for (Option* option : moves) {
-            move = option;
-            game.processMove(move);
-            std::this_thread::sleep_for(std::chrono::milliseconds(250));
-            int score = child->minimax( depthSearch -1, depth +1 );
-            
+            int childScore;
+            bool first = true;
+            Option* bestMovement;
+            bestMovement = option;
+            game.processMove(bestMovement);
+            //std::this_thread::sleep_for(std::chrono::milliseconds(350));
+            //int score = child->minimax( depthSearch -1, depth +1 );
+            childScore = child->minimax( depthSearch -1, depth +1 );
+
             std::cout << "//////////////NODE (on back)///////////////////\n";
-            std::cout << "score: " + std::to_string(score) + "\n";
+            std::cout << "score: " + std::to_string(childScore) + "\n";
             std::cout << "depth: " + std::to_string(depth) + "\n";
             std::cout << "depthSearch: " + std::to_string(depthSearch) + "\n";
             std::cout << "minOrMax: ";
             
-            bestSoFar = minOrMax(bestSoFar, score, depth);
+            //childScore = minOrMax(bestSoFar, score, depth);
             
-            std::cout << "NodeValue: " + std::to_string(bestSoFar) + "\n";
-            game.unprocessMove(move);
+            // First child
+            
+            if (bestChildrenMove==nullptr) {
+             
+             bestChildrenScore = childScore;
+                bestChildrenMove = bestMovement;
+                first = false;
+              
+             
+            }
+             
+            else {
+                // We maximize
+                if (depth%2 !=0) {
+                    if (childScore > bestChildrenScore) {
+                        bestChildrenScore = childScore;
+                        bestChildrenMove = bestMovement;
+                        first = false;
+                    }
+                }
+                
+                // We minimize
+                else {
+                    if (childScore < bestChildrenScore) {
+                        bestChildrenScore = childScore;
+                        bestChildrenMove = bestMovement;
+                        first = false;
+                    }
+                    
+                }
+            }
+            
+            
+            std::cout << "NodeValue: " + std::to_string(bestChildrenScore) + "\n";
+            game.unprocessMove(bestMovement);
         }
-        return bestSoFar;
+        if (move != nullptr) {
+            move = bestChildrenMove;
+        }
+        
+        return bestChildrenScore;
     }
     
     Option* getMove()

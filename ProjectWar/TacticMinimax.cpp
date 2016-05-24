@@ -12,7 +12,7 @@
 
 TacticMinimax::TacticMinimax(GameState& game) : Minimax(game), tacticBuilder(game)
 {
-
+    
 }
 
 TacticMinimax::~TacticMinimax()

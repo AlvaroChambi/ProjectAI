@@ -7,6 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC0001AB1958D00C4EB1F /* SDLInputHandler.cpp */; };
+		3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFE81AAEF47700C4EB1F /* InputHandler.cpp */; };
+		3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55F447EE1AD713FC00F994F2 /* PlayerAI.cpp */; };
+		3A0779C41CF49D2400B8C065 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C731AEE8AB600888AC7 /* Movement.cpp */; };
+		3A0779C51CF49D2400B8C065 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B6C1AF00580000F5B7E /* GameState.cpp */; };
+		3A0779C61CF49D2400B8C065 /* Tactic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C691AEE8A8500888AC7 /* Tactic.cpp */; };
+		3A0779C71CF49D2400B8C065 /* TacticBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */; };
+		3A0779C81CF49D2400B8C065 /* TacticMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C6D1AEE8A8500888AC7 /* TacticMinimax.cpp */; };
+		3A0779C91CF49D2400B8C065 /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
+		3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55966F4B1ADC166300B36FA8 /* CaptureCommand.cpp */; };
+		3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B4D1ABD8323003FE2AA /* MoveCommand.cpp */; };
+		3A0779CC1CF49D2400B8C065 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
+		3A0779CD1CF49D2400B8C065 /* NothingSelectedState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B3D1ABADC7F003FE2AA /* NothingSelectedState.cpp */; };
+		3A0779CE1CF49D2400B8C065 /* UnitSelectedState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B411ABADE3B003FE2AA /* UnitSelectedState.cpp */; };
+		3A0779CF1CF49D2400B8C065 /* OnCommandState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60B61AC80DD8004537F8 /* OnCommandState.cpp */; };
+		3A0779D01CF49D2400B8C065 /* OnMoveState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60BC1AC80FD4004537F8 /* OnMoveState.cpp */; };
+		3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60BF1AC80FE2004537F8 /* OnAttackState.cpp */; };
+		3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
+		3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B2B1AB86A97003FE2AA /* UnitController.cpp */; };
+		3A0779D41CF49D2400B8C065 /* BuildingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55966F451ADC163A00B36FA8 /* BuildingView.cpp */; };
+		3A0779D51CF49D2400B8C065 /* UnitUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C51ACFE31B004537F8 /* UnitUIView.cpp */; };
+		3A0779D61CF49D2400B8C065 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
+		3A0779D71CF49D2400B8C065 /* UnitView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B261AB86673003FE2AA /* UnitView.cpp */; };
+		3A0779D81CF49D2400B8C065 /* SpriteFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B311AB88B48003FE2AA /* SpriteFactory.cpp */; };
+		3A0779D91CF49D2400B8C065 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55966F481ADC164300B36FA8 /* Building.cpp */; };
+		3A0779DA1CF49D2400B8C065 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
+		3A0779DB1CF49D2400B8C065 /* Observable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0E1AB7443C003FE2AA /* Observable.cpp */; };
+		3A0779DC1CF49D2400B8C065 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B681AF00552000F5B7E /* Player.cpp */; };
+		3A0779DD1CF49D2400B8C065 /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B121AB7443C003FE2AA /* Unit.cpp */; };
+		3A0779DE1CF49D2400B8C065 /* ProjectAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A5A671AC03F0A00BF793E /* ProjectAI.cpp */; };
+		3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
+		3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55FBA27A1B00F84F0035D3E1 /* Path.cpp */; };
+		3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B1C1AB74485003FE2AA /* Map.cpp */; };
+		3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C400311ADEADFB000792CF /* GameUI.cpp */; };
+		3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A5A6F1AC174E700BF793E /* Layout.cpp */; };
+		3A0779E41CF49D2400B8C065 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A5A721AC176A300BF793E /* Button.cpp */; };
+		3A0779E51CF49D2400B8C065 /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C21ACDCCC3004537F8 /* Text.cpp */; };
+		3A0779E61CF49D2400B8C065 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C0A5A751AC17A8D00BF793E /* UIComponent.cpp */; };
+		3A0779E71CF49D2400B8C065 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B1E1AB74485003FE2AA /* Tile.cpp */; };
+		3A0779E81CF49D2400B8C065 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFE21AAEF19C00C4EB1F /* Game.cpp */; };
+		3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFF11AAF048D00C4EB1F /* Scene.cpp */; };
+		3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC0031AB1A6E600C4EB1F /* Event.cpp */; };
+		3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFF41AAF06DF00C4EB1F /* SDLRenderer.cpp */; };
+		3A0779EC1CF49D2400B8C065 /* SDLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFF71AAF44E500C4EB1F /* SDLTexture.cpp */; };
+		3A0779ED1CF49D2400B8C065 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFEB1AAF043A00C4EB1F /* Renderer.cpp */; };
+		3A0779EE1CF49D2400B8C065 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFEE1AAF047A00C4EB1F /* Texture.cpp */; };
+		3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779BC1CF49CCB00B8C065 /* main.cpp */; };
+		3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
+		3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */; };
+		3A0779F21CF49EFB00B8C065 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
+		3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0779F31CF49EFB00B8C065 /* gtest.framework */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -90,7 +141,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3A0779B81CF49CCB00B8C065 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3A0779BA1CF49CCB00B8C065 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A0779BC1CF49CCB00B8C065 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3A0779F31CF49EFB00B8C065 /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -231,6 +297,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A0779B71CF49CCB00B8C065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
+				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
+				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
+				3A0779F21CF49EFB00B8C065 /* SDL2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CAE2DDB1AA76F8B00B6279D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +328,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0779BB1CF49CCB00B8C065 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				3A0779BC1CF49CCB00B8C065 /* main.cpp */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		556A49DF1AE79EFF00F7FD8E /* pathfinder */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,11 +637,13 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
 				9C6613861AA771930094B72F /* SDL2.framework */,
 				9CAE2DE01AA76F8B00B6279D /* ProjectWar */,
 				9CAE2DF41AA76F8B00B6279D /* ProjectWarTests */,
+				3A0779BB1CF49CCB00B8C065 /* Test */,
 				9CAE2DDF1AA76F8B00B6279D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -566,6 +653,7 @@
 			children = (
 				9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */,
 				9CAE2DF11AA76F8B00B6279D /* ProjectWarTests.xctest */,
+				3A0779BA1CF49CCB00B8C065 /* Test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -621,6 +709,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3A0779B91CF49CCB00B8C065 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A0779C01CF49CCB00B8C065 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				3A0779B61CF49CCB00B8C065 /* Sources */,
+				3A0779B71CF49CCB00B8C065 /* Frameworks */,
+				3A0779B81CF49CCB00B8C065 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = 3A0779BA1CF49CCB00B8C065 /* Test */;
+			productType = "com.apple.product-type.tool";
+		};
 		9CAE2DDD1AA76F8B00B6279D /* ProjectWar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CAE2DFB1AA76F8B00B6279D /* Build configuration list for PBXNativeTarget "ProjectWar" */;
@@ -665,6 +770,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Alvaro Chambi Campos";
 				TargetAttributes = {
+					3A0779B91CF49CCB00B8C065 = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					9CAE2DDD1AA76F8B00B6279D = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -689,6 +797,7 @@
 			targets = (
 				9CAE2DDD1AA76F8B00B6279D /* ProjectWar */,
 				9CAE2DF01AA76F8B00B6279D /* ProjectWarTests */,
+				3A0779B91CF49CCB00B8C065 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -731,6 +840,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A0779B61CF49CCB00B8C065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */,
+				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
+				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
+				3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */,
+				3A0779C41CF49D2400B8C065 /* Movement.cpp in Sources */,
+				3A0779C51CF49D2400B8C065 /* GameState.cpp in Sources */,
+				3A0779C61CF49D2400B8C065 /* Tactic.cpp in Sources */,
+				3A0779C71CF49D2400B8C065 /* TacticBuilder.cpp in Sources */,
+				3A0779C81CF49D2400B8C065 /* TacticMinimax.cpp in Sources */,
+				3A0779C91CF49D2400B8C065 /* Pathfinder.cpp in Sources */,
+				3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */,
+				3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */,
+				3A0779CC1CF49D2400B8C065 /* AttackCommand.cpp in Sources */,
+				3A0779CD1CF49D2400B8C065 /* NothingSelectedState.cpp in Sources */,
+				3A0779CE1CF49D2400B8C065 /* UnitSelectedState.cpp in Sources */,
+				3A0779CF1CF49D2400B8C065 /* OnCommandState.cpp in Sources */,
+				3A0779D01CF49D2400B8C065 /* OnMoveState.cpp in Sources */,
+				3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */,
+				3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */,
+				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
+				3A0779D41CF49D2400B8C065 /* BuildingView.cpp in Sources */,
+				3A0779D51CF49D2400B8C065 /* UnitUIView.cpp in Sources */,
+				3A0779D61CF49D2400B8C065 /* PlayerView.cpp in Sources */,
+				3A0779D71CF49D2400B8C065 /* UnitView.cpp in Sources */,
+				3A0779D81CF49D2400B8C065 /* SpriteFactory.cpp in Sources */,
+				3A0779D91CF49D2400B8C065 /* Building.cpp in Sources */,
+				3A0779DA1CF49D2400B8C065 /* Model.cpp in Sources */,
+				3A0779DB1CF49D2400B8C065 /* Observable.cpp in Sources */,
+				3A0779DC1CF49D2400B8C065 /* Player.cpp in Sources */,
+				3A0779DD1CF49D2400B8C065 /* Unit.cpp in Sources */,
+				3A0779DE1CF49D2400B8C065 /* ProjectAI.cpp in Sources */,
+				3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */,
+				3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */,
+				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
+				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
+				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,
+				3A0779E41CF49D2400B8C065 /* Button.cpp in Sources */,
+				3A0779E51CF49D2400B8C065 /* Text.cpp in Sources */,
+				3A0779E61CF49D2400B8C065 /* UIComponent.cpp in Sources */,
+				3A0779E71CF49D2400B8C065 /* Tile.cpp in Sources */,
+				3A0779E81CF49D2400B8C065 /* Game.cpp in Sources */,
+				3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */,
+				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
+				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
+				3A0779EC1CF49D2400B8C065 /* SDLTexture.cpp in Sources */,
+				3A0779ED1CF49D2400B8C065 /* Renderer.cpp in Sources */,
+				3A0779EE1CF49D2400B8C065 /* Texture.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CAE2DDA1AA76F8B00B6279D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -804,6 +967,33 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3A0779BE1CF49CCB00B8C065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3A0779BF1CF49CCB00B8C065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		9CAE2DF91AA76F8B00B6279D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -949,6 +1139,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A0779C01CF49CCB00B8C065 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A0779BE1CF49CCB00B8C065 /* Debug */,
+				3A0779BF1CF49CCB00B8C065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9CAE2DD91AA76F8B00B6279D /* Build configuration list for PBXProject "ProjectWar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

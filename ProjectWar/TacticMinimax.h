@@ -18,7 +18,7 @@ class TacticMinimax : public Minimax
 public:
     TacticMinimax(GameState& gameState);
     virtual ~TacticMinimax();
-    int minOrMax( int bestSoFar, int score, int depth );
+    int minOrMax( int bestSoFar, int score, int depth, Option* move ,Option** bestMove );
     Minimax* makeMinimax();
     int getGameOverScore();
     int getWorstScore();

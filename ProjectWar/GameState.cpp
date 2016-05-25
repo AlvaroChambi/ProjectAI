@@ -40,7 +40,7 @@ int GameState::getStaticEvaluation()
 {
     Point point;
     //int result = DRAW_VALUE;
-    int result = 100;
+    int result = 10;
     for (Unit* unit : player->getUnitList()) {
         point.x = 2;
         point.y = 2;

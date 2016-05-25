@@ -36,6 +36,7 @@ void AttackCommand::execute()
         unit->updateState();
         map->removeUnit( unit );
     }
+      
 }
 
 void AttackCommand::cancel()

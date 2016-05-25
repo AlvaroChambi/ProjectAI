@@ -12,7 +12,7 @@
 
 TacticMinimax::TacticMinimax(GameState& game) : Minimax(game), tacticBuilder(game)
 {
-
+    
 }
 
 TacticMinimax::~TacticMinimax()
@@ -83,7 +83,7 @@ void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
     }
 }
 
-int TacticMinimax::minOrMax(int bestSofar, int score, int depth)
+int TacticMinimax::minOrMax(int bestSofar, int score, int depth, Option* move, Option** bestMove)
 {
     int result = bestSofar;
     
@@ -98,6 +98,7 @@ int TacticMinimax::minOrMax(int bestSofar, int score, int depth)
         std::cout << "MAX \n";
         if (score > bestSofar || bestSofar == Minimax::INFINITE) {
             result = score;
+            *bestMove = move;
         }
     }
     std::cout << " bestSoFar: " + std::to_string(bestSofar)+

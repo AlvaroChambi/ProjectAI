@@ -46,8 +46,7 @@ public:
         std::list<Option*> moves;
         getMovesList(depth, moves); //Tactic list for the given player
         for (Option* option : moves) {
-            move = option;
-            game.processMove(move);
+            game.processMove(option);
             //std::this_thread::sleep_for(std::chrono::milliseconds(250));
             int score = child->minimax( depthSearch -1, depth +1 );
             
@@ -57,20 +56,20 @@ public:
             std::cout << "depthSearch: " + std::to_string(depthSearch) + "\n";
             std::cout << "minOrMax: ";
             
-            bestSoFar = minOrMax(bestSoFar, score, depth);
+            bestSoFar = minOrMax(bestSoFar, score, depth, option ,&bestMove);
             
             std::cout << "NodeValue: " + std::to_string(bestSoFar) + "\n";
-            game.unprocessMove(move);
+            game.unprocessMove(option);
         }
         return bestSoFar;
     }
     
     Option* getMove()
     {
-        return move;
+        return bestMove;
     }
 protected:
-    virtual int minOrMax( int bestSoFar, int score, int depth) = 0;
+    virtual int minOrMax( int bestSoFar, int score, int depth, Option* move ,Option** bestMove) = 0;
     virtual Minimax* makeMinimax() = 0;
     virtual int getGameOverScore() = 0;
     virtual int getWorstScore() = 0;
@@ -78,7 +77,7 @@ protected:
     GameState& game;
     
 private:
-    Option* move;
+    Option* bestMove;
 };
 
 #endif

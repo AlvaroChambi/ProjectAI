@@ -277,6 +277,7 @@
 		9CAE2DF61AA76F8B00B6279D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectWarTests.m; sourceTree = "<group>"; };
 		9CAE2E031AA76FE700B6279D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9CBEB9BB1CF37F5600CA82DE /* GameException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameException.h; sourceTree = "<group>"; };
 		9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		9CCD60B61AC80DD8004537F8 /* OnCommandState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnCommandState.cpp; sourceTree = "<group>"; };
@@ -474,6 +475,7 @@
 				9C800AFF1AB743C0003FE2AA /* model */,
 				9C0A5A671AC03F0A00BF793E /* ProjectAI.cpp */,
 				9C0A5A681AC03F0A00BF793E /* ProjectAI.h */,
+				9CBEB9BB1CF37F5600CA82DE /* GameException.h */,
 			);
 			name = gamelogic;
 			sourceTree = "<group>";

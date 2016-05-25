@@ -16,7 +16,7 @@
 class AttackCommand : public Command
 {
 public:
-    AttackCommand(Unit* unit, Unit* targetUnit);
+    AttackCommand(Unit* unit, Unit* targetUnit, Map* map);
     virtual ~AttackCommand();
     void cancel();
     void execute();
@@ -24,6 +24,7 @@ public:
 private:
     Unit* unit;
     Unit* targetUnit;
+    Map* map;
     int savedUnitHP;
     int savedTargetHP;
     

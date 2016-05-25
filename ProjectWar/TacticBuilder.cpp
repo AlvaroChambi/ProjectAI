@@ -50,7 +50,7 @@ void TacticBuilder::calculateInfluenceMap(Player* player, Player* enemy)
     players.push_back(enemy);
     players.push_back(player);
     for (Player* player : players) {
-        for(Unit* unit : player->getUnitList()){
+        for(Unit* unit : player->getAliveUnits()){
             int posX = unit->getPosition().x;
             int posY = unit->getPosition().y;
             int x = unit->getPosition().x - unit->getMovement();
@@ -81,7 +81,7 @@ void TacticBuilder::calculateInfluenceMap(Player* player, Player* enemy)
 Tactic* TacticBuilder::createTactic(Player* player, Player* enemy, std::string gray)
 {
     Tactic* tactic= new Tactic(ATTACK_TACTIC);
-    for (Unit* unit : player->getUnitList()) {
+    for (Unit* unit : player->getAliveUnits()) {
         char c= gray.back();
         gray.pop_back();
         switch (c) {
@@ -118,25 +118,24 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player *enemy, T
                 //Get path to the given target
                 Path* path = map->getPath(unit->getPosition(), target->getPosition());
                 //Get the previous to last node
-
                 if(path->size() >= 2){
                     Point destination = path->getNode(path->size() - 2)->getPoint();
                     std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"(attack)\n";
                     //path->printPath();
                     move = new MoveCommand(unit, map, destination);
                     //create attack command
-                    AttackCommand* attack = new AttackCommand(unit, target);
+                    AttackCommand* attack = new AttackCommand(unit, target,player->getMap());
                     commands->push_back(move);
                     commands->push_back(attack);
                 }
                 else{
-                    AttackCommand* attack = new AttackCommand(unit, target);
+                    AttackCommand* attack = new AttackCommand(unit, target,player->getMap());
                     commands->push_back(attack);
                 }
 
             }else{
                 //else pick some enemy unit and get a path to reach it
-                target = enemy->getUnitList().front();
+                target = enemy->getAliveUnits().front();
                 //create a move command with the given path
                 Path* path = map->getUnitPath(unit, target->getPosition());
                 std::cout << "Unit " << unit->getId() << " to target "<< target->getPosition() <<"\n";
@@ -187,8 +186,9 @@ void TacticBuilder::genUnitMovement(Unit *unit, Player *player, Player *enemy, T
 Unit* TacticBuilder::getTarget(Unit* unit, Player* enemy)
 {
     Unit* result = nullptr;
-    std::list<Unit*>::iterator iterator = enemy->getUnitList().begin();
-    std::list<Unit*>::iterator end = enemy->getUnitList().end();
+
+    std::vector<Unit*>::iterator iterator = enemy->getAliveUnits().begin();
+    std::vector<Unit*>::iterator end = enemy->getAliveUnits().end();
     bool targetFound = false;
     while(iterator != end && !targetFound){
         Unit* target = *iterator;

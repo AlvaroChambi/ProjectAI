@@ -72,7 +72,8 @@ void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
         enemy = game.player;
     }
     //TODO IMPROVE THIS
-    std::vector<std::string> tacticMovements = generateGraySequence((int)player->getUnitList().size());
+    std::vector<std::string> tacticMovements =
+        generateGraySequence((int)player->getAliveUnits().size());
     int sequenceSize = (int)tacticMovements.size();
     for(int i = 0; i<sequenceSize; i++){
         std::string tacticSequence = tacticMovements.back();

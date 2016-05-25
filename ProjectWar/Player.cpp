@@ -70,6 +70,16 @@ std::list<Unit*>& Player::getUnitList()
     return this->units;
 }
 
+std::vector<Unit*>& Player::getAliveUnits() {
+    aliveUnits.clear();
+    for ( Unit* unit : units ) {
+        if( unit->getHP() > 0 ) {
+            aliveUnits.push_back( unit );
+        }
+    }
+    return aliveUnits;
+}
+
 //Update the unit selected flag and the player reference to the unit
 //nullptr if there isn't any unit selected
 void Player::setSelectedUnit(Unit *unit)

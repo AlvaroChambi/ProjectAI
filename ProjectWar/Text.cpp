@@ -41,7 +41,9 @@ void Text::render(Renderer *renderer)
 
 void Text::setVisible(bool visible)
 {
-    this->texture->setVisible(visible);
+    if( texture != nullptr ) {
+        this->texture->setVisible(visible);
+    }
 }
 
 void Text::setColor(Color color)

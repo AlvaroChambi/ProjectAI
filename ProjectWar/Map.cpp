@@ -363,8 +363,7 @@ Path* Map::getPath(Point origin, Point destination)
 }
 
 //TODO Check if the complete path is larger or equals to the unit movement
-Path* Map::getUnitPath(Unit *unit, Point destination)
-{
+Path* Map::getUnitPath(Unit *unit, Point destination) {
     Path* completePath = getPath(unit->getPosition(), destination);
     Path* unitPath = completePath->splice(unit->getMovement()+1);
     

@@ -15,30 +15,20 @@
 
 #include "Scene.h"
 
-class GameState
-{
+class GameState {
 public:
-    //TODO implement copy constructor
-    GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer);
-    virtual ~GameState();
+    GameState( Player* player, Player* enemy )
+    : player( player ), enemy( enemy ) {
+    }
+    ~GameState() {
+    }
     
     static const int WIN_VALUE = 20;
     static const int LOST_VALUE = 0;
     static const int DRAW_VALUE = 10;
     
-    bool isGameOver();
-    int getStaticEvaluation();
-    void processMove(Option* move);
-    void unprocessMove(Option* move);
-    
     Player* enemy;
     Player* player;
-private:
-    //TODO Minimax debug : remove
-    Scene* scene;
-    Renderer* renderer;
-    
-protected:
     
 };
 

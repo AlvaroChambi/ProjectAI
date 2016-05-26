@@ -18,11 +18,18 @@ class TacticMinimax : public Minimax
 public:
     TacticMinimax(GameState& gameState);
     virtual ~TacticMinimax();
-    int minOrMax( int bestSoFar, int score, int depth, Option* move ,Option** bestMove );
+    int minOrMax( int bestSoFar,
+                  int score, int depth,
+                  Option* move ,Option** bestMove );
+    
+    int minimaxMax( int bestSoFar, int score,
+                   Option* move ,Option** bestMove );
+    int minimaxMin( int bestSoFar, int score );
+    
     Minimax* makeMinimax();
     int getGameOverScore();
     int getWorstScore();
-    void getMovesList(int depth, std::list<Option*>& moves);
+    void getMovesList( const bool maximize ,std::list<Option*>& moves );
 private:
     TacticBuilder tacticBuilder;
 };

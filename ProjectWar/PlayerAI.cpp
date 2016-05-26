@@ -40,12 +40,12 @@ std::list<Command*> PlayerAI::play()
 {
     std::list<Command*>commands;
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    std::cout << "Minimax on progress..." << std::endl;
     executeMinimax();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Minimax took "
     << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-    << "s.\n";
-    //testPathfinding(Point(13,3), Point(2,1));
+    << "ms.\n";
     return commands;
 }
 
@@ -63,7 +63,7 @@ void PlayerAI::executeMinimax()
     GameState* game = new GameState(this, enemy, scene, renderer);
     TacticMinimax* tacticDecision = new TacticMinimax(*game);
     
-    tacticDecision->minimax(2);
+    tacticDecision->minimax(4);
     Tactic* movement = (Tactic*)tacticDecision->getMove();
     
     movement->execute();

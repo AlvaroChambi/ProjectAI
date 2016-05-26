@@ -58,19 +58,10 @@ int GameState::getStaticEvaluation()
     return result;
 }
 
-void GameState::processMove(Option *move)
-{
-    std::cout << "//////////////MOVE FORWARD//////////\n";
-    std::cout << "Option executed \n";
+void GameState::processMove(Option *move) {
     move->execute();
-    //TODO Minimax debug : remove
-//    renderer->renderClear();
-//    scene->render();
-//    renderer->renderPresent();
 }
 
-void GameState::unprocessMove(Option *move)
-{
-    std::cout << "Option canceled \n";
+void GameState::unprocessMove(Option *move) {
     move->cancel();
 }

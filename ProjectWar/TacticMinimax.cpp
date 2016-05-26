@@ -59,12 +59,12 @@ std::vector<std::string> generateGraySequence(int n)
 }
 
 
-void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
+void TacticMinimax::getMovesList( const bool maximize,
+                                  std::list<Option*>& moves)
 {
     Player* player = nullptr;
     Player* enemy = nullptr;
-    if (depth%2 != 0) {
-        //AI turn
+    if ( maximize ) {
         player = game.player;
         enemy = game.enemy;
     }else{
@@ -88,22 +88,38 @@ int TacticMinimax::minOrMax(int bestSofar, int score, int depth, Option* move, O
     int result = bestSofar;
     
     if (depth%2 == 0) {
-        //min
-        std::cout << "MIN \n";
         if (score < bestSofar || bestSofar == Minimax::INFINITE) {
             result = score;
         }
     }else{
-        //max
-        std::cout << "MAX \n";
         if (score > bestSofar || bestSofar == Minimax::INFINITE) {
             result = score;
             *bestMove = move;
         }
     }
-    std::cout << " bestSoFar: " + std::to_string(bestSofar)+
-    " Score: " + std::to_string(score) + "\n";
 
+    return result;
+}
+
+int TacticMinimax::minimaxMax( int bestSoFar, int score,
+                               Option *move, Option **bestMove ) {
+    int result = bestSoFar;
+    
+    if (score > bestSoFar || bestSoFar == Minimax::INFINITE) {
+        result = score;
+        *bestMove = move;
+    }
+    
+    return result;
+}
+
+int TacticMinimax::minimaxMin( int bestSoFar, int score ) {
+    
+    int result = bestSoFar;
+    if (score < bestSoFar || bestSoFar == Minimax::INFINITE) {
+        result = score;
+    }
+    
     return result;
 }
 

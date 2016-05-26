@@ -20,7 +20,6 @@ class Minimax
 {
 public:
     static const int INFINITE = std::numeric_limits<int>::max();
-    static const int MINUSINFINITE = std::numeric_limits<int>::min();
     
     Minimax( GameState& game ) : game(game)
     {}
@@ -31,30 +30,7 @@ public:
         int depth = 1;
         int alpha = -INFINITE;
         int beta = INFINITE;
-        //return minimax(depthSearch, depth);
         return minimax(depthSearch, depth, alpha, beta);
-    }
-    
-    int max(int n, int m){
-        int result;
-        if(n>m){
-            result = n;
-        }
-        else{
-            result = m;
-        }
-        return result;
-    }
-    
-    int min (int n, int m){
-        int result;
-        if(n<m){
-            result = n;
-        }
-        else{
-            result = m;
-        }
-        return result;
     }
     
     int minimax (int depthSearch, int depth, int alpha, int beta){
@@ -81,7 +57,7 @@ public:
                 std::cout << "//////////////NODE (on back)///////////////////\n";
                 std::cout << "score: " + std::to_string(score) + "\n";
                 game.unprocessMove(option);
-                alpha = max(alpha, bestSoFar);
+                alpha = std::max(alpha, bestSoFar);
 
                 if (beta <= alpha){
                     return bestSoFar;
@@ -101,7 +77,7 @@ public:
                 std::cout << "score: " + std::to_string(score) + "\n";
                 
                 game.unprocessMove(option);
-                beta = min(beta, bestSoFar);
+                beta = std::min(beta, bestSoFar);
                 
                 if (beta <= alpha)
                     return bestSoFar;

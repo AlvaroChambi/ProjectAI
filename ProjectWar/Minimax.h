@@ -19,7 +19,7 @@
 class Minimax
 {
 public:
-    static const int INFINITE = -std::numeric_limits<int>::max();
+    static const int INFINITE = std::numeric_limits<int>::max();
     
     Minimax( GameState& game ) : game(game)
     {}
@@ -28,7 +28,62 @@ public:
     int minimax( int depthSearch )
     {
         int depth = 1;
-        return minimax(depthSearch, depth);
+        int alpha = -INFINITE;
+        int beta = INFINITE;
+        return minimax(depthSearch, depth, alpha, beta);
+    }
+    
+    int minimax (int depthSearch, int depth, int alpha, int beta){
+        if (game.isGameOver()) {
+            return getGameOverScore();
+        }
+        
+        if(depthSearch == 0){
+            //static evaluation
+            return game.getStaticEvaluation();
+        }
+        
+        Minimax* child = makeMinimax();
+        int bestSoFar;
+        if (depth%2 != 0){
+            //Maximizing
+            bestSoFar= -INFINITE;
+            std::list<Option*> moves;
+            getMovesList(depth, moves); //Tactic list for the given player
+            for (Option* option : moves) {
+                game.processMove(option);
+                int score = child->minimax(depthSearch -1, depth +1, alpha, beta );
+                bestSoFar = minOrMax(bestSoFar, score, depth, option ,&bestMove);
+                std::cout << "//////////////NODE (on back)///////////////////\n";
+                std::cout << "score: " + std::to_string(score) + "\n";
+                game.unprocessMove(option);
+                alpha = std::max(alpha, bestSoFar);
+
+                if (beta <= alpha){
+                    return bestSoFar;
+                }
+            }
+        }
+        else {
+            std::list<Option*> moves;
+            getMovesList(depth, moves); //Tactic list for the given player
+            bestSoFar = INFINITE;
+            for (Option* option : moves) {
+                game.processMove(option);
+                int score = child->minimax(depthSearch -1, depth +1, alpha, beta );
+                bestSoFar = minOrMax(bestSoFar, score, depth, option ,&bestMove);
+                
+                std::cout << "//////////////NODE (on back)///////////////////\n";
+                std::cout << "score: " + std::to_string(score) + "\n";
+                
+                game.unprocessMove(option);
+                beta = std::min(beta, bestSoFar);
+                
+                if (beta <= alpha)
+                    return bestSoFar;
+                
+            }
+        }return bestSoFar;
     }
     
     int minimax(int depthSearch, int depth){

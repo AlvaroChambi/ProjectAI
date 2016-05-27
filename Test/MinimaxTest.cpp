@@ -59,7 +59,8 @@ TEST_F( MinimaxTest, MinimaxMaximizePlyReachedTest ) {
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
     .WillOnce( testing::ReturnRef( moves ) );
     
-    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, 10, testing::_, testing::_ ) )
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, 10, testing::_,
+                                          testing::_ ) )
     .WillOnce( testing::Return( 20 ) );
     
     int ply = 1;
@@ -82,4 +83,86 @@ TEST_F( MinimaxTest, MinimaxMinimizePlyReachedTest ) {
     int ply = 1;
     
     ASSERT_EQ( 20, minimax->minimax( ply, -100, +100, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxAlphaValueUpdatePrun ) {
+    bool maximaze = true;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( moves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                          testing::_, testing::_ ) )
+    .WillOnce( testing::Return( 5 ) );
+    
+    int ply = 1;
+    int alpha = 20;
+    int beta = 10;
+    
+    ASSERT_EQ( 5, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxBetaValueUpdatePrun ) {
+    bool maximaze = false;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( moves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
+    .WillOnce( testing::Return( 25 ) );
+    
+    int ply = 1;
+    int alpha = 20;
+    int beta = 10;
+    
+    ASSERT_EQ( 25, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxMinimazePunedAvoided ) {
+    bool maximaze = false;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( moves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
+    .Times( 2 )
+    .WillOnce( testing::Return( 20 ) )
+    .WillOnce( testing::Return( 30 ) );
+    
+    int ply = 1;
+    int alpha = 5;
+    int beta = 10;
+    
+    ASSERT_EQ( 30, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
+    bool maximaze = true;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( moves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                          testing::_, testing::_ ) )
+    .Times( 2 )
+    .WillOnce( testing::Return( 20 ) )
+    .WillOnce( testing::Return( 30 ) );
+    
+    int ply = 1;
+    int alpha = 40;
+    int beta = 50;
+    
+    ASSERT_EQ( 30, minimax->minimax( ply, alpha, beta, maximaze ) );
 }

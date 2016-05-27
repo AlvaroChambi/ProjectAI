@@ -24,7 +24,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         return miniMax->getGameOverScore();
     }
     
-    if( ply == 0 ) {
+    if( ply <= 0 ) {
         return miniMax->getStaticEvaluation();
     }
     

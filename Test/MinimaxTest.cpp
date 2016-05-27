@@ -85,7 +85,7 @@ TEST_F( MinimaxTest, MinimaxMinimizePlyReachedTest ) {
     ASSERT_EQ( 20, minimax->minimax( ply, -100, +100, maximaze ) );
 }
 
-TEST_F( MinimaxTest, MinimaxAlphaValueUpdatePrun ) {
+TEST_F( MinimaxTest, MinimaxAlphaValueHigherUpdatePrun ) {
     bool maximaze = true;
     
     moves.push_back( &option );
@@ -101,6 +101,26 @@ TEST_F( MinimaxTest, MinimaxAlphaValueUpdatePrun ) {
     int ply = 1;
     int alpha = 20;
     int beta = 10;
+    
+    ASSERT_EQ( 5, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxAlphaValueEqualUpdatePrun ) {
+    bool maximaze = true;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( moves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                         testing::_, testing::_ ) )
+    .WillOnce( testing::Return( 5 ) );
+    
+    int ply = 1;
+    int alpha = 20;
+    int beta = 20;
     
     ASSERT_EQ( 5, minimax->minimax( ply, alpha, beta, maximaze ) );
 }

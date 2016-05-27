@@ -189,34 +189,8 @@ TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
     
     ASSERT_EQ( 30, minimax->minimax( ply, alpha, beta, maximaze ) );
 }
-//
-//TEST_F( MinimaxTest, MinimaxLoggerTest ) {
-//    bool maximaze = true;
-//    DotBuilder* dotBuilder = new DotBuilder;
-//    minimax = new MinimaxAlgorithm( &mockMinimax, dotBuilder );
-//    
-//    moves.push_back( &option );
-//    moves.push_back( &option );
-//    
-//    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-//    .WillOnce( testing::ReturnRef( moves ) );
-//    
-//    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-//                                         testing::_, testing::_ ) )
-//    .Times( 2 )
-//    .WillOnce( testing::Return( 20 ) )
-//    .WillOnce( testing::Return( 30 ) );
-//    
-//    int ply = 2;
-//    int alpha = 40;
-//    int beta = 50;
-//    //dotBuilder->addToPath( dotBuilder->getIndex() );
-//    minimax->minimax( ply, alpha, beta, maximaze );
-//    std::cout << dotBuilder->getDotFile()->getDotFile();
-//    //ASSERT_EQ( "", dotBuilder->getDotFile()->getDotFile() );
-//}
 
-TEST_F( MinimaxTest, MinimaxLoggerTestPly2 ) {
+TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     bool maximaze = true;
     DotBuilder* dotBuilder = new DotBuilder;
     minimax = new MinimaxAlgorithm( &mockMinimax, dotBuilder );
@@ -225,14 +199,13 @@ TEST_F( MinimaxTest, MinimaxLoggerTestPly2 ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
-    .Times( 6 )
-    .WillRepeatedly( testing::ReturnRef( moves ) );
+    .WillOnce( testing::ReturnRef( moves ) );
     
-    int ply = 2;
+    int ply = 1;
     int alpha = 40;
     int beta = 50;
-    //dotBuilder->addToPath( dotBuilder->getIndex() );
+
     minimax->minimax( ply, alpha, beta, maximaze );
     std::cout << dotBuilder->getDotFile()->getDotFile();
-    ASSERT_EQ( "", dotBuilder->getDotFile()->getDotFile() );
+    ASSERT_EQ( "0--1\n0--3\n", dotBuilder->getDotFile()->getDotFile() );
 }

@@ -35,7 +35,6 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     for (Option* option : moves) {
         miniMax->processMove(option);
         int score = minimax( --ply, alpha, beta, !maximize );
-        
         if( maximize ) {
             bestSoFar = miniMax->minimaxMax( bestSoFar, score,
                                              option ,&bestMove );

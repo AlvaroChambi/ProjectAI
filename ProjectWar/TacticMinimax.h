@@ -15,7 +15,7 @@
 
 class TacticMinimax : public Minimax {
 public:
-    static const int INFINITE = -std::numeric_limits<int>::max();
+    static const int INFINITE = std::numeric_limits<int>::max();
     TacticMinimax( GameState* gameState );
     ~TacticMinimax();
     

@@ -11,7 +11,7 @@
 #include <vector>
 
 TacticMinimax::TacticMinimax( GameState* game )
-: tacticBuilder( *game ), gameState( game ) {
+: tacticBuilder( game ), gameState( game ) {
     
 }
 

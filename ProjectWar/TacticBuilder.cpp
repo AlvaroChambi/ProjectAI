@@ -14,7 +14,7 @@
 #include "Pathfinder.h"
 #include "Path.h"
 
-TacticBuilder::TacticBuilder(GameState& game) : game(game), count(0)
+TacticBuilder::TacticBuilder(GameState* game) : game(game), count(0)
 {
 
 }

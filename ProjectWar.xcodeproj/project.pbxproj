@@ -57,6 +57,7 @@
 		3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */; };
 		3A0779F21CF49EFB00B8C065 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0779F31CF49EFB00B8C065 /* gtest.framework */; };
+		3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -158,6 +159,8 @@
 		3A0779BA1CF49CCB00B8C065 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0779BC1CF49CCB00B8C065 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3A0779F31CF49EFB00B8C065 /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
+		3A0779F91CF8613600B8C065 /* DotPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DotPath.h; sourceTree = "<group>"; };
+		3A0779FA1CF8614500B8C065 /* DotPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DotPath.cpp; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				9C8FC0061AB1BCC400C4EB1F /* IGameEventsListener.h */,
 				9C800B351AB9CC89003FE2AA /* IPlayerEventsListener.h */,
 				9C0A5A6A1AC0416700BF793E /* GameImplementation.h */,
+				3A0779F91CF8613600B8C065 /* DotPath.h */,
+				3A0779FA1CF8614500B8C065 /* DotPath.cpp */,
 			);
 			name = engine;
 			sourceTree = "<group>";
@@ -924,6 +929,7 @@
 				9CCD60C11AC80FE2004537F8 /* OnAttackState.cpp in Sources */,
 				9CAE2E051AA76FE700B6279D /* main.cpp in Sources */,
 				55FBA27C1B00F84F0035D3E1 /* Path.cpp in Sources */,
+				3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */,
 				9C0A5A711AC174E700BF793E /* Layout.cpp in Sources */,
 				55891C741AEE8AB600888AC7 /* Movement.cpp in Sources */,
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,

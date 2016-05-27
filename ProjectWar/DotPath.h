@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <string>
+#include "GraphLogger.h"
 
 class DotPath {
 public:
@@ -35,16 +36,19 @@ private:
     std::vector<DotPath*> paths;
 };
 
-class DotBuilder {
+class DotBuilder : public GraphLogger {
 public:
     DotBuilder();
     ~DotBuilder();
     
+    DotFile* getDotFile();
     void addToPath( std::string nodeKey );
+    std::string getIndex();
     void nextPath();
 private:
     DotFile* dotFile;
     DotPath* currentPath;
+    int index;
 };
 
 #endif

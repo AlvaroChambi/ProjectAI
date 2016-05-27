@@ -58,6 +58,8 @@
 		3A0779F21CF49EFB00B8C065 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0779F31CF49EFB00B8C065 /* gtest.framework */; };
 		3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
+		3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FC1CF885A700B8C065 /* DotTest.cpp */; };
+		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -161,6 +163,9 @@
 		3A0779F31CF49EFB00B8C065 /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
 		3A0779F91CF8613600B8C065 /* DotPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DotPath.h; sourceTree = "<group>"; };
 		3A0779FA1CF8614500B8C065 /* DotPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DotPath.cpp; sourceTree = "<group>"; };
+		3A0779FC1CF885A700B8C065 /* DotTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DotTest.cpp; sourceTree = "<group>"; };
+		3A0779FF1CF887B100B8C065 /* GraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphLogger.h; sourceTree = "<group>"; };
+		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -343,6 +348,8 @@
 				9CBEB9BE1CF7758100CA82DE /* MinimaxTest.cpp */,
 				9CBEB9C21CF7765B00CA82DE /* MockMinimax.h */,
 				9CBEB9CE1CF796E700CA82DE /* MockOption.h */,
+				3A0779FC1CF885A700B8C065 /* DotTest.cpp */,
+				3A077A001CF8882F00B8C065 /* MockGraphLogger.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -476,6 +483,7 @@
 				9C0A5A6A1AC0416700BF793E /* GameImplementation.h */,
 				3A0779F91CF8613600B8C065 /* DotPath.h */,
 				3A0779FA1CF8614500B8C065 /* DotPath.cpp */,
+				3A0779FF1CF887B100B8C065 /* GraphLogger.h */,
 			);
 			name = engine;
 			sourceTree = "<group>";
@@ -858,6 +866,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */,
 				3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */,
 				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
 				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
@@ -904,6 +913,7 @@
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
 				3A0779EC1CF49D2400B8C065 /* SDLTexture.cpp in Sources */,
+				3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */,
 				3A0779ED1CF49D2400B8C065 /* Renderer.cpp in Sources */,
 				3A0779EE1CF49D2400B8C065 /* Texture.cpp in Sources */,
 			);

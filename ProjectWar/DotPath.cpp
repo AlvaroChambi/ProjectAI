@@ -7,7 +7,7 @@
 //
 #include "DotPath.h"
 
-DothPath::DotPath() {
+DotPath::DotPath() {
 
 }
 
@@ -23,10 +23,11 @@ std::string DotPath::getLine() {
     std::string line = "";
     for( int i = 0; i < nodes.size(); i++ ) {
         std::string nodeKey = nodes.at( i );
-        if( i-1 == nodes.size()  ) {
-            line = line + nodeKey
+        if( i == nodes.size() - 1  ) {
+            line = line + nodeKey;
+        } else {
+            line = line + nodeKey + LINK;
         }
-        line = line + nodeKey + LINK;
     }
     return line;
 }
@@ -48,9 +49,10 @@ std::string DotFile::getDotFile() {
     for ( DotPath* path : paths ) {
         file = file + path->getLine() + "\n";
     }
+    return file;
 }
 
-DotBuilder::DotBuilder() {
+DotBuilder::DotBuilder() : index( 0 ) {
     dotFile = new DotFile;
     currentPath = new DotPath;
 }
@@ -59,8 +61,17 @@ DotBuilder::~DotBuilder() {
 
 }
 
+DotFile* DotBuilder::getDotFile() {
+    return dotFile;
+}
+
 void DotBuilder::addToPath( std::string nodeKey ) {
     currentPath->addNode( nodeKey );
+    index++;
+}
+
+std::string DotBuilder::getIndex() {
+    return std::to_string( index );
 }
 
 void DotBuilder::nextPath() {

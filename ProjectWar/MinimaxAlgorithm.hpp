@@ -11,12 +11,14 @@
 
 #include "Minimax.h"
 #include "GameState.h"
+#include "GraphLogger.h"
 
 class MinimaxAlgorithm {
     
 public:
     static const int INFINITE = std::numeric_limits<int>::max();
     MinimaxAlgorithm( Minimax* minimax );
+    MinimaxAlgorithm( Minimax* minimax, GraphLogger* graphLogger );
     ~MinimaxAlgorithm();
     
     void minimax( int ply );
@@ -25,6 +27,7 @@ public:
     Option* getBestMove();
     
 private:
+    GraphLogger* graphLogger;
     Minimax* miniMax;
     Option* bestMove;
 };

@@ -2,7 +2,9 @@
 #include "MinimaxAlgorithm.hpp"
 #include "MockMinimax.h"
 #include "MockOption.h"
+#include "MockGraphLogger.h"
 #include "gtest/gtest.h"
+#include "DotPath.h"
 
 using ::testing::Return;
 class MinimaxTest : public ::testing::Test {
@@ -23,6 +25,7 @@ public:
     MockOption option;
     MinimaxAlgorithm* minimax;
     MockMinimax mockMinimax;
+    MockGraphLogger mockGraphLogger;
 };
 
 TEST_F( MinimaxTest, MinimaxReachGameOverTest ) {
@@ -185,4 +188,51 @@ TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
     int beta = 50;
     
     ASSERT_EQ( 30, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+//
+//TEST_F( MinimaxTest, MinimaxLoggerTest ) {
+//    bool maximaze = true;
+//    DotBuilder* dotBuilder = new DotBuilder;
+//    minimax = new MinimaxAlgorithm( &mockMinimax, dotBuilder );
+//    
+//    moves.push_back( &option );
+//    moves.push_back( &option );
+//    
+//    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+//    .WillOnce( testing::ReturnRef( moves ) );
+//    
+//    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+//                                         testing::_, testing::_ ) )
+//    .Times( 2 )
+//    .WillOnce( testing::Return( 20 ) )
+//    .WillOnce( testing::Return( 30 ) );
+//    
+//    int ply = 2;
+//    int alpha = 40;
+//    int beta = 50;
+//    //dotBuilder->addToPath( dotBuilder->getIndex() );
+//    minimax->minimax( ply, alpha, beta, maximaze );
+//    std::cout << dotBuilder->getDotFile()->getDotFile();
+//    //ASSERT_EQ( "", dotBuilder->getDotFile()->getDotFile() );
+//}
+
+TEST_F( MinimaxTest, MinimaxLoggerTestPly2 ) {
+    bool maximaze = true;
+    DotBuilder* dotBuilder = new DotBuilder;
+    minimax = new MinimaxAlgorithm( &mockMinimax, dotBuilder );
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
+    .Times( 6 )
+    .WillRepeatedly( testing::ReturnRef( moves ) );
+    
+    int ply = 2;
+    int alpha = 40;
+    int beta = 50;
+    //dotBuilder->addToPath( dotBuilder->getIndex() );
+    minimax->minimax( ply, alpha, beta, maximaze );
+    std::cout << dotBuilder->getDotFile()->getDotFile();
+    ASSERT_EQ( "", dotBuilder->getDotFile()->getDotFile() );
 }

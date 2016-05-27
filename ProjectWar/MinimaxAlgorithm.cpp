@@ -2,8 +2,14 @@
 #include "MinimaxAlgorithm.hpp"
 
 MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax )
-: miniMax( minimax ), bestMove( nullptr ) {
+: miniMax( minimax ), bestMove( nullptr ), graphLogger( nullptr ) {
 
+}
+
+MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax,
+                                    GraphLogger* graphLogger )
+: miniMax( minimax ), bestMove( nullptr ), graphLogger( graphLogger ) {
+    
 }
 
 MinimaxAlgorithm::~MinimaxAlgorithm() {
@@ -21,10 +27,18 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
                                int beta, bool maximize ) {
     
     if ( miniMax->isGameOver() ) {
+        if( graphLogger != nullptr ) {
+            graphLogger->addToPath( graphLogger->getIndex() );
+            graphLogger->nextPath();
+        }
         return miniMax->getGameOverScore();
     }
     
     if( ply <= 0 ) {
+        if( graphLogger != nullptr ) {
+            graphLogger->addToPath( graphLogger->getIndex() );
+            graphLogger->nextPath();
+        }
         return miniMax->getStaticEvaluation();
     }
     
@@ -32,9 +46,16 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     std::vector<Option*>& moves = miniMax->getMovesList( maximize );
     int bestSoFar = INFINITE;
     
+    std::string actualNode = "";
+    if( graphLogger != nullptr ){
+        actualNode = graphLogger->getIndex();
+        graphLogger->addToPath( actualNode );
+    }
+
+    
     for (Option* option : moves) {
         miniMax->processMove(option);
-        int score = minimax( --ply, alpha, beta, !maximize );
+        int score = minimax( ply-1, alpha, beta, !maximize );
         if( maximize ) {
             bestSoFar = miniMax->minimaxMax( bestSoFar, score,
                                              option ,&bestMove );
@@ -44,10 +65,17 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             
             beta = std::min(beta, bestSoFar);
         }
+        if( graphLogger != nullptr ) {
+            graphLogger->addToPath( actualNode );
+        }
         
         miniMax->unprocessMove(option);
         
         if ( beta <= alpha ) {
+            if( graphLogger != nullptr ) {
+                graphLogger->addToPath( graphLogger->getIndex() );
+                graphLogger->nextPath();
+            }
             return bestSoFar;
         }
     }

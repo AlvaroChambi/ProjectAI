@@ -9,6 +9,7 @@
 #include "PlayerAI.h"
 #include "Map.h"
 #include "TacticMinimax.h"
+#include "MinimaxAlgorithm.hpp"
 #include "Path.h"
 
 PlayerAI::PlayerAI() : Player(), playersList(nullptr)
@@ -25,34 +26,30 @@ PlayerAI::PlayerAI(int id, Scene* scene, Renderer* renderer)
     setType(AI_PLAYER);
 }
 
-PlayerAI::~PlayerAI()
-{
+PlayerAI::~PlayerAI() {
 
 }
 
-void PlayerAI::setPlayerList(std::list<Player*> *players)
-{
+void PlayerAI::setPlayerList(std::list<Player*> *players) {
     this->playersList = players;
 }
 
 
-std::list<Command*> PlayerAI::play()
-{
+std::list<Command*> PlayerAI::play() {
     std::list<Command*>commands;
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    std::cout << "Minimax on progress..." << std::endl;
     executeMinimax();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Minimax took "
     << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
-    << "s.\n";
-    //testPathfinding(Point(13,3), Point(2,1));
+    << "ms.\n";
     return commands;
 }
 
 
 
-void PlayerAI::executeMinimax()
-{
+void PlayerAI::executeMinimax() {
     Player* enemy = nullptr;
     
     for (Player* player : *playersList) {
@@ -60,17 +57,16 @@ void PlayerAI::executeMinimax()
             enemy = player;
         }
     }
-    GameState* game = new GameState(this, enemy, scene, renderer);
-    TacticMinimax* tacticDecision = new TacticMinimax(*game);
-    
-    tacticDecision->minimax(2);
-    Tactic* movement = (Tactic*)tacticDecision->getMove();
+    GameState* game = new GameState( this, enemy );
+    TacticMinimax* tacticMinimax = new TacticMinimax( game );
+    MinimaxAlgorithm* algorithm = new MinimaxAlgorithm( tacticMinimax );
+    algorithm->minimax(2);
+    Tactic* movement = (Tactic*)algorithm->getBestMove();
     
     movement->execute();
 }
 
-void PlayerAI::testPathfinding(Point origin, Point destination)
-{
+void PlayerAI::testPathfinding(Point origin, Point destination) {
     Path* path = getMap()->getPath(origin, destination);
     path->printPath();
 }

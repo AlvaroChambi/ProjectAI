@@ -12,9 +12,6 @@
 class Option
 {
 public:
-    Option(){}
-    virtual ~Option(){}
-    int value;
     virtual void execute() = 0;
     virtual void cancel() = 0;
 };

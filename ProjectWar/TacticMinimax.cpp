@@ -10,17 +10,16 @@
 #include <string>
 #include <vector>
 
-TacticMinimax::TacticMinimax(GameState& game) : Minimax(game), tacticBuilder(game)
-{
+TacticMinimax::TacticMinimax( GameState* game )
+: tacticBuilder( *game ), gameState( game ) {
     
 }
 
-TacticMinimax::~TacticMinimax()
-{
+TacticMinimax::~TacticMinimax() {
 
 }
 
-void printGray(std::vector<std::string> arr){
+void printGray(std::vector<std::string> arr) {
     for (int i = 0 ; i < arr.size() ; i++ )
         std::cout << arr[i] << std::endl;
     
@@ -28,8 +27,7 @@ void printGray(std::vector<std::string> arr){
 
 // This function generates all n bit Gray codes and prints the
 // generated codes
-std::vector<std::string> generateGraySequence(int n)
-{
+std::vector<std::string> generateGraySequence(int n) {
     // 'arr' will store all generated codes
     std::vector<std::string> arr;
     // start with one-bit pattern
@@ -58,67 +56,27 @@ std::vector<std::string> generateGraySequence(int n)
     return arr;
 }
 
-
-void TacticMinimax::getMovesList(int depth, std::list<Option*>& moves)
-{
-    Player* player = nullptr;
-    Player* enemy = nullptr;
-    if (depth%2 != 0) {
-        //AI turn
-        player = game.player;
-        enemy = game.enemy;
-    }else{
-        player = game.enemy;
-        enemy = game.player;
-    }
-    //TODO IMPROVE THIS
-    std::vector<std::string> tacticMovements =
-        generateGraySequence((int)player->getAliveUnits().size());
-    int sequenceSize = (int)tacticMovements.size();
-    for(int i = 0; i<sequenceSize; i++){
-        std::string tacticSequence = tacticMovements.back();
-        tacticMovements.pop_back();
-        Tactic* movement = tacticBuilder.createTactic(player, enemy, tacticSequence);
-        moves.push_back(movement);
-    }
-}
-
-int TacticMinimax::minOrMax(int bestSofar, int score, int depth, Option* move, Option** bestMove)
-{
-    int result = bestSofar;
+bool TacticMinimax::isGameOver( ) {
+    Player* player = gameState->player;
+    Player* enemy = gameState->enemy;
     
-    if (depth%2 == 0) {
-        //min
-        std::cout << "MIN \n";
-        if (score < bestSofar || bestSofar == Minimax::INFINITE) {
-            result = score;
-        }
-    }else{
-        //max
-        std::cout << "MAX \n";
-        if (score > bestSofar || bestSofar == Minimax::INFINITE) {
-            result = score;
-            *bestMove = move;
-        }
+    bool result = false;
+    if (!player->hasUnitAlive() || enemy->hasCapturedHQ()) {
+        result = true;
     }
-    std::cout << " bestSoFar: " + std::to_string(bestSofar)+
-    " Score: " + std::to_string(score) + "\n";
-
+    if (!enemy->hasUnitAlive() || player->hasCapturedHQ()) {
+        result = true;
+    }
+    
     return result;
 }
 
-Minimax* TacticMinimax::makeMinimax()
-{
-    return new TacticMinimax(game);
-}
-
-int TacticMinimax::getGameOverScore()
-{
+int TacticMinimax::getGameOverScore() {
     int gameScore = GameState::DRAW_VALUE;
     //WIN = 1, LOSE = -1
     //if hq is captured or all enemys of one side are dead
-    Player* player = game.player;
-    Player* enemy = game.enemy;
+    Player* player = gameState->player;
+    Player* enemy = gameState->enemy;
     
     if (!player->hasUnitAlive() || enemy->hasCapturedHQ()) {
         gameScore = GameState::LOST_VALUE;
@@ -130,7 +88,80 @@ int TacticMinimax::getGameOverScore()
     return gameScore;
 }
 
-int TacticMinimax::getWorstScore()
-{
-    return Minimax::INFINITE;
+int TacticMinimax::getStaticEvaluation() {
+    Player* player = gameState->player;
+    Player* enemy = gameState->enemy;
+    Point point;
+    int result = GameState::DRAW_VALUE;
+    for (Unit* unit : player->getUnitList()) {
+        point.x = 2;
+        point.y = 2;
+        result = result + unit->getHP() * 0.1;
+        result = result - unit->getPosition().distance(point);
+        
+    }
+    
+    for (Unit* unit : enemy->getUnitList()) {
+        point.x = 12;
+        point.y = 6;
+        result = result - unit->getHP() * 0.1;
+        result = result + unit->getPosition().distance(point);
+    }
+    
+    return result;
+}
+
+std::vector<Option*>& TacticMinimax::getMovesList( const bool maximize ) {
+    Player* player = nullptr;
+    Player* enemy = nullptr;
+    moves.clear();
+    if ( maximize ) {
+        player = gameState->player;
+        enemy = gameState->enemy;
+    }else{
+        player = gameState->enemy;
+        enemy = gameState->player;
+    }
+    //TODO IMPROVE THIS
+    std::vector<std::string> tacticMovements =
+    generateGraySequence((int)player->getAliveUnits().size());
+    int sequenceSize = (int)tacticMovements.size();
+    for(int i = 0; i<sequenceSize; i++){
+        std::string tacticSequence = tacticMovements.back();
+        tacticMovements.pop_back();
+        Tactic* movement = tacticBuilder.createTactic(player, enemy, tacticSequence);
+        moves.push_back(movement);
+    }
+    return moves;
+}
+
+
+void TacticMinimax::processMove( Option *move ) {
+    move->execute();
+}
+
+void TacticMinimax::unprocessMove( Option *move ) {
+    move->cancel();
+}
+
+int TacticMinimax::minimaxMax( int bestSoFar, int score,
+                               Option *move, Option **bestMove ) {
+    int result = bestSoFar;
+    
+    if (score > bestSoFar || bestSoFar == INFINITE) {
+        result = score;
+        *bestMove = move;
+    }
+    
+    return result;
+}
+
+int TacticMinimax::minimaxMin( int bestSoFar, int score ) {
+    
+    int result = bestSoFar;
+    if (score < bestSoFar || bestSoFar == INFINITE) {
+        result = score;
+    }
+    
+    return result;
 }

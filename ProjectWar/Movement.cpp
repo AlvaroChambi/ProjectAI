@@ -33,17 +33,13 @@ Movement::~Movement()
 
 }
 
-void Movement::execute()
-{
-    std::cout << "      Movement executed\n";
+void Movement::execute() {
     for (Command* command : *commands) {
         command->execute();
     }
 }
 
-void Movement::cancel()
-{
-    std::cout << "      Movement canceled\n";
+void Movement::cancel() {
     for (Command* command : *commands) {
         command->cancel();
     }

@@ -16,6 +16,7 @@ public:
     MOCK_METHOD1( addToPath, void( std::string nodeKey ) );
     MOCK_METHOD0( getIndex, std::string( ) );
     MOCK_METHOD0( nextPath, void() );
+    MOCK_METHOD0( getLog, std::string( ) );
 };
 
 #endif

@@ -192,8 +192,8 @@ TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
 
 TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     bool maximaze = true;
-    DotBuilder* dotBuilder = new DotBuilder;
-    minimax = new MinimaxAlgorithm( &mockMinimax, dotBuilder );
+    minimax = new MinimaxAlgorithm( &mockMinimax );
+    minimax->setDebugLogger( new DotBuilder );
     
     moves.push_back( &option );
     moves.push_back( &option );
@@ -206,6 +206,5 @@ TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     int beta = 50;
 
     minimax->minimax( ply, alpha, beta, maximaze );
-    std::cout << dotBuilder->getDotFile()->getDotFile();
-    ASSERT_EQ( "0--1\n0--3\n", dotBuilder->getDotFile()->getDotFile() );
+    ASSERT_EQ( "0--1\n0--3\n", minimax->getGraphLog() );
 }

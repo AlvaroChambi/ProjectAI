@@ -17,15 +17,16 @@ class MinimaxAlgorithm {
     
 public:
     static const int INFINITE = std::numeric_limits<int>::max();
+    
     MinimaxAlgorithm( Minimax* minimax );
-    MinimaxAlgorithm( Minimax* minimax, GraphLogger* graphLogger );
     ~MinimaxAlgorithm();
     
     void minimax( int ply );
     int minimax( int ply, int alpha, int beta, bool maximize );
     
+    void setDebugLogger( GraphLogger* graphLogger );
+    std::string getGraphLog();
     Option* getBestMove();
-    
 private:
     GraphLogger* graphLogger;
     Minimax* miniMax;

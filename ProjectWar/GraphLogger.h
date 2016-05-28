@@ -11,6 +11,7 @@
 
 class GraphLogger {
 public:
+    virtual std::string getLog() = 0;
     virtual void addToPath( std::string nodeKey ) = 0;
     virtual std::string getIndex() = 0;
     virtual void nextPath() = 0;

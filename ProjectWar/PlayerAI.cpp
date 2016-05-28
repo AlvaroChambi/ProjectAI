@@ -59,13 +59,12 @@ void PlayerAI::executeMinimax() {
         }
     }
     GameState* game = new GameState( this, enemy );
-    DotBuilder* dotBuilder = new DotBuilder;
-    TacticMinimax* tacticMinimax = new TacticMinimax( game );
-    MinimaxAlgorithm* algorithm = new MinimaxAlgorithm( tacticMinimax,
-                                                        dotBuilder );
-    algorithm->minimax(5);
+    MinimaxAlgorithm* algorithm =
+        new MinimaxAlgorithm( new TacticMinimax( game ) );
+    algorithm->setDebugLogger( new DotBuilder );
+    algorithm->minimax(4);
     Tactic* movement = (Tactic*)algorithm->getBestMove();
-    std::cout << dotBuilder->getDotFile()->getDotFile();
+    std::cout << algorithm->getGraphLog();
     movement->execute();
 }
 

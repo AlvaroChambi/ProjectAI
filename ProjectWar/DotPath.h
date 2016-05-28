@@ -30,7 +30,7 @@ public:
     DotFile();
     ~DotFile();
     
-    std::string getDotFile();
+    std::string getFile();
     void addPath( DotPath* dotPath );
 private:
     std::vector<DotPath*> paths;
@@ -45,6 +45,7 @@ public:
     void addToPath( std::string nodeKey );
     std::string getIndex();
     void nextPath();
+    std::string getLog();
 private:
     DotFile* dotFile;
     DotPath* currentPath;

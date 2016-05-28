@@ -44,7 +44,7 @@ void DotFile::addPath( DotPath *dotPath ) {
     paths.push_back( dotPath );
 }
 
-std::string DotFile::getDotFile() {
+std::string DotFile::getFile() {
     std::string file = "";
     for ( DotPath* path : paths ) {
         file = file + path->getLine() + "\n";
@@ -63,6 +63,10 @@ DotBuilder::~DotBuilder() {
 
 DotFile* DotBuilder::getDotFile() {
     return dotFile;
+}
+
+std::string DotBuilder::getLog() {
+    return dotFile->getFile();
 }
 
 void DotBuilder::addToPath( std::string nodeKey ) {

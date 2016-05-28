@@ -115,7 +115,7 @@ std::vector<Option*>& TacticMinimax::getMovesList( const bool maximize ) {
     Player* player = nullptr;
     Player* enemy = nullptr;
     moves.clear();
-    if ( maximize ) {
+    if ( !maximize ) {
         player = gameState->player;
         enemy = gameState->enemy;
     }else{

@@ -6,12 +6,6 @@ MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax )
 
 }
 
-MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax,
-                                    GraphLogger* graphLogger )
-: miniMax( minimax ), bestMove( nullptr ), graphLogger( graphLogger ) {
-    
-}
-
 MinimaxAlgorithm::~MinimaxAlgorithm() {
 
 }
@@ -80,6 +74,17 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         }
     }
     return bestSoFar;
+}
+
+void MinimaxAlgorithm::setDebugLogger( GraphLogger *graphLogger ) {
+    this->graphLogger = graphLogger;
+}
+
+std::string MinimaxAlgorithm::getGraphLog() {
+    if ( graphLogger != nullptr ) {
+        return graphLogger->getLog();
+    }
+    return "";
 }
 
 Option* MinimaxAlgorithm::getBestMove() {

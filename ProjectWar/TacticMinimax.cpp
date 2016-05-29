@@ -114,8 +114,10 @@ int TacticMinimax::getStaticEvaluation() {
 std::vector<Option*>& TacticMinimax::getMovesList( const bool maximize ) {
     Player* player = nullptr;
     Player* enemy = nullptr;
-    moves.clear();
-    if ( !maximize ) {
+    
+    std::vector<Option*>* moves = new std::vector<Option*>();
+    
+    if ( maximize ) {
         player = gameState->player;
         enemy = gameState->enemy;
     }else{
@@ -130,9 +132,9 @@ std::vector<Option*>& TacticMinimax::getMovesList( const bool maximize ) {
         std::string tacticSequence = tacticMovements.back();
         tacticMovements.pop_back();
         Tactic* movement = tacticBuilder.createTactic(player, enemy, tacticSequence);
-        moves.push_back(movement);
+        moves->push_back(movement);
     }
-    return moves;
+    return *moves;
 }
 
 

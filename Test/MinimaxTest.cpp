@@ -208,3 +208,49 @@ TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     minimax->minimax( ply, alpha, beta, maximaze );
     ASSERT_EQ( "0--1\n0--3\n", minimax->getGraphLog() );
 }
+
+TEST_F( MinimaxTest, MinimaxMovesUpdateTest ) {
+    bool maximaze = true;
+    
+    moves.push_back( &option );
+    moves.push_back( &option );
+    
+    std::vector<Option*> moves1;
+    std::vector<Option*> moves3;
+    std::vector<Option*> moves2;
+    std::vector<Option*> moves4;
+    
+    moves1.push_back( &option );
+    
+    moves3.push_back( &option );
+    moves3.push_back( &option );
+    moves3.push_back( &option );
+    
+    moves2.push_back( &option );
+    moves2.push_back( &option );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                         testing::_, testing::_ ) )
+    .Times( 20 )
+    .WillRepeatedly( testing::Return( 20 ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
+    .Times( 20 )
+    .WillRepeatedly( testing::Return( 50 ) );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
+    .Times( 7 )
+    .WillOnce( testing::ReturnRef( moves ) )
+    .WillOnce( testing::ReturnRef( moves1 ) )
+    .WillOnce( testing::ReturnRef( moves2 ) )
+    .WillOnce( testing::ReturnRef( moves3 ) )
+    .WillRepeatedly( testing::ReturnRef( moves2 ) );
+    
+    int ply = 3;
+    int alpha = 40;
+    int beta = 50;
+    minimax->setDebugLogger( new DotBuilder );
+    minimax->minimax( ply, alpha, beta, maximaze );
+    
+    std::cout << minimax->getGraphLog();
+}

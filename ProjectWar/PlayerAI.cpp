@@ -62,7 +62,7 @@ void PlayerAI::executeMinimax() {
     MinimaxAlgorithm* algorithm =
         new MinimaxAlgorithm( new TacticMinimax( game ) );
     algorithm->setDebugLogger( new DotBuilder );
-    algorithm->minimax(4);
+    algorithm->minimax(3);
     Tactic* movement = (Tactic*)algorithm->getBestMove();
     std::cout << algorithm->getGraphLog();
     movement->execute();

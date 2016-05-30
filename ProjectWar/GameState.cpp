@@ -59,23 +59,26 @@ int GameState::getStaticEvaluation()
             enemyBuilding = building;
         }
     }
-    
+    if (playerBuilding->isCaptured(enemyId)){
     pointPlayerBuilding = playerBuilding->getPosition();
-    pointEnemyBuilding = enemyBuilding->getPosition();
+    }
+    if (enemyBuilding->isCaptured(playerId)){
+        pointEnemyBuilding = enemyBuilding->getPosition();
+    }
     
     result = result + playerBuilding->getCaptureValue();
     result = result - enemyBuilding->getCaptureValue();
     
     for (Unit* unit : player->getUnitList()) {
         result = result + unit->getHP();
-        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints()){
+        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints() || !playerBuilding->isCaptured(enemyId)){
             result = result - unit->getPosition().distance(pointEnemyBuilding);
         }
     }
     
     for (Unit* unit : enemy->getUnitList()) {
         result = result - unit->getHP();
-        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints()){
+        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints() || !enemyBuilding->isCaptured(playerId)){
             result = result + unit->getPosition().distance(pointPlayerBuilding);
         }
     }

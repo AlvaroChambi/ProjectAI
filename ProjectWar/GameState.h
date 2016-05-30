@@ -22,9 +22,9 @@ public:
     GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer);
     virtual ~GameState();
     
-    static const int WIN_VALUE = 20;
-    static const int LOST_VALUE = 0;
-    static const int DRAW_VALUE = 10;
+    static const int WIN_VALUE = 10;
+    static const int LOST_VALUE = -10;
+    static const int DRAW_VALUE = 0;
     
     bool isGameOver();
     int getStaticEvaluation();

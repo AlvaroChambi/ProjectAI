@@ -38,22 +38,49 @@ bool GameState::isGameOver()
 
 int GameState::getStaticEvaluation()
 {
-    Point point;
+    // Positive scores are good for AI
+    // Negative scores are good for Human player
+    
+    Point pointPlayerBuilding;
+    Point pointEnemyBuilding;
     int result = DRAW_VALUE;
+    Map *map = player->getMap();
+    
+    int playerId = player->getId();
+    int enemyId = enemy->getId();
+    
+    Building* playerBuilding = nullptr;
+    Building* enemyBuilding = nullptr;
+    
+    for (Building* building : map->getBuildings()) {
+        if(building->getOwnerID()==playerId){
+            playerBuilding = building;
+        }else if(building->getOwnerID()==enemyId){
+            enemyBuilding = building;
+        }
+    }
+    
+    pointPlayerBuilding = playerBuilding->getPosition();
+    pointEnemyBuilding = enemyBuilding->getPosition();
+    
+    result = result + playerBuilding->getCaptureValue();
+    result = result - enemyBuilding->getCaptureValue();
+    
     for (Unit* unit : player->getUnitList()) {
-        point.x = 2;
-        point.y = 2;
-        result = result + unit->getHP() * 0.1;
-        result = result - unit->getPosition().distance(point);
-
+        result = result + unit->getHP();
+        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints()){
+            result = result - unit->getPosition().distance(pointEnemyBuilding);
+        }
     }
     
     for (Unit* unit : enemy->getUnitList()) {
-        point.x = 12;
-        point.y = 6;
-        result = result - unit->getHP() * 0.1;
-        result = result + unit->getPosition().distance(point);
+        result = result - unit->getHP();
+        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints()){
+            result = result + unit->getPosition().distance(pointPlayerBuilding);
+        }
     }
+    
+    
 
     return result;
 }

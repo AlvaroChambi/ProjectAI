@@ -29,7 +29,8 @@ public:
     PlayerAI(int id, Scene* scene, Renderer* renderer);
     ~PlayerAI();
     void setPlayerList(std::list<Player*> *players);
-    std::list<Movement*>* genMovements(Unit* unit, Player* players, Map* map);
+    std::list<Movement*>* genMovements( Unit* unit, Player* players,
+                                        Map* map);
     std::list<Player*>* getPlayersList();
     
     std::list<Command*> play ();

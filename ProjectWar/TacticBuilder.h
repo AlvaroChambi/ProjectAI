@@ -18,7 +18,7 @@
 class TacticBuilder
 {
 public:
-    TacticBuilder(GameState& game);
+    TacticBuilder(GameState* game);
     ~TacticBuilder();
     Tactic* createTactic(Player* player, Player* enemy, std::string gray);;
 private:
@@ -28,7 +28,7 @@ private:
     void resetInfluenceMap();
     Building* getBuilding(Player* player, Unit*, Map* map);
     Unit* getTarget(Unit* unit, Player* enemy);
-    GameState& game;
+    GameState* game;
     float influenceMap[MAP_HEIGHT][MAP_WIDTH];
     int count;
 };

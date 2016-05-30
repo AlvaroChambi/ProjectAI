@@ -23,19 +23,13 @@ MoveCommand::~MoveCommand()
 
 }
 
-void MoveCommand::execute()
-{
-    std::cout << "              executing move command\n";
-    std::cout <<"                   unit: " + std::to_string(unit->getId()) <<  "  " << destination.position << "\n";
+void MoveCommand::execute() {
     map->cleanUnitAvailableArea(unit);
     map->moveUnit(unit, destination.position);
     unit->setPosition(destination);
 }
 
-void MoveCommand::cancel()
-{
-    std::cout << "              canceling move command\n";
-    std::cout <<"                   unit: " + std::to_string(unit->getId()) + "\n";
+void MoveCommand::cancel() {
     map->moveUnit(unit, savedPosition.position);
     unit->setPosition(savedPosition);
 }

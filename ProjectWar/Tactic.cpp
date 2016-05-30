@@ -23,17 +23,13 @@ Tactic::~Tactic()
 
 }
 
-void Tactic::execute()
-{
-    std::cout << type << "\n";
+void Tactic::execute() {
     for (Movement* movement : movements) {
         movement->execute();
     }
 }
 
-void Tactic::cancel()
-{
-    std::cout << "Tactic ID: " +  std::to_string(this->id) +"\n";
+void Tactic::cancel() {
     for (Movement* movement : movements) {
         movement->cancel();
     }

@@ -13,18 +13,30 @@
 #include "Minimax.h"
 #include "TacticBuilder.h"
 
-class TacticMinimax : public Minimax
-{
+class TacticMinimax : public Minimax {
 public:
-    TacticMinimax(GameState& gameState);
-    virtual ~TacticMinimax();
-    int minOrMax( int bestSoFar, int score, int depth, Option* move ,Option** bestMove );
-    Minimax* makeMinimax();
+    static const int INFINITE = std::numeric_limits<int>::max();
+    TacticMinimax( GameState* gameState );
+    ~TacticMinimax();
+    
+    bool isGameOver();
+    
     int getGameOverScore();
-    int getWorstScore();
-    void getMovesList(int depth, std::list<Option*>& moves);
+    int getStaticEvaluation();
+    
+    std::vector<Option*>& getMovesList( const bool maximize );
+    
+    void processMove( Option* move );
+    void unprocessMove( Option* move );
+    
+    int minimaxMin( const int bestSoFar, const int score );
+    int minimaxMax( const int bestSoFar, const int score,
+                    Option* move, Option** bestMove );
+    
 private:
     TacticBuilder tacticBuilder;
+    GameState* gameState;
+    std::vector<Option*> moves;
 };
 
 #endif /* defined(__ProjectWar__TacticMinimax__) */

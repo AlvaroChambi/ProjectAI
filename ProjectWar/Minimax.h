@@ -1,5 +1,5 @@
-#ifndef GameMinimax_h
-#define GameMinimax_h
+#ifndef Minimax_h
+#define Minimax_h
 
 #include "Option.h"
 #include <vector>

@@ -133,6 +133,11 @@
 		9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C51ACFE31B004537F8 /* UnitUIView.cpp */; };
 		9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
 		9CF246281CFCD06E00AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF246271CFCD06E00AF606D /* gmock.framework */; };
+		9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +312,12 @@
 		9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackCommand.cpp; sourceTree = "<group>"; };
 		9CCD60D11AD3DEF3004537F8 /* AttackCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackCommand.h; sourceTree = "<group>"; };
 		9CF246271CFCD06E00AF606D /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
+		9CF246291CFCD0EF00AF606D /* GameMinimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMinimax.h; sourceTree = "<group>"; };
+		9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMinimax.cpp; sourceTree = "<group>"; };
+		9CF2462D1CFCD2B900AF606D /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateTest.cpp; sourceTree = "<group>"; };
+		9CF246321CFCD9B800AF606D /* IPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlayer.h; sourceTree = "<group>"; };
+		9CF246331CFCDA3F00AF606D /* MockPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockPlayer.h; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -353,6 +364,8 @@
 				9CBEB9CE1CF796E700CA82DE /* MockOption.h */,
 				3A0779FC1CF885A700B8C065 /* DotTest.cpp */,
 				3A077A001CF8882F00B8C065 /* MockGraphLogger.h */,
+				9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */,
+				9CF246331CFCDA3F00AF606D /* MockPlayer.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -406,8 +419,11 @@
 		55F447EC1AD713DF00F994F2 /* ai */ = {
 			isa = PBXGroup;
 			children = (
-				55891C751AEE8ABF00888AC7 /* player */,
+				9CF246291CFCD0EF00AF606D /* GameMinimax.h */,
+				9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */,
 				55891C651AEE8A4400888AC7 /* GameState.h */,
+				9CF2462D1CFCD2B900AF606D /* GameState.cpp */,
+				55891C751AEE8ABF00888AC7 /* player */,
 				55891C621AEE8A0600888AC7 /* minimax */,
 				556A49DF1AE79EFF00F7FD8E /* pathfinder */,
 			);
@@ -528,6 +544,7 @@
 				55AD2B681AF00552000F5B7E /* Player.cpp */,
 				9C800B121AB7443C003FE2AA /* Unit.cpp */,
 				9C800B131AB7443C003FE2AA /* Unit.h */,
+				9CF246321CFCD9B800AF606D /* IPlayer.h */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -870,8 +887,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */,
 				3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */,
 				3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */,
+				9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */,
 				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
 				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
 				3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */,
@@ -905,6 +924,7 @@
 				3A0779DE1CF49D2400B8C065 /* ProjectAI.cpp in Sources */,
 				3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */,
 				3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */,
+				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,
@@ -928,9 +948,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */,
+				9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */,
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,
 				9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */,
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,
+				9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */,
 				9C8FBFED1AAF043A00C4EB1F /* Renderer.cpp in Sources */,
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,

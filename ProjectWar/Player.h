@@ -16,6 +16,7 @@
 #include "Tile.h"
 #include "State.h"
 #include "InfoTile.h"
+#include "IPlayer.h"
 
 enum PlayerType
 {
@@ -24,7 +25,7 @@ enum PlayerType
 };
 
 class Map;
-class Player : public Model
+class Player : public IPlayer, public Model
 {
 public:
     Player();

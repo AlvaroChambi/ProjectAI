@@ -57,8 +57,8 @@ std::vector<std::string> generateGraySequence(int n) {
 }
 
 bool TacticMinimax::isGameOver( ) {
-    Player* player = gameState->player;
-    Player* enemy = gameState->enemy;
+    IPlayer* player = gameState->getPlayer();
+    IPlayer* enemy = gameState->getEnemy();
     
     bool result = false;
     if (!player->hasUnitAlive() || enemy->hasCapturedHQ()) {
@@ -72,11 +72,11 @@ bool TacticMinimax::isGameOver( ) {
 }
 
 int TacticMinimax::getGameOverScore() {
-    int gameScore = GameState::DRAW_VALUE;
+    int gameScore = GameState::NOT_FINISHED;
     //WIN = 1, LOSE = -1
     //if hq is captured or all enemys of one side are dead
-    Player* player = gameState->player;
-    Player* enemy = gameState->enemy;
+    IPlayer* player = gameState->getPlayer();
+    IPlayer* enemy = gameState->getEnemy();
     
     if (!player->hasUnitAlive() || enemy->hasCapturedHQ()) {
         gameScore = GameState::LOST_VALUE;
@@ -89,25 +89,25 @@ int TacticMinimax::getGameOverScore() {
 }
 
 int TacticMinimax::getStaticEvaluation() {
-    Player* player = gameState->player;
-    Player* enemy = gameState->enemy;
+//    Player* player = gameState->player;
+//    Player* enemy = gameState->enemy;
     Point point;
     int result = GameState::DRAW_VALUE;
-    for (Unit* unit : player->getUnitList()) {
-        point.x = 2;
-        point.y = 2;
-        result = result + unit->getHP() * 0.1;
-        result = result - unit->getPosition().distance(point);
-        
-    }
-    
-    for (Unit* unit : enemy->getUnitList()) {
-        point.x = 12;
-        point.y = 6;
-        result = result - unit->getHP() * 0.1;
-        result = result + unit->getPosition().distance(point);
-    }
-    
+//    for (Unit* unit : player->getUnitList()) {
+//        point.x = 2;
+//        point.y = 2;
+//        result = result + unit->getHP() * 0.1;
+//        result = result - unit->getPosition().distance(point);
+//        
+//    }
+//    
+//    for (Unit* unit : enemy->getUnitList()) {
+//        point.x = 12;
+//        point.y = 6;
+//        result = result - unit->getHP() * 0.1;
+//        result = result + unit->getPosition().distance(point);
+//    }
+//    
     return result;
 }
 
@@ -117,23 +117,23 @@ std::vector<Option*>& TacticMinimax::getMovesList( const bool maximize ) {
     
     std::vector<Option*>* moves = new std::vector<Option*>();
     
-    if ( maximize ) {
-        player = gameState->player;
-        enemy = gameState->enemy;
-    }else{
-        player = gameState->enemy;
-        enemy = gameState->player;
-    }
-    //TODO IMPROVE THIS
-    std::vector<std::string> tacticMovements =
-    generateGraySequence((int)player->getAliveUnits().size());
-    int sequenceSize = (int)tacticMovements.size();
-    for(int i = 0; i<sequenceSize; i++){
-        std::string tacticSequence = tacticMovements.back();
-        tacticMovements.pop_back();
-        Tactic* movement = tacticBuilder.createTactic(player, enemy, tacticSequence);
-        moves->push_back(movement);
-    }
+//    if ( maximize ) {
+//        player = gameState->player;
+//        enemy = gameState->enemy;
+//    }else{
+//        player = gameState->enemy;
+//        enemy = gameState->player;
+//    }
+//    //TODO IMPROVE THIS
+//    std::vector<std::string> tacticMovements =
+//    generateGraySequence((int)player->getAliveUnits().size());
+//    int sequenceSize = (int)tacticMovements.size();
+//    for(int i = 0; i<sequenceSize; i++){
+//        std::string tacticSequence = tacticMovements.back();
+//        tacticMovements.pop_back();
+//        Tactic* movement = tacticBuilder.createTactic(player, enemy, tacticSequence);
+//        moves->push_back(movement);
+//    }
     return *moves;
 }
 

@@ -19,6 +19,10 @@ void DotPath::addNode( std::string nodeKey ) {
     nodes.push_back( nodeKey );
 }
 
+bool DotPath::empty() {
+    return nodes.empty();
+}
+
 std::string DotPath::getLine() {
     std::string line = "";
     for( int i = 0; i < nodes.size(); i++ ) {
@@ -47,7 +51,9 @@ void DotFile::addPath( DotPath *dotPath ) {
 std::string DotFile::getFile() {
     std::string file = "";
     for ( DotPath* path : paths ) {
-        file = file + path->getLine() + "\n";
+        if( !path->empty() ){
+            file = file + path->getLine() + "\n";
+        }
     }
     return file;
 }

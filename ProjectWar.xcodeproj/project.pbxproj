@@ -125,7 +125,6 @@
 		9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9BE1CF7758100CA82DE /* MinimaxTest.cpp */; };
 		9CBEB9C91CF77BF000CA82DE /* MinimaxAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */; };
 		9CBEB9CA1CF77BF000CA82DE /* MinimaxAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */; };
-		9CBEB9D01CF8ECAD00CA82DE /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBEB9CF1CF8ECAD00CA82DE /* gmock.framework */; };
 		9CCD60B21AC6A659004537F8 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60B61AC80DD8004537F8 /* OnCommandState.cpp */; };
 		9CCD60BE1AC80FD4004537F8 /* OnMoveState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60BC1AC80FD4004537F8 /* OnMoveState.cpp */; };
@@ -292,7 +291,6 @@
 		9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinimaxAlgorithm.cpp; sourceTree = "<group>"; };
 		9CBEB9C81CF77BF000CA82DE /* MinimaxAlgorithm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MinimaxAlgorithm.hpp; sourceTree = "<group>"; };
 		9CBEB9CE1CF796E700CA82DE /* MockOption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockOption.h; sourceTree = "<group>"; };
-		9CBEB9CF1CF8ECAD00CA82DE /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		9CCD60B61AC80DD8004537F8 /* OnCommandState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnCommandState.cpp; sourceTree = "<group>"; };
@@ -316,7 +314,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CBEB9D01CF8ECAD00CA82DE /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -662,7 +659,6 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
-				9CBEB9CF1CF8ECAD00CA82DE /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
@@ -1014,7 +1010,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1033,7 +1029,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

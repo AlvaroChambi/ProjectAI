@@ -19,6 +19,7 @@ public:
     ~DotPath();
     
     void addNode( std::string nodeKey );
+    bool empty();
     std::string getLine();
 private:
     const std::string LINK = "--";

@@ -60,18 +60,19 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             
             beta = std::min(beta, bestSoFar);
         }
-        if( graphLogger != nullptr ) {
-            graphLogger->addToPath( actualNode );
-        }
         
         miniMax->unprocessMove(option);
         
         if ( beta <= alpha ) {
             if( graphLogger != nullptr ) {
-                graphLogger->addToPath( graphLogger->getIndex() );
+                //graphLogger->addToPath( graphLogger->getIndex() );
                 graphLogger->nextPath();
             }
             return bestSoFar;
+        } else {
+            if( graphLogger != nullptr ) {
+                graphLogger->addToPath( actualNode );
+            }
         }
     }
     return bestSoFar;

@@ -132,6 +132,7 @@
 		9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C21ACDCCC3004537F8 /* Text.cpp */; };
 		9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C51ACFE31B004537F8 /* UnitUIView.cpp */; };
 		9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
+		9CF246281CFCD06E00AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF246271CFCD06E00AF606D /* gmock.framework */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -305,6 +306,7 @@
 		9CCD60C61ACFE31B004537F8 /* UnitUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitUIView.h; sourceTree = "<group>"; };
 		9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackCommand.cpp; sourceTree = "<group>"; };
 		9CCD60D11AD3DEF3004537F8 /* AttackCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackCommand.h; sourceTree = "<group>"; };
+		9CF246271CFCD06E00AF606D /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -314,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF246281CFCD06E00AF606D /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -659,6 +662,7 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				9CF246271CFCD06E00AF606D /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
@@ -1010,7 +1014,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1029,7 +1033,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -65,7 +65,6 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         
         if ( beta <= alpha ) {
             if( graphLogger != nullptr ) {
-                //graphLogger->addToPath( graphLogger->getIndex() );
                 graphLogger->nextPath();
             }
             return bestSoFar;

@@ -401,12 +401,12 @@ std::pair<Point,Point>* Map::getBoundingArea( Point position , int range ) {
         }
         
         end.x = position.x + range;
-        if( end.x > MAP_WIDTH ) {
-            end.x = MAP_WIDTH;
+        if( end.x >= MAP_WIDTH ) {
+            end.x = MAP_WIDTH - 1;
         }
         end.y = position.y + range;
-        if( end.y > MAP_HEIGHT ) {
-            end.y = MAP_HEIGHT;
+        if( end.y >= MAP_HEIGHT ) {
+            end.y = MAP_HEIGHT - 1;
         }
         
         boundingArea->first = start;

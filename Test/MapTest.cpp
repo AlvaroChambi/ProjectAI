@@ -33,8 +33,12 @@ TEST_F( MapTest, getBoundingAreaCenterTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 5, 3 ) , result->first );
-    ASSERT_EQ( Point( 9, 7 ) , result->second );
+    ASSERT_EQ( 5, result->first.x );
+    ASSERT_EQ( 3, result->first.y );
+    
+    ASSERT_EQ( 9, result->second.x );
+    ASSERT_EQ( 7, result->second.y );
+
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedTopTest ) {
@@ -44,8 +48,11 @@ TEST_F( MapTest, getBoundingAreaCroppedTopTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 5, 0 ) , result->first );
-    ASSERT_EQ( Point( 9, 2 ) , result->second );
+    ASSERT_EQ( 5, result->first.x );
+    ASSERT_EQ( 0, result->first.y );
+    
+    ASSERT_EQ( 9, result->second.x );
+    ASSERT_EQ( 2, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedBottomTest ) {
@@ -55,8 +62,11 @@ TEST_F( MapTest, getBoundingAreaCroppedBottomTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 5, 7 ) , result->first );
-    ASSERT_EQ( Point( 9, 9 ) , result->second );
+    ASSERT_EQ( 5, result->first.x );
+    ASSERT_EQ( 7, result->first.y );
+    
+    ASSERT_EQ( 9, result->second.x );
+    ASSERT_EQ( 9, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedLeftTest ) {
@@ -66,8 +76,11 @@ TEST_F( MapTest, getBoundingAreaCroppedLeftTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 0, 3 ) , result->first );
-    ASSERT_EQ( Point( 2, 7 ) , result->second );
+    ASSERT_EQ( 0, result->first.x );
+    ASSERT_EQ( 3, result->first.y );
+    
+    ASSERT_EQ( 2, result->second.x );
+    ASSERT_EQ( 7, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedRightTest ) {
@@ -77,8 +90,11 @@ TEST_F( MapTest, getBoundingAreaCroppedRightTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 12, 3 ) , result->first );
-    ASSERT_EQ( Point( 14, 7 ) , result->second );
+    ASSERT_EQ( 12, result->first.x );
+    ASSERT_EQ( 3, result->first.y );
+    
+    ASSERT_EQ( 14, result->second.x );
+    ASSERT_EQ( 7, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedTopLeftTest ) {
@@ -88,8 +104,11 @@ TEST_F( MapTest, getBoundingAreaCroppedTopLeftTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 0, 0 ) , result->first );
-    ASSERT_EQ( Point( 2, 2 ) , result->second );
+    ASSERT_EQ( 0, result->first.x );
+    ASSERT_EQ( 0, result->first.y );
+    
+    ASSERT_EQ( 2, result->second.x );
+    ASSERT_EQ( 2, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedTopRightTest ) {
@@ -99,8 +118,11 @@ TEST_F( MapTest, getBoundingAreaCroppedTopRightTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 12, 0 ) , result->first );
-    ASSERT_EQ( Point( 14, 2 ) , result->second );
+    ASSERT_EQ( 12, result->first.x );
+    ASSERT_EQ( 0, result->first.y );
+    
+    ASSERT_EQ( 14, result->second.x );
+    ASSERT_EQ( 2, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedBottomLeftTest ) {
@@ -110,8 +132,11 @@ TEST_F( MapTest, getBoundingAreaCroppedBottomLeftTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 0, 7 ) , result->first );
-    ASSERT_EQ( Point( 2, 9 ) , result->second );
+    ASSERT_EQ( 0, result->first.x );
+    ASSERT_EQ( 7, result->first.y );
+    
+    ASSERT_EQ( 2, result->second.x );
+    ASSERT_EQ( 9, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCroppedBottomRightTest ) {
@@ -121,8 +146,11 @@ TEST_F( MapTest, getBoundingAreaCroppedBottomRightTest ) {
     std::pair<Point,Point>* result;
     result = map->getBoundingArea( origin, range );
     
-    ASSERT_EQ( Point( 12, 7 ) , result->first );
-    ASSERT_EQ( Point( 14, 9 ) , result->second );
+    ASSERT_EQ( 12, result->first.x );
+    ASSERT_EQ( 7, result->first.y );
+    
+    ASSERT_EQ( 14, result->second.x );
+    ASSERT_EQ( 9, result->second.y );
 }
 
 TEST_F( MapTest, getBoundingAreaCeroRange ) {

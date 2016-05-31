@@ -60,6 +60,7 @@
 		3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FC1CF885A700B8C065 /* DotTest.cpp */; };
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
+		3A2F169D1CFDE07A00254750 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2F169C1CFDE07A00254750 /* gmock.framework */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -171,6 +172,7 @@
 		3A0779FC1CF885A700B8C065 /* DotTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DotTest.cpp; sourceTree = "<group>"; };
 		3A0779FF1CF887B100B8C065 /* GraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphLogger.h; sourceTree = "<group>"; };
 		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
+		3A2F169C1CFDE07A00254750 /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A2F169D1CFDE07A00254750 /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -676,6 +679,7 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				3A2F169C1CFDE07A00254750 /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
@@ -1032,7 +1036,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1051,7 +1055,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

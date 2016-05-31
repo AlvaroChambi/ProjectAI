@@ -6,7 +6,6 @@
 
 class Minimax {
 public:
-    virtual bool isGameOver() = 0;
     virtual int getGameOverScore() = 0;
     virtual int getStaticEvaluation() = 0;
     virtual std::vector<Option*>& getMovesList( const bool maximize ) = 0;

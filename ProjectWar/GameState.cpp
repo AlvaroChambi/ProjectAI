@@ -11,7 +11,6 @@
 
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
-const int GameState::DRAW_VALUE;
 const int GameState::NOT_FINISHED;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy )

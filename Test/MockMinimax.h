@@ -8,7 +8,6 @@
 
 class MockMinimax : public  Minimax {
 public:
-    MOCK_METHOD0( isGameOver, bool() );
     MOCK_METHOD0( getGameOverScore, int( ) );
     MOCK_METHOD0( getStaticEvaluation, int() );
     MOCK_METHOD1( getMovesList, std::vector<Option*>&( const bool maximize ) );

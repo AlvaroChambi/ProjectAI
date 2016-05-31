@@ -19,7 +19,6 @@ class GameState {
 public:
     static const int WIN_VALUE = 20;
     static const int LOST_VALUE = 0;
-    static const int DRAW_VALUE = 10;
     static const int NOT_FINISHED = -10;
     
     GameState( IPlayer* const player, IPlayer* const enemy );

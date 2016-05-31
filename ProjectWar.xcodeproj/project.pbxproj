@@ -138,6 +138,8 @@
 		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */; };
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
+		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +320,10 @@
 		9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateTest.cpp; sourceTree = "<group>"; };
 		9CF246321CFCD9B800AF606D /* IPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlayer.h; sourceTree = "<group>"; };
 		9CF246331CFCDA3F00AF606D /* MockPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockPlayer.h; sourceTree = "<group>"; };
+		9CF246351CFE293600AF606D /* IMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMap.h; sourceTree = "<group>"; };
+		9CF246361CFE2BA300AF606D /* MockMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockMap.h; sourceTree = "<group>"; };
+		9CF246371CFE2C4500AF606D /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapTest.cpp; sourceTree = "<group>"; };
+		9CF246391CFE32BF00AF606D /* PointTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointTest.cpp; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,6 +372,9 @@
 				3A077A001CF8882F00B8C065 /* MockGraphLogger.h */,
 				9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */,
 				9CF246331CFCDA3F00AF606D /* MockPlayer.h */,
+				9CF246361CFE2BA300AF606D /* MockMap.h */,
+				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
+				9CF246391CFE32BF00AF606D /* PointTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -464,6 +473,7 @@
 				9C800B1C1AB74485003FE2AA /* Map.cpp */,
 				9C800B1D1AB74485003FE2AA /* Map.h */,
 				9C0A5A811AC57C5D00BF793E /* InfoTile.h */,
+				9CF246351CFE293600AF606D /* IMap.h */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -929,6 +939,7 @@
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,
 				3A0779E41CF49D2400B8C065 /* Button.cpp in Sources */,
+				9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */,
 				3A0779E51CF49D2400B8C065 /* Text.cpp in Sources */,
 				3A0779E61CF49D2400B8C065 /* UIComponent.cpp in Sources */,
 				3A0779E71CF49D2400B8C065 /* Tile.cpp in Sources */,
@@ -937,6 +948,7 @@
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
 				3A0779EC1CF49D2400B8C065 /* SDLTexture.cpp in Sources */,
+				9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */,
 				3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */,
 				3A0779ED1CF49D2400B8C065 /* Renderer.cpp in Sources */,
 				3A0779EE1CF49D2400B8C065 /* Texture.cpp in Sources */,

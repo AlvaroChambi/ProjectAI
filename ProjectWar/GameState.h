@@ -26,12 +26,15 @@ public:
     
     int getGameOverScore();
     
+    std::vector<Option*>* getUnitMoveCommands( Unit* unit );
+    
     IPlayer* const getPlayer();
     IPlayer* const getEnemy();
     
 private:
     IPlayer* const enemy;
     IPlayer* const player;
+    Map* map;
 };
 
 #endif /* defined(__ProjectWar__GameState__) */

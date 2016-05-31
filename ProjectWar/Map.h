@@ -21,6 +21,7 @@
 #include "Unit.h"
 #include "Building.h"
 #include "SpriteFactory.h"
+#include "IMap.h"
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
@@ -29,8 +30,7 @@ static const int MAP_HEIGHT = 10;
 class Path;
 class Pathfinder;
 class Player;
-class Map
-{
+class Map : public IMap {
 public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
@@ -47,8 +47,6 @@ public:
     
     Tile getTile(int x, int y);
     Tile getTile(Point point);
-    
-    bool isValidPosition(Point position);
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
@@ -80,6 +78,11 @@ public:
     int getShortestDistance(Point origin, Point destination);
     
     void hideTile(Point position);
+    
+    int getNumRows();
+    int getNumColumns();
+    bool isValidPosition( Point position );
+    std::pair<Point,Point>* getBoundingArea( Point position, int range );
 private:
     TileMap matrix;
     InfoMap infoMap;

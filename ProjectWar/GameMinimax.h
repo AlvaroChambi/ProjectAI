@@ -10,13 +10,13 @@
 #define GameMinimax_h
 
 #include "Minimax.h"
+#include "GameState.h"
 
 class GameMinimax : public Minimax {
 public:
-    GameMinimax();
+    GameMinimax( GameState* gameState );
     ~GameMinimax();
     
-    bool isGameOver();
     int getGameOverScore();
     int getStaticEvaluation();
     std::vector<Option*>& getMovesList( const bool maximize );
@@ -25,6 +25,9 @@ public:
     int minimaxMin( const int bestSoFar, const int score );
     int minimaxMax( const int bestSoFar, const int score,
                            Option* move, Option** bestMove );
+    
+private:
+    GameState* gameState;
 };
 
 #endif /* GameMinimax_h */

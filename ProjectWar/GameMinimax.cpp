@@ -8,7 +8,7 @@
 
 #include "GameMinimax.h"
 
-GameMinimax::GameMinimax() {
+GameMinimax::GameMinimax( GameState* gameState ) {
 
 }
 
@@ -16,12 +16,8 @@ GameMinimax::~GameMinimax() {
 
 }
 
-bool GameMinimax::isGameOver() {
-    return false;
-}
-
 int GameMinimax::getGameOverScore() {
-    return 0;
+    return gameState->getGameOverScore();
 }
 
 int GameMinimax::getStaticEvaluation() {

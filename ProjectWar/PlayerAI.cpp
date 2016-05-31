@@ -58,7 +58,7 @@ void PlayerAI::executeMinimax() {
             enemy = player;
         }
     }
-    GameState* game = new GameState( this, enemy );
+    GameState* game = new GameState( this, enemy, this->getMap() );
     MinimaxAlgorithm* algorithm =
         new MinimaxAlgorithm( new TacticMinimax( game ) );
     algorithm->setDebugLogger( new DotBuilder );

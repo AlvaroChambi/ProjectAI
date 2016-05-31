@@ -9,12 +9,13 @@
 
 #include "GameState.h"
 #include "MockPlayer.h"
+#include "MockMap.h"
 #include "GameException.h"
 
 class GameStateTest : public ::testing::Test {
 public:
     GameStateTest() {
-        gameState = new GameState( &player, &enemy );
+        gameState = new GameState( &player, &enemy, &map );
     }
     
     virtual void SetUp() {
@@ -28,6 +29,7 @@ public:
     GameState* gameState;
     MockPlayer player;
     MockPlayer enemy;
+    MockMap map;
 };
 
 TEST_F( GameStateTest, GameOverScoreUnfinished ) {
@@ -164,4 +166,23 @@ TEST_F( GameStateTest, GameOverScoreWinUnitsDead ) {
     .WillOnce( testing::Return( false ) );
     
     ASSERT_ANY_THROW( gameState->getGameOverScore() );
+}
+
+TEST_F( GameStateTest, GetUnitMoveCommands ) {
+    Unit* unit = new Unit;
+    unit->setMovement( 2 );
+    
+    EXPECT_CALL( map , isValidPosition( testing::_ ) )
+    .Times( 9 )
+    .WillRepeatedly( testing::Return( true ) );
+    
+    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
+    boundingArea->first = Point( 0, 0 );
+    boundingArea->second = Point( 3, 3 );
+    
+    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
+    .WillOnce( testing::Return( boundingArea ) );
+    
+    std::vector<Option*>* moves = gameState->getUnitMoveCommands( unit );
+    ASSERT_EQ( 9 , moves->size() );
 }

@@ -10,16 +10,14 @@
 #include "Map.h"
 #include "OnMoveState.h"
 
-MoveCommand::MoveCommand(Unit* unit,Map* map ,Point destination)
-{
+MoveCommand::MoveCommand(Unit* unit,IMap* map ,Point destination) {
     this->unit = unit;
-    this->map = map;
+    this->map = (Map*)map;
     this->savedPosition = unit->getTile();
     this->destination = map->getTile(destination.x, destination.y);
 }
 
-MoveCommand::~MoveCommand()
-{
+MoveCommand::~MoveCommand() {
 
 }
 

@@ -14,10 +14,10 @@ const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
 
-GameState::GameState( IPlayer* const player, IPlayer* const enemy )
-: player( player ), enemy( enemy ) {
-    //uglyy
-    map = ((Player*) player)->getMap();
+GameState::GameState( IPlayer* const player, IPlayer* const enemy,
+                      IMap* map )
+: player( player ), enemy( enemy ), map( map ){
+
 }
 
 GameState::~GameState() {
@@ -70,7 +70,8 @@ std::vector<Option*>* GameState::getUnitMoveCommands( Unit* unit ) {
             Point destination = Point( i, j );
             if( origin.distance( destination ) <= unit->getMovement()
                 && map->isValidPosition( destination ) ) {
-                MoveCommand* move = new MoveCommand( unit, map, destination );
+                MoveCommand* move = new MoveCommand( unit, (Map*)map,
+                                                     destination );
                 moveCommands->push_back( move );
             }
         }

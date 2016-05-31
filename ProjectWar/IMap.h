@@ -11,8 +11,9 @@
 
 class IMap {
 public:
-    std::pair<Point,Point>* getBoundingArea( Point position, int range );
-    bool isValidPosition( Point position );
+    virtual std::pair<Point,Point>* getBoundingArea( Point position, int range ) = 0;
+    virtual bool isValidPosition( Point position ) = 0;
+    virtual Tile getTile( int x, int y ) = 0;
 };
 
 #endif /* IMap_h */

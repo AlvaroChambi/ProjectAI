@@ -14,6 +14,7 @@
 #include "Player.h"
 
 #include "Scene.h"
+#include "IMap.h"
 
 class GameState {
 public:
@@ -21,7 +22,8 @@ public:
     static const int LOST_VALUE = -10;
     static const int NOT_FINISHED = 0;
     
-    GameState( IPlayer* const player, IPlayer* const enemy );
+    GameState( IPlayer* const player, IPlayer* const enemy,
+               IMap* map );
     ~GameState();
     
     int getGameOverScore();
@@ -34,7 +36,7 @@ public:
 private:
     IPlayer* const enemy;
     IPlayer* const player;
-    Map* map;
+    IMap* map;
 };
 
 #endif /* defined(__ProjectWar__GameState__) */

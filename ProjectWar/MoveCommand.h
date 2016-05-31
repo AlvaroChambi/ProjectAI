@@ -14,10 +14,11 @@
 #include "Command.h"
 #include "Unit.h"
 class Map;
+class IMap;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand(Unit* unit,Map* map ,Point destination);
+    MoveCommand( Unit* unit,IMap* map ,Point destination );
     virtual ~MoveCommand();
     
     void execute();

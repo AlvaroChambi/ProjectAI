@@ -132,11 +132,10 @@
 		9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C21ACDCCC3004537F8 /* Text.cpp */; };
 		9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60C51ACFE31B004537F8 /* UnitUIView.cpp */; };
 		9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
-		9CF246281CFCD06E00AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF246271CFCD06E00AF606D /* gmock.framework */; };
-		9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; settings = {ASSET_TAGS = (); }; };
-		9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; settings = {ASSET_TAGS = (); }; };
-		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; settings = {ASSET_TAGS = (); }; };
-		9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
+		9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
+		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
+		9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */; };
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
@@ -311,7 +310,6 @@
 		9CCD60C61ACFE31B004537F8 /* UnitUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitUIView.h; sourceTree = "<group>"; };
 		9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackCommand.cpp; sourceTree = "<group>"; };
 		9CCD60D11AD3DEF3004537F8 /* AttackCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackCommand.h; sourceTree = "<group>"; };
-		9CF246271CFCD06E00AF606D /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		9CF246291CFCD0EF00AF606D /* GameMinimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMinimax.h; sourceTree = "<group>"; };
 		9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMinimax.cpp; sourceTree = "<group>"; };
 		9CF2462D1CFCD2B900AF606D /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
@@ -327,7 +325,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF246281CFCD06E00AF606D /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -679,7 +676,6 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
-				9CF246271CFCD06E00AF606D /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
@@ -1036,7 +1032,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1055,7 +1051,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

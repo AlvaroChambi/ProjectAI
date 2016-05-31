@@ -33,15 +33,20 @@ IPlayer* const GameState::getEnemy() {
 
 int GameState::getGameOverScore() {
     int gameScore = GameState::NOT_FINISHED;
+    bool playerHasCapturedHQ = player->hasCapturedHQ();
+    bool enemyHasCapturedHQ = enemy->hasCapturedHQ();
     
-    if ( player->hasCapturedHQ() && enemy->hasCapturedHQ() ) {
+    bool playerHasUnitAlive = player->hasUnitAlive();
+    bool enemyHasUnitAlive = enemy->hasUnitAlive();
+    
+    if ( playerHasCapturedHQ && enemyHasCapturedHQ ) {
         throw IllegalStateException( "both captured at the same time" );
-    } else if ( !player->hasUnitAlive() && !enemy->hasUnitAlive() ) {
+    } else if ( !playerHasUnitAlive && !enemyHasUnitAlive ) {
         throw IllegalStateException( "HQ captured without units" );
     } else {
-        if( !player->hasUnitAlive() || enemy->hasCapturedHQ() ) {
+        if( !playerHasUnitAlive || enemyHasCapturedHQ ) {
             return gameScore = GameState::LOST_VALUE;
-        }else if( !enemy->hasUnitAlive() || player->hasCapturedHQ() ) {
+        }else if( !enemyHasUnitAlive || playerHasCapturedHQ ) {
             return gameScore = GameState::WIN_VALUE;
         }
     }

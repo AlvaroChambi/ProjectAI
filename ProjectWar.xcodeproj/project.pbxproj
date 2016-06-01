@@ -62,8 +62,6 @@
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
-		3A2F16A41CFF247100254750 /* BoundingArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A31CFF247100254750 /* BoundingArea.cpp */; };
-		3A2F16A51CFF247100254750 /* BoundingArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A31CFF247100254750 /* BoundingArea.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -181,8 +179,6 @@
 		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
 		3A2F169E1CFF1F1C00254750 /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		3A2F169F1CFF1F2C00254750 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
-		3A2F16A21CFF246200254750 /* BoundingArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoundingArea.h; sourceTree = "<group>"; };
-		3A2F16A31CFF247100254750 /* BoundingArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundingArea.cpp; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -487,8 +483,6 @@
 				9C800B1D1AB74485003FE2AA /* Map.h */,
 				9C0A5A811AC57C5D00BF793E /* InfoTile.h */,
 				9CF246351CFE293600AF606D /* IMap.h */,
-				3A2F16A21CFF246200254750 /* BoundingArea.h */,
-				3A2F16A31CFF247100254750 /* BoundingArea.cpp */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -963,7 +957,6 @@
 				3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */,
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */,
-				3A2F16A51CFF247100254750 /* BoundingArea.cpp in Sources */,
 				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
 				3A0779EC1CF49D2400B8C065 /* SDLTexture.cpp in Sources */,
 				9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */,
@@ -985,7 +978,6 @@
 				9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */,
 				9C8FBFED1AAF043A00C4EB1F /* Renderer.cpp in Sources */,
-				3A2F16A41CFF247100254750 /* BoundingArea.cpp in Sources */,
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,
 				9C800B2D1AB86A97003FE2AA /* UnitController.cpp in Sources */,
 				55966F4A1ADC164300B36FA8 /* Building.cpp in Sources */,

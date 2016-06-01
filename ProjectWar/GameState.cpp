@@ -57,24 +57,29 @@ int GameState::getGameOverScore() {
 
 std::vector<Option*>* GameState::getUnitMoveCommands( Unit* unit ) {
     Point origin = unit->getPosition();
-    std::vector<Option*>* moveCommands = new std::vector<Option*>;
-    
-    std::pair<Point, Point>* boundingArea =
+    if( map->isOnBounds( origin ) ) {
+        std::vector<Option*>* moveCommands = new std::vector<Option*>;
+        
+        std::pair<Point, Point>* boundingArea =
         map->getBoundingArea( origin, unit->getMovement() );
-    
-    Point start = boundingArea->first;
-    Point end = boundingArea->second;
-    //iterate over the bounding area
-    for ( int i = start.x; i < end.x ; i++ ) {
-        for ( int j = start.y; j < end.y; i++ ) {
-            Point destination = Point( i, j );
-            if( origin.distance( destination ) <= unit->getMovement()
-                && map->isValidPosition( destination ) ) {
-                MoveCommand* move = new MoveCommand( unit, (Map*)map,
-                                                     destination );
-                moveCommands->push_back( move );
+        
+        Point start = boundingArea->first;
+        Point end = boundingArea->second;
+        //iterate over the bounding area
+        for ( int i = start.x; i < end.x ; i++ ) {
+            for ( int j = start.y; j < end.y; j++ ) {
+                Point destination = Point( i, j );
+                if( map->isValidPosition( destination )
+                   && origin.distance( destination ) <= unit->getMovement() ) {
+                    MoveCommand* move = new MoveCommand( unit, (Map*)map,
+                                                        destination );
+                    moveCommands->push_back( move );
+                }
             }
         }
+        return moveCommands;
+    } else {
+        throw InvalidPositionException( origin.x, origin.y,
+                                        MAP_WIDTH, MAP_HEIGHT );
     }
-    return moveCommands;
 }

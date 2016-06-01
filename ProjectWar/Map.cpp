@@ -417,3 +417,11 @@ std::pair<Point,Point>* Map::getBoundingArea( Point position , int range ) {
     
     return boundingArea;
 }
+
+bool Map::isOnBounds( Point position ) {
+    if( position.x < 0 && position.x >= MAP_WIDTH
+        && position.y < 0 && position.y >= MAP_HEIGHT ) {
+        return false;
+    }
+    return true;
+}

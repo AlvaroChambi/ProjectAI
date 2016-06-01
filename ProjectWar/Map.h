@@ -83,6 +83,7 @@ public:
     int getNumColumns();
     bool isValidPosition( Point position );
     std::pair<Point,Point>* getBoundingArea( Point position, int range );
+    bool isOnBounds( Point position );
 private:
     TileMap matrix;
     InfoMap infoMap;

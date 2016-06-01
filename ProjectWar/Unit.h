@@ -19,8 +19,8 @@
 #include "InfoTile.h"
 #include "Action.h"
 #include "Building.h"
+#include "IMap.h"
 
-class Map;
 class Player;
 enum UnitCommand
 {
@@ -73,10 +73,10 @@ public:
     
     bool onRange( Point destination, int range );
     
-    std::vector<Action*>* getMoveActions( Map* map );
-    std::vector<Action*>* getAttackActions( Map* map,
+    std::vector<Action*>* getMoveActions( IMap* map );
+    std::vector<Action*>* getAttackActions( IMap* map,
                                            std::vector<Unit*> targets );
-    std::vector<Action*>* getCaptureActions( Map* map, Player* player,
+    std::vector<Action*>* getCaptureActions( IMap* map, Player* player,
                                             std::vector<Building*> targets );
 private:
     bool selected;

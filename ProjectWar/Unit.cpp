@@ -173,7 +173,7 @@ bool Unit::onRange( Point destination, int range ) {
     return true;
 }
 
-std::vector<Action*>* Unit::getMoveActions( Map *map ) {
+std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* moveActions = new std::vector<Action*>;
         
@@ -189,7 +189,7 @@ std::vector<Action*>* Unit::getMoveActions( Map *map ) {
                 int range = getMovement();
                 if( map->isValidPosition( destination )
                     && onRange( destination, range ) ) {
-                    MoveCommand* move = new MoveCommand( this, (Map*)map,
+                    MoveCommand* move = new MoveCommand( this, map,
                                                          destination );
                     Action* action = new Action;
                     action->commands.push_back( move );
@@ -200,13 +200,12 @@ std::vector<Action*>* Unit::getMoveActions( Map *map ) {
         return moveActions;
     } else {
         throw InvalidPositionException( getPosition().x, getPosition().y,
-                                        map->getNumColumns(),
-                                        map->getNumRows() );
+                                        MAP_WIDTH, MAP_HEIGHT );
     }
 
 }
 
-std::vector<Action*>* Unit::getAttackActions( Map *map,
+std::vector<Action*>* Unit::getAttackActions( IMap *map,
                                              std::vector<Unit *> targets ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* attackActions = new std::vector<Action*>;
@@ -231,7 +230,7 @@ std::vector<Action*>* Unit::getAttackActions( Map *map,
                             MoveCommand* move = new MoveCommand( this, (Map*)map,
                                                                 destination );
                             AttackCommand* attack = new AttackCommand( this,
-                                                            target, map );
+                                                            target, (Map*)map );
                             action->commands.push_back( move );
                             action->commands.push_back( attack );
                             attackActions->push_back( action );
@@ -249,7 +248,7 @@ std::vector<Action*>* Unit::getAttackActions( Map *map,
     }
 }
 
-std::vector<Action*>* Unit::getCaptureActions( Map *map, Player *player,
+std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
                                         std::vector<Building *> targets ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* captureActions = new std::vector<Action*>;

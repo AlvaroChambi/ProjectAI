@@ -9,7 +9,8 @@
 #ifndef MockMap_h
 #define MockMap_h
 
-#include "Map.h"
+#include "gmock/gmock.h"
+#include "IMap.h"
 
 class MockMap : public  IMap {
 public:

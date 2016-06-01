@@ -143,6 +143,8 @@
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; };
 		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; };
+		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2463E1CFF51F800AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -330,6 +332,8 @@
 		9CF246361CFE2BA300AF606D /* MockMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockMap.h; sourceTree = "<group>"; };
 		9CF246371CFE2C4500AF606D /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapTest.cpp; sourceTree = "<group>"; };
 		9CF246391CFE32BF00AF606D /* PointTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointTest.cpp; sourceTree = "<group>"; };
+		9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitTest.cpp; sourceTree = "<group>"; };
+		9CF2463D1CFF51F800AF606D /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -339,6 +343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF2463E1CFF51F800AF606D /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -380,6 +385,7 @@
 				9CF246361CFE2BA300AF606D /* MockMap.h */,
 				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
 				9CF246391CFE32BF00AF606D /* PointTest.cpp */,
+				9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
+				9CF2463D1CFF51F800AF606D /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
 				9CCD60B11AC6A659004537F8 /* SDL2_ttf.framework */,
@@ -926,6 +933,7 @@
 				3A0779D01CF49D2400B8C065 /* OnMoveState.cpp in Sources */,
 				3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */,
 				3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */,
+				9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */,
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
 				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
 				3A0779D41CF49D2400B8C065 /* BuildingView.cpp in Sources */,
@@ -1060,7 +1068,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1079,7 +1087,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

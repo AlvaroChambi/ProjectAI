@@ -33,5 +33,20 @@ private:
     int width;
     int height;
 };
+        
+class IllegalStateException : public std::runtime_error {
+public:
+    IllegalStateException( std::string msg )
+    : runtime_error( "Illegal state: " ), msg( msg ) {}
+    
+    virtual const char* what() const throw() {
+        std::ostringstream message;
+        message << std::runtime_error::what() << " ";
+        message << msg;
+        return message.str().c_str();
+    }
+private:
+    std::string msg;
+};
 
 #endif /* GameException_h */

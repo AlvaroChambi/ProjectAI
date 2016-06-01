@@ -1,12 +1,11 @@
-#ifndef GameMinimax_h
-#define GameMinimax_h
+#ifndef Minimax_h
+#define Minimax_h
 
 #include "Option.h"
 #include <vector>
 
 class Minimax {
 public:
-    virtual bool isGameOver() = 0;
     virtual int getGameOverScore() = 0;
     virtual int getStaticEvaluation() = 0;
     virtual std::vector<Option*>& getMovesList( const bool maximize ) = 0;

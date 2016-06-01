@@ -20,12 +20,13 @@ void MinimaxAlgorithm::minimax( int ply ) {
 int MinimaxAlgorithm::minimax( int ply, int alpha,
                                int beta, bool maximize ) {
     
-    if ( miniMax->isGameOver() ) {
+    int gameOverScore = miniMax->getGameOverScore();
+    if ( gameOverScore != GameState::NOT_FINISHED ) {
         if( graphLogger != nullptr ) {
             graphLogger->addToPath( graphLogger->getIndex() );
             graphLogger->nextPath();
         }
-        return miniMax->getGameOverScore();
+        return gameOverScore;
     }
     
     if( ply <= 0 ) {

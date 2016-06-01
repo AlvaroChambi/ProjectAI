@@ -19,8 +19,6 @@ public:
     TacticMinimax( GameState* gameState );
     ~TacticMinimax();
     
-    bool isGameOver();
-    
     int getGameOverScore();
     int getStaticEvaluation();
     

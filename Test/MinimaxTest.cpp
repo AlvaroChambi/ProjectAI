@@ -29,10 +29,8 @@ public:
 };
 
 TEST_F( MinimaxTest, MinimaxReachGameOverTest ) {
-    EXPECT_CALL( mockMinimax , isGameOver() )
-        .WillOnce( Return( true ) );
     EXPECT_CALL( mockMinimax , getGameOverScore() )
-        .WillOnce( Return( 10 ) );
+    .WillOnce( Return( 10 ) );
     
     ASSERT_EQ( 10, minimax->minimax( 10, 0, 0, true ) );
 }

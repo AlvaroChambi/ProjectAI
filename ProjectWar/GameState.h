@@ -17,19 +17,21 @@
 
 class GameState {
 public:
-    GameState( Player* player, Player* enemy )
-    : player( player ), enemy( enemy ) {
-    }
-    ~GameState() {
-    }
-    
     static const int WIN_VALUE = 20;
-    static const int LOST_VALUE = 0;
-    static const int DRAW_VALUE = 10;
+    static const int LOST_VALUE = -10;
+    static const int NOT_FINISHED = 0;
     
-    Player* enemy;
-    Player* player;
+    GameState( IPlayer* const player, IPlayer* const enemy );
+    ~GameState();
     
+    int getGameOverScore();
+    
+    IPlayer* const getPlayer();
+    IPlayer* const getEnemy();
+    
+private:
+    IPlayer* const enemy;
+    IPlayer* const player;
 };
 
 #endif /* defined(__ProjectWar__GameState__) */

@@ -56,6 +56,7 @@ public:
     
     void addBuilding(Building* building);
     Building* getBuilding(int id);
+    Building* getBuildingByOwnerId(int ownerId);
     Building* getBuilding(Point position);
     std::list<Building*>& getBuildings();
     

@@ -1146,6 +1146,7 @@
 				3A0779BF1CF49CCB00B8C065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9CAE2DD91AA76F8B00B6279D /* Build configuration list for PBXProject "ProjectWar" */ = {
 			isa = XCConfigurationList;

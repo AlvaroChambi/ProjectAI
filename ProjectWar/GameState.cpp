@@ -35,55 +35,55 @@ bool GameState::isGameOver()
     return result;
 }
 
+void calculateBuildingsHealth(Building* playerBuilding, Building* enemyBuilding, int& result)
+{
+     result = result + playerBuilding->getCaptureValue();
+     result = result - enemyBuilding->getCaptureValue();
+}
+
+void calculateBuildingsDistance(Player* player, Player* enemy, Building* playerBuilding, Building* enemyBuilding, int& result)
+{
+    for (Unit* unit : player->getUnitList()) {
+        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints()
+           || !playerBuilding->isCaptured(enemy->getId())){
+            result = result - unit->getPosition().distance(enemyBuilding->getPosition());
+        }
+    }
+    
+    for (Unit* unit : enemy->getUnitList()) {
+        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints()
+           || !enemyBuilding->isCaptured(player->getId())){
+            result = result + unit->getPosition().distance(playerBuilding->getPosition());
+        }
+    }
+}
+
+void calculateUnitsHealth(Player* player, Player* enemy, int& result)
+{
+    for (Unit* unit : player->getUnitList()) {
+        result = result + unit->getHP();
+    }
+    for (Unit* unit : enemy->getUnitList()) {
+        result = result - unit->getHP();
+    }
+}
 
 int GameState::getStaticEvaluation()
 {
     // Positive scores are good for AI
     // Negative scores are good for Human player
-    
-    Point pointPlayerBuilding;
-    Point pointEnemyBuilding;
+
     int result = DRAW_VALUE;
-    Map *map = player->getMap();
     
     int playerId = player->getId();
     int enemyId = enemy->getId();
+    Map *map = player->getMap();
+    Building* playerBuilding = map->getBuildingByOwnerId(playerId);
+    Building* enemyBuilding = map->getBuildingByOwnerId(enemyId);
     
-    Building* playerBuilding = nullptr;
-    Building* enemyBuilding = nullptr;
-    
-    for (Building* building : map->getBuildings()) {
-        if(building->getOwnerID()==playerId){
-            playerBuilding = building;
-        }else if(building->getOwnerID()==enemyId){
-            enemyBuilding = building;
-        }
-    }
-    if (playerBuilding->isCaptured(enemyId)){
-    pointPlayerBuilding = playerBuilding->getPosition();
-    }
-    if (enemyBuilding->isCaptured(playerId)){
-        pointEnemyBuilding = enemyBuilding->getPosition();
-    }
-    
-    result = result + playerBuilding->getCaptureValue();
-    result = result - enemyBuilding->getCaptureValue();
-    
-    for (Unit* unit : player->getUnitList()) {
-        result = result + unit->getHP();
-        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints() || !playerBuilding->isCaptured(enemyId)){
-            result = result - unit->getPosition().distance(pointEnemyBuilding);
-        }
-    }
-    
-    for (Unit* unit : enemy->getUnitList()) {
-        result = result - unit->getHP();
-        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints() || !enemyBuilding->isCaptured(playerId)){
-            result = result + unit->getPosition().distance(pointPlayerBuilding);
-        }
-    }
-    
-    
+    calculateBuildingsHealth(playerBuilding, enemyBuilding, result);
+    calculateBuildingsDistance(player, enemy, playerBuilding, enemyBuilding, result);
+    calculateUnitsHealth(player, enemy, result);
 
     return result;
 }

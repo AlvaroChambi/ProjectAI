@@ -35,25 +35,35 @@ bool GameState::isGameOver()
     return result;
 }
 
-void calculateBuildingsHealth(Building* playerBuilding, Building* enemyBuilding, int& result)
+void calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings, int& result)
 {
-     result = result + playerBuilding->getCaptureValue();
-     result = result - enemyBuilding->getCaptureValue();
-}
-
-void calculateBuildingsDistance(Player* player, Player* enemy, Building* playerBuilding, Building* enemyBuilding, int& result)
-{
-    for (Unit* unit : player->getUnitList()) {
-        if(playerBuilding->getCaptureValue() == playerBuilding->getCapturePoints()
-           || !playerBuilding->isCaptured(enemy->getId())){
-            result = result - unit->getPosition().distance(enemyBuilding->getPosition());
-        }
+    for (Building* building : playerBuildings) {
+           result = result + building->getCaptureValue();
     }
     
+    for (Building* building : enemyBuildings) {
+        result = result - building->getCaptureValue();
+    }
+}
+
+void calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings, int& result)
+{
+    Building* playerHeadquarters = nullptr;
+    Building* enemyHeadquarters = nullptr;
+    if(playerBuildings.size()>0){
+        playerHeadquarters = playerBuildings.back();
+    }
+    if(enemyBuildings.size()>0){
+        enemyHeadquarters = enemyBuildings.back();
+    }
+    for (Unit* unit : player->getUnitList()) {
+        if(enemyHeadquarters != nullptr){
+            result = result - unit->getPosition().distance(enemyHeadquarters->getPosition());
+        }
+    }
     for (Unit* unit : enemy->getUnitList()) {
-        if(enemyBuilding->getCaptureValue() == enemyBuilding->getCapturePoints()
-           || !enemyBuilding->isCaptured(player->getId())){
-            result = result + unit->getPosition().distance(playerBuilding->getPosition());
+        if(playerHeadquarters != nullptr){
+            result = result + unit->getPosition().distance(playerHeadquarters->getPosition());
         }
     }
 }
@@ -74,15 +84,18 @@ int GameState::getStaticEvaluation()
     // Negative scores are good for Human player
 
     int result = DRAW_VALUE;
-    
+    Map *map = player->getMap();
     int playerId = player->getId();
     int enemyId = enemy->getId();
-    Map *map = player->getMap();
-    Building* playerBuilding = map->getBuildingByOwnerId(playerId);
-    Building* enemyBuilding = map->getBuildingByOwnerId(enemyId);
     
-    calculateBuildingsHealth(playerBuilding, enemyBuilding, result);
-    calculateBuildingsDistance(player, enemy, playerBuilding, enemyBuilding, result);
+    int numBuildingsPlayer = map->getNumBuildings(playerId);
+    int numBuildingsEnemy = map->getNumBuildings(enemyId);
+
+    std::list<Building*> playerBuildings = map->getBuildingsByOwnerId(playerId);
+    std::list<Building*> enemyBuildings = map->getBuildingsByOwnerId(enemyId);
+    
+    calculateBuildingsHealth(playerBuildings, enemyBuildings, result);
+    calculateBuildingsDistance(player, enemy, playerBuildings, enemyBuildings, result);
     calculateUnitsHealth(player, enemy, result);
 
     return result;

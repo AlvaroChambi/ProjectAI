@@ -26,7 +26,7 @@ public:
     MockMap map;
 };
 
-TEST_F( UnitTest, getMoveActionsTest ) {
+TEST_F( UnitTest, getMoveActionsTestFilledBounds ) {
     unit->setPosition( 1 , 1 );
     unit->setMovement( 2 );
     
@@ -50,6 +50,32 @@ TEST_F( UnitTest, getMoveActionsTest ) {
     
     std::vector<Action*>* actions = unit->getMoveActions( &map );
     ASSERT_EQ( 9 , actions->size() );
+}
+
+TEST_F( UnitTest, getMoveActionsBoundsNotFilled ) {
+    unit->setPosition( 1 , 1 );
+    unit->setMovement( 1 );
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    EXPECT_CALL( map , isValidPosition( testing::_ ) )
+    .Times( 9 )
+    .WillRepeatedly( testing::Return( true ) );
+    
+    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
+    .Times( 5 )
+    .WillRepeatedly( testing::Return( Tile() ) );
+    
+    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
+    boundingArea->first = Point( 0, 0 );
+    boundingArea->second = Point( 3, 3 );
+    
+    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
+    .WillOnce( testing::Return( boundingArea ) );
+    
+    std::vector<Action*>* actions = unit->getMoveActions( &map );
+    ASSERT_EQ( 5 , actions->size() );
 }
 
 TEST_F( UnitTest, GetMoveActionsDestinationInvalid ) {
@@ -83,4 +109,85 @@ TEST_F( UnitTest, GetMoveActionsUnitOutOfBounds ) {
     EXPECT_CALL( map , isOnBounds( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     ASSERT_ANY_THROW( unit->getMoveActions( &map ) );
+}
+
+TEST_F( UnitTest, GetAttackActionsTest ) {
+    unit->setPosition( 2 , 1 );
+    unit->setMovement( 2 );
+    unit->setAttackRange( 1 );
+    
+    std::vector<Unit*> targets;
+    Unit* target0 = new Unit;
+    target0->setPosition( 1, 1 );
+    targets.push_back( target0 );
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    EXPECT_CALL( map , isValidPosition( testing::_ ) )
+    .Times( 9 )
+    .WillRepeatedly( testing::Return( true ) );
+    
+    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
+    .Times( 5 )
+    .WillRepeatedly( testing::Return( Tile() ) );
+    
+    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
+    boundingArea->first = Point( 0, 0 );
+    boundingArea->second = Point( 3, 3 );
+    
+    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
+    .WillOnce( testing::Return( boundingArea ) );
+    
+    std::vector<Action*>* moves = unit->getAttackActions( &map, targets );
+    ASSERT_EQ( 5 , moves->size() );
+}
+
+TEST_F( UnitTest, GetAttackActionsReachLimit ) {
+    unit->setPosition( 2 , 1 );
+    unit->setMovement( 1 );
+    unit->setAttackRange( 1 );
+    
+    std::vector<Unit*> targets;
+    Unit* target0 = new Unit;
+    target0->setPosition( 0, 1 );
+    targets.push_back( target0 );
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    EXPECT_CALL( map , isValidPosition( testing::_ ) )
+    .Times( 9 )
+    .WillRepeatedly( testing::Return( true ) );
+    
+    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
+    .Times( 1 )
+    .WillRepeatedly( testing::Return( Tile() ) );
+    
+    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
+    boundingArea->first = Point( 0, 0 );
+    boundingArea->second = Point( 3, 3 );
+    
+    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
+    .WillOnce( testing::Return( boundingArea ) );
+    
+    std::vector<Action*>* moves = unit->getAttackActions( &map, targets );
+    ASSERT_EQ( 1 , moves->size() );
+}
+
+TEST_F( UnitTest, GetAttackActionsCannotReach ) {
+    unit->setPosition( 2 , 1 );
+    unit->setMovement( 1 );
+    unit->setAttackRange( 1 );
+    
+    std::vector<Unit*> targets;
+    Unit* target0 = new Unit;
+    target0->setPosition( 0, 0 );
+    targets.push_back( target0 );
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    std::vector<Action*>* moves = unit->getAttackActions( &map, targets );
+    ASSERT_TRUE( moves->empty() );
 }

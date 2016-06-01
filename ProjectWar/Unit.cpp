@@ -167,10 +167,10 @@ bool Unit::canAttack(Unit* unit)
 
 bool Unit::onRange( Point destination, int range ) {
     int distance = tile.position.distance( destination );
-    if( range <= distance ) {
+    if( distance <= range ) {
         return true;
     }
-    return true;
+    return false;
 }
 
 std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
@@ -224,16 +224,19 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
                         Point destination = Point( i, j );
                         int range = getMovement();
                         if( map->isValidPosition( destination )
-                           && onRange( destination, range ) ) {
-                            
-                            Action* action = new Action;
-                            MoveCommand* move = new MoveCommand( this, (Map*)map,
-                                                                destination );
-                            AttackCommand* attack = new AttackCommand( this,
-                                                            target, (Map*)map );
-                            action->commands.push_back( move );
-                            action->commands.push_back( attack );
-                            attackActions->push_back( action );
+                           && onRange( destination, range ) ) { //can get there
+                            //can reach the target
+
+                            if( target->onRange( destination ,                                                  getAttackRange() ) ) {
+                                Action* action = new Action;
+                                MoveCommand* move = new MoveCommand( this, map,
+                                                                    destination );
+                                AttackCommand* attack = new AttackCommand( this,
+                                                                          target, (Map*)map );
+                                action->commands.push_back( move );
+                                action->commands.push_back( attack );
+                                attackActions->push_back( action );
+                            }
                         }
                     }
                 }

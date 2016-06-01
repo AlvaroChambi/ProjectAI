@@ -9,7 +9,8 @@
 #include "GameMinimax.h"
 #include "GameException.h"
 
-GameMinimax::GameMinimax( GameState* gameState ) {
+GameMinimax::GameMinimax( GameState* gameState )
+: gameState( gameState ) {
 
 }
 
@@ -27,26 +28,13 @@ int GameMinimax::getStaticEvaluation() {
 
 //TODO: Implement getMaxMovesList and getMinMovesList in the minimax
 std::vector<Option*>& GameMinimax::getMovesList( const bool maximize ) {
-    std::vector<Option*>* moves = new std::vector<Option*>;
-    
-    Player* player;
-    if ( maximize ) { //AI
-        player = (Player*)gameState->getPlayer();
-    } else { //Player
-        player = (Player*)gameState->getEnemy();
+    if ( maximize ) {
+        return *gameState->getMovesList( (Player*)gameState->getPlayer(),
+                                         (Player*)gameState->getEnemy() );
+    } else {
+        return *gameState->getMovesList( (Player*)gameState->getEnemy(),
+                                        (Player*)gameState->getPlayer() );
     }
-    
-    //for the given player
-        // for each available unit generate the set of valid movements
-            // unit - getAllAvailable move position ->          start position - end position
-            // unit - getAllAvailable enemy units on range ->   unit - target unit - end position
-            // unit - getAllAvailable buildings on range ->     unit - target building
-    
-    for ( Unit* unit : player->getAliveUnits() ) {
-        
-    }
-    
-    return *moves;
 }
 
 void GameMinimax::processMove( Option *move ) {

@@ -28,18 +28,8 @@ public:
     
     int getGameOverScore();
     
-    std::vector<Option*>* getMovesList( bool maximize );
-    
-    std::vector<Option*>* getUnitMoveCommands( Unit* unit );
-    std::vector<Option*>* getUnitAttackCommands( Unit* unit,
-                                                std::vector<Unit*> targets );
-    std::vector<Option*>* getUnitCaptureCommands( Unit* unit, Player* player,
-                                                 std::vector<Building*> targets );
-    
-    std::vector<Unit*>* getTargetsOnRange( Unit* unit,
-                                           const std::vector<Unit*> targets );
-    std::vector<Building*>* getBuildingsOnRange( Unit* unit,
-                                              std::vector<Building*> buildings );
+    std::vector<Option*>* getMovesList( Player* targetPlayer,
+                                        Player* opponent );
     
     IPlayer* const getPlayer();
     IPlayer* const getEnemy();

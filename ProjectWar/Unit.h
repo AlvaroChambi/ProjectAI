@@ -12,11 +12,16 @@
 #include <stdio.h>
 #include <iostream>
 #include <list>
+#include <vector>
 
 #include "Model.h"
 #include "Tile.h"
 #include "InfoTile.h"
+#include "Action.h"
+#include "Building.h"
 
+class Map;
+class Player;
 enum UnitCommand
 {
     CANCEL,
@@ -67,6 +72,13 @@ public:
     bool canAttack(Unit* unit);
     
     bool onRange( Point destination, int range );
+    
+    std::vector<Action*>* getMoveActions( Map* map );
+    std::vector<Action*>* getAttackActions( Map* map,
+                                           std::vector<Unit*> targets );
+    std::vector<Action*>* getCaptureActions( Map* map, Player* player,
+                                            std::vector<Building*> targets );
+    
 private:
     bool selected;
     bool active;

@@ -9,6 +9,7 @@
 #include "Unit.h"
 #include "gtest/gtest.h"
 #include "MockMap.h"
+#include "Player.h"
 
 class UnitTest : public ::testing::Test {
 public:
@@ -190,4 +191,56 @@ TEST_F( UnitTest, GetAttackActionsCannotReach ) {
     
     std::vector<Action*>* moves = unit->getAttackActions( &map, targets );
     ASSERT_TRUE( moves->empty() );
+}
+
+TEST_F( UnitTest, GetCaptureActionsOpponentBuilding ) {
+    unit->setPosition( 2 , 1 );
+    unit->setMovement( 2 );
+    
+    Building* building = new Building;
+    Tile tile = Tile();
+    tile.position = Point( 0, 1 );
+    building->setPosition( tile );
+    building->setOwnerID( 0 );
+    
+    std::vector<Building*> buildings;
+    buildings.push_back( building );
+    
+    Player* player = new Player( 1 );
+    
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
+    .Times( 1 )
+    .WillRepeatedly( testing::Return( Tile() ) );
+    
+    std::vector<Action*>* moves = unit->getCaptureActions( &map, player,
+                                                           buildings );
+    ASSERT_EQ( 1 , moves->size() );
+}
+
+TEST_F( UnitTest, GetCaptureActionsOwnBuilding ) {
+    unit->setPosition( 2 , 1 );
+    unit->setMovement( 2 );
+    
+    Building* building = new Building;
+    Tile tile = Tile();
+    tile.position = Point( 0, 1 );
+    building->setPosition( tile );
+    building->setOwnerID( 1 );
+    
+    std::vector<Building*> buildings;
+    buildings.push_back( building );
+    
+    Player* player = new Player( 1 );
+    
+    
+    EXPECT_CALL( map , isOnBounds( testing::_ ) )
+    .WillOnce( testing::Return( true ) );
+    
+    std::vector<Action*>* moves = unit->getCaptureActions( &map, player,
+                                                          buildings );
+    ASSERT_EQ( 0 , moves->size() );
 }

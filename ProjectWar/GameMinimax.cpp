@@ -8,7 +8,8 @@
 
 #include "GameMinimax.h"
 
-GameMinimax::GameMinimax( GameState* gameState ) {
+GameMinimax::GameMinimax( GameState* gameState )
+: gameState( gameState ){
 
 }
 

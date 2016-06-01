@@ -6,4 +6,4 @@
 //  Copyright (c) 2016 Alvaro Chambi Campos. All rights reserved.
 //
 
-#include <stdio.h>
+#include "BoundingArea.h"

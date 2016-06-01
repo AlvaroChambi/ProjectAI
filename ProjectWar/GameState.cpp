@@ -58,16 +58,16 @@ int GameState::getGameOverScore() {
     return gameScore;
 }
 
-std::vector<Option*>* GameState::getMovesList( Player* targetPlayer,
+std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {
     std::vector<Option*>* moves = new std::vector<Option*>;
     Map* map = (Map*)this->map;
-    for ( Unit* unit : targetPlayer->getAliveUnits() ) {
+    for ( Unit* unit : player->getAliveUnits() ) {
         std::vector<Action*>* moveActions = unit->getMoveActions( map );
         std::vector<Action*>* attackActions = unit->getAttackActions( map,
                                                 opponent->getAliveUnits() );
-        std::vector<Action*>* captureActions = unit->getCaptureActions( map ,
-                                    targetPlayer, map->getBuildings() );
+        std::vector<Action*>* captureActions = unit->getCaptureActions( map,
+                                    player, map->getBuildings() );
     }
     
     return moves;

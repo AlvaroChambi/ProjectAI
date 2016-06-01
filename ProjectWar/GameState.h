@@ -28,7 +28,7 @@ public:
     
     int getGameOverScore();
     
-    std::vector<Option*>* getMovesList( Player* targetPlayer,
+    std::vector<Option*>* getMovesList( Player* player,
                                         Player* opponent );
     
     IPlayer* const getPlayer();

@@ -234,6 +234,7 @@ std::vector<Action*>* Unit::getAttackActions( Map *map,
                                                             target, map );
                             action->commands.push_back( move );
                             action->commands.push_back( attack );
+                            attackActions->push_back( action );
                         }
                     }
                 }
@@ -264,6 +265,7 @@ std::vector<Action*>* Unit::getCaptureActions( Map *map, Player *player,
                 
                 action->commands.push_back( moveCommand );
                 action->commands.push_back( captureCommand );
+                captureActions->push_back( action );
             }
         }
         

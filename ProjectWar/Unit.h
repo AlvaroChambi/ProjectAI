@@ -78,7 +78,6 @@ public:
                                            std::vector<Unit*> targets );
     std::vector<Action*>* getCaptureActions( Map* map, Player* player,
                                             std::vector<Building*> targets );
-    
 private:
     bool selected;
     bool active;

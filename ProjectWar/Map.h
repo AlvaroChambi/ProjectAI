@@ -55,7 +55,7 @@ public:
     void addBuilding(Building* building);
     Building* getBuilding(int id);
     Building* getBuilding(Point position);
-    std::list<Building*>& getBuildings();
+    std::vector<Building*>& getBuildings();
     
     void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);
     
@@ -88,7 +88,7 @@ private:
     TileMap matrix;
     InfoMap infoMap;
     
-    std::list<Building*> buildings;
+    std::vector<Building*> buildings;
     std::list<Sprite*> sprites;
     Pathfinder* pathfinder;
  };

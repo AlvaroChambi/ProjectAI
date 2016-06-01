@@ -61,9 +61,12 @@ public:
     
     int getNumCommands();
     
+    //TODO: clean
     bool canReach(Point destination);
     bool canAttack(Point destination);
     bool canAttack(Unit* unit);
+    
+    bool onRange( Point destination, int range );
 private:
     bool selected;
     bool active;

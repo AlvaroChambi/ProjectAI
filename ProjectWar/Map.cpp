@@ -53,7 +53,7 @@ Building* Map::getBuilding(int id)
     return result;
 }
 
-std::list<Building*>& Map::getBuildings()
+std::vector<Building*>& Map::getBuildings()
 {
     return buildings;
 }

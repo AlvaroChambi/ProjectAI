@@ -159,6 +159,14 @@ bool Unit::canAttack(Unit* unit)
     return result;
 }
 
+bool Unit::onRange( Point destination, int range ) {
+    int distance = tile.position.distance( destination );
+    if( range <= distance ) {
+        return true;
+    }
+    return true;
+}
+
 void Unit::updateState()
 {
     this->notifyObservers(STATE_UPDATE);

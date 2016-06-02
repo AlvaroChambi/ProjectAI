@@ -7,18 +7,27 @@
 //
 
 #include "IteratorFilter.h"
+#include "GameException.h"
 
 IteratorFilter::IteratorFilter( Iterator* iterator )
-: iterator( iterator ) {
+: iterator( iterator ), nextSaved( false ) {
 
 }
 
 bool IteratorFilter::hasNext() {
-    if( iterator->hasNext() &&  isValid( iterator->next() ) ) {
-        return true;
+    if( iterator->hasNext() ) {
+        Point position = iterator->next();
+        if( isValid( position ) ) {
+            savedNext = position;
+            nextSaved = true;
+            return true;
+        }
     }
-    while ( iterator->hasNext() ) {
-        if( isValid( iterator->next() ) ) {
+    while( iterator->hasNext() ) {
+        Point position = iterator->next();
+        if( isValid( position ) ) {
+            savedNext = position;
+            nextSaved = true;
             return true;
         }
     }
@@ -26,15 +35,10 @@ bool IteratorFilter::hasNext() {
 }
 
 Point IteratorFilter::next() {
-    if( isValid( iterator->next() ) ) {
-        return iterator->next();
+    if( nextSaved ) {
+        nextSaved = false;
+        return savedNext;
     }
-    while ( iterator->hasNext() ) {
-        Point position = iterator->next();
-        if( isValid( position ) ) {
-            return position;
-        }
-    }
-    //TODO: thow exception
-    return iterator->next();
+    throw IllegalStateException(
+    "Not available next position, call to hasNext() must be made before each next() call" );
 }

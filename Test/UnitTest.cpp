@@ -27,33 +27,7 @@ public:
     MockMap map;
 };
 
-TEST_F( UnitTest, getMoveActionsTestFilledBounds ) {
-    unit->setPosition( 1 , 1 );
-    unit->setMovement( 2 );
-    
-    EXPECT_CALL( map , isOnBounds( testing::_ ) )
-    .WillOnce( testing::Return( true ) );
-    
-    EXPECT_CALL( map , isValidPosition( testing::_ ) )
-    .Times( 9 )
-    .WillRepeatedly( testing::Return( true ) );
-    
-    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
-    .Times( 9 )
-    .WillRepeatedly( testing::Return( Tile() ) );
-    
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
-    boundingArea->first = Point( 0, 0 );
-    boundingArea->second = Point( 3, 3 );
-    
-    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
-    .WillOnce( testing::Return( boundingArea ) );
-    
-    std::vector<Action*>* actions = unit->getMoveActions( &map );
-    ASSERT_EQ( 9 , actions->size() );
-}
-
-TEST_F( UnitTest, getMoveActionsBoundsNotFilled ) {
+TEST_F( UnitTest, getMoveActionsTest ) {
     unit->setPosition( 1 , 1 );
     unit->setMovement( 1 );
     
@@ -68,42 +42,8 @@ TEST_F( UnitTest, getMoveActionsBoundsNotFilled ) {
     .Times( 5 )
     .WillRepeatedly( testing::Return( Tile() ) );
     
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
-    boundingArea->first = Point( 0, 0 );
-    boundingArea->second = Point( 3, 3 );
-    
-    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
-    .WillOnce( testing::Return( boundingArea ) );
-    
     std::vector<Action*>* actions = unit->getMoveActions( &map );
     ASSERT_EQ( 5 , actions->size() );
-}
-
-TEST_F( UnitTest, GetMoveActionsDestinationInvalid ) {
-    unit->setPosition( 1 , 1 );
-    unit->setMovement( 2 );
-    
-    EXPECT_CALL( map , isOnBounds( testing::_ ) )
-    .WillOnce( testing::Return( true ) );
-    
-    EXPECT_CALL( map , isValidPosition( testing::_ ) )
-    .Times( 9 )
-    .WillOnce( testing::Return( false ) )
-    .WillRepeatedly( testing::Return( true ) );
-    
-    EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
-    .Times( 8 )
-    .WillRepeatedly( testing::Return( Tile() ) );
-    
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
-    boundingArea->first = Point( 0, 0 );
-    boundingArea->second = Point( 3, 3 );
-    
-    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
-    .WillOnce( testing::Return( boundingArea ) );
-    
-    std::vector<Action*>* moves = unit->getMoveActions( &map );
-    ASSERT_EQ( 8 , moves->size() );
 }
 
 TEST_F( UnitTest, GetMoveActionsUnitOutOfBounds ) {
@@ -113,8 +53,8 @@ TEST_F( UnitTest, GetMoveActionsUnitOutOfBounds ) {
 }
 
 TEST_F( UnitTest, GetAttackActionsTest ) {
-    unit->setPosition( 2 , 1 );
-    unit->setMovement( 2 );
+    unit->setPosition( 3 , 1 );
+    unit->setMovement( 1 );
     unit->setAttackRange( 1 );
     
     std::vector<Unit*> targets;
@@ -130,18 +70,11 @@ TEST_F( UnitTest, GetAttackActionsTest ) {
     .WillRepeatedly( testing::Return( true ) );
     
     EXPECT_CALL( map, getTile( testing::_, testing::_ ) )
-    .Times( 5 )
+    .Times( 1 )
     .WillRepeatedly( testing::Return( Tile() ) );
     
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>;
-    boundingArea->first = Point( 0, 0 );
-    boundingArea->second = Point( 3, 3 );
-    
-    EXPECT_CALL( map , getBoundingArea( testing::_, testing::_ ) )
-    .WillOnce( testing::Return( boundingArea ) );
-    
     std::vector<Action*>* moves = unit->getAttackActions( &map, targets );
-    ASSERT_EQ( 5 , moves->size() );
+    ASSERT_EQ( 1 , moves->size() );
 }
 
 TEST_F( UnitTest, GetAttackActionsReachLimit ) {

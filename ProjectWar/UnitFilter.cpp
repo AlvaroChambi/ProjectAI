@@ -9,9 +9,9 @@
 #include "UnitFilter.h"
 
 UnitMovementFilter::UnitMovementFilter( Iterator* filter,
-                                        Map* map, Unit* unit )
+                                        IMap* map, Unit* unit )
 : IteratorFilter( filter ) {
-    this->map = map;
+    this->map = (Map*)map;
     this->unit = unit;
 }
 
@@ -19,7 +19,7 @@ bool UnitMovementFilter::isValid( Point position ) {
     bool valid = map->isValidPosition( position )
     && unit->onRange( position, unit->getMovement() );
     
-    return valid && iterator->isValid( position );
+    return iterator->isValid( position ) && valid;
 }
 
 AttackRangeFilter::AttackRangeFilter( Iterator* filter, Unit* target,
@@ -30,6 +30,6 @@ AttackRangeFilter::AttackRangeFilter( Iterator* filter, Unit* target,
 }
 
 bool AttackRangeFilter::isValid( Point position ) {
-    bool valid = target->onRange( position , attackerRange );
-    return valid && iterator->isValid( position );
+    return iterator->isValid( position ) &&
+        target->onRange( position , attackerRange );
 }

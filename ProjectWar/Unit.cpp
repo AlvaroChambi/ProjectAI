@@ -212,14 +212,15 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
         for ( Unit* target : targets ) {
             if( this->onRange( target->getPosition() , range ) ) {
                 AreaIterator* areaIterator = new AreaIterator;
-                areaIterator->buildArea( target->getPosition(),
-                                         getAttackRange(),
+                areaIterator->buildArea( getPosition(),
+                                         getMovement(),
                                          MAP_WIDTH, MAP_HEIGHT );
-                Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
-                                                                    (Map*)map, this );
-                Iterator* rangeIterator = new AttackRangeFilter( unitMoveIterator,
-                                                                 target,
-                                                                 getAttackRange() );
+                Iterator* unitMoveIterator =
+                    new UnitMovementFilter( areaIterator,(Map*)map, this );
+                Iterator* rangeIterator =
+                    new AttackRangeFilter( unitMoveIterator,
+                                           target, getAttackRange() );
+                
                 while ( rangeIterator->hasNext() ) {
                     Point destination = rangeIterator->next();
                     

@@ -172,3 +172,81 @@ TEST_F( AreaIteratorTest, buildAreaInvalidPosition ) {
     
     ASSERT_ANY_THROW( areaIterator->buildArea( origin, range, 15, 10 ) );
 }
+
+TEST_F( AreaIteratorTest, nextPostionSameRowIncrement ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 0, 0 );
+    area->second = Point( 1, 1 );
+    areaIterator->setArea( area );
+    areaIterator->setCurrentPosition( 1 );
+    
+    Point* position = areaIterator->nextPosition();
+    
+    ASSERT_EQ( 2 , areaIterator->getCurrentPosition() );
+    ASSERT_EQ( 1 , position->x );
+    ASSERT_EQ( 0, position->y );
+}
+
+TEST_F( AreaIteratorTest, nextPostionNextRowIncrement ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 0, 0 );
+    area->second = Point( 1, 1 );
+    areaIterator->setArea( area );
+    areaIterator->setCurrentPosition( 2 );
+    
+    Point* position = areaIterator->nextPosition();
+    
+    ASSERT_EQ( 3 , areaIterator->getCurrentPosition() );
+    ASSERT_EQ( 0 , position->x );
+    ASSERT_EQ( 1, position->y );
+}
+
+TEST_F( AreaIteratorTest, nextPostionAreaWithOffset ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 5, 5 );
+    area->second = Point( 6, 6 );
+    areaIterator->setArea( area );
+    areaIterator->setCurrentPosition( 1 );
+    
+    Point* position = areaIterator->nextPosition();
+    
+    ASSERT_EQ( 2 , areaIterator->getCurrentPosition() );
+    ASSERT_EQ( 6 , position->x );
+    ASSERT_EQ( 5, position->y );
+}
+
+TEST_F( AreaIteratorTest, nextPostionAreaOffsetRowIncrement ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 5, 5 );
+    area->second = Point( 6, 6 );
+    areaIterator->setArea( area );
+    areaIterator->setCurrentPosition( 2 );
+    
+    Point* position = areaIterator->nextPosition();
+    
+    ASSERT_EQ( 3 , areaIterator->getCurrentPosition() );
+    ASSERT_EQ( 5 , position->x );
+    ASSERT_EQ( 6, position->y );
+}
+
+TEST_F( AreaIteratorTest, nextPostionFinishReached ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 0, 0 );
+    area->second = Point( 1, 1 );
+    areaIterator->setArea( area );
+    areaIterator->setCurrentPosition( 4 );
+    
+    EXPECT_EQ( nullptr, areaIterator->nextPosition() );
+}
+
+TEST_F( AreaIteratorTest, nextPostionAreaNotDefined ) {
+    ASSERT_ANY_THROW( areaIterator->nextPosition(); );
+}
+
+TEST_F( AreaIteratorTest, nextPostionIllegalArea ) {
+    std::pair<Point,Point>* area = new std::pair<Point, Point>;
+    area->first = Point( 0, 0 );
+    area->second = Point( -1, 1 );
+    areaIterator->setArea( area );
+    ASSERT_ANY_THROW( areaIterator->nextPosition(); );
+}

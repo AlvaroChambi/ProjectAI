@@ -23,6 +23,7 @@ public:
     std::pair<Point,Point>* getArea();
     
     int getCurrentPosition();
+    void setCurrentPosition( int currentPosition );
     
     Point* nextPosition();
     bool hasNext();

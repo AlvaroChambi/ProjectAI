@@ -19,6 +19,9 @@ public:
     Point next();
 protected:
     Iterator* iterator;
+    
+    bool nextSaved;
+    Point savedNext;
 };
 
 #endif /* IteratorFilter_h */

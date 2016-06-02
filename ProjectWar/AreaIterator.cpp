@@ -65,20 +65,27 @@ int AreaIterator::getCurrentPosition() {
     return currentPosition;
 }
 
+void AreaIterator::setCurrentPosition( int currentPosition ) {
+    this->currentPosition = currentPosition;
+}
+
 Point* AreaIterator::nextPosition() {
-    Point start = area->first;
-    Point end = area->second;
-    
-    int width = end.x - start.x;
-    int height = end.y - start.y;
-    
-    Point offset( currentPosition / width, currentPosition % width );
-    
-    if( currentPosition < width * height ) {
-        currentPosition++;
-        return new Point( start.x + offset.x, start.y + offset.y );
+    if( area != nullptr
+        &&  area->first.isValid() && area->second.isValid() ) {
+        Point start = area->first;
+        Point end = area->second;
+        int width = end.x - start.x + 1;
+        int height = end.y - start.y + 1;
+        
+        if( currentPosition < width * height ) {
+            Point offset( currentPosition % width, currentPosition / width );
+            currentPosition++;
+            return new Point( start.x + offset.x, start.y + offset.y );
+        }
+        return nullptr;
     }
-    return nullptr;
+    
+    throw IllegalStateException( "Area malformed or not defined yet" );
 }
 
 bool AreaIterator::hasNext() {
@@ -88,7 +95,6 @@ bool AreaIterator::hasNext() {
     
     Point* position = nextPosition();
     if( position != nullptr ) {
-        currentPosition++;
         hasCached = true;
         cached = *position;
         return true;
@@ -107,6 +113,9 @@ Point AreaIterator::next() {
         return *position;
     }
 
-    //throw there's no next position exception
-    return cached;
+    Point start = area->first;
+    Point end = area->second;
+    int width = end.x - start.x + 1;
+    int height = end.y - start.y + 1;
+    throw EndOfIteratorException( currentPosition, width, height );
 }

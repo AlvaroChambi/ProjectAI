@@ -149,6 +149,7 @@
 		9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246411CFF895E00AF606D /* AreaIterator.cpp */; };
 		9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
 		9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
+		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -343,6 +344,7 @@
 		9CF246411CFF895E00AF606D /* AreaIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AreaIterator.cpp; sourceTree = "<group>"; };
 		9CF246441CFF8F9200AF606D /* UnitFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitFilter.cpp; sourceTree = "<group>"; };
 		9CF246471CFF8FCB00AF606D /* UnitFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFilter.h; sourceTree = "<group>"; };
+		9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AreaIteratorTest.cpp; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -395,6 +397,7 @@
 				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
 				9CF246391CFE32BF00AF606D /* PointTest.cpp */,
 				9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */,
+				9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */,
 				3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */,
 				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
+				9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,

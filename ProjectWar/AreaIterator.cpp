@@ -10,7 +10,7 @@
 #include "GameException.h"
 
 AreaIterator::AreaIterator()
-: currentPosition( 0 ), hasCached( false ) {
+: currentPosition( 0 ), hasCached( false ), area( nullptr ) {
 
 }
 
@@ -26,6 +26,7 @@ bool AreaIterator::isValid( Point position ) {
 void AreaIterator::buildArea( Point position,
                              int range, int maxWidth, int maxHeight ) {
     std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>();
+    Point start, end;
     if( position.isValid( maxWidth , maxHeight ) && range > 0 ) {
         start.x = position.x - range;
         start.y = position.y - range;
@@ -44,15 +45,30 @@ void AreaIterator::buildArea( Point position,
         if( end.y >= maxHeight ) {
             end.y = maxHeight - 1;
         }
-        
         boundingArea->first = start;
         boundingArea->second = end;
+        setArea( boundingArea );
     } else {
         throw IllegalStateException( "Not valid position or movement provided" );
     }
 }
 
+void AreaIterator::setArea( std::pair<Point, Point> *area ) {
+    this->area = area;
+}
+
+std::pair<Point,Point>* AreaIterator::getArea() {
+    return area;
+}
+
+int AreaIterator::getCurrentPosition() {
+    return currentPosition;
+}
+
 Point* AreaIterator::nextPosition() {
+    Point start = area->first;
+    Point end = area->second;
+    
     int width = end.x - start.x;
     int height = end.y - start.y;
     

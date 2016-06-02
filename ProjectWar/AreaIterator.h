@@ -19,6 +19,10 @@ public:
     
     void buildArea( Point origin, int range,
                     int maxWidth, int maxHeight );
+    void setArea( std::pair<Point, Point>* area  );
+    std::pair<Point,Point>* getArea();
+    
+    int getCurrentPosition();
     
     Point* nextPosition();
     bool hasNext();
@@ -31,8 +35,7 @@ private:
     bool hasCached;
     Point cached;
     
-    Point start;
-    Point end;
+    std::pair<Point, Point>* area;
 };
 
 #endif /* AreaIterator_h */

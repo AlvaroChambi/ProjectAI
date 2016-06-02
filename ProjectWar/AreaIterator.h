@@ -9,35 +9,30 @@
 #ifndef AreaIterator_h
 #define AreaIterator_h
 
-#include "IteratorFilter.h"
+#include "Iterator.h"
 #include "Point.h"
 
-class AreaIterator {
+class AreaIterator : public Iterator {
 public:
     AreaIterator();
-    AreaIterator( IteratorFilter* iteratorFilter );
     ~AreaIterator();
     
     void buildArea( Point origin, int range,
                     int maxWidth, int maxHeight );
     
+    Point* nextPosition();
     bool hasNext();
     Point next();
+    bool isValid( Point position );
     
 private:
     int currentPosition;
-    IteratorFilter* iteratorFilter;
     
     bool hasCached;
     Point cached;
     
-    int maxWidth;
-    int maxHeight;
-    
     Point start;
     Point end;
-    
-    int xOffset, yOffset;
 };
 
 #endif /* AreaIterator_h */

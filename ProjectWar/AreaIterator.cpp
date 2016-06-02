@@ -10,17 +10,17 @@
 #include "GameException.h"
 
 AreaIterator::AreaIterator()
-: currentPosition( 0 ), hasCached( false ), xOffset( 0 ), yOffset( 0 ) {
+: currentPosition( 0 ), hasCached( false ) {
 
-}
-
-AreaIterator::AreaIterator( IteratorFilter* iteratorFilter )
-: AreaIterator() {
-    this->iteratorFilter = iteratorFilter;
 }
 
 AreaIterator::~AreaIterator() {
 
+}
+
+bool AreaIterator::isValid( Point position ) {
+    //All values are considered valid for the main iterator
+    return true;
 }
 
 void AreaIterator::buildArea( Point position,
@@ -52,21 +52,32 @@ void AreaIterator::buildArea( Point position,
     }
 }
 
+Point* AreaIterator::nextPosition() {
+    int width = end.x - start.x;
+    int height = end.y - start.y;
+    
+    Point offset( currentPosition / width, currentPosition % width );
+    
+    if( currentPosition < width * height ) {
+        currentPosition++;
+        return new Point( start.x + offset.x, start.y + offset.y );
+    }
+    return nullptr;
+}
+
 bool AreaIterator::hasNext() {
     if( hasCached ) {
         return true;
     }
     
-    for ( int i = start.x + xOffset ;  i < end.x; xOffset ++ ) {
-        for ( int j = start.y + yOffset ; j < end.y; yOffset++ ) {
-            Point position = Point( start.x + xOffset, start.y + yOffset );
-            if ( iteratorFilter->isValid( position ) ) {
-                hasCached = true;
-                cached = position;
-                return true;
-            }
-        }
+    Point* position = nextPosition();
+    if( position != nullptr ) {
+        currentPosition++;
+        hasCached = true;
+        cached = *position;
+        return true;
     }
+    
     return false;
 }
 
@@ -75,14 +86,11 @@ Point AreaIterator::next() {
         hasCached = false;
         return cached;
     }
-    for ( int i = start.x + xOffset ;  i < end.x; i ++ ) {
-        for ( int j = start.y + yOffset ; j < end.y; j++ ) {
-            Point position = Point( start.x + xOffset, start.y + yOffset );
-            if ( iteratorFilter->isValid( position ) ) {
-                return position;
-            }
-        }
+    Point* position = nextPosition();
+    if( position != nullptr ) {
+        return *position;
     }
+
     //throw there's no next position exception
     return cached;
 }

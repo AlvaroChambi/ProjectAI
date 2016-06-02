@@ -10,10 +10,15 @@
 #define IteratorFilter_h
 
 #include "Point.h"
+#include "Iterator.h"
 
-class IteratorFilter {
+class IteratorFilter : public Iterator {
 public:
-    virtual bool isValid( Point position ) = 0;
+    IteratorFilter( Iterator* iterator );
+    bool hasNext();
+    Point next();
+protected:
+    Iterator* iterator;
 };
 
 #endif /* IteratorFilter_h */

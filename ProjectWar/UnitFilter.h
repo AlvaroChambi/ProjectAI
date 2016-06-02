@@ -15,13 +15,23 @@
 
 class UnitMovementFilter : public IteratorFilter {
 public:
-    UnitMovementFilter( Map* map, Unit* unit );
-    ~UnitMovementFilter();
+    UnitMovementFilter( Iterator* filter, Map* map, Unit* unit );
     
     bool isValid( Point position );
 private:
     Map* map;
     Unit* unit;
+};
+
+class AttackRangeFilter : public IteratorFilter {
+public:
+    AttackRangeFilter( Iterator* filter, Unit* unit,
+                       int attackerRange );
+    
+    bool isValid( Point position );
+private:
+    Unit* target;
+    int attackerRange;
 };
 
 #endif /* UnitMovementFilter_h */

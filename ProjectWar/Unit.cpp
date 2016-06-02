@@ -7,6 +7,12 @@
 //
 
 #include "Unit.h"
+#include "Map.h"
+#include "Player.h"
+#include "MoveCommand.h"
+#include "AttackCommand.h"
+#include "CaptureCommand.h"
+#include "GameException.h"
 
 Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
 {
@@ -157,6 +163,120 @@ bool Unit::canAttack(Unit* unit)
         result = true;
     }
     return result;
+}
+
+bool Unit::onRange( Point destination, int range ) {
+    int distance = tile.position.distance( destination );
+    if( distance <= range ) {
+        return true;
+    }
+    return false;
+}
+
+std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
+    if( map->isOnBounds( getPosition() ) ) {
+        std::vector<Action*>* moveActions = new std::vector<Action*>;
+        
+        std::pair<Point, Point>* boundingArea =
+        map->getBoundingArea( getPosition(), getMovement() );
+        
+        Point start = boundingArea->first;
+        Point end = boundingArea->second;
+        //iterate over the bounding area
+        for ( int i = start.x; i < end.x ; i++ ) {
+            for ( int j = start.y; j < end.y; j++ ) {
+                Point destination = Point( i, j );
+                int range = getMovement();
+                if( map->isValidPosition( destination )
+                    && onRange( destination, range ) ) {
+                    MoveCommand* move = new MoveCommand( this, map,
+                                                         destination );
+                    Action* action = new Action;
+                    action->commands.push_back( move );
+                    moveActions->push_back( action );
+                }
+            }
+        }
+        return moveActions;
+    } else {
+        throw InvalidPositionException( getPosition().x, getPosition().y,
+                                        MAP_WIDTH, MAP_HEIGHT );
+    }
+
+}
+
+std::vector<Action*>* Unit::getAttackActions( IMap *map,
+                                             std::vector<Unit *> targets ) {
+    if( map->isOnBounds( getPosition() ) ) {
+        std::vector<Action*>* attackActions = new std::vector<Action*>;
+        
+        int range = getMovement() + getAttackRange();
+        for ( Unit* target : targets ) {
+            if( this->onRange( target->getPosition() , range ) ) {
+                std::pair<Point,Point>* boundingArea =
+                map->getBoundingArea( target->getPosition(),
+                                      getAttackRange() );
+                Point start = boundingArea->first;
+                Point end = boundingArea->second;
+                //iterate over the bounding area
+                for ( int i = start.x; i < end.x ; i++ ) {
+                    for ( int j = start.y; j < end.y; j++ ) {
+                        Point destination = Point( i, j );
+                        int range = getMovement();
+                        if( map->isValidPosition( destination )
+                           && onRange( destination, range ) ) { //can get there
+                            //can reach the target
+
+                            if( target->onRange( destination ,                                                  getAttackRange() ) ) {
+                                Action* action = new Action;
+                                MoveCommand* move = new MoveCommand( this, map,
+                                                                    destination );
+                                AttackCommand* attack = new AttackCommand( this,
+                                                                          target, (Map*)map );
+                                action->commands.push_back( move );
+                                action->commands.push_back( attack );
+                                attackActions->push_back( action );
+                            }
+                        }
+                    }
+                }
+    
+            }
+        }
+        
+        return attackActions;
+    } else {
+        throw InvalidPositionException( getPosition().x, getPosition().y,
+                                        MAP_WIDTH, MAP_HEIGHT );
+    }
+}
+
+std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
+                                        std::vector<Building *> targets ) {
+    if( map->isOnBounds( getPosition() ) ) {
+        std::vector<Action*>* captureActions = new std::vector<Action*>;
+        
+        for ( Building* building : targets ) {
+            if( onRange( building->getPosition() , getMovement() )
+                && building->getOwnerID() != player->getId() ) {
+                Action* action = new Action;
+                MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
+                                                building->getPosition() );
+                CaptureCommand* captureCommand = new CaptureCommand( player,
+                                                            this, building );
+                
+                action->commands.push_back( moveCommand );
+                action->commands.push_back( captureCommand );
+                captureActions->push_back( action );
+            }
+        }
+        
+        return captureActions;
+    } else {
+        throw InvalidPositionException( getPosition().x, getPosition().y,
+                                        MAP_WIDTH, MAP_HEIGHT );
+    }
+
 }
 
 void Unit::updateState()

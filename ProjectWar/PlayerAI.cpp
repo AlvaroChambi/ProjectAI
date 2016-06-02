@@ -12,6 +12,7 @@
 #include "MinimaxAlgorithm.hpp"
 #include "Path.h"
 #include "DotPath.h"
+#include "GameMinimax.h"
 
 PlayerAI::PlayerAI() : Player(), playersList(nullptr)
 {
@@ -58,9 +59,9 @@ void PlayerAI::executeMinimax() {
             enemy = player;
         }
     }
-    GameState* game = new GameState( this, enemy );
+    GameState* game = new GameState( this, enemy, this->getMap() );
     MinimaxAlgorithm* algorithm =
-        new MinimaxAlgorithm( new TacticMinimax( game ) );
+        new MinimaxAlgorithm( new GameMinimax( game ) );
     algorithm->setDebugLogger( new DotBuilder );
     algorithm->minimax(2);
     Tactic* movement = (Tactic*)algorithm->getBestMove();

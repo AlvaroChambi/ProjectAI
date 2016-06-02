@@ -7,9 +7,10 @@
 //
 
 #include "GameMinimax.h"
+#include "GameException.h"
 
 GameMinimax::GameMinimax( GameState* gameState )
-: gameState( gameState ){
+: gameState( gameState ) {
 
 }
 
@@ -25,9 +26,15 @@ int GameMinimax::getStaticEvaluation() {
     return 0;
 }
 
+//TODO: Implement getMaxMovesList and getMinMovesList in the minimax
 std::vector<Option*>& GameMinimax::getMovesList( const bool maximize ) {
-    std::vector<Option*> vector;
-    return vector;
+    if ( maximize ) {
+        return *gameState->getMovesList( (Player*)gameState->getPlayer(),
+                                         (Player*)gameState->getEnemy() );
+    } else {
+        return *gameState->getMovesList( (Player*)gameState->getEnemy(),
+                                        (Player*)gameState->getPlayer() );
+    }
 }
 
 void GameMinimax::processMove( Option *move ) {

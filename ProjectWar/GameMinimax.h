@@ -24,7 +24,7 @@ public:
     void unprocessMove(Option* move);
     int minimaxMin( const int bestSoFar, const int score );
     int minimaxMax( const int bestSoFar, const int score,
-                           Option* move, Option** bestMove );
+                          Option* move, Option** bestMove );
     
 private:
     GameState* gameState;

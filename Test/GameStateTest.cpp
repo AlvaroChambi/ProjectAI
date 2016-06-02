@@ -9,12 +9,13 @@
 
 #include "GameState.h"
 #include "MockPlayer.h"
+#include "MockMap.h"
 #include "GameException.h"
 
 class GameStateTest : public ::testing::Test {
 public:
     GameStateTest() {
-        gameState = new GameState( &player, &enemy );
+        gameState = new GameState( &player, &enemy, &map );
     }
     
     virtual void SetUp() {
@@ -28,6 +29,7 @@ public:
     GameState* gameState;
     MockPlayer player;
     MockPlayer enemy;
+    MockMap map;
 };
 
 TEST_F( GameStateTest, GameOverScoreUnfinished ) {

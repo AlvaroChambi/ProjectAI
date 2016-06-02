@@ -29,6 +29,14 @@ Map::~Map()
 
 }
 
+int Map::getNumColumns() {
+    return MAP_WIDTH;
+}
+
+int Map::getNumRows() {
+    return MAP_HEIGHT;
+}
+
 void Map::addBuilding(Building *building)
 {
     buildings.push_back(building);
@@ -45,7 +53,7 @@ Building* Map::getBuilding(int id)
     return result;
 }
 
-std::list<Building*>& Map::getBuildings()
+std::vector<Building*>& Map::getBuildings()
 {
     return buildings;
 }
@@ -232,17 +240,19 @@ InfoTile& Map::getInfoTile(Point position)
     return *infoMap[position.x][position.y];
 }
 
-bool Map::isValidPosition(Point position)
-{
+bool Map::isValidPosition(Point position) {
     bool result = false;
-    if (position.x >= 0 && position.x < MAP_WIDTH
-            && position.y >= 0 && position.y < MAP_HEIGHT) {
+    if ( position.x >= 0 && position.x < MAP_WIDTH
+            && position.y >= 0 && position.y < MAP_HEIGHT ) {
         InfoTile tile = getInfoTile(position);
         
-        if (tile.entity != UNIT_ENTITY) {
+        if ( tile.entity != UNIT_ENTITY ) {
             result = true;
         }
 
+    } else {
+        throw InvalidPositionException( position.x, position.y,
+                                        MAP_WIDTH, MAP_HEIGHT );
     }
     return result;
 }
@@ -370,9 +380,48 @@ Path* Map::getUnitPath(Unit *unit, Point destination) {
     return unitPath;
 }
 
-int Map::getShortestDistance(Point origin, Point destination)
-{
+int Map::getShortestDistance(Point origin, Point destination) {
     std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
     Path* path = new Path(nodes);
     return path->size();
+}
+
+std::pair<Point,Point>* Map::getBoundingArea( Point position , int range ) {
+    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>();
+    if( position.isValid( MAP_WIDTH , MAP_HEIGHT ) && range > 0 ) {
+        Point start, end;
+        
+        start.x = position.x - range;
+        start.y = position.y - range;
+        if( start.x < 0 ) {
+            start.x = 0;
+        }
+        if( start.y < 0 ) {
+            start.y = 0;
+        }
+        
+        end.x = position.x + range;
+        if( end.x >= MAP_WIDTH ) {
+            end.x = MAP_WIDTH - 1;
+        }
+        end.y = position.y + range;
+        if( end.y >= MAP_HEIGHT ) {
+            end.y = MAP_HEIGHT - 1;
+        }
+        
+        boundingArea->first = start;
+        boundingArea->second = end;
+    } else {
+        throw IllegalStateException( "Not valid position or movement provided" );
+    }
+    
+    return boundingArea;
+}
+
+bool Map::isOnBounds( Point position ) {
+    if( position.x < 0 && position.x >= MAP_WIDTH
+        && position.y < 0 && position.y >= MAP_HEIGHT ) {
+        return false;
+    }
+    return true;
 }

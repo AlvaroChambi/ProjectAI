@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "Option.h"
 
-class Command
-{
+class Command : public Option {
 public:
     virtual ~Command(){}
     virtual void execute() = 0;

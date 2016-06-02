@@ -148,7 +148,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture2->setVisible(false);
     playerSprite2->setTexture(texture2);
     playerSprite2->resize(40, 40);
-    texture2->setPosition(map->getAbsolutePosition(3,8));
+    texture2->setPosition(map->getAbsolutePosition(0,0));
     player2->setMap(map);
     
     this->addPlayer(player);
@@ -168,7 +168,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //resize to fit in a map tile
     unitSprite->resize(40, 40);
     //unit->setPosition(map->getTile(2, 1));
-    unit->setPosition(map->getTile(7, 9));
+    unit->setPosition(map->getTile(0, 1));
     player->addUnit(unit);
     
     Unit* unit3 = new Unit();
@@ -183,7 +183,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //resize to fit in a map tile
     unitSprite3->resize(40, 40);
     //unit3->setPosition(map->getTile(4, 4));
-    unit3->setPosition(map->getTile(9, 8));
+    unit3->setPosition(map->getTile(0, 2));
     player->addUnit(unit3);
     
     Unit* unit4 = new Unit();
@@ -212,7 +212,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 128, 90);
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
-    unit2->setPosition(map->getTile(13, 3));
+    unit2->setPosition(map->getTile(0,9));
     player2->addUnit(unit2);
     
     Unit* unit5 = new Unit();
@@ -225,13 +225,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 128, 90);
     unitSprite5->setTexture(unitTexture5);
     unitSprite5->resize(40, 40);
-    unit5->setPosition(map->getTile(12, 5));
+    unit5->setPosition(map->getTile(0, 8));
     player2->addUnit(unit5);
     
     Unit* unit6 = new Unit();
     unit6->setResource("soldier_blue.png");
     Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
-    unit6->setMovement(3);
+    unit6->setMovement(2);
     unit6->setAttackRange(1);
     unit6->setHP(10);
     unitSprite6->setModel(unit6);

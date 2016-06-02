@@ -1,3 +1,4 @@
+
 //
 //  GameState.cpp
 //  ProjectWar
@@ -8,14 +9,18 @@
 
 #include "GameState.h"
 #include "GameException.h"
+#include "MoveCommand.h"
+#include "AttackCommand.h"
+#include "CaptureCommand.h"
 
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
 
-GameState::GameState( IPlayer* const player, IPlayer* const enemy )
-: player( player ), enemy( enemy ) {
-    
+GameState::GameState( IPlayer* const player, IPlayer* const enemy,
+                      IMap* map )
+: player( player ), enemy( enemy ), map( map ){
+
 }
 
 GameState::~GameState() {
@@ -51,4 +56,19 @@ int GameState::getGameOverScore() {
     }
     
     return gameScore;
+}
+
+std::vector<Option*>* GameState::getMovesList( Player* player,
+                                               Player* opponent ) {
+    std::vector<Option*>* moves = new std::vector<Option*>;
+    Map* map = (Map*)this->map;
+    for ( Unit* unit : player->getAliveUnits() ) {
+        std::vector<Action*>* moveActions = unit->getMoveActions( map );
+        std::vector<Action*>* attackActions = unit->getAttackActions( map,
+                                                opponent->getAliveUnits() );
+        std::vector<Action*>* captureActions = unit->getCaptureActions( map,
+                                    player, map->getBuildings() );
+    }
+    
+    return moves;
 }

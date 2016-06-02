@@ -23,19 +23,23 @@ public:
     Point() : x(0), y(0), z(0)
     {}
     
-    Point( int x, int y )
-    {
+    Point( int x, int y ) {
         this->x = x;
         this->y = y;
     }
     
-    void setZ ( int z )
-    {
+    void setZ ( int z ) {
         this->z = z;
     }
     
-    bool operator ==(Point point)
-    {
+    bool isValid( int xLimit, int yLimit ) {
+        if( x >= 0 && x <= xLimit && y >= 0 && y <= yLimit ) {
+            return true;
+        }
+        return false;
+    }
+    
+    bool operator ==( Point point ) {
         bool result= false;
         if ( x == point.x && y == point.y) {
             result = true;
@@ -43,8 +47,7 @@ public:
         return result;
     }
     
-    bool operator !=(Point point)
-    {
+    bool operator !=( Point point ) {
         bool result= false;
         if ( x != point.x || y != point.y) {
             result = true;
@@ -52,16 +55,14 @@ public:
         return result;
     }
     
-    friend std::ostream& operator<<(std::ostream& os, const Point& point)
-    {
+    friend std::ostream& operator<<( std::ostream& os, const Point& point ) {
         os << "( "<< point.x << " , " << point.y << " )";
         return os;
     }
     
-    int distance(Point point)
-    {
-        return std::abs(point.x - this->x) +
-        std::abs(point.y - this->y);
+    int distance( Point point ) {
+        return std::abs( point.x - this->x ) +
+        std::abs( point.y - this->y );
     }
 };
 

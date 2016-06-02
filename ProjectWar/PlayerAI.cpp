@@ -63,7 +63,7 @@ void PlayerAI::executeMinimax()
     GameState* game = new GameState(this, enemy, scene, renderer);
     TacticMinimax* tacticDecision = new TacticMinimax(*game);
     
-    tacticDecision->minimax(2);
+    tacticDecision->minimax(3);
     Tactic* movement = (Tactic*)tacticDecision->getMove();
     
     movement->execute();

@@ -20,6 +20,7 @@ class GameState
 public:
     //TODO implement copy constructor
     GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer);
+    GameState();
     virtual ~GameState();
     
     static const int WIN_VALUE = 10;

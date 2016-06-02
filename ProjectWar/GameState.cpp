@@ -35,8 +35,9 @@ bool GameState::isGameOver()
     return result;
 }
 
-void calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings, int& result)
+int GameState::calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
 {
+    int result = 0;
     for (Building* building : playerBuildings) {
            result = result + building->getCaptureValue();
     }
@@ -44,16 +45,21 @@ void calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Bu
     for (Building* building : enemyBuildings) {
         result = result - building->getCaptureValue();
     }
+    return result;
 }
 
-void calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings, int& result)
+//Calculate the distance only to the enemy Headquarters
+int GameState::calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
 {
+    int result = 0;
     Building* playerHeadquarters = nullptr;
     Building* enemyHeadquarters = nullptr;
-    if(playerBuildings.size()>0){
+    
+    //TODO change this to get only the headquarters of each player
+    if(!playerBuildings.empty()){
         playerHeadquarters = playerBuildings.back();
     }
-    if(enemyBuildings.size()>0){
+    if(!enemyBuildings.empty()){
         enemyHeadquarters = enemyBuildings.back();
     }
     for (Unit* unit : player->getUnitList()) {
@@ -66,16 +72,19 @@ void calculateBuildingsDistance(Player* player, Player* enemy, std::list<Buildin
             result = result + unit->getPosition().distance(playerHeadquarters->getPosition());
         }
     }
+    return result;
 }
 
-void calculateUnitsHealth(Player* player, Player* enemy, int& result)
+int GameState::calculateUnitsHealth(Player* player, Player* enemy)
 {
-    for (Unit* unit : player->getUnitList()) {
+    int result = 0;
+    for (Unit* unit : player->getAliveUnits()) {
         result = result + unit->getHP();
     }
-    for (Unit* unit : enemy->getUnitList()) {
+    for (Unit* unit : enemy->getAliveUnits()) {
         result = result - unit->getHP();
     }
+    return result;
 }
 
 int GameState::getStaticEvaluation()
@@ -94,9 +103,9 @@ int GameState::getStaticEvaluation()
     std::list<Building*> playerBuildings = map->getBuildingsByOwnerId(playerId);
     std::list<Building*> enemyBuildings = map->getBuildingsByOwnerId(enemyId);
     
-    calculateBuildingsHealth(playerBuildings, enemyBuildings, result);
-    calculateBuildingsDistance(player, enemy, playerBuildings, enemyBuildings, result);
-    calculateUnitsHealth(player, enemy, result);
+    result = result + calculateBuildingsHealth(playerBuildings, enemyBuildings);
+    result = result + calculateBuildingsDistance(player, enemy, playerBuildings, enemyBuildings);
+    result = result + calculateUnitsHealth(player, enemy);
 
     return result;
 }

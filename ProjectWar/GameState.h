@@ -27,6 +27,9 @@ public:
     static const int DRAW_VALUE = 0;
     
     bool isGameOver();
+    int calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
+    int calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
+    int calculateUnitsHealth(Player* player, Player* enemy);
     int getStaticEvaluation();
     void processMove(Option* move);
     void unprocessMove(Option* move);

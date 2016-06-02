@@ -45,6 +45,30 @@ Building* Map::getBuilding(int id)
     return result;
 }
 
+std::list<Building*> Map::getBuildingsByOwnerId(int ownerId)
+{
+    std::list<Building*> result;
+    for (Building* building : buildings) {
+        if(building->getOwnerID() == ownerId){
+            result.push_back(building);
+        }
+    }
+    return result;
+}
+
+int Map::getNumBuildings(int ownerId)
+{
+    int result = 0;
+    for (Building* building : buildings) {
+        if(building->getOwnerID() == ownerId){
+            result++;
+        }
+    }
+    return result;
+}
+
+
+
 std::list<Building*>& Map::getBuildings()
 {
     return buildings;

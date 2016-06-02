@@ -20,13 +20,17 @@ class GameState
 public:
     //TODO implement copy constructor
     GameState(Player* player, Player* enemy, Scene* scene, Renderer* renderer);
+    GameState();
     virtual ~GameState();
     
-    static const int WIN_VALUE = 20;
-    static const int LOST_VALUE = 0;
-    static const int DRAW_VALUE = 10;
+    static const int WIN_VALUE = 10;
+    static const int LOST_VALUE = -10;
+    static const int DRAW_VALUE = 0;
     
     bool isGameOver();
+    int calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
+    int calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
+    int calculateUnitsHealth(Player* player, Player* enemy);
     int getStaticEvaluation();
     void processMove(Option* move);
     void unprocessMove(Option* move);

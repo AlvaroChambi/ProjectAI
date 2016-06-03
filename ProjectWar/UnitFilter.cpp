@@ -21,15 +21,3 @@ bool UnitMovementFilter::isValid( Point position ) {
     
     return iterator->isValid( position ) && valid;
 }
-
-AttackRangeFilter::AttackRangeFilter( Iterator* filter, Unit* target,
-                                      int attackerRange )
-: IteratorFilter( filter ){
-    this->target = target;
-    this->attackerRange = attackerRange;
-}
-
-bool AttackRangeFilter::isValid( Point position ) {
-    return iterator->isValid( position ) &&
-        target->onRange( position , attackerRange );
-}

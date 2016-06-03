@@ -217,21 +217,20 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
                                          MAP_WIDTH, MAP_HEIGHT );
                 Iterator* unitMoveIterator =
                     new UnitMovementFilter( areaIterator,(Map*)map, this );
-                Iterator* rangeIterator =
-                    new AttackRangeFilter( unitMoveIterator,
-                                           target, getAttackRange() );
                 
-                while ( rangeIterator->hasNext() ) {
-                    Point destination = rangeIterator->next();
-                    
-                    Action* action = new Action;
-                    MoveCommand* move = new MoveCommand( this, map,
-                                                        destination );
-                    AttackCommand* attack = new AttackCommand( this,
-                                                              target, (Map*)map );
-                    action->commands.push_back( move );
-                    action->commands.push_back( attack );
-                    attackActions->push_back( action );
+                while ( unitMoveIterator->hasNext() ) {
+                    Point destination = unitMoveIterator->next();
+                    if( target->onRange( destination , getAttackRange() ) ) {
+                        Action* action = new Action;
+                        MoveCommand* move =
+                            new MoveCommand( this, map, destination );
+                        AttackCommand* attack =
+                            new AttackCommand( this, target, (Map*)map );
+                        
+                        action->commands.push_back( move );
+                        action->commands.push_back( attack );
+                        attackActions->push_back( action );
+                    }
                 }
             }
         }

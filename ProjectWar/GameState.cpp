@@ -12,6 +12,8 @@
 #include "MoveCommand.h"
 #include "AttackCommand.h"
 #include "CaptureCommand.h"
+#include "AreaIterator.h"
+#include "UnitFilter.h"
 
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
@@ -61,14 +63,90 @@ int GameState::getGameOverScore() {
 std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {
     std::vector<Option*>* moves = new std::vector<Option*>;
-    Map* map = (Map*)this->map;
     for ( Unit* unit : player->getAliveUnits() ) {
-        std::vector<Action*>* moveActions = unit->getMoveActions( map );
-        std::vector<Action*>* attackActions = unit->getAttackActions( map,
-                                                opponent->getAliveUnits() );
-        std::vector<Action*>* captureActions = unit->getCaptureActions( map,
-                                    player, map->getBuildings() );
+        std::vector<Action*>* unitActions =
+            filterUnitActions( unit , player, opponent, 4 );
+        unitActions->size();
     }
     
     return moves;
+}
+
+std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
+                                                    Player* player,
+                                                    Player* opponent,
+                                                    int numActions ) {
+    Map* map = (Map*)this->map;
+    int addedActions = 0;
+    std::vector<Action*>* actions = new std::vector<Action*>();
+    
+    std::vector<Action*>* capture =
+        unit->getCaptureActions( map, player, map->getBuildings() );
+    if( !capture->empty() &&
+        capture->size() <= numActions ) {
+        actions->insert( actions->end(), capture->begin(), capture->end() );
+        addedActions = (int)capture->size();
+        
+        if( addedActions == numActions ) {
+            return actions;
+        }
+    }
+    
+    std::vector<Action*>* attack =
+        unit->getAttackActions( map, opponent->getAliveUnits() );
+    
+    if ( !attack->empty()
+         && (attack->size() + addedActions) <=  numActions ) {
+        actions->insert( actions->end(), attack->begin(), attack->end() );
+        addedActions += attack->size();
+        
+        if( addedActions == numActions ) {
+            return actions;
+        }
+    }
+    
+    std::vector<Action*>* moves = getBestUnitMoves(
+                                        map->getBuildings().at(0), unit );
+    int pos = 0;
+    for ( int i = addedActions; i < numActions; i++ ) {
+        pos++;
+        actions->push_back( moves->at( pos ) );
+    }
+    
+    return actions;
+}
+
+std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
+                                                   Unit* unit ) {
+    std::vector<Action*>* result = new std::vector<Action*>;
+    std::vector<Action*>* preferedActions = new std::vector<Action*>;
+    std::vector<Action*>* actions = new std::vector<Action*>;
+    
+    AreaIterator* areaIterator = new AreaIterator();
+    areaIterator->buildArea( unit->getPosition() , unit->getMovement(),
+                            MAP_WIDTH, MAP_HEIGHT );
+    Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
+                                                        (Map*)map, unit );
+    while ( unitMoveIterator->hasNext() ) {
+        Point destination = unitMoveIterator->next();
+        Point start = unit->getPosition();
+        Point end = headquarter->getPosition();
+        int distance = start.distance( end );
+        int newDistance = destination.distance( end );
+        
+        MoveCommand* move = new MoveCommand( unit, map,
+                                             destination );
+        Action* action = new Action;
+        action->commands.push_back( move );
+        if( newDistance < distance ) {
+            preferedActions->push_back( action );
+        } else {
+            actions->push_back( action );
+        }
+    }
+    
+    result->insert( result->end(), preferedActions->begin(),
+                    preferedActions->end() );
+    result->insert( result->end(), actions->begin(), actions->end() );
+    return result;
 }

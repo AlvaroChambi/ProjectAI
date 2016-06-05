@@ -12,6 +12,7 @@
 #include "MoveCommand.h"
 #include "AttackCommand.h"
 #include "CaptureCommand.h"
+#include "HeuristicFunction.h"
 
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;

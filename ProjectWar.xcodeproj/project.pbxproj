@@ -62,6 +62,7 @@
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
+		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -80,6 +81,8 @@
 		55AD2B691AF00552000F5B7E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B681AF00552000F5B7E /* Player.cpp */; };
 		55AD2B6B1AF0056A000F5B7E /* TacticBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */; };
 		55C400331ADEADFB000792CF /* GameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C400311ADEADFB000792CF /* GameUI.cpp */; };
+		55D24B651D00D58900949485 /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
+		55D24B671D00D5C300949485 /* HeuristicTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B661D00D5C300949485 /* HeuristicTest.cpp */; };
 		55F447E81AD70DAC00F994F2 /* attack_button.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 55F447E41AD70DAC00F994F2 /* attack_button.bmp */; };
 		55F447E91AD70DAC00F994F2 /* cancel_button.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 55F447E51AD70DAC00F994F2 /* cancel_button.bmp */; };
 		55F447EA1AD70DAC00F994F2 /* end_button.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 55F447E61AD70DAC00F994F2 /* end_button.bmp */; };
@@ -141,7 +144,7 @@
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; };
 		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; };
-		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; };
 		9CF2463E1CFF51F800AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
@@ -211,6 +214,9 @@
 		55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TacticBuilder.cpp; sourceTree = "<group>"; };
 		55C400311ADEADFB000792CF /* GameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUI.cpp; sourceTree = "<group>"; };
 		55C400321ADEADFB000792CF /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
+		55D24B631D00D3F600949485 /* HeuristicFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeuristicFunction.h; sourceTree = "<group>"; };
+		55D24B641D00D58900949485 /* HeuristicFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeuristicFunction.cpp; sourceTree = "<group>"; };
+		55D24B661D00D5C300949485 /* HeuristicTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeuristicTest.cpp; sourceTree = "<group>"; };
 		55F447E41AD70DAC00F994F2 /* attack_button.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = attack_button.bmp; sourceTree = "<group>"; };
 		55F447E51AD70DAC00F994F2 /* cancel_button.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = cancel_button.bmp; sourceTree = "<group>"; };
 		55F447E61AD70DAC00F994F2 /* end_button.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = end_button.bmp; sourceTree = "<group>"; };
@@ -382,6 +388,7 @@
 				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
 				9CF246391CFE32BF00AF606D /* PointTest.cpp */,
 				9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */,
+				55D24B661D00D5C300949485 /* HeuristicTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -441,6 +448,8 @@
 				9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */,
 				55891C651AEE8A4400888AC7 /* GameState.h */,
 				9CF2462D1CFCD2B900AF606D /* GameState.cpp */,
+				55D24B631D00D3F600949485 /* HeuristicFunction.h */,
+				55D24B641D00D58900949485 /* HeuristicFunction.cpp */,
 				55891C751AEE8ABF00888AC7 /* player */,
 				55891C621AEE8A0600888AC7 /* minimax */,
 				556A49DF1AE79EFF00F7FD8E /* pathfinder */,
@@ -938,6 +947,7 @@
 				3A0779D81CF49D2400B8C065 /* SpriteFactory.cpp in Sources */,
 				3A0779D91CF49D2400B8C065 /* Building.cpp in Sources */,
 				3A0779DA1CF49D2400B8C065 /* Model.cpp in Sources */,
+				5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */,
 				3A0779DB1CF49D2400B8C065 /* Observable.cpp in Sources */,
 				3A0779DC1CF49D2400B8C065 /* Player.cpp in Sources */,
 				3A0779DD1CF49D2400B8C065 /* Unit.cpp in Sources */,
@@ -946,6 +956,7 @@
 				3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */,
 				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
+				55D24B671D00D5C300949485 /* HeuristicTest.cpp in Sources */,
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,
 				3A0779E41CF49D2400B8C065 /* Button.cpp in Sources */,
@@ -998,6 +1009,7 @@
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
 				9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */,
 				55891C6F1AEE8A8500888AC7 /* Tactic.cpp in Sources */,
+				55D24B651D00D58900949485 /* HeuristicFunction.cpp in Sources */,
 				9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */,
 				9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */,
 				9C0A5A761AC17A8D00BF793E /* UIComponent.cpp in Sources */,

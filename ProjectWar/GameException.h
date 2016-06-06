@@ -48,5 +48,24 @@ public:
 private:
     std::string msg;
 };
+        
+class EndOfIteratorException : public std::runtime_error {
+public:
+    EndOfIteratorException( int currentPosition, int width, int height )
+    : runtime_error( "End of iterator reached: " ),
+    currentPosition( currentPosition ), width( width ), height( height ) {}
+    
+    virtual const char* what() const throw() {
+        std::ostringstream message;
+        message << std::runtime_error::what() << " ";
+        message << "current position " << currentPosition << " width " << width
+            << " height " << height;
+        return message.str().c_str();
+    }
+private:
+    int currentPosition;
+    int width;
+    int height;
+};
 
 #endif /* GameException_h */

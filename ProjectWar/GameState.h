@@ -30,10 +30,19 @@ public:
     
     std::vector<Option*>* getMovesList( Player* player,
                                         Player* opponent );
+    void generateTacticSequence(std::list<std::vector<int>> *sequence, int numElements, std::vector<int> variation, int count);
+    void buildMovesList(Player* player);
     
     IPlayer* const getPlayer();
     IPlayer* const getEnemy();
     
+    std::vector<Action*>* filterUnitActions( Unit* unit,
+                                             Player* player,
+                                             Player* opponent,
+                                             int numActions );
+    
+    std::vector<Action*>* getBestUnitMoves( Building* headquarter,
+                                            Unit* unit );
 private:
     IPlayer* const enemy;
     IPlayer* const player;

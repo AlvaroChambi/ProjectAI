@@ -39,6 +39,13 @@ public:
         return false;
     }
     
+    bool isValid() {
+        if( x >= 0 && y >= 0 ) {
+            return true;
+        }
+        return false;
+    }
+    
     bool operator ==( Point point ) {
         bool result= false;
         if ( x == point.x && y == point.y) {

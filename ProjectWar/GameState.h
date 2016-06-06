@@ -34,6 +34,13 @@ public:
     IPlayer* const getPlayer();
     IPlayer* const getEnemy();
     
+    std::vector<Action*>* filterUnitActions( Unit* unit,
+                                             Player* player,
+                                             Player* opponent,
+                                             int numActions );
+    
+    std::vector<Action*>* getBestUnitMoves( Building* headquarter,
+                                            Unit* unit );
 private:
     IPlayer* const enemy;
     IPlayer* const player;

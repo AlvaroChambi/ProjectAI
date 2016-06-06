@@ -35,6 +35,7 @@ public:
                         int numElements, std::vector<int> variation,
                         int count );
     std::vector<Option*>& buildMovesList(
+                        int units,
                         std::vector<std::vector<Action*>*>& actions );
     
     IPlayer* const getPlayer();

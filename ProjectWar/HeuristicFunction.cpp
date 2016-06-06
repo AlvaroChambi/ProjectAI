@@ -39,11 +39,12 @@ int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuild
 int HeuristicFunction::calculateEnemyHeadquarterDistance(Player* player, Player* enemy, Building* playerHeadquarter, Building* enemyHeadquarter)
 {
     int result = 0;
-    if(enemyHeadquarter != nullptr || playerHeadquarter != nullptr){
+    //TODO: FIX Headquarter reference
+    if(enemyHeadquarter != nullptr && playerHeadquarter != nullptr){
         for (Unit* unit : player->getAliveUnits()) {
             result = result - unit->getPosition().distance(enemyHeadquarter->getPosition());
         }
-    for (Unit* unit : enemy->getAliveUnits()) {
+        for (Unit* unit : enemy->getAliveUnits()) {
             result = result + unit->getPosition().distance(playerHeadquarter->getPosition());
         }
     }

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Player.h"
+#include "Map.h"
 
 class HeuristicFunction {
 public:
@@ -21,7 +22,7 @@ public:
     static const int DRAW_VALUE = 0;
     
     int calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
-    int calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
+    int calculateEnemyHeadquarterDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
     int calculateUnitsHealth(Player* player, Player* enemy);
     int getStaticEvaluation();
 private:

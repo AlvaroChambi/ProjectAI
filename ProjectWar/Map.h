@@ -55,6 +55,8 @@ public:
     void addBuilding(Building* building);
     Building* getBuilding(int id);
     Building* getBuilding(Point position);
+    std::list<Building*> getBuildingsByOwnerId(int ownerId);
+    int getNumBuildings(int ownerId);
     std::vector<Building*>& getBuildings();
     
     void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);

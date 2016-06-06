@@ -36,28 +36,27 @@ int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuild
     return result;
 }
 
-//Calculate the distance only to the enemy Headquarters
-int HeuristicFunction::calculateBuildingsDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
+int HeuristicFunction::calculateEnemyHeadquarterDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
 {
     int result = 0;
-    Building* playerHeadquarters = nullptr;
-    Building* enemyHeadquarters = nullptr;
+    Building* playerHeadquarter = nullptr;
+    Building* enemyHeadquarter = nullptr;
     
-    //TODO change this to get only the headquarters of each player
+    //TODO change this to get only the headquarter of each player
     if(!playerBuildings.empty()){
-        playerHeadquarters = playerBuildings.back();
+        playerHeadquarter = playerBuildings.back();
     }
     if(!enemyBuildings.empty()){
-        enemyHeadquarters = enemyBuildings.back();
+        enemyHeadquarter = enemyBuildings.back();
     }
-    for (Unit* unit : player->getUnitList()) {
-        if(enemyHeadquarters != nullptr){
-            result = result - unit->getPosition().distance(enemyHeadquarters->getPosition());
+    for (Unit* unit : player->getAliveUnits()) {
+        if(enemyHeadquarter != nullptr){
+            result = result - unit->getPosition().distance(enemyHeadquarter->getPosition());
         }
     }
-    for (Unit* unit : enemy->getUnitList()) {
-        if(playerHeadquarters != nullptr){
-            result = result + unit->getPosition().distance(playerHeadquarters->getPosition());
+    for (Unit* unit : enemy->getAliveUnits()) {
+        if(playerHeadquarter != nullptr){
+            result = result + unit->getPosition().distance(playerHeadquarter->getPosition());
         }
     }
     return result;
@@ -85,6 +84,8 @@ int HeuristicFunction::getStaticEvaluation()
     int playerId = player->getId();
     int enemyId = enemy->getId();
     
+    // The num of Buildings of each player will be used with the different kinds of buildings
+    
     int numBuildingsPlayer = map->getNumBuildings(playerId);
     int numBuildingsEnemy = map->getNumBuildings(enemyId);
     
@@ -92,7 +93,7 @@ int HeuristicFunction::getStaticEvaluation()
     std::list<Building*> enemyBuildings = map->getBuildingsByOwnerId(enemyId);
     
     result = result + calculateBuildingsHealth(playerBuildings, enemyBuildings);
-    result = result + calculateBuildingsDistance(player, enemy, playerBuildings, enemyBuildings);
+    result = result + calculateEnemyHeadquarterDistance(player, enemy, playerBuildings, enemyBuildings);
     result = result + calculateUnitsHealth(player, enemy);
     
     return result;

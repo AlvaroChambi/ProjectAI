@@ -65,15 +65,17 @@ int GameState::getGameOverScore() {
 
 std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {
-    std::vector<std::vector<Action*>*> unitsActions;
+    std::vector<std::vector<Action*>*>* unitsActions =
+        new std::vector<std::vector<Action*>*>;
+    
     
     for ( Unit* unit : player->getAliveUnits() ) {
         std::vector<Action*>* unitActions =
             filterUnitActions( unit , player, opponent, 4 );
-        unitsActions.push_back( unitActions );
+        unitsActions->push_back( unitActions );
     }
     
-    return &buildMovesList( unitsActions );
+    return &buildMovesList( *unitsActions );
 }
 
 std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
@@ -170,24 +172,27 @@ void GameState::generateTacticSequence( std::vector<std::vector<int>> *sequence,
 }
 
 std::vector<Option*>& GameState::buildMovesList(
-                                std::vector<std::vector<Action*>*> actions ) {
-    std::vector<Option*>* options = new std::vector<Option*>;
-    std::vector<std::vector<int>> tacticMovements;
-    std::vector<int> variation( 3 );
-    generateTacticSequence( &tacticMovements, TACTIC_POSSIBILITIES, variation, 0 );
-    
-    //<0,1,2,3>
-    //<0,1,2,3>
-    //<0,1,2,3>
-    for( std::vector<int> sentence : tacticMovements ) {
-        // <0, 0, 0>
-        Movement* movement = new Movement;
-        for( int i = 0; i < 3; i++ ) {
-            Action* action = actions.at( i )->at( sentence.at( i ) );
-            movement->actions.push_back( action );
+                                std::vector<std::vector<Action*>*>& actions ) {
+    if( !actions.empty() ) {
+        std::vector<Option*>* options = new std::vector<Option*>;
+        std::vector<std::vector<int>> tacticMovements;
+        std::vector<int> variation( 3 );
+        generateTacticSequence( &tacticMovements, TACTIC_POSSIBILITIES, variation, 0 );
+        
+        //<0,1,2,3>
+        //<0,1,2,3>
+        //<0,1,2,3>
+        for( std::vector<int> sentence : tacticMovements ) {
+            // <0, 0, 0>
+            Movement* movement = new Movement;
+            for( int i = 0; i < 3; i++ ) {
+                Action* action = actions.at( i )->at( sentence.at( i ) );
+                movement->actions.push_back( action );
+            }
+            options->push_back( movement );
         }
-        options->push_back( movement );
+        
+        return *options;
     }
-    
-    return *options;
+    throw IllegalStateException( "Not legal actions provided" );
 }

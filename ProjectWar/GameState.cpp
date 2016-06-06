@@ -18,6 +18,7 @@
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
+const int TACTIC_POSSIBILITIES = 4;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
@@ -149,4 +150,26 @@ std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
                     preferedActions->end() );
     result->insert( result->end(), actions->begin(), actions->end() );
     return result;
+}
+
+void GameState::generateTacticSequence(std::list<std::vector<int>> *sequence, int numElements, std::vector<int> variation, int count){
+    if (count < variation.size()){
+        for (int i = 0; i < numElements; i++) {
+            variation[count] = i;
+            generateTacticSequence(sequence, numElements, variation, count+1);
+        }
+    }else{
+        sequence->push_back(variation);
+        
+    }
+}
+
+void GameState::buildMovesList(Player* player) {
+    std::list<std::vector<int>> tacticMovements;
+    std::vector<int> variation(3);
+    generateTacticSequence(&tacticMovements, TACTIC_POSSIBILITIES, variation, 0);
+
+    for(std::vector<int> sentence : tacticMovements){
+
+    }
 }

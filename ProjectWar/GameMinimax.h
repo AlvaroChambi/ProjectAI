@@ -11,6 +11,7 @@
 
 #include "Minimax.h"
 #include "GameState.h"
+#include "HeuristicFunction.h"
 
 class GameMinimax : public Minimax {
 public:
@@ -28,6 +29,7 @@ public:
     
 private:
     GameState* gameState;
+    HeuristicFunction* heuristicFunction;
 };
 
 #endif /* GameMinimax_h */

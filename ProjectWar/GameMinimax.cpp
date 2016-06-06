@@ -9,9 +9,12 @@
 #include "GameMinimax.h"
 #include "GameException.h"
 
+static const int INFINITE = std::numeric_limits<int>::max();
 GameMinimax::GameMinimax( GameState* gameState )
 : gameState( gameState ) {
-
+    heuristicFunction = new HeuristicFunction(
+                                (Player*)gameState->getPlayer(),
+                                (Player*)gameState->getEnemy() );
 }
 
 GameMinimax::~GameMinimax() {
@@ -23,7 +26,7 @@ int GameMinimax::getGameOverScore() {
 }
 
 int GameMinimax::getStaticEvaluation() {
-    return 0;
+    return heuristicFunction->getStaticEvaluation();
 }
 
 //TODO: Implement getMaxMovesList and getMinMovesList in the minimax
@@ -38,18 +41,30 @@ std::vector<Option*>& GameMinimax::getMovesList( const bool maximize ) {
 }
 
 void GameMinimax::processMove( Option *move ) {
-
+    move->execute();
 }
 
 void GameMinimax::unprocessMove( Option *move ) {
-
+    move->execute();
 }
 
 int GameMinimax::minimaxMin( const int bestSoFar, const int score ) {
-    return 0;
+    int result = bestSoFar;
+    if (score < bestSoFar || bestSoFar == INFINITE) {
+        result = score;
+    }
+    
+    return result;
 }
 
 int GameMinimax::minimaxMax( const int bestSoFar, const int score,
                             Option *move, Option **bestMove ) {
-    return 0;
+    int result = bestSoFar;
+    
+    if ( score > bestSoFar || bestSoFar == INFINITE ) {
+        result = score;
+        *bestMove = move;
+    }
+    
+    return result;
 }

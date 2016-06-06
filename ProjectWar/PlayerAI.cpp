@@ -8,7 +8,6 @@
 
 #include "PlayerAI.h"
 #include "Map.h"
-#include "TacticMinimax.h"
 #include "MinimaxAlgorithm.hpp"
 #include "Path.h"
 #include "DotPath.h"
@@ -64,7 +63,7 @@ void PlayerAI::executeMinimax() {
         new MinimaxAlgorithm( new GameMinimax( game ) );
     algorithm->setDebugLogger( new DotBuilder );
     algorithm->minimax(2);
-    Tactic* movement = (Tactic*)algorithm->getBestMove();
+    Movement* movement = (Movement*)algorithm->getBestMove();
     std::cout << algorithm->getGraphLog();
     movement->execute();
 }

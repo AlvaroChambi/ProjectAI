@@ -62,6 +62,8 @@
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
+		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
+		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
@@ -141,8 +143,14 @@
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; };
 		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; };
-		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; };
 		9CF2463E1CFF51F800AF606D /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
+		9CF246421CFF895E00AF606D /* AreaIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246411CFF895E00AF606D /* AreaIterator.cpp */; };
+		9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246411CFF895E00AF606D /* AreaIterator.cpp */; };
+		9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
+		9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
+		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +187,8 @@
 		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
 		3A2F169E1CFF1F1C00254750 /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		3A2F169F1CFF1F2C00254750 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
+		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
+		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
@@ -330,6 +340,13 @@
 		9CF246391CFE32BF00AF606D /* PointTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointTest.cpp; sourceTree = "<group>"; };
 		9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitTest.cpp; sourceTree = "<group>"; };
 		9CF2463D1CFF51F800AF606D /* gmock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gmock.framework; path = ../../../../Library/Frameworks/gmock.framework; sourceTree = "<group>"; };
+		9CF2463F1CFF892D00AF606D /* IteratorFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IteratorFilter.h; sourceTree = "<group>"; };
+		9CF246401CFF894F00AF606D /* AreaIterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaIterator.h; sourceTree = "<group>"; };
+		9CF246411CFF895E00AF606D /* AreaIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AreaIterator.cpp; sourceTree = "<group>"; };
+		9CF246441CFF8F9200AF606D /* UnitFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitFilter.cpp; sourceTree = "<group>"; };
+		9CF246471CFF8FCB00AF606D /* UnitFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFilter.h; sourceTree = "<group>"; };
+		9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AreaIteratorTest.cpp; sourceTree = "<group>"; };
+		9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilterTest.cpp; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -382,6 +399,8 @@
 				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
 				9CF246391CFE32BF00AF606D /* PointTest.cpp */,
 				9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */,
+				9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */,
+				9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -444,6 +463,13 @@
 				55891C751AEE8ABF00888AC7 /* player */,
 				55891C621AEE8A0600888AC7 /* minimax */,
 				556A49DF1AE79EFF00F7FD8E /* pathfinder */,
+				9CF2463F1CFF892D00AF606D /* IteratorFilter.h */,
+				3A2F16A61D00531700254750 /* IteratorFilter.cpp */,
+				3A2F16A91D0057F400254750 /* Iterator.h */,
+				9CF246401CFF894F00AF606D /* AreaIterator.h */,
+				9CF246411CFF895E00AF606D /* AreaIterator.cpp */,
+				9CF246441CFF8F9200AF606D /* UnitFilter.cpp */,
+				9CF246471CFF8FCB00AF606D /* UnitFilter.h */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -921,11 +947,14 @@
 				3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */,
 				3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */,
 				3A0779CC1CF49D2400B8C065 /* AttackCommand.cpp in Sources */,
+				3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */,
 				3A0779CD1CF49D2400B8C065 /* NothingSelectedState.cpp in Sources */,
 				3A0779CE1CF49D2400B8C065 /* UnitSelectedState.cpp in Sources */,
 				3A0779CF1CF49D2400B8C065 /* OnCommandState.cpp in Sources */,
 				3A0779D01CF49D2400B8C065 /* OnMoveState.cpp in Sources */,
+				9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
 				3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */,
+				9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */,
 				3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */,
 				9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */,
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
@@ -945,6 +974,7 @@
 				3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */,
 				3A0779E01CF49D2400B8C065 /* Path.cpp in Sources */,
 				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
+				9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,
@@ -954,6 +984,7 @@
 				3A0779E61CF49D2400B8C065 /* UIComponent.cpp in Sources */,
 				3A0779E71CF49D2400B8C065 /* Tile.cpp in Sources */,
 				3A0779E81CF49D2400B8C065 /* Game.cpp in Sources */,
+				9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */,
 				3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */,
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */,
@@ -990,6 +1021,7 @@
 				55FBA27C1B00F84F0035D3E1 /* Path.cpp in Sources */,
 				3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */,
 				9C0A5A711AC174E700BF793E /* Layout.cpp in Sources */,
+				9CF246421CFF895E00AF606D /* AreaIterator.cpp in Sources */,
 				55891C741AEE8AB600888AC7 /* Movement.cpp in Sources */,
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,
 				9C8FBFF91AAF44E500C4EB1F /* SDLTexture.cpp in Sources */,
@@ -1012,7 +1044,9 @@
 				9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */,
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
 				55AD2B6B1AF0056A000F5B7E /* TacticBuilder.cpp in Sources */,
+				9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,
+				3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */,
 				9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */,
 				9C800B141AB7443C003FE2AA /* Model.cpp in Sources */,
 				9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */,

@@ -13,6 +13,8 @@
 #include "AttackCommand.h"
 #include "CaptureCommand.h"
 #include "GameException.h"
+#include "UnitFilter.h"
+#include "AreaIterator.h"
 
 Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
 {
@@ -177,26 +179,22 @@ std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* moveActions = new std::vector<Action*>;
         
-        std::pair<Point, Point>* boundingArea =
-        map->getBoundingArea( getPosition(), getMovement() );
+        AreaIterator* areaIterator = new AreaIterator();
+        areaIterator->buildArea( getPosition() , getMovement(),
+                                MAP_WIDTH, MAP_HEIGHT );
+        Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
+                                                             (Map*)map, this );
         
-        Point start = boundingArea->first;
-        Point end = boundingArea->second;
-        //iterate over the bounding area
-        for ( int i = start.x; i < end.x ; i++ ) {
-            for ( int j = start.y; j < end.y; j++ ) {
-                Point destination = Point( i, j );
-                int range = getMovement();
-                if( map->isValidPosition( destination )
-                    && onRange( destination, range ) ) {
-                    MoveCommand* move = new MoveCommand( this, map,
-                                                         destination );
-                    Action* action = new Action;
-                    action->commands.push_back( move );
-                    moveActions->push_back( action );
-                }
-            }
+        while ( unitMoveIterator->hasNext() ) {
+            Point destination = unitMoveIterator->next();
+            
+            MoveCommand* move = new MoveCommand( this, map,
+                                                destination );
+            Action* action = new Action;
+            action->commands.push_back( move );
+            moveActions->push_back( action );
         }
+        
         return moveActions;
     } else {
         throw InvalidPositionException( getPosition().x, getPosition().y,
@@ -213,34 +211,27 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
         int range = getMovement() + getAttackRange();
         for ( Unit* target : targets ) {
             if( this->onRange( target->getPosition() , range ) ) {
-                std::pair<Point,Point>* boundingArea =
-                map->getBoundingArea( target->getPosition(),
-                                      getAttackRange() );
-                Point start = boundingArea->first;
-                Point end = boundingArea->second;
-                //iterate over the bounding area
-                for ( int i = start.x; i < end.x ; i++ ) {
-                    for ( int j = start.y; j < end.y; j++ ) {
-                        Point destination = Point( i, j );
-                        int range = getMovement();
-                        if( map->isValidPosition( destination )
-                           && onRange( destination, range ) ) { //can get there
-                            //can reach the target
-
-                            if( target->onRange( destination ,                                                  getAttackRange() ) ) {
-                                Action* action = new Action;
-                                MoveCommand* move = new MoveCommand( this, map,
-                                                                    destination );
-                                AttackCommand* attack = new AttackCommand( this,
-                                                                          target, (Map*)map );
-                                action->commands.push_back( move );
-                                action->commands.push_back( attack );
-                                attackActions->push_back( action );
-                            }
-                        }
+                AreaIterator* areaIterator = new AreaIterator;
+                areaIterator->buildArea( getPosition(),
+                                         getMovement(),
+                                         MAP_WIDTH, MAP_HEIGHT );
+                Iterator* unitMoveIterator =
+                    new UnitMovementFilter( areaIterator,(Map*)map, this );
+                
+                while ( unitMoveIterator->hasNext() ) {
+                    Point destination = unitMoveIterator->next();
+                    if( target->onRange( destination , getAttackRange() ) ) {
+                        Action* action = new Action;
+                        MoveCommand* move =
+                            new MoveCommand( this, map, destination );
+                        AttackCommand* attack =
+                            new AttackCommand( this, target, (Map*)map );
+                        
+                        action->commands.push_back( move );
+                        action->commands.push_back( attack );
+                        attackActions->push_back( action );
                     }
                 }
-    
             }
         }
         
@@ -276,7 +267,6 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
         throw InvalidPositionException( getPosition().x, getPosition().y,
                                         MAP_WIDTH, MAP_HEIGHT );
     }
-
 }
 
 void Unit::updateState()

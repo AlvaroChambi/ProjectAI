@@ -36,26 +36,14 @@ int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuild
     return result;
 }
 
-int HeuristicFunction::calculateEnemyHeadquarterDistance(Player* player, Player* enemy, std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
+int HeuristicFunction::calculateEnemyHeadquarterDistance(Player* player, Player* enemy, Building* playerHeadquarter, Building* enemyHeadquarter)
 {
     int result = 0;
-    Building* playerHeadquarter = nullptr;
-    Building* enemyHeadquarter = nullptr;
-    
-    //TODO change this to get only the headquarter of each player
-    if(!playerBuildings.empty()){
-        playerHeadquarter = playerBuildings.back();
-    }
-    if(!enemyBuildings.empty()){
-        enemyHeadquarter = enemyBuildings.back();
-    }
-    for (Unit* unit : player->getAliveUnits()) {
-        if(enemyHeadquarter != nullptr){
+    if(enemyHeadquarter != nullptr || playerHeadquarter != nullptr){
+        for (Unit* unit : player->getAliveUnits()) {
             result = result - unit->getPosition().distance(enemyHeadquarter->getPosition());
         }
-    }
     for (Unit* unit : enemy->getAliveUnits()) {
-        if(playerHeadquarter != nullptr){
             result = result + unit->getPosition().distance(playerHeadquarter->getPosition());
         }
     }
@@ -92,8 +80,19 @@ int HeuristicFunction::getStaticEvaluation()
     std::list<Building*> playerBuildings = map->getBuildingsByOwnerId(playerId);
     std::list<Building*> enemyBuildings = map->getBuildingsByOwnerId(enemyId);
     
+    Building* playerHeadquarter = nullptr;
+    Building* enemyHeadquarter = nullptr;
+    
+    //TODO change this to get only the headquarter of each player
+    if(!playerBuildings.empty()){
+        playerHeadquarter = playerBuildings.back();
+    }
+    if(!enemyBuildings.empty()){
+        enemyHeadquarter = enemyBuildings.back();
+    }
+    
     result = result + calculateBuildingsHealth(playerBuildings, enemyBuildings);
-    result = result + calculateEnemyHeadquarterDistance(player, enemy, playerBuildings, enemyBuildings);
+    result = result + calculateEnemyHeadquarterDistance(player, enemy, playerHeadquarter, enemyHeadquarter);
     result = result + calculateUnitsHealth(player, enemy);
     
     return result;

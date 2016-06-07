@@ -61,7 +61,7 @@ TEST_F( MinimaxTest, MinimaxMaximizePlyReachedTest ) {
     .WillOnce( testing::ReturnRef( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, 10, testing::_,
-                                          testing::_ ) )
+                                          testing::_, testing::_ ) )
     .WillOnce( testing::Return( 20 ) );
     
     int ply = 1;
@@ -96,7 +96,7 @@ TEST_F( MinimaxTest, MinimaxAlphaValueHigherUpdatePrun ) {
     .WillOnce( testing::ReturnRef( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                          testing::_, testing::_ ) )
+                                         testing::_, testing::_, testing::_ ) )
     .WillOnce( testing::Return( 5 ) );
     
     int ply = 1;
@@ -116,7 +116,7 @@ TEST_F( MinimaxTest, MinimaxAlphaValueEqualUpdatePrun ) {
     .WillOnce( testing::ReturnRef( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                         testing::_, testing::_ ) )
+                                         testing::_, testing::_, testing::_ ) )
     .WillOnce( testing::Return( 5 ) );
     
     int ply = 1;
@@ -176,7 +176,7 @@ TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
     .WillOnce( testing::ReturnRef( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                          testing::_, testing::_ ) )
+                                          testing::_, testing::_, testing::_ ) )
     .Times( 2 )
     .WillOnce( testing::Return( 20 ) )
     .WillOnce( testing::Return( 30 ) );
@@ -223,7 +223,7 @@ TEST_F( MinimaxTest, MinimaxPly2IterationTest ) {
     moves3.push_back( &option );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                         testing::_, testing::_ ) )
+                                         testing::_, testing::_, testing::_ ) )
     .Times( 2 )
     .WillRepeatedly( testing::Return( 20 ) );
     
@@ -262,7 +262,7 @@ TEST_F( MinimaxTest, MinimaxPly2PruneIterationTest ) {
     moves3.push_back( &option );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                         testing::_, testing::_ ) )
+                                         testing::_, testing::_, testing::_ ) )
     .Times( 2 )
     .WillRepeatedly( testing::Return( 20 ) );
     

@@ -15,7 +15,7 @@ public:
     MOCK_METHOD1( unprocessMove, void( Option* option ) );
     
     MOCK_METHOD2( minimaxMin, int( int bestSoFar, int score ) ) ;
-    MOCK_METHOD4( minimaxMax, int( int bestSoFar, int score,
-                                   Option* move, Option** bestMove ) );
+    MOCK_METHOD5( minimaxMax, int( int bestSoFar, int score,
+                                   Option* move, Option** bestMove, bool topBranch ) );
 };
 #endif /* MockMinimax_h */

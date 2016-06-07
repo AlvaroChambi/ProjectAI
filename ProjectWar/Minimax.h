@@ -13,7 +13,7 @@ public:
     virtual void unprocessMove(Option* move) = 0;
     virtual int minimaxMin( const int bestSoFar, const int score ) = 0;
     virtual int minimaxMax( const int bestSoFar, const int score,
-                            Option* move, Option** bestMove ) = 0;
+                            Option* move, Option** bestMove, bool topBranch ) = 0;
 };
 
 #endif /* GameMinimax_h */

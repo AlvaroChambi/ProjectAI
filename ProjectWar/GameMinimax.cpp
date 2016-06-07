@@ -45,7 +45,7 @@ void GameMinimax::processMove( Option *move ) {
 }
 
 void GameMinimax::unprocessMove( Option *move ) {
-    move->execute();
+    move->cancel();
 }
 
 int GameMinimax::minimaxMin( const int bestSoFar, const int score ) {
@@ -58,12 +58,15 @@ int GameMinimax::minimaxMin( const int bestSoFar, const int score ) {
 }
 
 int GameMinimax::minimaxMax( const int bestSoFar, const int score,
-                            Option *move, Option **bestMove ) {
+                            Option *move, Option **bestMove, bool topBranch ) {
     int result = bestSoFar;
     
     if ( score > bestSoFar || bestSoFar == INFINITE ) {
         result = score;
-        *bestMove = move;
+        //TODO: Move best move update to another method in Minimax
+        if( topBranch ) {
+            *bestMove = move;
+        }
     }
     
     return result;

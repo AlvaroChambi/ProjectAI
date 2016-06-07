@@ -14,8 +14,8 @@ void MinimaxAlgorithm::minimax( int ply ) {
     int alpha = -INFINITE;
     int beta = INFINITE;
     bool maximize = true;
-    int result = minimax( ply, alpha, beta, maximize );
-    std::cout << result << std::endl;
+    maxPly = ply;
+    minimax( ply, alpha, beta, maximize );
 }
 
 int MinimaxAlgorithm::minimax( int ply, int alpha,
@@ -48,22 +48,20 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         graphLogger->addToPath( actualNode );
     }
 
-    
     for (Option* option : moves) {
         miniMax->processMove(option);
         int score = minimax( ply-1, alpha, beta, !maximize );
-        
+        miniMax->unprocessMove(option);
+        bool topBranch = ply == maxPly;
         if( maximize ) {
             bestSoFar = miniMax->minimaxMax( bestSoFar, score,
-                                             option ,&bestMove );
+                                             option ,&bestMove, topBranch );
             alpha = std::max(alpha, bestSoFar);
         } else {
             bestSoFar = miniMax->minimaxMin( bestSoFar, score );
             
             beta = std::min(beta, bestSoFar);
         }
-        
-        miniMax->unprocessMove(option);
         
         if ( beta <= alpha ) {
             if( graphLogger != nullptr ) {

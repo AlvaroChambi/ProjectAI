@@ -77,7 +77,6 @@ std::vector<Unit*>& Player::getAliveUnits() {
             aliveUnits.push_back( unit );
         }
     }
-    std::cout << "player " << getId() << " alive units " << aliveUnits.size() << std::endl;
     return aliveUnits;
 }
 

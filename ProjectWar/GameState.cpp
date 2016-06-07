@@ -180,11 +180,7 @@ std::vector<Option*>& GameState::buildMovesList(
         std::vector<int> variation( numUnits );
         generateTacticSequence( &tacticMovements, TACTIC_POSSIBILITIES, variation, 0 );
         
-        //<0,1,2,3>
-        //<0,1,2,3>
-        //<0,1,2,3>
         for( std::vector<int> sentence : tacticMovements ) {
-            // <0, 0, 0>
             Movement* movement = new Movement;
             for( int i = 0; i < numUnits; i++ ) {
                 Action* action = actions.at( i )->at( sentence.at( i ) );

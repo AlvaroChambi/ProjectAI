@@ -18,8 +18,8 @@
 
 class GameState {
 public:
-    static const int WIN_VALUE = 20;
-    static const int LOST_VALUE = -10;
+    static const int WIN_VALUE = 10000;
+    static const int LOST_VALUE = -10000;
     static const int NOT_FINISHED = 0;
     
     GameState( IPlayer* const player, IPlayer* const enemy,
@@ -30,8 +30,13 @@ public:
     
     std::vector<Option*>* getMovesList( Player* player,
                                         Player* opponent );
-    void generateTacticSequence(std::list<std::vector<int>> *sequence, int numElements, std::vector<int> variation, int count);
-    void buildMovesList(Player* player);
+    void generateTacticSequence(
+                        std::vector<std::vector<int>> *sequence,
+                        int numElements, std::vector<int> variation,
+                        int count );
+    std::vector<Option*>& buildMovesList(
+                        int units,
+                        std::vector<std::vector<Action*>*>& actions );
     
     IPlayer* const getPlayer();
     IPlayer* const getEnemy();

@@ -9,25 +9,19 @@
 #ifndef __ProjectWar__Movement__
 #define __ProjectWar__Movement__
 
-#include <stdio.h>
-#include <list>
-#include "Command.h"
+#include <vector>
 
-class Movement
-{
+#include "Action.h"
+#include "Option.h"
+
+class Movement : public Option {
 public:
     Movement();
-    //TODO maybe remove score...
-    Movement(int score);
-    Movement(std::list<Command*>* commands);
-    Movement(std::list<Command*>* commands, int score);
     void execute();
     void cancel();
-    int getScore();
     virtual ~Movement();
 
-    int score;
-    std::list<Command*>* commands;
+    std::vector<Action*> actions;
 };
 
 #endif /* defined(__ProjectWar__Movement__) */

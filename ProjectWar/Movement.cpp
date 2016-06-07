@@ -8,47 +8,24 @@
 
 #include "Movement.h"
 
-Movement::Movement() : commands(), score(0)
-{
+Movement::Movement() {
 
 }
 
-Movement::Movement(int score) : commands(), score(score)
-{
-
-}
-
-Movement::Movement(std::list<Command*>* commands) : commands(commands)
-{
-    
-}
-
-Movement::Movement(std::list<Command*>* commands, int score) : commands(commands), score(score)
-{
-    
-}
-
-Movement::~Movement()
-{
+Movement::~Movement() {
 
 }
 
 void Movement::execute() {
-    for (Command* command : *commands) {
-        command->execute();
+    for ( Action* action : actions ) {
+        action->execute();
     }
 }
 
 void Movement::cancel() {
-    for (Command* command : *commands) {
-        command->cancel();
+    for ( Action* action : actions ) {
+        action->cancel();
     }
 }
-
-int Movement::getScore()
-{
-    return this->score;
-}
-
 
 

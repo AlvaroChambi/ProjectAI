@@ -15,11 +15,12 @@
 #include "HeuristicFunction.h"
 #include "AreaIterator.h"
 #include "UnitFilter.h"
+#include "Movement.h"
 
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
-const int TACTIC_POSSIBILITIES = 4;
+const int TACTIC_POSSIBILITIES = 2;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
@@ -64,14 +65,17 @@ int GameState::getGameOverScore() {
 
 std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {
-    std::vector<Option*>* moves = new std::vector<Option*>;
+    std::vector<std::vector<Action*>*>* unitsActions =
+        new std::vector<std::vector<Action*>*>;
+    
+    
     for ( Unit* unit : player->getAliveUnits() ) {
         std::vector<Action*>* unitActions =
-            filterUnitActions( unit , player, opponent, 4 );
-        unitActions->size();
+            filterUnitActions( unit , player, opponent, TACTIC_POSSIBILITIES );
+        unitsActions->push_back( unitActions );
     }
     
-    return moves;
+    return &buildMovesList( (int)player->getAliveUnits().size(), *unitsActions );
 }
 
 std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
@@ -153,24 +157,39 @@ std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
     return result;
 }
 
-void GameState::generateTacticSequence(std::list<std::vector<int>> *sequence, int numElements, std::vector<int> variation, int count){
-    if (count < variation.size()){
-        for (int i = 0; i < numElements; i++) {
+void GameState::generateTacticSequence( std::vector<std::vector<int>> *sequence,
+                                       int numElements, std::vector<int> variation,
+                                       int count ) {
+    if( count < variation.size() ){
+        for( int i = 0; i < numElements; i++ ) {
             variation[count] = i;
-            generateTacticSequence(sequence, numElements, variation, count+1);
+            generateTacticSequence( sequence, numElements, variation, count+1 );
         }
     }else{
-        sequence->push_back(variation);
+        sequence->push_back( variation );
         
     }
 }
 
-void GameState::buildMovesList(Player* player) {
-    std::list<std::vector<int>> tacticMovements;
-    std::vector<int> variation(3);
-    generateTacticSequence(&tacticMovements, TACTIC_POSSIBILITIES, variation, 0);
-
-    for(std::vector<int> sentence : tacticMovements){
-
+std::vector<Option*>& GameState::buildMovesList(
+                                int numUnits,
+                                std::vector<std::vector<Action*>*>& actions ) {
+    if( !actions.empty() ) {
+        std::vector<Option*>* options = new std::vector<Option*>;
+        std::vector<std::vector<int>> tacticMovements;
+        std::vector<int> variation( numUnits );
+        generateTacticSequence( &tacticMovements, TACTIC_POSSIBILITIES, variation, 0 );
+        
+        for( std::vector<int> sentence : tacticMovements ) {
+            Movement* movement = new Movement;
+            for( int i = 0; i < numUnits; i++ ) {
+                Action* action = actions.at( i )->at( sentence.at( i ) );
+                movement->actions.push_back( action );
+            }
+            options->push_back( movement );
+        }
+        
+        return *options;
     }
+    throw IllegalStateException( "Not legal actions provided" );
 }

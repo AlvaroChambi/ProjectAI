@@ -31,6 +31,7 @@ private:
     GraphLogger* graphLogger;
     Minimax* miniMax;
     Option* bestMove;
+    int maxPly;
 };
 
 #endif /* MinimaxAlgorithm_hpp */

@@ -17,6 +17,7 @@ class Tile
 public:
     Point position;
     Tile();
+    Tile( int x, int y );
     Tile(Texture* texture);
     Texture* getTexture();
     void setTexture(Texture* texture);

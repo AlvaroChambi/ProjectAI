@@ -11,9 +11,6 @@
 		3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FBFE81AAEF47700C4EB1F /* InputHandler.cpp */; };
 		3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55F447EE1AD713FC00F994F2 /* PlayerAI.cpp */; };
 		3A0779C41CF49D2400B8C065 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C731AEE8AB600888AC7 /* Movement.cpp */; };
-		3A0779C61CF49D2400B8C065 /* Tactic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C691AEE8A8500888AC7 /* Tactic.cpp */; };
-		3A0779C71CF49D2400B8C065 /* TacticBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */; };
-		3A0779C81CF49D2400B8C065 /* TacticMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C6D1AEE8A8500888AC7 /* TacticMinimax.cpp */; };
 		3A0779C91CF49D2400B8C065 /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
 		3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55966F4B1ADC166300B36FA8 /* CaptureCommand.cpp */; };
 		3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B4D1ABD8323003FE2AA /* MoveCommand.cpp */; };
@@ -62,14 +59,12 @@
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
-		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
+		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
 		556A49E51AE79F4100F7FD8E /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556A49E31AE79F4100F7FD8E /* Pathfinder.cpp */; };
-		55891C6F1AEE8A8500888AC7 /* Tactic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C691AEE8A8500888AC7 /* Tactic.cpp */; };
-		55891C711AEE8A8500888AC7 /* TacticMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C6D1AEE8A8500888AC7 /* TacticMinimax.cpp */; };
 		55891C741AEE8AB600888AC7 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55891C731AEE8AB600888AC7 /* Movement.cpp */; };
 		55966F441ADC161400B36FA8 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 55966F431ADC161400B36FA8 /* building.png */; };
 		55966F471ADC163A00B36FA8 /* BuildingView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55966F451ADC163A00B36FA8 /* BuildingView.cpp */; };
@@ -81,7 +76,6 @@
 		55966F561ADC16C500B36FA8 /* target_tile_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 55966F531ADC16C500B36FA8 /* target_tile_white.png */; };
 		55966F571ADC16C500B36FA8 /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 55966F541ADC16C500B36FA8 /* target_tile.png */; };
 		55AD2B691AF00552000F5B7E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B681AF00552000F5B7E /* Player.cpp */; };
-		55AD2B6B1AF0056A000F5B7E /* TacticBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */; };
 		55C400331ADEADFB000792CF /* GameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C400311ADEADFB000792CF /* GameUI.cpp */; };
 		55D24B651D00D58900949485 /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		55D24B671D00D5C300949485 /* HeuristicTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B661D00D5C300949485 /* HeuristicTest.cpp */; };
@@ -152,8 +146,8 @@
 		9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246411CFF895E00AF606D /* AreaIterator.cpp */; };
 		9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
 		9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
-		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; settings = {ASSET_TAGS = (); }; };
-		9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; };
+		9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -200,11 +194,6 @@
 		55891C651AEE8A4400888AC7 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		55891C671AEE8A6700888AC7 /* Minimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Minimax.h; sourceTree = "<group>"; };
 		55891C681AEE8A6700888AC7 /* Option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
-		55891C691AEE8A8500888AC7 /* Tactic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tactic.cpp; sourceTree = "<group>"; };
-		55891C6A1AEE8A8500888AC7 /* Tactic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tactic.h; sourceTree = "<group>"; };
-		55891C6C1AEE8A8500888AC7 /* TacticBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TacticBuilder.h; sourceTree = "<group>"; };
-		55891C6D1AEE8A8500888AC7 /* TacticMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TacticMinimax.cpp; sourceTree = "<group>"; };
-		55891C6E1AEE8A8500888AC7 /* TacticMinimax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TacticMinimax.h; sourceTree = "<group>"; };
 		55891C721AEE8AA200888AC7 /* Movement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
 		55891C731AEE8AB600888AC7 /* Movement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
 		55966F431ADC161400B36FA8 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
@@ -221,7 +210,6 @@
 		55966F541ADC16C500B36FA8 /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
 		55AD2B671AF0052E000F5B7E /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		55AD2B681AF00552000F5B7E /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
-		55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TacticBuilder.cpp; sourceTree = "<group>"; };
 		55C400311ADEADFB000792CF /* GameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUI.cpp; sourceTree = "<group>"; };
 		55C400321ADEADFB000792CF /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
 		55D24B631D00D3F600949485 /* HeuristicFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeuristicFunction.h; sourceTree = "<group>"; };
@@ -427,24 +415,10 @@
 			children = (
 				55891C671AEE8A6700888AC7 /* Minimax.h */,
 				55891C681AEE8A6700888AC7 /* Option.h */,
-				55891C631AEE8A0E00888AC7 /* tactic */,
 				9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */,
 				9CBEB9C81CF77BF000CA82DE /* MinimaxAlgorithm.hpp */,
 			);
 			name = minimax;
-			sourceTree = "<group>";
-		};
-		55891C631AEE8A0E00888AC7 /* tactic */ = {
-			isa = PBXGroup;
-			children = (
-				55891C691AEE8A8500888AC7 /* Tactic.cpp */,
-				55891C6A1AEE8A8500888AC7 /* Tactic.h */,
-				55891C6C1AEE8A8500888AC7 /* TacticBuilder.h */,
-				55AD2B6A1AF0056A000F5B7E /* TacticBuilder.cpp */,
-				55891C6D1AEE8A8500888AC7 /* TacticMinimax.cpp */,
-				55891C6E1AEE8A8500888AC7 /* TacticMinimax.h */,
-			);
-			name = tactic;
 			sourceTree = "<group>";
 		};
 		55891C751AEE8ABF00888AC7 /* player */ = {
@@ -949,9 +923,6 @@
 				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
 				3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */,
 				3A0779C41CF49D2400B8C065 /* Movement.cpp in Sources */,
-				3A0779C61CF49D2400B8C065 /* Tactic.cpp in Sources */,
-				3A0779C71CF49D2400B8C065 /* TacticBuilder.cpp in Sources */,
-				3A0779C81CF49D2400B8C065 /* TacticMinimax.cpp in Sources */,
 				3A0779C91CF49D2400B8C065 /* Pathfinder.cpp in Sources */,
 				3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */,
 				3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */,
@@ -1040,13 +1011,11 @@
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
 				9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */,
-				55891C6F1AEE8A8500888AC7 /* Tactic.cpp in Sources */,
 				55D24B651D00D58900949485 /* HeuristicFunction.cpp in Sources */,
 				9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */,
 				9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */,
 				9C0A5A761AC17A8D00BF793E /* UIComponent.cpp in Sources */,
 				9CCD60C71ACFE31B004537F8 /* UnitUIView.cpp in Sources */,
-				55891C711AEE8A8500888AC7 /* TacticMinimax.cpp in Sources */,
 				9CBEB9C91CF77BF000CA82DE /* MinimaxAlgorithm.cpp in Sources */,
 				55AD2B691AF00552000F5B7E /* Player.cpp in Sources */,
 				9CCD60BE1AC80FD4004537F8 /* OnMoveState.cpp in Sources */,
@@ -1055,7 +1024,6 @@
 				55966F471ADC163A00B36FA8 /* BuildingView.cpp in Sources */,
 				9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */,
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
-				55AD2B6B1AF0056A000F5B7E /* TacticBuilder.cpp in Sources */,
 				9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,
 				3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */,

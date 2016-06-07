@@ -28,6 +28,7 @@ private:
     Unit* unit;
     Tile savedPosition;
     Tile destination;
+    bool executed;
 };
 
 #endif /* defined(__ProjectWar__MoveCommand__) */

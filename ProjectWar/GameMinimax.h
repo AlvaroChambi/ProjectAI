@@ -11,6 +11,7 @@
 
 #include "Minimax.h"
 #include "GameState.h"
+#include "HeuristicFunction.h"
 
 class GameMinimax : public Minimax {
 public:
@@ -24,10 +25,11 @@ public:
     void unprocessMove(Option* move);
     int minimaxMin( const int bestSoFar, const int score );
     int minimaxMax( const int bestSoFar, const int score,
-                          Option* move, Option** bestMove );
+                          Option* move, Option** bestMove, bool topBranch );
     
 private:
     GameState* gameState;
+    HeuristicFunction* heuristicFunction;
 };
 
 #endif /* GameMinimax_h */

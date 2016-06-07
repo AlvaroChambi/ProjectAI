@@ -15,13 +15,12 @@
 class HeuristicTest : public ::testing::Test {
 public:
     HeuristicTest() {
-        heuristic = new HeuristicFunction();
-        
     }
     
     virtual void SetUp() {
         player = new Player();
         enemy = new Player();
+        heuristic = new HeuristicFunction( player, enemy );
         building1 = new Building();
         building2 = new Building();
         building3 = new Building();
@@ -30,6 +29,12 @@ public:
         building2->setCapturePoints(20);
         building3->setCapturePoints(20);
         building4->setCapturePoints(20);
+        unit1 = new Unit;
+        unit1->setHP( 10 );
+        unit2 = new Unit;
+        unit2->setHP( 10 );
+        unit3 = new Unit;
+        unit4 = new Unit;
     }
     
     virtual void TearDown() {
@@ -61,9 +66,6 @@ public:
 };
 
 TEST_F( HeuristicTest, CalculateBuildingZeroResult ) {
-
-
-    
     building1->setCaptureValue(10);
     building2->setCaptureValue(10);
     building3->setCaptureValue(10);
@@ -71,6 +73,7 @@ TEST_F( HeuristicTest, CalculateBuildingZeroResult ) {
     
     playerBuildings.push_back(building1);
     playerBuildings.push_back(building2);
+    
     enemyBuildings.push_back(building3);
     enemyBuildings.push_back(building4);
     
@@ -87,6 +90,7 @@ TEST_F( HeuristicTest, CalculateBuildingNegativeResult ) {
     
     playerBuildings.push_back(building1);
     playerBuildings.push_back(building2);
+    
     enemyBuildings.push_back(building3);
     enemyBuildings.push_back(building4);
     
@@ -108,5 +112,30 @@ TEST_F( HeuristicTest, CalculateBuildingPositiveResult ) {
     
     
     ASSERT_EQ( 4, heuristic->calculateBuildingsHealth(playerBuildings, enemyBuildings) );
+}
+
+TEST_F( HeuristicTest, CalculateHQDistanceResult ) {
+    building1->setPosition( Tile( 0, 1 ) ); //playerHQ
+    building2->setPosition( Tile( 2, 1 ) ); //enemyHQ
     
+    unit1->setPosition( 0, 0 );
+    unit2->setPosition( 2, 2 );
+    
+    player->addUnit( unit2 );
+    enemy->addUnit( unit1 );
+    
+    ASSERT_EQ( 0, heuristic->calculateEnemyHeadquarterDistance( building1, building2 ) );
+}
+
+TEST_F( HeuristicTest, CalculateHQDistanceNullHQ ) {
+    building1->setPosition( Tile( 0, 1 ) ); //playerHQ
+    building2->setPosition( Tile( 2, 1 ) ); //enemyHQ
+    
+    unit1->setPosition( 0, 0 );
+    unit2->setPosition( 2, 2 );
+    
+    player->addUnit( unit2 );
+    enemy->addUnit( unit1 );
+    
+    ASSERT_EQ( 0, heuristic->calculateEnemyHeadquarterDistance( nullptr, building2 ) );
 }

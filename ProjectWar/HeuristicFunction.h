@@ -22,7 +22,8 @@ public:
     static const int DRAW_VALUE = 0;
     
     int calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
-    int calculateEnemyHeadquarterDistance(Player* player, Player* enemy, Building* playerHeadquarter, Building* enemyHeadquarter);
+    int calculateEnemyHeadquarterDistance( Building* playerHeadquarter,
+                                           Building* enemyHeadquarter );
     int calculateUnitsHealth(Player* player, Player* enemy);
     int getStaticEvaluation();
 private:

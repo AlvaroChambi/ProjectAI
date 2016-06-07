@@ -14,7 +14,8 @@ void MinimaxAlgorithm::minimax( int ply ) {
     int alpha = -INFINITE;
     int beta = INFINITE;
     bool maximize = true;
-    minimax( ply, alpha, beta, maximize );
+    int result = minimax( ply, alpha, beta, maximize );
+    std::cout << result << std::endl;
 }
 
 int MinimaxAlgorithm::minimax( int ply, int alpha,

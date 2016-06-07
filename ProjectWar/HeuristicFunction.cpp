@@ -13,9 +13,8 @@ HeuristicFunction::HeuristicFunction(){
     
 }
 
-HeuristicFunction::HeuristicFunction(Player* player, Player* enemy)
-:player(player),
-enemy(enemy){
+HeuristicFunction::HeuristicFunction( Player* player, Player* enemy )
+:player(player), enemy(enemy) {
     
 }
 
@@ -36,8 +35,8 @@ int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuild
     return result;
 }
 
-int HeuristicFunction::calculateEnemyHeadquarterDistance(Player* player, Player* enemy, Building* playerHeadquarter, Building* enemyHeadquarter)
-{
+int HeuristicFunction::calculateEnemyHeadquarterDistance( Building* playerHeadquarter,
+                                                          Building* enemyHeadquarter ) {
     int result = 0;
     //TODO: FIX Headquarter reference
     if(enemyHeadquarter != nullptr && playerHeadquarter != nullptr){
@@ -92,8 +91,9 @@ int HeuristicFunction::getStaticEvaluation()
         enemyHeadquarter = enemyBuildings.back();
     }
     
-    result = result + calculateBuildingsHealth(playerBuildings, enemyBuildings);
-    result = result + calculateEnemyHeadquarterDistance(player, enemy, playerHeadquarter, enemyHeadquarter);
+    result = result + calculateBuildingsHealth( playerBuildings, enemyBuildings );
+    result = result + calculateEnemyHeadquarterDistance( playerHeadquarter,
+                                                         enemyHeadquarter );
     result = result + calculateUnitsHealth(player, enemy);
     
     return result;

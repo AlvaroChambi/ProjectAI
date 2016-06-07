@@ -20,7 +20,7 @@
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
-const int TACTIC_POSSIBILITIES = 4;
+const int TACTIC_POSSIBILITIES = 2;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
@@ -71,7 +71,7 @@ std::vector<Option*>* GameState::getMovesList( Player* player,
     
     for ( Unit* unit : player->getAliveUnits() ) {
         std::vector<Action*>* unitActions =
-            filterUnitActions( unit , player, opponent, 4 );
+            filterUnitActions( unit , player, opponent, TACTIC_POSSIBILITIES );
         unitsActions->push_back( unitActions );
     }
     

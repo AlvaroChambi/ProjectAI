@@ -8,27 +8,26 @@
 
 #include "Tile.h"
 
-Tile::Tile() : position(0,0) ,texture(nullptr)
-{
+Tile::Tile() : position( 0, 0 ) ,texture( nullptr ) {
     this->texture = nullptr;
 }
 
-Tile::Tile(Texture* texture) : position(0,0)
-{
+Tile::Tile( Texture* texture ) : position( 0, 0 ) {
     this->texture = texture;
 }
 
-Tile::~Tile()
-{
+Tile::Tile( int x, int y ) {
+    this->position = Point( x, y );
+}
+
+Tile::~Tile() {
 
 }
 
-Texture* Tile::getTexture()
-{
+Texture* Tile::getTexture() {
     return texture;
 }
 
-void Tile::setTexture(Texture* texture)
-{
+void Tile::setTexture(Texture* texture) {
     this->texture = texture;
 }

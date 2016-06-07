@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "HeuristicFunction.h"
 
-HeuristicFunction::HeuristicFunction(){
+HeuristicFunction::HeuristicFunction() {
     
 }
 
@@ -22,8 +22,8 @@ HeuristicFunction::~HeuristicFunction() {
     
 }
 
-int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings)
-{
+int HeuristicFunction::calculateBuildingsHealth(std::list<Building*> playerBuildings,
+                                                std::list<Building*> enemyBuildings) {
     int result = 0;
     for (Building* building : playerBuildings) {
         result = result + building->getCaptureValue();
@@ -50,8 +50,7 @@ int HeuristicFunction::calculateEnemyHeadquarterDistance( Building* playerHeadqu
     return result;
 }
 
-int HeuristicFunction::calculateUnitsHealth(Player* player, Player* enemy)
-{
+int HeuristicFunction::calculateUnitsHealth(Player* player, Player* enemy) {
     int result = 0;
     for (Unit* unit : player->getAliveUnits()) {
         result = result + unit->getHP();
@@ -62,8 +61,7 @@ int HeuristicFunction::calculateUnitsHealth(Player* player, Player* enemy)
     return result;
 }
 
-int HeuristicFunction::getStaticEvaluation()
-{
+int HeuristicFunction::getStaticEvaluation() {
     // Positive scores are good for AI
     // Negative scores are good for Human player
     
@@ -72,28 +70,12 @@ int HeuristicFunction::getStaticEvaluation()
     int playerId = player->getId();
     int enemyId = enemy->getId();
     
-    // The num of Buildings of each player will be used with the different kinds of buildings
-    
-    int numBuildingsPlayer = map->getNumBuildings(playerId);
-    int numBuildingsEnemy = map->getNumBuildings(enemyId);
-    
     std::list<Building*> playerBuildings = map->getBuildingsByOwnerId(playerId);
     std::list<Building*> enemyBuildings = map->getBuildingsByOwnerId(enemyId);
     
-    Building* playerHeadquarter = nullptr;
-    Building* enemyHeadquarter = nullptr;
-    
-    //TODO change this to get only the headquarter of each player
-    if(!playerBuildings.empty()){
-        playerHeadquarter = playerBuildings.back();
-    }
-    if(!enemyBuildings.empty()){
-        enemyHeadquarter = enemyBuildings.back();
-    }
-    
     result = result + calculateBuildingsHealth( playerBuildings, enemyBuildings );
-    result = result + calculateEnemyHeadquarterDistance( playerHeadquarter,
-                                                         enemyHeadquarter );
+    result = result + calculateEnemyHeadquarterDistance( player->getHeadquarter(),
+                                                         enemy->getHeadquarter() );
     result = result + calculateUnitsHealth(player, enemy);
     
     return result;

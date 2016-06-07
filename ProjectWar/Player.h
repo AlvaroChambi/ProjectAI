@@ -64,10 +64,11 @@ public:
     //Add units data to the info map
     void populateInfoMap(InfoMap& infoMap);
     
-    //return whether the player has some unit still alive or not
     bool hasUnitAlive();
     
-    bool hasCapturedHQ();
+    bool hasCapturedHQ( Player* enemy );
+    Building* getHeadquarter();
+    void setHeadquarter( Building* headquarter );
 private:
     Point position;
     //Now that the player has a map maybe we can remove the tile 
@@ -81,6 +82,7 @@ private:
     Map* map;
     bool active;
     PlayerType type;
+    Building* headquarter;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

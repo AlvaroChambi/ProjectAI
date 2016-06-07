@@ -249,7 +249,7 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
         
         for ( Building* building : targets ) {
             if( onRange( building->getPosition() , getMovement() )
-                && building->getOwnerID() != player->getId() ) {
+                && !building->isCaptured( player->getId() ) ) {
                 Action* action = new Action;
                 MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
                                                 building->getPosition() );

@@ -242,7 +242,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player2->addUnit(unit6);
     
     //Load buildings
-    map->loadBuildings(spriteFactory, renderer);
+    map->loadBuildings( spriteFactory, renderer, player, player2 );
     
     //When all the players resources has been setted, load the strategic info map
     map->loadInfoMap(players);

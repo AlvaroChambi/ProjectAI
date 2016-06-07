@@ -35,12 +35,12 @@ public:
 TEST_F( GameStateTest, GameOverScoreUnfinished ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     int result = gameState->getGameOverScore();
@@ -51,12 +51,12 @@ TEST_F( GameStateTest, GameOverScoreUnfinished ) {
 TEST_F( GameStateTest, GameOverScoreLostDeadUnits ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     int result = gameState->getGameOverScore();
@@ -67,12 +67,12 @@ TEST_F( GameStateTest, GameOverScoreLostDeadUnits ) {
 TEST_F( GameStateTest, GameOverScoreLostHQCaptured ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     int result = gameState->getGameOverScore();
@@ -83,12 +83,12 @@ TEST_F( GameStateTest, GameOverScoreLostHQCaptured ) {
 TEST_F( GameStateTest, GameOverScoreWinDeadUnits ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     int result = gameState->getGameOverScore();
@@ -99,12 +99,12 @@ TEST_F( GameStateTest, GameOverScoreWinDeadUnits ) {
 TEST_F( GameStateTest, GameOverScoreWinHQCaptured ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     int result = gameState->getGameOverScore();
@@ -115,12 +115,12 @@ TEST_F( GameStateTest, GameOverScoreWinHQCaptured ) {
 TEST_F( GameStateTest, GameOverScoreAllUnitsDead ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     ASSERT_ANY_THROW( gameState->getGameOverScore() );
@@ -129,12 +129,12 @@ TEST_F( GameStateTest, GameOverScoreAllUnitsDead ) {
 TEST_F( GameStateTest, GameOverScoreBothHQCaptured ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( true ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     ASSERT_ANY_THROW( gameState->getGameOverScore() );
@@ -143,12 +143,12 @@ TEST_F( GameStateTest, GameOverScoreBothHQCaptured ) {
 TEST_F( GameStateTest, GameOverScoreLostUnitsDead ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     ASSERT_ANY_THROW( gameState->getGameOverScore() );
@@ -157,12 +157,12 @@ TEST_F( GameStateTest, GameOverScoreLostUnitsDead ) {
 TEST_F( GameStateTest, GameOverScoreWinUnitsDead ) {
     EXPECT_CALL( player , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( player , hasCapturedHQ() )
+    EXPECT_CALL( player , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( true ) );
     
     EXPECT_CALL( enemy , hasUnitAlive() )
     .WillOnce( testing::Return( false ) );
-    EXPECT_CALL( enemy , hasCapturedHQ() )
+    EXPECT_CALL( enemy , hasCapturedHQ( testing::_ ) )
     .WillOnce( testing::Return( false ) );
     
     ASSERT_ANY_THROW( gameState->getGameOverScore() );

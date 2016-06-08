@@ -17,6 +17,7 @@ enum Entity
     NOT_DEFINED,
     UNIT_ENTITY,
     BUILDING_ENTITY,
+    UNIT_CAPTURING,
 };
 
 class InfoTile

@@ -375,13 +375,9 @@ void Map::updateInfoTileUnitCapturing(Unit* unit, Point destination){
     InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
-    Point position;
-    position.x = unit->getPosition().x;
-    position.y = unit->getPosition().y;
-    
     //clean tile
     tile->text->setTextResource("");
-    tile->ownerID = getBuilding(position)->getOwnerID();
+    tile->ownerID = getBuilding(unit->getPosition())->getOwnerID();
     tile->entity = BUILDING_ENTITY;
     //update new tile
     destinationTile->ownerID = ownerID;

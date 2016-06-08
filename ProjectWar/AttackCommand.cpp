@@ -22,7 +22,6 @@ AttackCommand::~AttackCommand()
 }
 
 void AttackCommand::execute() {
-    std::cout << "              executing attack command\n";
     updateHP(unit, targetUnit);
     if (targetUnit->getHP() < 0) {
         targetUnit->setHP(0);
@@ -39,7 +38,6 @@ void AttackCommand::execute() {
 }
 
 void AttackCommand::cancel() {
-    std::cout << "              cancelling attack command\n";
     unit->setHP(savedUnitHP);
     targetUnit->setHP(savedTargetHP);
 }

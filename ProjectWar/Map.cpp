@@ -375,10 +375,13 @@ void Map::updateInfoTileUnitCapturing(Unit* unit, Point destination){
     InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
+    Point position;
+    position.x = unit->getPosition().x;
+    position.y = unit->getPosition().y;
     
     //clean tile
     tile->text->setTextResource("");
-    tile->ownerID = -1;
+    tile->ownerID = getBuilding(position)->getOwnerID();
     tile->entity = BUILDING_ENTITY;
     //update new tile
     destinationTile->ownerID = ownerID;
@@ -418,7 +421,6 @@ void Map::moveUnit(Unit *unit, Point destination) {
     if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
         && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
         InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-        std::cout<<infoMap[2][2]->entity<<std::endl;
         InfoTile* destinationTile = infoMap[destination.x][destination.y];
         int ownerID = tile->ownerID;
         

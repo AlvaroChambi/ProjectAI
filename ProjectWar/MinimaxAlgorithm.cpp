@@ -51,6 +51,8 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     for (Option* option : moves) {
         miniMax->processMove(option);
         int score = minimax( ply-1, alpha, beta, !maximize );
+        std::cout<<"----NODE ON BACK----"<<std::endl;
+        std::cout<<"Score: "<<score<<std::endl;
         miniMax->unprocessMove(option);
         bool topBranch = ply == maxPly;
         if( maximize ) {

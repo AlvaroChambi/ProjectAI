@@ -21,11 +21,13 @@ CaptureCommand::~CaptureCommand()
 }
 
 void CaptureCommand::cancel() {
+    std::cout << "              canceling capture commmand\n";
     building->setOwnerID(savedOwner);
     building->setCaptureValue(savedCaptureValue);
 }
 
 void CaptureCommand::execute() {
+    std::cout << "              executing capture command\n";
     int captureValue = 0;
     if (player->getId() == building->getOwnerID()) {
         captureValue = building->getCaptureValue() + unit->getHP();

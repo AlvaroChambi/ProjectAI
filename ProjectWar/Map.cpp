@@ -359,8 +359,10 @@ void Map::moveUnit(Unit *unit, Point destination) {
         //clean tile
         tile->text->setTextResource("");
         tile->ownerID = -1;
+        tile->entity = NOT_DEFINED;
         //update new tile
         destinationTile->ownerID = ownerID;
+        destinationTile->entity = UNIT_ENTITY;
         destinationTile->unitID = unit->getId();
         destinationTile->text->setTextResource(
                                                "Unit: " +

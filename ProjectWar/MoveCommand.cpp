@@ -25,6 +25,8 @@ MoveCommand::~MoveCommand() {
 
 void MoveCommand::execute() {
     //TODO: Finish command error handling
+    std::cout << "              executing move command\n";
+    std::cout <<"                   unit: " + std::to_string(unit->getId()) <<  "  " << destination.position << "\n";
     if( executed ) {
         throw IllegalStateException( "Command state was not restored after execution" );
     }
@@ -42,6 +44,8 @@ void MoveCommand::execute() {
 }
 
 void MoveCommand::cancel() {
+    std::cout << "              canceling move command\n";
+    std::cout <<"                   unit: " + std::to_string(unit->getId()) + "\n";
     executed = false;
     map->moveUnit(unit, savedPosition.position);
     unit->setPosition(savedPosition);

@@ -223,7 +223,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
                 while ( unitMoveIterator->hasNext() ) {
                     Point destination = unitMoveIterator->next();
                     if( target->onRange( destination , getAttackRange() )
-                        && gameState.isInvalidated( destination ) ) {
+                        && !gameState.isInvalidated( destination ) ) {
                         
                         gameState.addToInvalidated( destination );
                         Action* action = new Action;
@@ -255,10 +255,11 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
         
         for ( Building* building : targets ) {
             if( onRange( building->getPosition() , getMovement() )
-                && building->getOwnerID() != player->getId()
-                && gameState.isInvalidated( building->getPosition() ) ) {
+                && !building->isCaptured( player->getId() )
+                && !gameState.isInvalidated( building->getPosition() ) ) {
                 
                 gameState.addToInvalidated( building->getPosition() );
+
                 Action* action = new Action;
                 MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
                                                 building->getPosition() );

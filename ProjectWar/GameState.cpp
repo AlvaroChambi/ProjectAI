@@ -42,8 +42,8 @@ IPlayer* const GameState::getEnemy() {
 
 int GameState::getGameOverScore() {
     int gameScore = GameState::NOT_FINISHED;
-    bool playerHasCapturedHQ = player->hasCapturedHQ();
-    bool enemyHasCapturedHQ = enemy->hasCapturedHQ();
+    bool playerHasCapturedHQ = player->hasCapturedHQ( (Player*)enemy );
+    bool enemyHasCapturedHQ = enemy->hasCapturedHQ( (Player*)player );
     
     bool playerHasUnitAlive = player->hasUnitAlive();
     bool enemyHasUnitAlive = enemy->hasUnitAlive();

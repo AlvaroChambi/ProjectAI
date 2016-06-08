@@ -99,8 +99,8 @@ void Map::loadMap(Renderer* renderer, int width, int height)
     }
 }
 
-void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
-{
+void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
+                        Player* player, Player* opponent ) {
     Building* building = new Building();
     Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
     building->setCapturePoints(20);
@@ -124,6 +124,9 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer)
     building2->setCaptureValue(20);
     building2->setPosition(getTile(12,6));
     this->addBuilding(building2);
+    
+    player->setHeadquarter( building );
+    opponent->setHeadquarter( building2 );
     
     sprites.push_back(buildingSprite);
     sprites.push_back(buildingSprite2);

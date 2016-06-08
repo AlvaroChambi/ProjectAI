@@ -68,7 +68,7 @@ std::vector<Option*>* GameState::getMovesList( Player* player,
     std::vector<std::vector<Action*>*>* unitsActions =
         new std::vector<std::vector<Action*>*>;
     
-    
+    invalidatedPositions.clear();
     for ( Unit* unit : player->getAliveUnits() ) {
         std::vector<Action*>* unitActions =
             filterUnitActions( unit , player, opponent, TACTIC_POSSIBILITIES );
@@ -134,20 +134,23 @@ std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
     Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
                                                         (Map*)map, unit );
     while ( unitMoveIterator->hasNext() ) {
+        //TODO: Implement as a filter
         Point destination = unitMoveIterator->next();
-        Point start = unit->getPosition();
-        Point end = headquarter->getPosition();
-        int distance = start.distance( end );
-        int newDistance = destination.distance( end );
-        
-        MoveCommand* move = new MoveCommand( unit, map,
-                                             destination );
-        Action* action = new Action;
-        action->commands.push_back( move );
-        if( newDistance < distance ) {
-            preferedActions->push_back( action );
-        } else {
-            actions->push_back( action );
+        if( !isInvalidated( destination ) ) {
+            Point start = unit->getPosition();
+            Point end = headquarter->getPosition();
+            int distance = start.distance( end );
+            int newDistance = destination.distance( end );
+            
+            MoveCommand* move = new MoveCommand( unit, map,
+                                                 destination );
+            Action* action = new Action;
+            action->commands.push_back( move );
+            if( newDistance < distance ) {
+                preferedActions->push_back( action );
+            } else {
+                actions->push_back( action );
+            }
         }
     }
     
@@ -192,4 +195,15 @@ std::vector<Option*>& GameState::buildMovesList(
         return *options;
     }
     throw IllegalStateException( "Not legal actions provided" );
+}
+
+bool GameState::isInvalidated( Point position ) {
+    bool invalidated =
+    std::find( invalidatedPositions.begin(),
+              invalidatedPositions.end(),
+              position) != invalidatedPositions.end();
+    if( !invalidated ) {
+        invalidatedPositions.push_back( position );
+    }
+    return invalidated;
 }

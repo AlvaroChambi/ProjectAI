@@ -48,10 +48,12 @@ public:
     
     std::vector<Action*>* getBestUnitMoves( Building* headquarter,
                                             Unit* unit );
+    bool isInvalidated( Point position );
 private:
     IPlayer* const enemy;
     IPlayer* const player;
     IMap* map;
+    std::vector<Point> invalidatedPositions;
 };
 
 #endif /* defined(__ProjectWar__GameState__) */

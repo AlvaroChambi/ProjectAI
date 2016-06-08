@@ -148,6 +148,7 @@
 		9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
 		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; };
 		9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */; };
+		9CF366D01D089229005A2B18 /* UnitMovementFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF366CE1D089229005A2B18 /* UnitMovementFilterTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -341,6 +342,8 @@
 		9CF246471CFF8FCB00AF606D /* UnitFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFilter.h; sourceTree = "<group>"; };
 		9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AreaIteratorTest.cpp; sourceTree = "<group>"; };
 		9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilterTest.cpp; sourceTree = "<group>"; };
+		9CF366CE1D089229005A2B18 /* UnitMovementFilterTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitMovementFilterTest.cpp; sourceTree = "<group>"; };
+		9CF366D11D0892D3005A2B18 /* MockIterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockIterator.h; sourceTree = "<group>"; };
 		9CFF77771AD57F5F002EBE3F /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9CFF77781AD57F5F002EBE3F /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -396,6 +399,8 @@
 				55D24B661D00D5C300949485 /* HeuristicTest.cpp */,
 				9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */,
 				9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */,
+				9CF366CE1D089229005A2B18 /* UnitMovementFilterTest.cpp */,
+				9CF366D11D0892D3005A2B18 /* MockIterator.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -957,6 +962,7 @@
 				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
+				9CF366D01D089229005A2B18 /* UnitMovementFilterTest.cpp in Sources */,
 				55D24B671D00D5C300949485 /* HeuristicTest.cpp in Sources */,
 				3A0779E21CF49D2400B8C065 /* GameUI.cpp in Sources */,
 				3A0779E31CF49D2400B8C065 /* Layout.cpp in Sources */,

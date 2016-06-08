@@ -263,13 +263,14 @@ InfoTile& Map::getInfoTile(Point position)
 }
 
 bool Map::isValidPosition(Point position) {
-    bool result = false;
+    bool result = true;
     if ( position.x >= 0 && position.x < MAP_WIDTH
             && position.y >= 0 && position.y < MAP_HEIGHT ) {
         InfoTile tile = getInfoTile(position);
         
-        if ( tile.entity != UNIT_ENTITY ) {
-            result = true;
+        if ( tile.entity == UNIT_ENTITY
+             || tile.entity == UNIT_CAPTURING ) {
+            result = false;
         }
 
     } else {
@@ -418,7 +419,6 @@ void Map::moveUnit(Unit *unit, Point destination) {
         && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
         InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
         InfoTile* destinationTile = infoMap[destination.x][destination.y];
-        int ownerID = tile->ownerID;
         
         if( destinationTile->entity == BUILDING_ENTITY){
             updateInfoTileBuilding(unit, destination);

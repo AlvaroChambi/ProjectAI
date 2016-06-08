@@ -15,6 +15,7 @@
 #include "GameException.h"
 #include "UnitFilter.h"
 #include "AreaIterator.h"
+#include "GameState.h"
 
 Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
 {
@@ -204,7 +205,8 @@ std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
 }
 
 std::vector<Action*>* Unit::getAttackActions( IMap *map,
-                                             std::vector<Unit *> targets ) {
+                                             std::vector<Unit *> targets,
+                                             GameState& gameState ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* attackActions = new std::vector<Action*>;
         
@@ -220,7 +222,10 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
                 
                 while ( unitMoveIterator->hasNext() ) {
                     Point destination = unitMoveIterator->next();
-                    if( target->onRange( destination , getAttackRange() ) ) {
+                    if( target->onRange( destination , getAttackRange() )
+                        && gameState.isInvalidated( destination ) ) {
+                        
+                        gameState.addToInvalidated( destination );
                         Action* action = new Action;
                         MoveCommand* move =
                             new MoveCommand( this, map, destination );
@@ -243,13 +248,17 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
 }
 
 std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
-                                        std::vector<Building *> targets ) {
+                                        std::vector<Building *> targets,
+                                        GameState& gameState ) {
     if( map->isOnBounds( getPosition() ) ) {
         std::vector<Action*>* captureActions = new std::vector<Action*>;
         
         for ( Building* building : targets ) {
             if( onRange( building->getPosition() , getMovement() )
-                && building->getOwnerID() != player->getId() ) {
+                && building->getOwnerID() != player->getId()
+                && gameState.isInvalidated( building->getPosition() ) ) {
+                
+                gameState.addToInvalidated( building->getPosition() );
                 Action* action = new Action;
                 MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
                                                 building->getPosition() );

@@ -48,7 +48,12 @@ public:
     
     std::vector<Action*>* getBestUnitMoves( Building* headquarter,
                                             Unit* unit );
+    
+    std::vector<Point>& getBestUnitDestination( Building* headquarter,
+                                               Unit* unit );
+    
     bool isInvalidated( Point position );
+    void addToInvalidated( Point position );
 private:
     IPlayer* const enemy;
     IPlayer* const player;

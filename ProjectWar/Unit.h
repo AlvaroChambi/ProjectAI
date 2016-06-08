@@ -22,6 +22,7 @@
 #include "IMap.h"
 
 class Player;
+class GameState;
 enum UnitCommand
 {
     CANCEL,
@@ -75,9 +76,11 @@ public:
     
     std::vector<Action*>* getMoveActions( IMap* map );
     std::vector<Action*>* getAttackActions( IMap* map,
-                                           std::vector<Unit*> targets );
+                                           std::vector<Unit*> targets,
+                                           GameState& gameState );
     std::vector<Action*>* getCaptureActions( IMap* map, Player* player,
-                                            std::vector<Building*> targets );
+                                            std::vector<Building*> targets,
+                                            GameState& gameState );
 private:
     bool selected;
     bool active;

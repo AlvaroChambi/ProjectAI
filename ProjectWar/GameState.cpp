@@ -87,7 +87,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     std::vector<Action*>* actions = new std::vector<Action*>();
     
     std::vector<Action*>* capture =
-        unit->getCaptureActions( map, player, map->getBuildings() );
+        unit->getCaptureActions( map, player, map->getBuildings(), *this );
     if( !capture->empty() &&
         capture->size() <= numActions ) {
         actions->insert( actions->end(), capture->begin(), capture->end() );
@@ -99,7 +99,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     }
     
     std::vector<Action*>* attack =
-        unit->getAttackActions( map, opponent->getAliveUnits() );
+        unit->getAttackActions( map, opponent->getAliveUnits(), *this );
     
     if ( !attack->empty()
          && (attack->size() + addedActions) <=  numActions ) {
@@ -111,15 +111,55 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
         }
     }
     
-    std::vector<Action*>* moves = getBestUnitMoves(
+    std::vector<Point>& destinations = getBestUnitDestination(
                                         map->getBuildings().at(0), unit );
+    
     int pos = 0;
     for ( int i = addedActions; i < numActions; i++ ) {
+        Action* action = new Action;
+        MoveCommand* command = new MoveCommand( unit, map, destinations.at( pos ) );
+        invalidatedPositions.push_back( destinations.at( pos ) );
+        action->commands.push_back( command );
+        actions->push_back( action );
         pos++;
-        actions->push_back( moves->at( pos ) );
     }
     
     return actions;
+}
+
+std::vector<Point>& GameState::getBestUnitDestination( Building *headquarter,
+                                                      Unit *unit ) {
+    std::vector<Point>* result = new std::vector<Point>;
+    std::vector<Point>* preferedActions = new std::vector<Point>;
+    std::vector<Point>* actions = new std::vector<Point>;
+    
+    AreaIterator* areaIterator = new AreaIterator();
+    areaIterator->buildArea( unit->getPosition() , unit->getMovement(),
+                            MAP_WIDTH, MAP_HEIGHT );
+    Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
+                                                        (Map*)map, unit );
+    while ( unitMoveIterator->hasNext() ) {
+        //TODO: Implement as a filter
+        Point destination = unitMoveIterator->next();
+        if( !isInvalidated( destination ) ) {
+            Point start = unit->getPosition();
+            Point end = headquarter->getPosition();
+            int distance = start.distance( end );
+            int newDistance = destination.distance( end );
+            
+            if( newDistance < distance ) {
+                preferedActions->push_back( destination );
+            } else {
+                actions->push_back( destination );
+            }
+        }
+    }
+    
+    result->insert( result->end(), preferedActions->begin(),
+                   preferedActions->end() );
+    result->insert( result->end(), actions->begin(), actions->end() );
+    
+    return *result;
 }
 
 std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
@@ -202,8 +242,10 @@ bool GameState::isInvalidated( Point position ) {
     std::find( invalidatedPositions.begin(),
               invalidatedPositions.end(),
               position) != invalidatedPositions.end();
-    if( !invalidated ) {
-        invalidatedPositions.push_back( position );
-    }
+
     return invalidated;
+}
+
+void GameState::addToInvalidated( Point position ) {
+    invalidatedPositions.push_back( position );
 }

@@ -9,53 +9,47 @@
 #include "Player.h"
 #include "Map.h"
 
-Player::Player() : Model(), position(0,0), selectedUnit(nullptr),
-                    active(false), map(nullptr), type(HUMAN_PLAYER)
-{
+Player::Player()
+: Model(), position(0,0), selectedUnit(nullptr),
+active(false), map(nullptr), type(HUMAN_PLAYER),
+headquarter( nullptr ) {
     
 }
 
-Player::Player(int id) : Model(), position(0,0), selectedUnit(nullptr),
-                        active(false), map(nullptr)
-{
+Player::Player(int id)
+: Model(), position(0,0), selectedUnit(nullptr),
+active(false), map(nullptr), headquarter( nullptr ) {
     this->setid(id);
 }
 
-Player::~Player()
-{
+Player::~Player() {
 
 }
 
-void Player::setPosition(int x, int y)
-{
+void Player::setPosition(int x, int y) {
     position.x = x;
     position.y = y;
     this->notifyObservers(POSITION_UPDATE);
 }
 
-Point Player::getPosition()
-{
+Point Player::getPosition() {
     return position;
 }
 
-void Player::setTile(const Tile tile)
-{
+void Player::setTile(const Tile tile) {
     this->tile = tile;
     this->notifyObservers(POSITION_UPDATE);
 }
 
-Tile Player::getTile()
-{
+Tile Player::getTile() {
     return tile;
 }
 
-void Player::addUnit(Unit *unit)
-{
+void Player::addUnit(Unit *unit) {
     units.push_back(unit);
 }
 
-Unit* Player::getUnit(int id)
-{
+Unit* Player::getUnit(int id) {
     Unit* result = nullptr;
     for (Unit* unit : units) {
         if (unit->getId() == id) {
@@ -65,8 +59,7 @@ Unit* Player::getUnit(int id)
     return result;
 }
 
-std::list<Unit*>& Player::getUnitList()
-{
+std::list<Unit*>& Player::getUnitList() {
     return this->units;
 }
 
@@ -82,8 +75,7 @@ std::vector<Unit*>& Player::getAliveUnits() {
 
 //Update the unit selected flag and the player reference to the unit
 //nullptr if there isn't any unit selected
-void Player::setSelectedUnit(Unit *unit)
-{
+void Player::setSelectedUnit(Unit *unit) {
     if(unit != nullptr){
         unit->setSelected(true);
     }else{
@@ -94,61 +86,50 @@ void Player::setSelectedUnit(Unit *unit)
     
 }
 
-Unit* Player::getSelectedUnit()
-{
+Unit* Player::getSelectedUnit() {
     return selectedUnit;
 }
 
-State* Player::getState()
-{
+State* Player::getState() {
     return state;
 }
 
-void Player::setMap(Map *map)
-{
+void Player::setMap(Map *map) {
     this->map = map;
 }
 
-Map* Player::getMap()
-{
+Map* Player::getMap() {
     return map;
 }
 
-void Player::setType(PlayerType type)
-{
+void Player::setType(PlayerType type) {
     this->type = type;
 }
 
-PlayerType Player::getType()
-{
+PlayerType Player::getType() {
     return type;
 }
 
 //Update the player actual state and enter in it
-void Player::updateState(State *state)
-{
+void Player::updateState(State *state) {
     this->state = state;
     this->state->enter();
 }
 
-void Player::setState(State *state)
-{
+void Player::setState(State *state) {
     this->state = state;
 }
 
-void Player::setActive(bool active)
-{
+void Player::setActive(bool active) {
     this->active = active;
     this->notifyObservers(ACTIVE_UPDATE);
 }
 
-bool Player::isActive()
-{
+bool Player::isActive() {
     return active;
 }
 
-bool Player::hasUnit(int id)
-{
+bool Player::hasUnit(int id) {
     bool result = false;
     for (Unit* unit : units) {
         if(unit->getId() == id){
@@ -158,8 +139,7 @@ bool Player::hasUnit(int id)
     return result;
 }
 
-bool Player::hasUnitAlive()
-{
+bool Player::hasUnitAlive() {
     bool result = false;
     for (Unit* unit : units) {
         if (unit->getHP() > 0) {
@@ -169,20 +149,12 @@ bool Player::hasUnitAlive()
     return result;
 }
 
-bool Player::hasCapturedHQ()
-{
-    bool result = true;
-    for (Building* building : map->getBuildings()) {
-        if (building->getOwnerID() != getId() || building->getCaptureValue() < building->getCapturePoints()) {
-            //as soon as we find a build that isn't captured for the player set the flag to false
-            result = false;
-        }
-    }
-    return result;
+bool Player::hasCapturedHQ( Player* enemy ) {
+    Building* enemyHQ = enemy->getHeadquarter();
+    return enemyHQ->isCaptured( getId() );
 }
 
-void Player::populateInfoMap(InfoMap& infoMap)
-{
+void Player::populateInfoMap(InfoMap& infoMap) {
     //Maybe place this code in the Map
     for (Unit* unit : units) {
         Point position = unit->getPosition();
@@ -193,4 +165,12 @@ void Player::populateInfoMap(InfoMap& infoMap)
         tile->text->setTextResource("Unit: " + std::to_string(tile->ownerID)+"-"+std::to_string(tile->unitID));
         
     }
+}
+
+Building* Player::getHeadquarter() {
+    return headquarter;
+}
+
+void Player::setHeadquarter( Building *headquarter ) {
+    this->headquarter = headquarter;
 }

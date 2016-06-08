@@ -59,7 +59,8 @@ public:
     int getNumBuildings(int ownerId);
     std::vector<Building*>& getBuildings();
     
-    void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer);
+    void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
+                       Player* player, Player* opponent );
     
     //Initializes the values of the strategic info map
     void loadInfoMap( std::list<Player*> & players);

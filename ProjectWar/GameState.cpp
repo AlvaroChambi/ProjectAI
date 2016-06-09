@@ -159,6 +159,10 @@ std::vector<Point>& GameState::getBestUnitDestination( Building *headquarter,
                    preferedActions->end() );
     result->insert( result->end(), actions->begin(), actions->end() );
     
+    if( result->size() < 4 ) {
+        throw IllegalStateException( "Not enough destinations provided" );
+    }
+    
     return *result;
 }
 

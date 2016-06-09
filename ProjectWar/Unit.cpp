@@ -258,17 +258,31 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
                 && !building->isCaptured( player->getId() )
                 && !gameState.isInvalidated( building->getPosition() ) ) {
                 
-                gameState.addToInvalidated( building->getPosition() );
-
-                Action* action = new Action;
-                MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
-                                                building->getPosition() );
-                CaptureCommand* captureCommand = new CaptureCommand( player,
-                                                            this, building );
-                
-                action->commands.push_back( moveCommand );
-                action->commands.push_back( captureCommand );
-                captureActions->push_back( action );
+                if( getPosition() == building->getPosition() ) {
+                    gameState.addToInvalidated( building->getPosition() );
+                    
+                    Action* action = new Action;
+                    MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
+                                                               building->getPosition() );
+                    CaptureCommand* captureCommand = new CaptureCommand( player,
+                                                                        this, building );
+                    
+                    action->commands.push_back( moveCommand );
+                    action->commands.push_back( captureCommand );
+                    captureActions->push_back( action );
+                } else if ( map->isValidPosition( building->getPosition() ) ) {
+                    gameState.addToInvalidated( building->getPosition() );
+                    
+                    Action* action = new Action;
+                    MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
+                                                               building->getPosition() );
+                    CaptureCommand* captureCommand = new CaptureCommand( player,
+                                                                        this, building );
+                    
+                    action->commands.push_back( moveCommand );
+                    action->commands.push_back( captureCommand );
+                    captureActions->push_back( action );
+                }
             }
         }
         

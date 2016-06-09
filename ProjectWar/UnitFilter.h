@@ -17,16 +17,10 @@ class UnitMovementFilter : public IteratorFilter {
 public:
     UnitMovementFilter( Iterator* filter, IMap* map, Unit* unit );
     
-    bool isInvalidated( Point position );
     bool isValid( Point position );
-    
-    std::vector<Point>& getInvalidatedPositions();
-    void setInvalidatedPositions(
-                        std::vector<Point>& invalidatedPositions );
 private:
     Map* map;
     Unit* unit;
-    std::vector<Point> invalidatedPositions;
 };
 
 #endif /* UnitMovementFilter_h */

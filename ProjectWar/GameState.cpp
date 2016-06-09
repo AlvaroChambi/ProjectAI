@@ -116,12 +116,14 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     
     int pos = 0;
     for ( int i = addedActions; i < numActions; i++ ) {
-        Action* action = new Action;
-        MoveCommand* command = new MoveCommand( unit, map, destinations.at( pos ) );
-        invalidatedPositions.push_back( destinations.at( pos ) );
-        action->commands.push_back( command );
-        actions->push_back( action );
-        pos++;
+        if( destinations.size() > pos ) {
+            Action* action = new Action;
+            MoveCommand* command = new MoveCommand( unit, map, destinations.at( pos ) );
+            invalidatedPositions.push_back( destinations.at( pos ) );
+            action->commands.push_back( command );
+            actions->push_back( action );
+            pos++;
+        }
     }
     
     return actions;
@@ -158,10 +160,6 @@ std::vector<Point>& GameState::getBestUnitDestination( Building *headquarter,
     result->insert( result->end(), preferedActions->begin(),
                    preferedActions->end() );
     result->insert( result->end(), actions->begin(), actions->end() );
-    
-    if( result->size() < 4 ) {
-        throw IllegalStateException( "Not enough destinations provided" );
-    }
     
     return *result;
 }
@@ -230,8 +228,10 @@ std::vector<Option*>& GameState::buildMovesList(
         for( std::vector<int> sentence : tacticMovements ) {
             Movement* movement = new Movement;
             for( int i = 0; i < numUnits; i++ ) {
-                Action* action = actions.at( i )->at( sentence.at( i ) );
-                movement->actions.push_back( action );
+                if( actions.at( i )->size() > sentence.at( i ) ) {
+                    Action* action = actions.at( i )->at( sentence.at( i ) );
+                    movement->actions.push_back( action );
+                }
             }
             options->push_back( movement );
         }

@@ -116,12 +116,15 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     
     int pos = 0;
     for ( int i = addedActions; i < numActions; i++ ) {
-        Action* action = new Action;
-        MoveCommand* command = new MoveCommand( unit, map, destinations.at( pos ) );
-        invalidatedPositions.push_back( destinations.at( pos ) );
-        action->commands.push_back( command );
-        actions->push_back( action );
-        pos++;
+        if( destinations.size() > pos ) {
+            Action* action = new Action;
+            MoveCommand* command =
+                new MoveCommand( unit, map, destinations.at( pos ) );
+            invalidatedPositions.push_back( destinations.at( pos ) );
+            action->commands.push_back( command );
+            actions->push_back( action );
+            pos++;
+        }
     }
     
     return actions;
@@ -162,44 +165,6 @@ std::vector<Point>& GameState::getBestUnitDestination( Building *headquarter,
     return *result;
 }
 
-std::vector<Action*>* GameState::getBestUnitMoves( Building *headquarter,
-                                                   Unit* unit ) {
-    std::vector<Action*>* result = new std::vector<Action*>;
-    std::vector<Action*>* preferedActions = new std::vector<Action*>;
-    std::vector<Action*>* actions = new std::vector<Action*>;
-    
-    AreaIterator* areaIterator = new AreaIterator();
-    areaIterator->buildArea( unit->getPosition() , unit->getMovement(),
-                            MAP_WIDTH, MAP_HEIGHT );
-    Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
-                                                        (Map*)map, unit );
-    while ( unitMoveIterator->hasNext() ) {
-        //TODO: Implement as a filter
-        Point destination = unitMoveIterator->next();
-        if( !isInvalidated( destination ) ) {
-            Point start = unit->getPosition();
-            Point end = headquarter->getPosition();
-            int distance = start.distance( end );
-            int newDistance = destination.distance( end );
-            
-            MoveCommand* move = new MoveCommand( unit, map,
-                                                 destination );
-            Action* action = new Action;
-            action->commands.push_back( move );
-            if( newDistance < distance ) {
-                preferedActions->push_back( action );
-            } else {
-                actions->push_back( action );
-            }
-        }
-    }
-    
-    result->insert( result->end(), preferedActions->begin(),
-                    preferedActions->end() );
-    result->insert( result->end(), actions->begin(), actions->end() );
-    return result;
-}
-
 void GameState::generateTacticSequence( std::vector<std::vector<int>> *sequence,
                                        int numElements, std::vector<int> variation,
                                        int count ) {
@@ -226,8 +191,10 @@ std::vector<Option*>& GameState::buildMovesList(
         for( std::vector<int> sentence : tacticMovements ) {
             Movement* movement = new Movement;
             for( int i = 0; i < numUnits; i++ ) {
-                Action* action = actions.at( i )->at( sentence.at( i ) );
-                movement->actions.push_back( action );
+                if( actions.at( i )->size() > sentence.at( i ) ) {
+                    Action* action = actions.at( i )->at( sentence.at( i ) );
+                    movement->actions.push_back( action );
+                }
             }
             options->push_back( movement );
         }

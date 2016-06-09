@@ -81,6 +81,10 @@ public:
     std::vector<Action*>* getCaptureActions( IMap* map, Player* player,
                                             std::vector<Building*> targets,
                                             GameState& gameState );
+    
+    void addCaptureCommand( GameState& gameState, Building* building,
+                            IMap* map, std::vector<Action*>* captureActions,
+                            Player* player );
 private:
     bool selected;
     bool active;

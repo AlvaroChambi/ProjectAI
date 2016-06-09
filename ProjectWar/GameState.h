@@ -46,9 +46,6 @@ public:
                                              Player* opponent,
                                              int numActions );
     
-    std::vector<Action*>* getBestUnitMoves( Building* headquarter,
-                                            Unit* unit );
-    
     std::vector<Point>& getBestUnitDestination( Building* headquarter,
                                                Unit* unit );
     

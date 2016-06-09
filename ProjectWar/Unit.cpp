@@ -258,17 +258,13 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
                 && !building->isCaptured( player->getId() )
                 && !gameState.isInvalidated( building->getPosition() ) ) {
                 
-                gameState.addToInvalidated( building->getPosition() );
-
-                Action* action = new Action;
-                MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
-                                                building->getPosition() );
-                CaptureCommand* captureCommand = new CaptureCommand( player,
-                                                            this, building );
-                
-                action->commands.push_back( moveCommand );
-                action->commands.push_back( captureCommand );
-                captureActions->push_back( action );
+                if( getPosition() == building->getPosition() ) {
+                    addCaptureCommand( gameState, building, map,
+                                      captureActions, player );
+                } else if ( map->isValidPosition( building->getPosition() ) ) {
+                    addCaptureCommand( gameState, building, map,
+                                       captureActions, player );
+                }
             }
         }
         
@@ -279,7 +275,22 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
     }
 }
 
-void Unit::updateState()
-{
+void Unit::addCaptureCommand( GameState &gameState, Building *building,
+                             IMap *map, std::vector<Action *> *captureActions,
+                             Player* player ) {
+    gameState.addToInvalidated( building->getPosition() );
+    
+    Action* action = new Action;
+    MoveCommand* moveCommand = new MoveCommand( this, (Map*)map,
+                                               building->getPosition() );
+    CaptureCommand* captureCommand = new CaptureCommand( player,
+                                                        this, building );
+    
+    action->commands.push_back( moveCommand );
+    action->commands.push_back( captureCommand );
+    captureActions->push_back( action );
+}
+
+void Unit::updateState() {
     this->notifyObservers(STATE_UPDATE);
 }

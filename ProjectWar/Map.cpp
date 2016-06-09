@@ -440,6 +440,16 @@ void Map::moveUnit(Unit *unit, Point destination) {
     }
 }
 
+int Map::getOwnerIdInfoMap(Unit* unit){
+    return infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID;
+}
+
+void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID){
+    infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID = savedOwnerID;
+    infoMap[unit->getPosition().x][unit->getPosition().y]->entity = UNIT_ENTITY;
+    infoMap[unit->getPosition().x][unit->getPosition().y]->text->setVisible(true);
+}
+
 
 void Map::removeUnit(Unit *unit)
 {

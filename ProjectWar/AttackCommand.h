@@ -27,6 +27,10 @@ private:
     Map* map;
     int savedUnitHP;
     int savedTargetHP;
+    int savedOwnerIDUnit;
+    int savedOwnerIDTarget;
+    Point positionUnit;
+    Point positionTarget;
     
     void updateHP(Unit* attacker, Unit* attacked);
 };

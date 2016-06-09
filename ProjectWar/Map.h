@@ -75,6 +75,9 @@ public:
     void updateInfoTileUnitCapturing(Unit* unit, Point destination);
     void updateInfoTile(Unit* unit, Point destination);
     
+    int getOwnerIdInfoMap(Unit* unit);
+    void restoreTileInfoMap(Unit* unit, int savedOwnerID);
+    
     void removeUnit(Unit* unit); //removes unit from the info map
     
     Path* getPath(Point origin, Point destination);

@@ -76,7 +76,8 @@ public:
     void updateInfoTile(Unit* unit, Point destination);
     
     int getOwnerIdInfoMap(Unit* unit);
-    void restoreTileInfoMap(Unit* unit, int savedOwnerID);
+    void restoreTileInfoMap(Unit* unit, int savedOwnerID,
+                            Entity savedEntity);
     
     void removeUnit(Unit* unit); //removes unit from the info map
     

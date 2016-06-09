@@ -31,6 +31,9 @@ private:
     InfoTile savedTargetTile;
     InfoTile savedUnitTile;
     
+    Entity savedUnitEntity;
+    Entity savedTargetEntity;
+    
     int savedOwnerIDUnit;
     int savedOwnerIDTarget;
     Point positionUnit;

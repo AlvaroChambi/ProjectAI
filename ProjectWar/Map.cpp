@@ -444,10 +444,10 @@ int Map::getOwnerIdInfoMap(Unit* unit){
     return infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID;
 }
 
-void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID){
+void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID, Entity savedEntity){
     InfoTile* destinationTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     destinationTile->ownerID = savedOwnerID;
-    destinationTile->entity = UNIT_ENTITY;
+    destinationTile->entity = savedEntity;
     destinationTile->text->setVisible(true);
 }
 

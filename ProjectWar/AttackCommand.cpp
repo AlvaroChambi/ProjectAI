@@ -10,24 +10,22 @@
 #include "Map.h"
 
 AttackCommand::AttackCommand(Unit* unit, Unit* targetUnit, Map* map)
-: unit(unit), targetUnit(targetUnit), map( map )
-{
+: unit(unit), targetUnit(targetUnit), map( map ) {
     this->savedUnitHP = unit->getHP();
     this->savedTargetHP = targetUnit->getHP();
     
-    this->savedOwnerIDUnit = map->getOwnerIdInfoMap( unit );
-    this->positionUnit = unit->getPosition();
-    this->positionTarget = targetUnit->getPosition();
-    this->savedOwnerIDTarget = map->getOwnerIdInfoMap( targetUnit );
+    this->savedOwnerIDUnit = map->getInfoTile( unit->getPosition() ).ownerID;
+    this->savedOwnerIDTarget = map->getInfoTile( targetUnit->getPosition() ).ownerID;
+    
+    this->savedUnitEntity = map->getInfoTile( unit->getPosition() ).entity;
+    this->savedTargetEntity = map->getInfoTile( targetUnit->getPosition() ).entity;
 }
 
-AttackCommand::~AttackCommand()
-{
+AttackCommand::~AttackCommand() {
 
 }
 
 void AttackCommand::execute() {
-    std::cout << "              executing attack command\n";
     updateHP(unit, targetUnit);
     if (targetUnit->getHP() < 0) {
         targetUnit->setHP(0);
@@ -41,20 +39,16 @@ void AttackCommand::execute() {
         unit->setHP(0);
         unit->updateState();
         map->removeUnit( unit );
-
-       
     }
       
 }
 
 void AttackCommand::cancel() {
-    std::cout << "              cancelling attack command\n";
     unit->setHP(savedUnitHP);
     targetUnit->setHP(savedTargetHP);
-    
 
-    map->restoreTileInfoMap(unit, savedOwnerIDUnit);
-    map->restoreTileInfoMap(targetUnit, savedOwnerIDTarget);
+    map->restoreTileInfoMap(unit, savedOwnerIDUnit, savedUnitEntity);
+    map->restoreTileInfoMap(targetUnit, savedOwnerIDTarget, savedTargetEntity);
     unit->updateState();
     targetUnit->updateState();
 }

@@ -348,7 +348,7 @@ void Map::checkNearEntities(Unit *unit, std::list<UnitCommand>& commands)
             }
         }
     }
-    if (unitTile->entity == BUILDING_ENTITY) {
+    if (unitTile->entity == BUILDING_ENTITY || unitTile->entity == UNIT_CAPTURING) {
         commands.push_back(CAPTURE);
     }
 }

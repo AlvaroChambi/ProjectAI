@@ -31,8 +31,6 @@ void AttackCommand::execute() {
         targetUnit->setHP(0);
         targetUnit->updateState();
         map->removeUnit( targetUnit );
-
-
     }
     updateHP(targetUnit, unit);
     if (unit->getHP() < 0) {

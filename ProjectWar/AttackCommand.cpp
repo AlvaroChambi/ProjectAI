@@ -51,6 +51,8 @@ void AttackCommand::cancel() {
     std::cout << "              cancelling attack command\n";
     unit->setHP(savedUnitHP);
     targetUnit->setHP(savedTargetHP);
+    
+
     map->restoreTileInfoMap(unit, savedOwnerIDUnit);
     map->restoreTileInfoMap(targetUnit, savedOwnerIDTarget);
     unit->updateState();

@@ -445,11 +445,11 @@ int Map::getOwnerIdInfoMap(Unit* unit){
 }
 
 void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID){
-    infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID = savedOwnerID;
-    infoMap[unit->getPosition().x][unit->getPosition().y]->entity = UNIT_ENTITY;
-    infoMap[unit->getPosition().x][unit->getPosition().y]->text->setVisible(true);
+    InfoTile* destinationTile = infoMap[unit->getPosition().x][unit->getPosition().y];
+    destinationTile->ownerID = savedOwnerID;
+    destinationTile->entity = UNIT_ENTITY;
+    destinationTile->text->setVisible(true);
 }
-
 
 void Map::removeUnit(Unit *unit)
 {

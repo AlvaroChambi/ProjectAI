@@ -23,7 +23,8 @@ void Action::execute() {
 }
 
 void Action::cancel() {
-    for ( Command* command : commands ) {
-        command->cancel();
+    int i;
+    for (i=commands.size()-1; i>=0; i--){
+        commands.at(i)->cancel();
     }
 }

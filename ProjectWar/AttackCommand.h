@@ -27,6 +27,10 @@ private:
     Map* map;
     int savedUnitHP;
     int savedTargetHP;
+    
+    InfoTile savedTargetTile;
+    InfoTile savedUnitTile;
+    
     int savedOwnerIDUnit;
     int savedOwnerIDTarget;
     Point positionUnit;

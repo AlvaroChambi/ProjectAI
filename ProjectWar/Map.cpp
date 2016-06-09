@@ -420,19 +420,21 @@ void Map::moveUnit(Unit *unit, Point destination) {
     //if unit has a valid position
     if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
         && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
-        InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-        InfoTile* destinationTile = infoMap[destination.x][destination.y];
-        
-        if( destinationTile->entity == BUILDING_ENTITY){
-            updateInfoTileBuilding(unit, destination);
-        }
-        
-        else if( tile->entity == UNIT_CAPTURING){
-            updateInfoTileUnitCapturing(unit, destination);
-        }
-        
-        else{
-            updateInfoTile(unit, destination);
+        if( unit->getPosition() != destination ) {
+            InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
+            InfoTile* destinationTile = infoMap[destination.x][destination.y];
+            
+            if( destinationTile->entity == BUILDING_ENTITY){
+                updateInfoTileBuilding(unit, destination);
+            }
+            
+            else if( tile->entity == UNIT_CAPTURING){
+                updateInfoTileUnitCapturing(unit, destination);
+            }
+            
+            else{
+                updateInfoTile(unit, destination);
+            }
         }
     } else {
         throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
@@ -451,13 +453,19 @@ void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID, Entity savedEntity){
     destinationTile->text->setVisible(true);
 }
 
-void Map::removeUnit(Unit *unit)
-{
+void Map::removeUnit(Unit *unit) {
     if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
        && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
         
         InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
-        unitTile->cleanTile();
+        Building* building = getBuilding( unit->getPosition() );
+        
+        if( unitTile->entity == UNIT_CAPTURING ) {
+            unitTile->entity = BUILDING_ENTITY;
+            unitTile->ownerID = building->getOwnerID();
+        } else {
+            unitTile->cleanTile();
+        }
     } else {
         throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
                                        MAP_WIDTH, MAP_HEIGHT );

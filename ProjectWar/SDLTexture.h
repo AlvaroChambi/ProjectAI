@@ -11,7 +11,11 @@
 
 #include <stdio.h>
 #include "Texture.h"
+#ifdef __APPLE__
 #include <SDL2/SDL.h>
+#else
+#include <SDL.h>
+#endif
 
 class SDLTexture : public Texture
 {

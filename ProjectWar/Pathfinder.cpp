@@ -8,6 +8,7 @@
 
 #include "Pathfinder.h"
 #include <set>
+#include <string>
 
 Pathfinder::Pathfinder()
 {

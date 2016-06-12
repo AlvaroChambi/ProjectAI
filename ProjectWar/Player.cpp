@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Map.h"
+#include <string>
 
 Player::Player()
 : Model(), position(0,0), selectedUnit(nullptr),

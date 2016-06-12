@@ -12,16 +12,17 @@
 #include "Tile.h"
 #include "Sprite.h"
 #include "UIComponent.h"
+#include <Texture.h>
 
 class IGameEventsListener
 {
 public:
-    virtual void onTextureClicked(const Texture texture) = 0;
+    virtual void onTextureClicked(const Texture* texture) = 0;
     virtual void onSpriteClicked(const int id) = 0;
     virtual void onSceneClicked(const Point position) = 0;
     virtual void onMapClicked(const Tile tile) = 0;
     
-    virtual void onUIComponentClicked(UIComponent component) = 0;
+    virtual void onUIComponentClicked(UIComponent* component) = 0;
 };
 
 #endif

@@ -94,7 +94,7 @@ void Scene::handleEvent(const Event event)
                 for (Texture* texture : textureList) {
                     //if clicked position match with the given texture area notify event
                     if(texture->matchPosition(position) && texture->isVisible()){
-                        eventsListener->onTextureClicked(*texture);
+                        eventsListener->onTextureClicked(texture);
                         eventHandled = true;
                     }
                 }
@@ -109,7 +109,7 @@ void Scene::handleEvent(const Event event)
                 
                 UIComponent* component = rootLayout->matchEvent(position);
                 if(component != nullptr){
-                    eventsListener->onUIComponentClicked(*component);
+                    eventsListener->onUIComponentClicked(component);
                 }
                 
                 if(!eventHandled){

@@ -69,25 +69,25 @@ Unit* ProjectAI::getUnit(int id)
     return unit;
 }
 
-void ProjectAI::onTextureClicked(const Texture texture)
+void ProjectAI::onTextureClicked(const Texture* texture)
 {
     //TODO implement
 }
 
-void ProjectAI::onUIComponentClicked(UIComponent component)
+void ProjectAI::onUIComponentClicked(UIComponent* component)
 {
-    switch (component.getID()) {
+    switch (component->getID()) {
         case END_BUTTON:
             //Pass the next player the turn
             activePlayer = this->nextPlayer();
             if (activePlayer->getType() == AI_PLAYER) {
                 PlayerAI* playerAI = (PlayerAI*)activePlayer;
                 playerAI->play();
-                this->onUIComponentClicked(*new Button(END_BUTTON));
+                this->onUIComponentClicked(new Button(END_BUTTON));
             }
             break;
         default:
-            playerController->onUIEventReceived(component.getID());
+            playerController->onUIEventReceived(component->getID());
             break;
     }
 }
@@ -124,16 +124,6 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     playerSprite->resize(40, 40);
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
-    /*
-    Player* player2 = new Player(1);
-    Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
-    playerSprite2->setModel(player2);
-    Texture* texture2 = renderer->loadTexture("target_tile_white.png");
-    texture2->setVisible(false);
-    playerSprite2->setTexture(texture2);
-    playerSprite2->resize(40, 40);
-    texture2->setPosition(map->getAbsolutePosition(3,8));
-    player2->setMap(map);*/
     
     PlayerAI* player2 = new PlayerAI(1, scene ,renderer);
     player2->setPlayerList(&players);

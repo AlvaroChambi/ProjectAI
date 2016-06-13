@@ -24,10 +24,10 @@ public:
     ProjectAI();
     virtual ~ProjectAI();
     void onSceneClicked(const Point position);
-    void onTextureClicked(const Texture texture);
+    void onTextureClicked(const Texture* texture);
     void onMapClicked(const Tile tile);
     void onSpriteClicked(const int id);
-    void onUIComponentClicked(UIComponent component);
+    void onUIComponentClicked(UIComponent* component);
     
     void onGameStarted(Scene* scene, Renderer* renderer);
     

@@ -7,6 +7,7 @@
 //
 
 #include "UnitView.h"
+#include <string>
 
 UnitView::UnitView() : Sprite()
 {

@@ -7,6 +7,7 @@
 //
 
 #include "BuildingView.h"
+#include <string>
 
 BuildingView::BuildingView() : Sprite(), building(nullptr)
 {

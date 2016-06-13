@@ -12,6 +12,8 @@
 #include "Path.h"
 #include "DotPath.h"
 #include "GameMinimax.h"
+#include <stdio.h>
+#include <chrono>
 
 PlayerAI::PlayerAI() : Player(), playersList(nullptr)
 {

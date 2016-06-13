@@ -260,8 +260,7 @@ void Map::hideTile(Point position)
     tile->getTexture()->setVisible(false);
 }
 
-InfoTile& Map::getInfoTile(Point position)
-{
+InfoTile& Map::getInfoTile(Point position) {
     return *infoMap[position.x][position.y];
 }
 
@@ -269,7 +268,7 @@ bool Map::isValidPosition(Point position) {
     bool result = true;
     if ( position.x >= 0 && position.x < MAP_WIDTH
             && position.y >= 0 && position.y < MAP_HEIGHT ) {
-        InfoTile tile = getInfoTile(position);
+        InfoTile& tile = getInfoTile(position);
         
         if ( tile.entity == UNIT_ENTITY
              || tile.entity == UNIT_CAPTURING ) {

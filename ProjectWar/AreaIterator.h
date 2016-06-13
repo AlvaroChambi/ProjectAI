@@ -17,7 +17,7 @@ public:
     AreaIterator();
     ~AreaIterator();
     
-    void buildArea( Point origin, int range,
+    void buildArea( Point& origin, int range,
                     int maxWidth, int maxHeight );
     void setArea( std::pair<Point, Point>* area  );
     std::pair<Point,Point>* getArea();
@@ -25,14 +25,13 @@ public:
     int getCurrentPosition();
     void setCurrentPosition( int currentPosition );
     
-    Point* nextPosition();
+    bool nextPosition();
     bool hasNext();
-    Point next();
-    bool isValid( Point position );
+    const Point& next();
+    bool isValid( Point& position );
     
 private:
     int currentPosition;
-    
     bool hasCached;
     Point cached;
     

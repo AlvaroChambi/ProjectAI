@@ -14,8 +14,8 @@
 class Iterator {
 public:
     virtual bool hasNext() = 0;
-    virtual Point next() = 0;
-    virtual bool isValid( Point position ) = 0;
+    virtual const Point& next() = 0;
+    virtual bool isValid( Point& position ) = 0;
 };
 
 #endif

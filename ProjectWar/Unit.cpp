@@ -181,7 +181,7 @@ std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
         std::vector<Action*>* moveActions = new std::vector<Action*>;
         
         AreaIterator* areaIterator = new AreaIterator();
-        areaIterator->buildArea( getPosition() , getMovement(),
+        areaIterator->buildArea( tile.position , getMovement(),
                                 MAP_WIDTH, MAP_HEIGHT );
         Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
                                                              (Map*)map, this );
@@ -214,7 +214,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
         for ( Unit* target : targets ) {
             if( this->onRange( target->getPosition() , range ) ) {
                 AreaIterator* areaIterator = new AreaIterator;
-                areaIterator->buildArea( getPosition(),
+                areaIterator->buildArea( tile.position,
                                          getMovement(),
                                          MAP_WIDTH, MAP_HEIGHT );
                 Iterator* unitMoveIterator =

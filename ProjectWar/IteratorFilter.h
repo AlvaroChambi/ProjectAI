@@ -16,7 +16,7 @@ class IteratorFilter : public Iterator {
 public:
     IteratorFilter( Iterator* iterator );
     bool hasNext();
-    Point next();
+    const Point& next();
 protected:
     Iterator* iterator;
     

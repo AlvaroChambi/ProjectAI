@@ -11,23 +11,23 @@
 
 AreaIterator::AreaIterator()
 : currentPosition( 0 ), hasCached( false ), area( nullptr ) {
-
+    
 }
 
 AreaIterator::~AreaIterator() {
-
+    delete area;
 }
 
-bool AreaIterator::isValid( Point position ) {
+bool AreaIterator::isValid( Point& position ) {
     //All values are considered valid for the main iterator
     return true;
 }
 
-void AreaIterator::buildArea( Point position,
-                             int range, int maxWidth, int maxHeight ) {
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>();
-    Point start, end;
+void AreaIterator::buildArea( Point& position,
+                              int range, int maxWidth, int maxHeight ) {
     if( position.isValid( maxWidth , maxHeight ) && range > 0 ) {
+        area = new std::pair<Point, Point>;
+        Point start, end;
         start.x = position.x - range;
         start.y = position.y - range;
         if( start.x < 0 ) {
@@ -45,15 +45,14 @@ void AreaIterator::buildArea( Point position,
         if( end.y >= maxHeight ) {
             end.y = maxHeight - 1;
         }
-        boundingArea->first = start;
-        boundingArea->second = end;
-        setArea( boundingArea );
+        area->first = start;
+        area->second = end;
     } else {
-        throw IllegalStateException( "Not valid position or movement provided" );
+        throw IllegalStateException( "Not valid position or range provided" );
     }
 }
 
-void AreaIterator::setArea( std::pair<Point, Point> *area ) {
+void AreaIterator::setArea( std::pair<Point, Point>* area ) {
     this->area = area;
 }
 
@@ -69,23 +68,21 @@ void AreaIterator::setCurrentPosition( int currentPosition ) {
     this->currentPosition = currentPosition;
 }
 
-Point* AreaIterator::nextPosition() {
-    if( area != nullptr
-        &&  area->first.isValid() && area->second.isValid() ) {
-        Point start = area->first;
-        Point end = area->second;
-        int width = end.x - start.x + 1;
-        int height = end.y - start.y + 1;
-        
-        if( currentPosition < width * height ) {
-            Point offset( currentPosition % width, currentPosition / width );
-            currentPosition++;
-            return new Point( start.x + offset.x, start.y + offset.y );
-        }
-        return nullptr;
-    }
+bool AreaIterator::nextPosition() {
+    Point start = area->first;
+    Point end = area->second;
+    int width = end.x - start.x + 1;
+    int height = end.y - start.y + 1;
     
-    throw IllegalStateException( "Area malformed or not defined yet" );
+    if( currentPosition < width * height ) {
+        int offsetX = currentPosition % width;
+        int offsetY = currentPosition / width;
+        currentPosition++;
+        cached.x = start.x + offsetX;
+        cached.y = start.y + offsetY;
+        return true;
+    }
+    return false;
 }
 
 bool AreaIterator::hasNext() {
@@ -93,24 +90,22 @@ bool AreaIterator::hasNext() {
         return true;
     }
     
-    Point* position = nextPosition();
-    if( position != nullptr ) {
+    if( nextPosition() ) {
         hasCached = true;
-        cached = *position;
         return true;
     }
     
     return false;
 }
 
-Point AreaIterator::next() {
+const Point& AreaIterator::next() {
     if ( hasCached ) {
         hasCached = false;
         return cached;
     }
-    Point* position = nextPosition();
-    if( position != nullptr ) {
-        return *position;
+
+    if( nextPosition() ) {
+        return cached;
     }
 
     Point start = area->first;

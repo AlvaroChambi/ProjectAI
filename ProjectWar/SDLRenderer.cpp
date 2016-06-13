@@ -7,6 +7,8 @@
 //
 
 #include "SDLRenderer.h"
+#include <iostream>
+#include <string>
 
 SDLRenderer::SDLRenderer() : sdlWindow(nullptr), sdlRenderer(nullptr), sdlFont(nullptr)
 {
@@ -53,7 +55,7 @@ void SDLRenderer::init()
     }
     
     //Open the font
-    sdlFont = TTF_OpenFont( "/Library/Fonts/AppleGothic.ttf", 10);
+    sdlFont = TTF_OpenFont( "OpenSans-Regular.ttf", 10);
     if( sdlFont == nullptr )
     {
         printf( "Failed to load font! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -67,7 +69,7 @@ Texture* SDLRenderer::loadTexture(std::string resource)
 
     SDL_Surface* pTempSurface = IMG_Load(resource.c_str());
     if(pTempSurface == 0){
-        std::cout << "surface creation failed: resource: " << resource <<"\n";
+        std::cout << "surface creation failed: resource: " << resource <<"\n" << IMG_GetError();
     }
     
     SDL_Texture* m_pTexture = SDL_CreateTextureFromSurface(sdlRenderer,

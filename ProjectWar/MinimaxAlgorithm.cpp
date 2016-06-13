@@ -1,5 +1,7 @@
 
 #include "MinimaxAlgorithm.hpp"
+#include <stdio.h>
+#include <algorithm>
 
 MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax )
 : miniMax( minimax ), bestMove( nullptr ), graphLogger( nullptr ) {

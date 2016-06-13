@@ -61,6 +61,7 @@
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
+		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
 		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
 		5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CF1CDA701900DD8F3D /* soldier_red.png */; };
@@ -148,7 +149,7 @@
 		9CF246461CFF8F9200AF606D /* UnitFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246441CFF8F9200AF606D /* UnitFilter.cpp */; };
 		9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246481D00AA6F00AF606D /* AreaIteratorTest.cpp */; };
 		9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2464A1D00CC5500AF606D /* IteratorFilterTest.cpp */; };
-		9CF366D01D089229005A2B18 /* UnitMovementFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF366CE1D089229005A2B18 /* UnitMovementFilterTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CF366D01D089229005A2B18 /* UnitMovementFilterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF366CE1D089229005A2B18 /* UnitMovementFilterTest.cpp */; };
 		9CFF77791AD57F5F002EBE3F /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF77771AD57F5F002EBE3F /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
@@ -883,6 +884,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */,
 				55966F441ADC161400B36FA8 /* building.png in Resources */,
 				9C0A5A781AC1E9AF00BF793E /* sprites.bmp in Resources */,
 				5567C0D01CDA701900DD8F3D /* soldier_red.png in Resources */,

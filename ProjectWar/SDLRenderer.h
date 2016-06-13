@@ -10,9 +10,16 @@
 #define __ProjectWar__SDLRenderer__
 
 #include <stdio.h>
+#ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_ttf/SDL_ttf.h>
 #include <SDL2_image/SDL_image.h>
+#else
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#endif
+
 #include "Renderer.h"
 #include "SDLTexture.h"
 

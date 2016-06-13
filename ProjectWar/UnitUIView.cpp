@@ -71,6 +71,7 @@ void UnitUIView::updateComponents()
                 button->setImageResource("capture_button.png");
                 break;
             default:
+				button = nullptr;
                 break;
         }
         button->setParams(Params(60,40,CENTER));

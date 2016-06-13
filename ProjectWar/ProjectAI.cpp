@@ -37,19 +37,14 @@ void ProjectAI::onSpriteClicked(const int id)
     //(unitClicked, oppositeUnitClicked, building clicked, etc...)
     //playerController->onUnitClicked(id);
     switch (this->getPlayerEvent(id)) {
-        case UNIT_CLICKED:
-        {
-            if(!playerController->getUnitCurrentlyClicked()){
-                //TODO Control if an unit has moved already
-                    Unit* unit = activePlayer->getSelectedUnit();
-                    
-                    //Updating unit ui reference to the new selected unit
-                    if(unit == nullptr || unit->getId() != id){
-                        layout->setModel(activePlayer->getUnit(id));
-                    }
-                    playerController->onUnitClicked(id);
-                
+        case UNIT_CLICKED: {
+            Unit* unit = activePlayer->getSelectedUnit();
+            
+            //Updating unit ui reference to the new selected unit
+            if(unit == nullptr || unit->getId() != id){
+                layout->setModel(activePlayer->getUnit(id));
             }
+            playerController->onUnitClicked(id);
         }
             break;
         case ENEMY_UNIT_CLICKED:

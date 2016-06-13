@@ -20,7 +20,7 @@
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
-const int TACTIC_POSSIBILITIES = 2;
+const int TACTIC_POSSIBILITIES = 3;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )

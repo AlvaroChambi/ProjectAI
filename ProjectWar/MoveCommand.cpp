@@ -33,7 +33,6 @@ void MoveCommand::execute() {
     }
     if( unit->onRange( destination.position , unit->getMovement() ) ) {
         executed = true;
-        map->cleanUnitAvailableArea(unit);
         map->moveUnit(unit, destination.position);
         unit->setPosition(destination);
     }else {

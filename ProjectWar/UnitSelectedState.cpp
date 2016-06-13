@@ -59,6 +59,7 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             
             if (unit->canReach(position.position)) {
                 Command* moveCommand = new MoveCommand(unit, player->getMap(), position.position);
+                player->getMap()->cleanUnitAvailableArea(unit);
                 //Always move before getting in the new state
                 moveCommand->execute();
                 player->updateState(new OnMoveState(player, player->getState(), moveCommand));

@@ -298,7 +298,6 @@ void Map::loadInfoMap(std::list<Player *> &players)
         InfoTile* tile = infoMap[building->getPosition().x][building->getPosition().y];
         tile->entity = BUILDING_ENTITY;
         tile->ownerID = building->getOwnerID();
-        tile->text->setTextResource("Build.: " + std::to_string(tile->ownerID));
     }
     
     //Placing the tiles in his absolute position(maybe we could avoid this...)
@@ -359,61 +358,38 @@ void Map::updateInfoTileBuilding(Unit* unit, Point destination){
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
     
-    //clean tile
-    tile->text->setTextResource("");
     tile->ownerID = -1;
     tile->entity = NOT_DEFINED;
     //update new tile
     destinationTile->ownerID = ownerID;
     destinationTile->entity = UNIT_CAPTURING;
     destinationTile->unitID = unit->getId();
-    destinationTile->text->setTextResource(
-                                           "Unit: " +
-                                           std::to_string(destinationTile->ownerID)+
-                                           "-"+
-                                           std::to_string(destinationTile->unitID));
-    destinationTile->text->setPosition(this->getAbsolutePosition(destination));
 }
 
 void Map::updateInfoTileUnitCapturing(Unit* unit, Point destination){
     InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
-    //clean tile
-    tile->text->setTextResource("");
+    
     tile->ownerID = getBuilding(unit->getPosition())->getOwnerID();
     tile->entity = BUILDING_ENTITY;
     //update new tile
     destinationTile->ownerID = ownerID;
     destinationTile->entity = UNIT_ENTITY;
     destinationTile->unitID = unit->getId();
-    destinationTile->text->setTextResource(
-                                           "Unit: " +
-                                           std::to_string(destinationTile->ownerID)+
-                                           "-"+
-                                           std::to_string(destinationTile->unitID));
-    destinationTile->text->setPosition(this->getAbsolutePosition(destination));
 }
 
 void Map::updateInfoTile(Unit* unit, Point destination){
     InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
-    //clean tile
-    tile->text->setTextResource("");
+    
     tile->ownerID = -1;
     tile->entity = NOT_DEFINED;
     //update new tile
     destinationTile->ownerID = ownerID;
     destinationTile->entity = UNIT_ENTITY;
     destinationTile->unitID = unit->getId();
-    destinationTile->text->setTextResource(
-                                           "Unit: " +
-                                           std::to_string(destinationTile->ownerID)+
-                                           "-"+
-                                           std::to_string(destinationTile->unitID));
-    destinationTile->text->setPosition(this->getAbsolutePosition(destination));
-
 }
 
 void Map::moveUnit(Unit *unit, Point destination) {

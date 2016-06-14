@@ -176,34 +176,6 @@ bool Unit::onRange( const Point& destination, int range ) {
     return false;
 }
 
-std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
-    if( map->isOnBounds( getPosition() ) ) {
-        std::vector<Action*>* moveActions = new std::vector<Action*>;
-        
-        AreaIterator* areaIterator = new AreaIterator();
-        areaIterator->buildArea( tile.position , getMovement(),
-                                MAP_WIDTH, MAP_HEIGHT );
-        Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
-                                                             (Map*)map, this );
-        
-        while ( unitMoveIterator->hasNext() ) {
-            Point destination = unitMoveIterator->next();
-            
-            MoveCommand* move = new MoveCommand( this, map,
-                                                destination );
-            Action* action = new Action;
-            action->commands.push_back( move );
-            moveActions->push_back( action );
-        }
-        
-        return moveActions;
-    } else {
-        throw InvalidPositionException( getPosition().x, getPosition().y,
-                                        MAP_WIDTH, MAP_HEIGHT );
-    }
-
-}
-
 std::vector<Action*>* Unit::getAttackActions( IMap *map,
                                              std::vector<Unit *> targets,
                                              GameState& gameState ) {

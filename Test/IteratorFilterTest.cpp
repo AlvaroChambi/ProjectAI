@@ -42,7 +42,7 @@ TEST_F( IteratorFilterTest, hasNextAvailablePosition ) {
     area->first = Point( 0, 0 );
     area->second = Point( 2, 2 );
     
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     iteratorFiter = new UnitMovementFilter( areaIterator, &map, unit );
     
     ASSERT_TRUE( iteratorFiter->hasNext() );
@@ -61,7 +61,7 @@ TEST_F( IteratorFilterTest, notNextAvailablePosition ) {
     area->first = Point( 0, 0 );
     area->second = Point( 2, 2 );
     
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     iteratorFiter = new UnitMovementFilter( areaIterator, &map, unit );
     
     ASSERT_FALSE( iteratorFiter->hasNext() );

@@ -112,3 +112,7 @@ const Point& AreaIterator::next() {
     int height = end.y - start.y + 1;
     throw EndOfIteratorException( currentPosition, width, height );
 }
+
+const Point& AreaIterator::getCachedPosition() {
+    return cached;
+}

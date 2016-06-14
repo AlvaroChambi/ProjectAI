@@ -468,38 +468,6 @@ int Map::getShortestDistance(Point origin, Point destination) {
     return path->size();
 }
 
-std::pair<Point,Point>* Map::getBoundingArea( Point position , int range ) {
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>();
-    if( position.isValid( MAP_WIDTH , MAP_HEIGHT ) && range > 0 ) {
-        Point start, end;
-        
-        start.x = position.x - range;
-        start.y = position.y - range;
-        if( start.x < 0 ) {
-            start.x = 0;
-        }
-        if( start.y < 0 ) {
-            start.y = 0;
-        }
-        
-        end.x = position.x + range;
-        if( end.x >= MAP_WIDTH ) {
-            end.x = MAP_WIDTH - 1;
-        }
-        end.y = position.y + range;
-        if( end.y >= MAP_HEIGHT ) {
-            end.y = MAP_HEIGHT - 1;
-        }
-        
-        boundingArea->first = start;
-        boundingArea->second = end;
-    } else {
-        throw IllegalStateException( "Not valid position or movement provided" );
-    }
-    
-    return boundingArea;
-}
-
 bool Map::isOnBounds( Point position ) {
     if( position.x < 0 && position.x >= MAP_WIDTH
         && position.y < 0 && position.y >= MAP_HEIGHT ) {

@@ -25,6 +25,8 @@ public:
     int getCurrentPosition();
     void setCurrentPosition( int currentPosition );
     
+    const Point& getCachedPosition();
+    
     bool nextPosition();
     bool hasNext();
     const Point& next();

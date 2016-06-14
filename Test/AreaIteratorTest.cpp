@@ -30,13 +30,13 @@ TEST_F( AreaIteratorTest, buildAreaCenterTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 5, result->first.x );
-    ASSERT_EQ( 3, result->first.y );
+    ASSERT_EQ( 5, result.first.x );
+    ASSERT_EQ( 3, result.first.y );
     
-    ASSERT_EQ( 9, result->second.x );
-    ASSERT_EQ( 7, result->second.y );
+    ASSERT_EQ( 9, result.second.x );
+    ASSERT_EQ( 7, result.second.y );
     
 }
 
@@ -45,13 +45,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedTopTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 5, result->first.x );
-    ASSERT_EQ( 0, result->first.y );
+    ASSERT_EQ( 5, result.first.x );
+    ASSERT_EQ( 0, result.first.y );
     
-    ASSERT_EQ( 9, result->second.x );
-    ASSERT_EQ( 2, result->second.y );
+    ASSERT_EQ( 9, result.second.x );
+    ASSERT_EQ( 2, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedBottomTest ) {
@@ -59,13 +59,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedBottomTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 5, result->first.x );
-    ASSERT_EQ( 7, result->first.y );
+    ASSERT_EQ( 5, result.first.x );
+    ASSERT_EQ( 7, result.first.y );
     
-    ASSERT_EQ( 9, result->second.x );
-    ASSERT_EQ( 9, result->second.y );
+    ASSERT_EQ( 9, result.second.x );
+    ASSERT_EQ( 9, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedLeftTest ) {
@@ -73,13 +73,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedLeftTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 0, result->first.x );
-    ASSERT_EQ( 3, result->first.y );
+    ASSERT_EQ( 0, result.first.x );
+    ASSERT_EQ( 3, result.first.y );
     
-    ASSERT_EQ( 2, result->second.x );
-    ASSERT_EQ( 7, result->second.y );
+    ASSERT_EQ( 2, result.second.x );
+    ASSERT_EQ( 7, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedRightTest ) {
@@ -87,13 +87,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedRightTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 12, result->first.x );
-    ASSERT_EQ( 3, result->first.y );
+    ASSERT_EQ( 12, result.first.x );
+    ASSERT_EQ( 3, result.first.y );
     
-    ASSERT_EQ( 14, result->second.x );
-    ASSERT_EQ( 7, result->second.y );
+    ASSERT_EQ( 14, result.second.x );
+    ASSERT_EQ( 7, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedTopLeftTest ) {
@@ -101,13 +101,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedTopLeftTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 0, result->first.x );
-    ASSERT_EQ( 0, result->first.y );
+    ASSERT_EQ( 0, result.first.x );
+    ASSERT_EQ( 0, result.first.y );
     
-    ASSERT_EQ( 2, result->second.x );
-    ASSERT_EQ( 2, result->second.y );
+    ASSERT_EQ( 2, result.second.x );
+    ASSERT_EQ( 2, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedTopRightTest ) {
@@ -115,13 +115,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedTopRightTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 12, result->first.x );
-    ASSERT_EQ( 0, result->first.y );
+    ASSERT_EQ( 12, result.first.x );
+    ASSERT_EQ( 0, result.first.y );
     
-    ASSERT_EQ( 14, result->second.x );
-    ASSERT_EQ( 2, result->second.y );
+    ASSERT_EQ( 14, result.second.x );
+    ASSERT_EQ( 2, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedBottomLeftTest ) {
@@ -129,13 +129,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedBottomLeftTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 0, result->first.x );
-    ASSERT_EQ( 7, result->first.y );
+    ASSERT_EQ( 0, result.first.x );
+    ASSERT_EQ( 7, result.first.y );
     
-    ASSERT_EQ( 2, result->second.x );
-    ASSERT_EQ( 9, result->second.y );
+    ASSERT_EQ( 2, result.second.x );
+    ASSERT_EQ( 9, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCroppedBottomRightTest ) {
@@ -143,13 +143,13 @@ TEST_F( AreaIteratorTest, buildAreaCroppedBottomRightTest ) {
     int range = 2;
     
     areaIterator->buildArea( origin, range, 15, 10 );
-    std::pair<Point,Point>* result = areaIterator->getArea();
+    std::pair<Point,Point> result = areaIterator->getArea();
     
-    ASSERT_EQ( 12, result->first.x );
-    ASSERT_EQ( 7, result->first.y );
+    ASSERT_EQ( 12, result.first.x );
+    ASSERT_EQ( 7, result.first.y );
     
-    ASSERT_EQ( 14, result->second.x );
-    ASSERT_EQ( 9, result->second.y );
+    ASSERT_EQ( 14, result.second.x );
+    ASSERT_EQ( 9, result.second.y );
 }
 
 TEST_F( AreaIteratorTest, buildAreaCeroRange ) {
@@ -177,76 +177,64 @@ TEST_F( AreaIteratorTest, nextPostionSameRowIncrement ) {
     std::pair<Point,Point>* area = new std::pair<Point, Point>;
     area->first = Point( 0, 0 );
     area->second = Point( 1, 1 );
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     areaIterator->setCurrentPosition( 1 );
     
-    Point* position = areaIterator->nextPosition();
-    
+    areaIterator->nextPosition();
+    Point position = areaIterator->getCachedPosition();
     ASSERT_EQ( 2 , areaIterator->getCurrentPosition() );
-    ASSERT_EQ( 1 , position->x );
-    ASSERT_EQ( 0, position->y );
+    ASSERT_EQ( 1 , position.x );
+    ASSERT_EQ( 0, position.y );
 }
 
 TEST_F( AreaIteratorTest, nextPostionNextRowIncrement ) {
     std::pair<Point,Point>* area = new std::pair<Point, Point>;
     area->first = Point( 0, 0 );
     area->second = Point( 1, 1 );
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     areaIterator->setCurrentPosition( 2 );
     
-    Point* position = areaIterator->nextPosition();
-    
+    areaIterator->nextPosition();
+    Point position = areaIterator->getCachedPosition();
     ASSERT_EQ( 3 , areaIterator->getCurrentPosition() );
-    ASSERT_EQ( 0 , position->x );
-    ASSERT_EQ( 1, position->y );
+    ASSERT_EQ( 0 , position.x );
+    ASSERT_EQ( 1, position.y );
 }
 
 TEST_F( AreaIteratorTest, nextPostionAreaWithOffset ) {
     std::pair<Point,Point>* area = new std::pair<Point, Point>;
     area->first = Point( 5, 5 );
     area->second = Point( 6, 6 );
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     areaIterator->setCurrentPosition( 1 );
     
-    Point* position = areaIterator->nextPosition();
-    
+    areaIterator->nextPosition();
+    Point position = areaIterator->getCachedPosition();
     ASSERT_EQ( 2 , areaIterator->getCurrentPosition() );
-    ASSERT_EQ( 6 , position->x );
-    ASSERT_EQ( 5, position->y );
+    ASSERT_EQ( 6 , position.x );
+    ASSERT_EQ( 5, position.y );
 }
 
 TEST_F( AreaIteratorTest, nextPostionAreaOffsetRowIncrement ) {
     std::pair<Point,Point>* area = new std::pair<Point, Point>;
     area->first = Point( 5, 5 );
     area->second = Point( 6, 6 );
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     areaIterator->setCurrentPosition( 2 );
     
-    Point* position = areaIterator->nextPosition();
-    
+    areaIterator->nextPosition();
+    Point position = areaIterator->getCachedPosition();
     ASSERT_EQ( 3 , areaIterator->getCurrentPosition() );
-    ASSERT_EQ( 5 , position->x );
-    ASSERT_EQ( 6, position->y );
+    ASSERT_EQ( 5 , position.x );
+    ASSERT_EQ( 6, position.y );
 }
 
 TEST_F( AreaIteratorTest, nextPostionFinishReached ) {
     std::pair<Point,Point>* area = new std::pair<Point, Point>;
     area->first = Point( 0, 0 );
     area->second = Point( 1, 1 );
-    areaIterator->setArea( area );
+    areaIterator->setArea( *area );
     areaIterator->setCurrentPosition( 4 );
     
-    EXPECT_EQ( nullptr, areaIterator->nextPosition() );
-}
-
-TEST_F( AreaIteratorTest, nextPostionAreaNotDefined ) {
-    ASSERT_ANY_THROW( areaIterator->nextPosition(); );
-}
-
-TEST_F( AreaIteratorTest, nextPostionIllegalArea ) {
-    std::pair<Point,Point>* area = new std::pair<Point, Point>;
-    area->first = Point( 0, 0 );
-    area->second = Point( -1, 1 );
-    areaIterator->setArea( area );
-    ASSERT_ANY_THROW( areaIterator->nextPosition(); );
+    EXPECT_FALSE( areaIterator->nextPosition() );
 }

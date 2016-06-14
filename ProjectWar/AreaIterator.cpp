@@ -10,15 +10,14 @@
 #include "GameException.h"
 
 AreaIterator::AreaIterator()
-: currentPosition( 0 ), hasCached( false ), area( nullptr ) {
+: currentPosition( 0 ), hasCached( false ) {
     
 }
 
 AreaIterator::~AreaIterator() {
-    delete area;
 }
 
-bool AreaIterator::isValid( Point& position ) {
+bool AreaIterator::isValid( const Point& position ) {
     //All values are considered valid for the main iterator
     return true;
 }
@@ -26,7 +25,6 @@ bool AreaIterator::isValid( Point& position ) {
 void AreaIterator::buildArea( Point& position,
                               int range, int maxWidth, int maxHeight ) {
     if( position.isValid( maxWidth , maxHeight ) && range > 0 ) {
-        area = new std::pair<Point, Point>;
         Point start, end;
         start.x = position.x - range;
         start.y = position.y - range;
@@ -45,18 +43,18 @@ void AreaIterator::buildArea( Point& position,
         if( end.y >= maxHeight ) {
             end.y = maxHeight - 1;
         }
-        area->first = start;
-        area->second = end;
+        area.first = start;
+        area.second = end;
     } else {
         throw IllegalStateException( "Not valid position or range provided" );
     }
 }
 
-void AreaIterator::setArea( std::pair<Point, Point>* area ) {
+void AreaIterator::setArea( const std::pair<Point, Point>& area ) {
     this->area = area;
 }
 
-std::pair<Point,Point>* AreaIterator::getArea() {
+const std::pair<Point,Point>& AreaIterator::getArea() {
     return area;
 }
 
@@ -69,8 +67,8 @@ void AreaIterator::setCurrentPosition( int currentPosition ) {
 }
 
 bool AreaIterator::nextPosition() {
-    Point start = area->first;
-    Point end = area->second;
+    Point start = area.first;
+    Point end = area.second;
     int width = end.x - start.x + 1;
     int height = end.y - start.y + 1;
     
@@ -108,8 +106,8 @@ const Point& AreaIterator::next() {
         return cached;
     }
 
-    Point start = area->first;
-    Point end = area->second;
+    Point start = area.first;
+    Point end = area.second;
     int width = end.x - start.x + 1;
     int height = end.y - start.y + 1;
     throw EndOfIteratorException( currentPosition, width, height );

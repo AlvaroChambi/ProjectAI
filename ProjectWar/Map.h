@@ -50,7 +50,7 @@ public:
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
-    InfoTile& getInfoTile(Point position);
+    const InfoTile& getInfoTile( const Point& position );
     
     void addBuilding(Building* building);
     Building* getBuilding(int id);
@@ -91,7 +91,7 @@ public:
     
     int getNumRows();
     int getNumColumns();
-    bool isValidPosition( Point position );
+    bool isValidPosition( const Point& position );
     std::pair<Point,Point>* getBoundingArea( Point position, int range );
     bool isOnBounds( Point position );
 private:

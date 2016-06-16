@@ -131,14 +131,15 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
 }
 
 std::vector<Point>& GameState::getBestUnitDestination( Building *headquarter,
-                                                      Unit *unit ) {
+                                                       Unit *unit ) {
     std::vector<Point>* result = new std::vector<Point>;
     std::vector<Point>* preferedActions = new std::vector<Point>;
     std::vector<Point>* actions = new std::vector<Point>;
     
     AreaIterator* areaIterator = new AreaIterator();
-    areaIterator->buildArea( unit->getPosition() , unit->getMovement(),
-                            MAP_WIDTH, MAP_HEIGHT );
+    Point unitPosition = unit->getPosition();
+    areaIterator->buildArea( unitPosition , unit->getMovement(),
+                             MAP_WIDTH, MAP_HEIGHT );
     Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
                                                         (Map*)map, unit );
     while ( unitMoveIterator->hasNext() ) {

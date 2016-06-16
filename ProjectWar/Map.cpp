@@ -260,16 +260,15 @@ void Map::hideTile(Point position)
     tile->getTexture()->setVisible(false);
 }
 
-InfoTile& Map::getInfoTile(Point position)
-{
+const InfoTile& Map::getInfoTile( const Point& position ) {
     return *infoMap[position.x][position.y];
 }
 
-bool Map::isValidPosition(Point position) {
+bool Map::isValidPosition( const Point& position ) {
     bool result = true;
     if ( position.x >= 0 && position.x < MAP_WIDTH
             && position.y >= 0 && position.y < MAP_HEIGHT ) {
-        InfoTile tile = getInfoTile(position);
+        const InfoTile& tile = getInfoTile(position);
         
         if ( tile.entity == UNIT_ENTITY
              || tile.entity == UNIT_CAPTURING ) {
@@ -467,38 +466,6 @@ int Map::getShortestDistance(Point origin, Point destination) {
     std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
     Path* path = new Path(nodes);
     return path->size();
-}
-
-std::pair<Point,Point>* Map::getBoundingArea( Point position , int range ) {
-    std::pair<Point, Point>* boundingArea = new std::pair<Point, Point>();
-    if( position.isValid( MAP_WIDTH , MAP_HEIGHT ) && range > 0 ) {
-        Point start, end;
-        
-        start.x = position.x - range;
-        start.y = position.y - range;
-        if( start.x < 0 ) {
-            start.x = 0;
-        }
-        if( start.y < 0 ) {
-            start.y = 0;
-        }
-        
-        end.x = position.x + range;
-        if( end.x >= MAP_WIDTH ) {
-            end.x = MAP_WIDTH - 1;
-        }
-        end.y = position.y + range;
-        if( end.y >= MAP_HEIGHT ) {
-            end.y = MAP_HEIGHT - 1;
-        }
-        
-        boundingArea->first = start;
-        boundingArea->second = end;
-    } else {
-        throw IllegalStateException( "Not valid position or movement provided" );
-    }
-    
-    return boundingArea;
 }
 
 bool Map::isOnBounds( Point position ) {

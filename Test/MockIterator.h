@@ -15,8 +15,8 @@
 class MockIterator : public  Iterator {
 public:
     MOCK_METHOD0( hasNext, bool() );
-    MOCK_METHOD0( next, Point() );
-    MOCK_METHOD1( isValid, bool( Point position ) );
+    MOCK_METHOD0( next, const Point&() );
+    MOCK_METHOD1( isValid, bool( const Point& position ) );
 };
 
 

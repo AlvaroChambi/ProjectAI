@@ -1,3 +1,5 @@
+
+
 //
 //  IteratorFilter.cpp
 //  ProjectWar
@@ -34,7 +36,7 @@ bool IteratorFilter::hasNext() {
     return false;
 }
 
-Point IteratorFilter::next() {
+const Point& IteratorFilter::next() {
     if( nextSaved ) {
         nextSaved = false;
         return savedNext;

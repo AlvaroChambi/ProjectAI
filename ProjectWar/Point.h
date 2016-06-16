@@ -20,8 +20,9 @@ public:
     int x;
     int y;
     int z;
-    Point() : x(0), y(0), z(0)
-    {}
+    Point() : x(0), y(0), z(0) {
+    
+    }
     
     Point( int x, int y ) {
         this->x = x;
@@ -46,7 +47,7 @@ public:
         return false;
     }
     
-    bool operator ==( Point point ) {
+    bool operator ==( const Point& point ) {
         bool result= false;
         if ( x == point.x && y == point.y) {
             result = true;
@@ -54,7 +55,7 @@ public:
         return result;
     }
     
-    bool operator !=( Point point ) {
+    bool operator !=( const Point& point ) {
         bool result= false;
         if ( x != point.x || y != point.y) {
             result = true;
@@ -67,7 +68,7 @@ public:
         return os;
     }
     
-    int distance( Point point ) {
+    int distance( const Point& point ) {
         return std::abs( point.x - this->x ) +
         std::abs( point.y - this->y );
     }

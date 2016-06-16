@@ -72,7 +72,7 @@ public:
     bool canAttack(Point destination);
     bool canAttack(Unit* unit);
     
-    bool onRange( Point destination, int range );
+    bool onRange( const Point& destination, int range );
     
     std::vector<Action*>* getMoveActions( IMap* map );
     std::vector<Action*>* getAttackActions( IMap* map,

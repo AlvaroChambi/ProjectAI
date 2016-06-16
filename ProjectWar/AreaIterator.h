@@ -17,26 +17,27 @@ public:
     AreaIterator();
     ~AreaIterator();
     
-    void buildArea( Point origin, int range,
+    void buildArea( Point& origin, int range,
                     int maxWidth, int maxHeight );
-    void setArea( std::pair<Point, Point>* area  );
-    std::pair<Point,Point>* getArea();
+    void setArea( const std::pair<Point, Point>& area  );
+    const std::pair<Point,Point>& getArea();
     
     int getCurrentPosition();
     void setCurrentPosition( int currentPosition );
     
-    Point* nextPosition();
+    const Point& getCachedPosition();
+    
+    bool nextPosition();
     bool hasNext();
-    Point next();
-    bool isValid( Point position );
+    const Point& next();
+    bool isValid( const Point& position );
     
 private:
     int currentPosition;
-    
     bool hasCached;
     Point cached;
     
-    std::pair<Point, Point>* area;
+    std::pair<Point, Point> area;
 };
 
 #endif /* AreaIterator_h */

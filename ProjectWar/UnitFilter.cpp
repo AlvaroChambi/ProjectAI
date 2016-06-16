@@ -15,7 +15,7 @@ UnitMovementFilter::UnitMovementFilter( Iterator* filter,
     this->unit = unit;
 }
 
-bool UnitMovementFilter::isValid( Point position ) {
+bool UnitMovementFilter::isValid( const Point& position ) {
     bool valid = map->isValidPosition( position )
     && unit->onRange( position, unit->getMovement() );
     

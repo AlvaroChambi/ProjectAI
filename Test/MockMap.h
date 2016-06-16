@@ -14,8 +14,7 @@
 
 class MockMap : public  IMap {
 public:
-    MOCK_METHOD2( getBoundingArea, std::pair<Point,Point>*( Point position, int range ) );
-    MOCK_METHOD1( isValidPosition, bool( Point position ) );
+    MOCK_METHOD1( isValidPosition, bool( const Point& position ) );
     MOCK_METHOD2( getTile, Tile( int x, int y ) );
     MOCK_METHOD1( isOnBounds, bool( Point position ) );
 };

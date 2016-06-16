@@ -168,40 +168,12 @@ bool Unit::canAttack(Unit* unit)
     return result;
 }
 
-bool Unit::onRange( Point destination, int range ) {
+bool Unit::onRange( const Point& destination, int range ) {
     int distance = tile.position.distance( destination );
     if( distance <= range ) {
         return true;
     }
     return false;
-}
-
-std::vector<Action*>* Unit::getMoveActions( IMap *map ) {
-    if( map->isOnBounds( getPosition() ) ) {
-        std::vector<Action*>* moveActions = new std::vector<Action*>;
-        
-        AreaIterator* areaIterator = new AreaIterator();
-        areaIterator->buildArea( getPosition() , getMovement(),
-                                MAP_WIDTH, MAP_HEIGHT );
-        Iterator* unitMoveIterator = new UnitMovementFilter( areaIterator,
-                                                             (Map*)map, this );
-        
-        while ( unitMoveIterator->hasNext() ) {
-            Point destination = unitMoveIterator->next();
-            
-            MoveCommand* move = new MoveCommand( this, map,
-                                                destination );
-            Action* action = new Action;
-            action->commands.push_back( move );
-            moveActions->push_back( action );
-        }
-        
-        return moveActions;
-    } else {
-        throw InvalidPositionException( getPosition().x, getPosition().y,
-                                        MAP_WIDTH, MAP_HEIGHT );
-    }
-
 }
 
 std::vector<Action*>* Unit::getAttackActions( IMap *map,
@@ -214,7 +186,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
         for ( Unit* target : targets ) {
             if( this->onRange( target->getPosition() , range ) ) {
                 AreaIterator* areaIterator = new AreaIterator;
-                areaIterator->buildArea( getPosition(),
+                areaIterator->buildArea( tile.position,
                                          getMovement(),
                                          MAP_WIDTH, MAP_HEIGHT );
                 Iterator* unitMoveIterator =

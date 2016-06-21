@@ -8,7 +8,7 @@
 
 #include "UnitFilter.h"
 
-UnitMovementFilter::UnitMovementFilter( Iterator* filter,
+UnitMovementFilter::UnitMovementFilter( Iterator& filter,
                                         IMap* map, Unit* unit )
 : IteratorFilter( filter ) {
     this->map = (Map*)map;
@@ -19,5 +19,5 @@ bool UnitMovementFilter::isValid( const Point& position ) {
     bool valid = map->isValidPosition( position )
     && unit->onRange( position, unit->getMovement() );
     
-    return iterator->isValid( position ) && valid;
+    return iterator.isValid( position ) && valid;
 }

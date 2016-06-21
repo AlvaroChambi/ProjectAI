@@ -11,22 +11,22 @@
 #include "IteratorFilter.h"
 #include "GameException.h"
 
-IteratorFilter::IteratorFilter( Iterator* iterator )
+IteratorFilter::IteratorFilter( Iterator& iterator )
 : iterator( iterator ), nextSaved( false ) {
 
 }
 
 bool IteratorFilter::hasNext() {
-    if( iterator->hasNext() ) {
-        Point position = iterator->next();
+    if( iterator.hasNext() ) {
+        Point position = iterator.next();
         if( isValid( position ) ) {
             savedNext = position;
             nextSaved = true;
             return true;
         }
     }
-    while( iterator->hasNext() ) {
-        Point position = iterator->next();
+    while( iterator.hasNext() ) {
+        Point position = iterator.next();
         if( isValid( position ) ) {
             savedNext = position;
             nextSaved = true;

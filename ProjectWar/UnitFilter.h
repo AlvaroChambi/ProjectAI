@@ -15,7 +15,7 @@
 
 class UnitMovementFilter : public IteratorFilter {
 public:
-    UnitMovementFilter( Iterator* filter, IMap* map, Unit* unit );
+    UnitMovementFilter( Iterator& filter, IMap* map, Unit* unit );
     
     bool isValid( const Point& position );
 private:

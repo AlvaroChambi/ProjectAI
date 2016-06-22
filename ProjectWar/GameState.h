@@ -46,8 +46,9 @@ public:
                                              Player* opponent,
                                              int numActions );
     
-    std::vector<Point*>& getBestUnitDestination( Building* headquarter,
-                                               Unit* unit );
+    std::vector<Point>* getBestUnitDestination( Building* headquarter,
+                                                 Building* ownHeadquarter,
+                                                 Unit* unit );
     
     bool isInvalidated( Point position );
     void addToInvalidated( Point position );

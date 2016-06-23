@@ -63,7 +63,7 @@ void PlayerAI::executeMinimax() {
     GameState* game = new GameState( this, enemy, this->getMap() );
     MinimaxAlgorithm* algorithm =
         new MinimaxAlgorithm( new GameMinimax( game ) );
-    algorithm->minimax( 4 );
+    algorithm->minimax( 5 );
     Movement* movement = (Movement*)algorithm->getBestMove();
     movement->execute();
 }

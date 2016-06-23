@@ -13,12 +13,6 @@ AttackCommand::AttackCommand(Unit* unit, Unit* targetUnit, Map* map)
 : unit(unit), targetUnit(targetUnit), map( map ) {
     this->savedUnitHP = unit->getHP();
     this->savedTargetHP = targetUnit->getHP();
-    
-    this->savedOwnerIDUnit = map->getInfoTile( unit->getPosition() ).ownerID;
-    this->savedOwnerIDTarget = map->getInfoTile( targetUnit->getPosition() ).ownerID;
-    
-    this->savedUnitEntity = map->getInfoTile( unit->getPosition() ).entity;
-    this->savedTargetEntity = map->getInfoTile( targetUnit->getPosition() ).entity;
 }
 
 AttackCommand::~AttackCommand() {
@@ -26,21 +20,41 @@ AttackCommand::~AttackCommand() {
 }
 
 void AttackCommand::execute() {
+    this->savedOwnerIDUnit = map->getInfoTile( unit->getPosition() ).ownerID;
+    this->savedOwnerIDTarget = map->getInfoTile( targetUnit->getPosition() ).ownerID;
+    
+    this->savedUnitEntity = map->getInfoTile( unit->getPosition() ).entity;
+    this->savedTargetEntity = map->getInfoTile( targetUnit->getPosition() ).entity;
+    
     updateHP(unit, targetUnit);
-    if (targetUnit->getHP() < 0) {
+    if (targetUnit->getHP() <= 0) {
         targetUnit->setHP(0);
         targetUnit->updateState();
         map->removeUnit( targetUnit );
     }
-    updateHP(targetUnit, unit);
-    if (unit->getHP() < 0) {
+    
+    if( unit->getHP() <= 0 ) {
         unit->setHP(0);
         unit->updateState();
         map->removeUnit( unit );
     }
+    
+    updateHP(targetUnit, unit);
+    if (unit->getHP() <= 0) {
+        unit->setHP(0);
+        unit->updateState();
+        map->removeUnit( unit );
+    }
+    
+    if( targetUnit->getHP() <= 0 ) {
+        targetUnit->setHP(0);
+        targetUnit->updateState();
+        map->removeUnit( targetUnit );
+    }
 }
 
 void AttackCommand::cancel() {
+    
     unit->setHP(savedUnitHP);
     targetUnit->setHP(savedTargetHP);
 

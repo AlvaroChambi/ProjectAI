@@ -20,7 +20,7 @@
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;
-const int TACTIC_POSSIBILITIES = 3;
+const int TACTIC_POSSIBILITIES = 4;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
@@ -112,18 +112,20 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     }
     
     std::vector<Point>* destinations = getBestUnitDestination(
-                                        map->getBuildings().at(0),
-                                        map->getBuildings().at(1), unit );
+                                        player->getHeadquarter(),
+                                        opponent->getHeadquarter(), unit );
     
     int pos = 0;
     for ( int i = addedActions; i < numActions; i++ ) {
         if( destinations->size() > pos ) {
-            Action* action = new Action;
-            MoveCommand* command =
+            if( !isInvalidated( destinations->at( pos ) ) ) {
+                invalidatedPositions.push_back( destinations->at( pos ) );
+                Action* action = new Action;
+                MoveCommand* command =
                 new MoveCommand( unit, map, destinations->at( pos ) );
-            invalidatedPositions.push_back( destinations->at( pos ) );
-            action->commands.push_back( command );
-            actions->push_back( action );
+                action->commands.push_back( command );
+                actions->push_back( action );
+            }
             pos++;
         }
     }
@@ -140,34 +142,37 @@ std::vector<Point>* GameState::getBestUnitDestination( Building *headquarter,
     std::vector<Point>* result = new std::vector<Point>;
     result->reserve( TACTIC_POSSIBILITIES );
     
-    std::vector<Point*> preferedActions;
-    std::vector<Point*> actions;
-    
     AreaIterator areaIterator;
     Point unitPosition = unit->getPosition();
     areaIterator.buildArea( unitPosition , unit->getMovement(),
                              MAP_WIDTH, MAP_HEIGHT );
     UnitMovementFilter unitMoveIterator = UnitMovementFilter( areaIterator,
                                                     (Map*)map, unit );
-    int tolerance = 1;
+    
     int distanceHQ = unit->getPosition().distance( headquarter->getPosition() );
     int distanceOwnHQ = unit->getPosition().distance( ownHeadquarter->getPosition() );
-    int bestOption = std::min( distanceHQ , distanceOwnHQ );
+    int initialDistance = std::min( distanceHQ , distanceOwnHQ );
+    int bestDistanceHQ = initialDistance;
+    int bestDistanceOwnHQ = initialDistance;
     
     while ( unitMoveIterator.hasNext() ) {
-        //TODO: Implement as a filter
         Point destination = unitMoveIterator.next();
-        if( !isInvalidated( destination ) ) {
+        if( !isInvalidated( destination )  &&
+           unit->getPosition().distance( destination ) == unit->getMovement() ) {
             
             int enemyHQDistance = destination.distance(
                                                 headquarter->getPosition() );
             int ownHQDistance = destination.distance(
                                                 ownHeadquarter->getPosition() );
             
-            int score = std::min( enemyHQDistance, ownHQDistance );
-            
-            if( score < bestOption + tolerance ) {
+            if( enemyHQDistance < bestDistanceHQ + 2 ) {
                 result->push_back( destination );
+                bestDistanceHQ = enemyHQDistance;
+            }
+            
+            if( ownHQDistance < bestDistanceOwnHQ + 2 ) {
+                result->push_back( destination );
+                bestDistanceOwnHQ = ownHQDistance;
             }
         }
     }

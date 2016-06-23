@@ -260,7 +260,7 @@ void Map::hideTile(Point position)
     tile->getTexture()->setVisible(false);
 }
 
-const InfoTile& Map::getInfoTile( const Point& position ) {
+const InfoTile Map::getInfoTile( const Point& position ) {
     return *infoMap[position.x][position.y];
 }
 
@@ -357,6 +357,10 @@ void Map::updateInfoTileBuilding(Unit* unit, Point destination){
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
     
+    if( getBuilding( destination ) == nullptr ) {
+        throw IllegalStateException("");
+    }
+    
     tile->ownerID = -1;
     tile->entity = NOT_DEFINED;
     //update new tile
@@ -369,8 +373,13 @@ void Map::updateInfoTileUnitCapturing(Unit* unit, Point destination){
     InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
     InfoTile* destinationTile = infoMap[destination.x][destination.y];
     int ownerID = tile->ownerID;
+    Building* building = getBuilding(unit->getPosition());
+    if( building != nullptr ) {
+        tile->ownerID = getBuilding(unit->getPosition())->getOwnerID();
+    } else {
+        throw IllegalStateException( "Building not found" );
+    }
     
-    tile->ownerID = getBuilding(unit->getPosition())->getOwnerID();
     tile->entity = BUILDING_ENTITY;
     //update new tile
     destinationTile->ownerID = ownerID;
@@ -421,7 +430,7 @@ int Map::getOwnerIdInfoMap(Unit* unit){
     return infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID;
 }
 
-void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID, Entity savedEntity){
+void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID, Entity savedEntity) {
     InfoTile* destinationTile = infoMap[unit->getPosition().x][unit->getPosition().y];
     destinationTile->ownerID = savedOwnerID;
     destinationTile->entity = savedEntity;

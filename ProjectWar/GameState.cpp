@@ -112,8 +112,8 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     }
     
     std::vector<Point>* destinations = getBestUnitDestination(
-                                        player->getHeadquarter(),
-                                        opponent->getHeadquarter(), unit );
+                                        *player->getHeadquarter(),
+                                        *opponent->getHeadquarter(), *unit );
     
     int pos = 0;
     for ( int i = addedActions; i < numActions; i++ ) {
@@ -136,21 +136,21 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     return actions;
 }
 
-std::vector<Point>* GameState::getBestUnitDestination( Building *headquarter,
-                                                        Building *ownHeadquarter,
-                                                        Unit *unit ) {
+std::vector<Point>* GameState::getBestUnitDestination( const Building& headquarter,
+                                                       const Building& ownHeadquarter,
+                                                       const Unit& unit ) {
     std::vector<Point>* result = new std::vector<Point>;
     result->reserve( TACTIC_POSSIBILITIES );
     
     AreaIterator areaIterator;
-    Point unitPosition = unit->getPosition();
-    areaIterator.buildArea( unitPosition , unit->getMovement(),
+    Point unitPosition = unit.getPosition();
+    areaIterator.buildArea( unitPosition , unit.getMovement(),
                              MAP_WIDTH, MAP_HEIGHT );
     UnitMovementFilter unitMoveIterator = UnitMovementFilter( areaIterator,
                                                     (Map*)map, unit );
     
-    int distanceHQ = unit->getPosition().distance( headquarter->getPosition() );
-    int distanceOwnHQ = unit->getPosition().distance( ownHeadquarter->getPosition() );
+    int distanceHQ = unit.getPosition().distance( headquarter.getPosition() );
+    int distanceOwnHQ = unit.getPosition().distance( ownHeadquarter.getPosition() );
     int initialDistance = std::min( distanceHQ , distanceOwnHQ );
     int bestDistanceHQ = initialDistance;
     int bestDistanceOwnHQ = initialDistance;
@@ -158,12 +158,12 @@ std::vector<Point>* GameState::getBestUnitDestination( Building *headquarter,
     while ( unitMoveIterator.hasNext() ) {
         Point destination = unitMoveIterator.next();
         if( !isInvalidated( destination )  &&
-           unit->getPosition().distance( destination ) == unit->getMovement() ) {
+           unit.getPosition().distance( destination ) == unit.getMovement() ) {
             
             int enemyHQDistance = destination.distance(
-                                                headquarter->getPosition() );
+                                                headquarter.getPosition() );
             int ownHQDistance = destination.distance(
-                                                ownHeadquarter->getPosition() );
+                                                ownHeadquarter.getPosition() );
             
             if( enemyHQDistance < bestDistanceHQ + 2 ) {
                 result->push_back( destination );

@@ -19,7 +19,7 @@ public:
     Building();
     virtual ~Building();
     Tile getTile();
-    Point getPosition();
+    Point getPosition() const;
     void setPosition(Tile position);
     
     void setCapturePoints(int value);

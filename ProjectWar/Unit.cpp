@@ -45,8 +45,7 @@ void Unit::setMovement(int movement)
     this->movement = movement;
 }
 
-int Unit::getMovement()
-{
+int Unit::getMovement() const{
     return movement;
 }
 
@@ -77,8 +76,7 @@ Tile Unit::getTile()
     return tile;
 }
 
-Point Unit::getPosition()
-{
+Point Unit::getPosition() const {
     return tile.position;
 }
 
@@ -168,7 +166,7 @@ bool Unit::canAttack(Unit* unit)
     return result;
 }
 
-bool Unit::onRange( const Point& destination, int range ) {
+bool Unit::onRange( const Point& destination, int range ) const {
     int distance = tile.position.distance( destination );
     if( distance <= range ) {
         return true;
@@ -190,7 +188,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
                                          getMovement(),
                                          MAP_WIDTH, MAP_HEIGHT );
                 Iterator* unitMoveIterator =
-                    new UnitMovementFilter( *areaIterator,(Map*)map, this );
+                    new UnitMovementFilter( *areaIterator,(Map*)map, *this );
                 
                 while ( unitMoveIterator->hasNext() ) {
                     Point destination = unitMoveIterator->next();

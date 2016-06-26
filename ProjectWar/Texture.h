@@ -21,7 +21,7 @@ public:
     virtual void setTexture(void* texture) = 0;
     void setPosition(int x, int y);
     void setZorder(int z);
-    Point getPosition();
+    Point getPosition() const;
     void setPosition( Point position );
     void setWidth( int width );
     int getWidth();

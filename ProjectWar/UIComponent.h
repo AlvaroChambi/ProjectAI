@@ -28,7 +28,7 @@ public:
     
     void setPosition(int x, int y);
     void setPosition(Point position);
-    Point getPosition();
+    Point getPosition() const;
     
     void setWidth(int width);
     int getWidth();

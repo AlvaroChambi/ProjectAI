@@ -33,8 +33,7 @@ void Texture::setZorder(int z)
     position.z = z;
 }
 
-Point Texture::getPosition()
-{
+Point Texture::getPosition() const{
     return position;
 }
 

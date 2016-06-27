@@ -50,7 +50,7 @@ public:
     
     void updateUnitAvailableArea(Unit* unit);
     void cleanUnitAvailableArea(Unit* unit);
-    const InfoTile& getInfoTile( const Point& position );
+    const InfoTile getInfoTile( const Point& position );
     
     void addBuilding(Building* building);
     Building* getBuilding(int id);

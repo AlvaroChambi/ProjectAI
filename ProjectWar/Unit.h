@@ -40,11 +40,11 @@ public:
     void setPosition(const Tile tile);
     void setPosition(int x, int y);
     
-    void setMovement(int movement);
-    int getMovement();
+    void setMovement( int movement );
+    int getMovement() const;
     
     Tile getTile();
-    Point getPosition();
+    Point getPosition() const;
     
     void setActive(bool active);
     bool isActive();
@@ -72,7 +72,7 @@ public:
     bool canAttack(Point destination);
     bool canAttack(Unit* unit);
     
-    bool onRange( const Point& destination, int range );
+    bool onRange( const Point& destination, int range ) const;
     
     std::vector<Action*>* getMoveActions( IMap* map );
     std::vector<Action*>* getAttackActions( IMap* map,

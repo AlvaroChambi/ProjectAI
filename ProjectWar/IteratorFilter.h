@@ -14,11 +14,11 @@
 
 class IteratorFilter : public Iterator {
 public:
-    IteratorFilter( Iterator* iterator );
+    IteratorFilter( Iterator& iterator );
     bool hasNext();
     const Point& next();
 protected:
-    Iterator* iterator;
+    Iterator& iterator;
     
     bool nextSaved;
     Point savedNext;

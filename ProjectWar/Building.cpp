@@ -23,8 +23,7 @@ Tile Building::getTile()
     return tile;
 }
 
-Point Building::getPosition()
-{
+Point Building::getPosition() const {
     return tile.position;
 }
 

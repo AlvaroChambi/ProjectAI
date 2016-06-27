@@ -68,7 +68,7 @@ public:
         return os;
     }
     
-    int distance( const Point& point ) {
+    int distance( const Point& point ) const {
         return std::abs( point.x - this->x ) +
         std::abs( point.y - this->y );
     }

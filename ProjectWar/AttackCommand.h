@@ -13,8 +13,7 @@
 #include "Command.h"
 #include "Player.h"
 
-class AttackCommand : public Command
-{
+class AttackCommand : public Command {
 public:
     AttackCommand(Unit* unit, Unit* targetUnit, Map* map);
     virtual ~AttackCommand();

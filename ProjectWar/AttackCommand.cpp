@@ -26,7 +26,7 @@ void AttackCommand::execute() {
     this->savedUnitEntity = map->getInfoTile( unit->getPosition() ).entity;
     this->savedTargetEntity = map->getInfoTile( targetUnit->getPosition() ).entity;
     
-    updateHP(unit, targetUnit);
+    updateHP( unit, targetUnit );
     if (targetUnit->getHP() <= 0) {
         targetUnit->setHP(0);
         targetUnit->updateState();
@@ -39,7 +39,7 @@ void AttackCommand::execute() {
         map->removeUnit( unit );
     }
     
-    updateHP(targetUnit, unit);
+    updateHP( targetUnit, unit );
     if (unit->getHP() <= 0) {
         unit->setHP(0);
         unit->updateState();
@@ -55,17 +55,17 @@ void AttackCommand::execute() {
 
 void AttackCommand::cancel() {
     
-    unit->setHP(savedUnitHP);
-    targetUnit->setHP(savedTargetHP);
+    unit->setHP( savedUnitHP );
+    targetUnit->setHP( savedTargetHP );
 
-    map->restoreTileInfoMap(unit, savedOwnerIDUnit, savedUnitEntity);
-    map->restoreTileInfoMap(targetUnit, savedOwnerIDTarget, savedTargetEntity);
+    map->restoreTileInfoMap( unit, savedOwnerIDUnit, savedUnitEntity );
+    map->restoreTileInfoMap( targetUnit, savedOwnerIDTarget, savedTargetEntity );
     unit->updateState();
     targetUnit->updateState();
 }
 
-void AttackCommand::updateHP(Unit* attacker,Unit* attacked) {
+void AttackCommand::updateHP( Unit* attacker,Unit* attacked ) {
     int damage = attacker->getHP() * 0.5;
-    attacked->setHP(attacked->getHP() - damage);
+    attacked->setHP( attacked->getHP() - damage );
 }
 

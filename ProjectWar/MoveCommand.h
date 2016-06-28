@@ -18,7 +18,7 @@ class IMap;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand( Unit* unit,IMap* map ,Point destination );
+    MoveCommand( Unit* unit, IMap* map, const Point& destination );
     virtual ~MoveCommand();
     
     void execute();

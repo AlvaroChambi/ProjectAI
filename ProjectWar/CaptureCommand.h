@@ -17,7 +17,7 @@
 class CaptureCommand : public Command
 {
 public:
-    CaptureCommand(Player* player, Unit* unit, Building* building);
+    CaptureCommand( Player* player, Unit* unit, Building* building );
     virtual ~CaptureCommand();
     
     void execute();

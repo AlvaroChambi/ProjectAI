@@ -8,26 +8,24 @@
 
 #include "CaptureCommand.h"
 
-CaptureCommand::CaptureCommand(Player* player, Unit* unit, Building* building)
-                                : player(player), unit(unit), building(building)
-{
+CaptureCommand::CaptureCommand( Player* player, Unit* unit, Building* building )
+: player( player ), unit( unit ), building( building ) {
     this->savedCaptureValue = building->getCaptureValue();
     this->savedOwner = building->getOwnerID();
 }
 
-CaptureCommand::~CaptureCommand()
-{
+CaptureCommand::~CaptureCommand() {
 
 }
 
 void CaptureCommand::cancel() {
-    building->setOwnerID(savedOwner);
-    building->setCaptureValue(savedCaptureValue);
+    building->setOwnerID( savedOwner) ;
+    building->setCaptureValue( savedCaptureValue );
 }
 
 void CaptureCommand::execute() {
     int captureValue = 0;
-    if (player->getId() == building->getOwnerID()) {
+    if ( player->getId() == building->getOwnerID() ) {
         captureValue = building->getCaptureValue() + unit->getHP();
         
     }else{
@@ -35,5 +33,5 @@ void CaptureCommand::execute() {
         building->setOwnerID(player->getId());
     }
     
-    building->setCaptureValue(captureValue);
+    building->setCaptureValue( captureValue );
 }

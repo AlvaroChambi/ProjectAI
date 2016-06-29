@@ -11,11 +11,11 @@
 #include "OnMoveState.h"
 #include "GameException.h"
 
-MoveCommand::MoveCommand( Unit* unit, IMap* map, const Point& destination ) {
+MoveCommand::MoveCommand( Unit& unit, IMap* map, const Point& destination ) {
     executed = false;
-    this->unit = unit;
+    this->unit = &unit;
     this->map = (Map*)map;
-    this->savedPosition = unit->getTile();
+    this->savedPosition = unit.getTile();
     this->destination = map->getTile(destination.x, destination.y);
 }
 
@@ -33,7 +33,7 @@ void MoveCommand::execute() {
     }
     if( unit->onRange( destination.position , unit->getMovement() ) ) {
         executed = true;
-        map->moveUnit( unit, destination.position );
+        map->moveEntity( *unit, destination.position );
         unit->setPosition( destination );
     }else {
         throw IllegalStateException( "Unit destination not on range" );
@@ -42,6 +42,6 @@ void MoveCommand::execute() {
 
 void MoveCommand::cancel() {
     executed = false;
-    map->moveUnit( unit, savedPosition.position );
+    map->moveEntity( *unit, savedPosition.position );
     unit->setPosition( savedPosition );
 }

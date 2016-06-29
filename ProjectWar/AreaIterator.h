@@ -17,7 +17,7 @@ public:
     AreaIterator();
     ~AreaIterator();
     
-    void buildArea( Point& origin, int range,
+    void buildArea( const Point& origin, int range,
                     int maxWidth, int maxHeight );
     void setArea( const std::pair<Point, Point>& area  );
     const std::pair<Point,Point>& getArea();

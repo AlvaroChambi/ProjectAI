@@ -15,17 +15,12 @@
 #include <stdio.h>
 #include <chrono>
 
-PlayerAI::PlayerAI() : Player(), playersList(nullptr)
-{
+PlayerAI::PlayerAI() : Player(), playersList( nullptr ) {
     setType(AI_PLAYER);
 }
 
-PlayerAI::PlayerAI(int id, Scene* scene, Renderer* renderer)
-        :   Player(id),
-            playersList(nullptr),
-            scene(scene),
-            renderer(renderer)
-{
+PlayerAI::PlayerAI( int id )
+:  Player(id), playersList(nullptr) {
     setType(AI_PLAYER);
 }
 
@@ -66,9 +61,4 @@ void PlayerAI::executeMinimax() {
     algorithm->minimax( 4 );
     Movement* movement = (Movement*)algorithm->getBestMove();
     movement->execute();
-}
-
-void PlayerAI::testPathfinding(Point origin, Point destination) {
-    Path* path = getMap()->getPath(origin, destination);
-    path->printPath();
 }

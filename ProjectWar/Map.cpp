@@ -12,20 +12,22 @@
 #include "Path.h"
 #include "Pathfinder.h"
 #include "GameException.h"
+#include "AreaIterator.h"
+#include "UnitFilter.h"
 
-Map::Map()
-{
-    infoMap.resize(MAP_WIDTH);
+Map::Map() {
+    entitiesLayer.resize( MAP_WIDTH , MAP_HEIGHT );
+    structuresLayer.resize( MAP_WIDTH, MAP_HEIGHT );
+    terrainLayer.resize( MAP_WIDTH, MAP_HEIGHT );
+    detailsLayer.resize( MAP_WIDTH, MAP_HEIGHT );
+    
     matrix.resize(MAP_WIDTH);
     for(int i = 0; i < MAP_WIDTH; i++){
         matrix.at(i).resize(MAP_HEIGHT, 0);
-        infoMap.at(i).resize(MAP_HEIGHT);
     }
-    pathfinder = new Pathfinder(this);
 }
 
-Map::~Map()
-{
+Map::~Map() {
 
 }
 
@@ -37,13 +39,12 @@ int Map::getNumRows() {
     return MAP_HEIGHT;
 }
 
-void Map::addBuilding(Building *building)
-{
+void Map::addBuilding( Building *building ) {
     buildings.push_back(building);
+    structuresLayer.set( building, building->getPosition() );
 }
 
-Building* Map::getBuilding(int id)
-{
+Building* Map::getBuilding(int id) {
     Building* result = nullptr;
     for (Building* building : buildings) {
         if(building->getId() == id){
@@ -53,13 +54,11 @@ Building* Map::getBuilding(int id)
     return result;
 }
 
-std::vector<Building*>& Map::getBuildings()
-{
+std::vector<Building*>& Map::getBuildings() {
     return buildings;
 }
 
-std::list<Building*> Map::getBuildingsByOwnerId(int ownerId)
-{
+std::list<Building*> Map::getBuildingsByOwnerId(int ownerId) {
     std::list<Building*> result;
     for (Building* building : buildings) {
         if(building->getOwnerID() == ownerId){
@@ -69,8 +68,7 @@ std::list<Building*> Map::getBuildingsByOwnerId(int ownerId)
     return result;
 }
 
-int Map::getNumBuildings(int ownerId)
-{
+int Map::getNumBuildings(int ownerId) {
     int result = 0;
     for (Building* building : buildings) {
         if(building->getOwnerID() == ownerId){
@@ -81,15 +79,15 @@ int Map::getNumBuildings(int ownerId)
 }
 
 //Using static map width and height for now
-void Map::loadMap(Renderer* renderer, int width, int height)
-{
+void Map::loadMap( Renderer* renderer, int tileWidth, int tileHeight ) {
     for(int i = 0; i < MAP_WIDTH ; i++){
-        int posX = i * width;
+        int posX = i * tileWidth;
         for(int j = 0; j < MAP_HEIGHT ; j++){
-            int posY = j * height;
+            int posY = j * tileHeight;
             //use static color !Change this¡
             Color color = Color(0,153,0);
-            Texture * texture = renderer->loadShape(RECTANGLE, color,width, height);
+            Texture * texture = renderer->loadShape( RECTANGLE, color,
+                                                     tileWidth, tileHeight);
             texture->setPosition(posX, posY);
             Tile* tile = new Tile(texture);
             tile->position.x = i;
@@ -132,8 +130,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     sprites.push_back(buildingSprite2);
 }
 
-Building* Map::getBuilding(Point position)
-{
+Building* Map::getBuilding(Point position) {
     Building* result = nullptr;
     for (Building* building : buildings) {
         if (building->getPosition() == position) {
@@ -143,51 +140,32 @@ Building* Map::getBuilding(Point position)
     return result;
 }
 
-//pretty much the same code here and in the updateUnitAvailableArea method...
-//We can also have always referenced the updated tiles in the map, so we can clean them whenever we want
 
-void Map::cleanUnitAvailableArea(Unit *unit)
-{
-    int x = unit->getPosition().x - unit->getMovement();
-    int y = unit->getPosition().y - unit->getMovement();
+void Map::cleanUnitAvailableArea( const Unit& unit ) {
+    AreaIterator areaIterator;
+    areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
+                           MAP_WIDTH, MAP_HEIGHT );
     
-    for (int i = x; i <= x + (unit->getMovement() * 2) ; i++) {
-        for (int j = y; j <= y + (unit->getMovement() * 2); j++) {
-            int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
-            if(distance >= 0 && distance <= unit->getMovement()){
-                //TODO Update tile of the [i][j] position, just hiding tiles now...
-                //maybe create a tile pool and draw a new one for each position
-                
-                if( i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT){ //Avoiding negative and outside map positions
-                    matrix[i][j]->getTexture()->setVisible(true);
-                }
-            }
-        }
+    UnitMovementFilter filter( areaIterator, this, unit );
+    while ( filter.hasNext() ) {
+        Point destination = areaIterator.next();
+        matrix[destination.x][destination.y]->getTexture()->setVisible(true);
     }
 }
 
-void Map::updateUnitAvailableArea(Unit *unit)
-{
-    int x = unit->getPosition().x - unit->getMovement();
-    int y = unit->getPosition().y - unit->getMovement();
+void Map::updateUnitAvailableArea( const Unit& unit ) {
+    AreaIterator areaIterator;
+    areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
+                           MAP_WIDTH, MAP_HEIGHT );
     
-    for (int i = x; i <= x + (unit->getMovement() * 2) ; i++) {
-        for (int j = y; j <= y + (unit->getMovement() * 2) ; j++) {
-            int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
-            if(distance >= 0 && distance <= unit->getMovement()){
-                //TODO Update tile of the [i][j] position, just hiding tiles now...
-                //maybe create a tile pool and draw a new one for each position
-                
-                if( i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT ){ //Avoiding negative and outside map positions
-                    matrix[i][j]->getTexture()->setVisible(false);
-                }
-            }
-        }
+    UnitMovementFilter filter( areaIterator, this, unit );
+    while ( filter.hasNext() ) {
+        Point destination = areaIterator.next();
+        matrix[destination.x][destination.y]->getTexture()->setVisible(false);
     }
 }
 
-void Map::drawMap(Renderer* renderer)
-{
+void Map::drawMap(Renderer* renderer) {
     for(int i = 0; i < MAP_WIDTH; i++){
         for(int j = 0; j < MAP_HEIGHT; j++){
             if(matrix[i][j]->getTexture()->isVisible()){
@@ -202,19 +180,7 @@ void Map::drawMap(Renderer* renderer)
     }
 }
 
-void Map::drawInfoMap(Renderer *renderer)
-{
-    //Draws info map over the map
-    for(int i = 0; i < MAP_WIDTH; i++){
-        for(int j = 0; j < MAP_HEIGHT; j++){
-            InfoTile* tile = infoMap[i][j];
-            tile->text->render(renderer);
-        }
-    }
-}
-
-Tile* Map::matchEvent(Point position)
-{
+Tile* Map::matchEvent( const Point& position ) {
     Tile* tile = nullptr;
     for (int i = 0; i < MAP_WIDTH; i++) {
         for (int j = 0; j < MAP_HEIGHT ; j++) {
@@ -226,8 +192,7 @@ Tile* Map::matchEvent(Point position)
     return tile;
 }
 
-Point Map::getAbsolutePosition(Point tilePosition)
-{
+Point Map::getAbsolutePosition( const Point& tilePosition ) {
     Point point;
     if (tilePosition.x < MAP_WIDTH && tilePosition.y < MAP_HEIGHT) {
         point = matrix[tilePosition.x][tilePosition.y]->getTexture()->getPosition();
@@ -235,243 +200,67 @@ Point Map::getAbsolutePosition(Point tilePosition)
     return point;
 }
 
-Point Map::getAbsolutePosition(int x, int y)
-{
+Point Map::getAbsolutePosition( int x, int y ) {
     Point point;
     point.x = x;
     point.y = y;
-    return getAbsolutePosition(point);
+    return getAbsolutePosition( point );
 }
 
-Tile Map::getTile(int x, int y)
-{
+Tile Map::getTile( int x, int y ) {
     return *matrix[x][y];
 }
 
-Tile Map::getTile(Point point)
-{
-    return getTile(point.x, point.y);
-}
-
-
-void Map::hideTile(Point position)
-{
-    Tile* tile = matrix[position.x][position.y];
-    tile->getTexture()->setVisible(false);
-}
-
-const InfoTile Map::getInfoTile( const Point& position ) {
-    return *infoMap[position.x][position.y];
+Tile Map::getTile( Point point ) {
+    return getTile( point.x, point.y );
 }
 
 bool Map::isValidPosition( const Point& position ) {
-    bool result = true;
-    if ( position.x >= 0 && position.x < MAP_WIDTH
-            && position.y >= 0 && position.y < MAP_HEIGHT ) {
-        const InfoTile& tile = getInfoTile(position);
-        
-        if ( tile.entity == UNIT_ENTITY
-             || tile.entity == UNIT_CAPTURING ) {
-            result = false;
-        }
-
-    } else {
-        throw InvalidPositionException( position.x, position.y,
-                                        MAP_WIDTH, MAP_HEIGHT );
-    }
-    return result;
+    return entitiesLayer.get( position ) == nullptr;
 }
 
-void Map::loadInfoMap(std::list<Player *> &players)
-{
-    for(int i = 0; i < MAP_WIDTH; i++){
-        for(int j = 0; j < MAP_HEIGHT; j++){
-            infoMap[i][j] = new InfoTile();
-        }
-    }
+void Map::loadInfoMap( std::list<Player *> &players ) {
     for (Player* player : players) {
-        player->populateInfoMap(infoMap);
-    }
-    
-    for (Building* building : buildings) {
-        InfoTile* tile = infoMap[building->getPosition().x][building->getPosition().y];
-        tile->entity = BUILDING_ENTITY;
-        tile->ownerID = building->getOwnerID();
-    }
-    
-    //Placing the tiles in his absolute position(maybe we could avoid this...)
-    for(int i = 0; i < MAP_WIDTH; i++){
-        for(int j = 0; j < MAP_HEIGHT; j++){
-            InfoTile* tile = infoMap[i][j];
-            switch (tile->entity) {
-                case UNIT_ENTITY:
-                case BUILDING_ENTITY:
-                {
-                    tile->text->setPosition(this->getAbsolutePosition(i, j));
-                    break;
-                }
-                default:
-                    break;
-            }
+        for( Unit* unit : player->getUnitList() ) {
+            entitiesLayer.set( unit , unit->getPosition() );
         }
     }
 }
 
-Map::InfoMap& Map::getInfoMap()
-{
-    return infoMap;
-}
-
-void Map::checkNearEntities(Unit *unit, std::list<UnitCommand>& commands)
-{
-    InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    int x = unit->getPosition().x - unit->getAttackRange();
-    int y = unit->getPosition().y - unit->getAttackRange();
-    //TODO Change this, think another way to setop searching near unit when we have already found one
-    bool commandAdded = false;
+void Map::checkNearEntities( const Unit& unit,
+                             std::vector<UnitCommand>& commands ) {
+    AreaIterator areaIterator;
+    areaIterator.buildArea( unit.getPosition(), unit.getAttackRange(),
+                           MAP_WIDTH, MAP_HEIGHT );
     
-    for (int i = x; i <= x + (unit->getAttackRange() * 2) ; i++) {
-        for (int j = y; j <= y + (unit->getAttackRange() * 2) ; j++) {
-            int distance = std::abs(unit->getPosition().x - i) + std::abs(unit->getPosition().y - j);
-            if(distance >= 0 && distance <= unit->getAttackRange() && i >= 0 && j >= 0){
-                if(i >= 0 && i < MAP_WIDTH && j >= 0 && j < MAP_HEIGHT){
-                    InfoTile* infoTile = infoMap[i][j];
-                    
-                    if(infoTile->ownerID != -1 && infoTile->ownerID != unitTile->ownerID
-                       && !commandAdded){
-                        commands.push_back(ATTACK);
-                        commandAdded = true;
-                    }
-                }
-            }
+    UnitMovementFilter filter( areaIterator, this, unit );
+    
+    Building* structure = structuresLayer.get( unit.getPosition() );
+    if( structure != nullptr && structure->getOwnerID() != unit.getOwnerID() ) {
+        //structure available to capture
+        commands.push_back( CAPTURE );
+    }
+    
+    while ( filter.hasNext() ) {
+        Point destination = areaIterator.next();
+        Unit* entity = entitiesLayer.get( destination );
+        if( entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
+            commands.push_back( ATTACK );
+            return;
         }
     }
-    if (unitTile->entity == BUILDING_ENTITY || unitTile->entity == UNIT_CAPTURING) {
-        commands.push_back(CAPTURE);
-    }
-}
-
-void Map::updateInfoTileBuilding(Unit* unit, Point destination){
     
-    InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    InfoTile* destinationTile = infoMap[destination.x][destination.y];
-    int ownerID = tile->ownerID;
     
-    tile->ownerID = -1;
-    tile->entity = NOT_DEFINED;
-    //update new tile
-    destinationTile->ownerID = ownerID;
-    destinationTile->entity = UNIT_CAPTURING;
-    destinationTile->unitID = unit->getId();
 }
 
-void Map::updateInfoTileUnitCapturing(Unit* unit, Point destination){
-    InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    InfoTile* destinationTile = infoMap[destination.x][destination.y];
-    int ownerID = tile->ownerID;
-    
-    tile->ownerID = getBuilding(unit->getPosition())->getOwnerID();
-    tile->entity = BUILDING_ENTITY;
-    //update new tile
-    destinationTile->ownerID = ownerID;
-    destinationTile->entity = UNIT_ENTITY;
-    destinationTile->unitID = unit->getId();
+void Map::moveEntity( Unit &unit, const Point &destination ) {
+    entitiesLayer.move( unit.getPosition() , destination );
 }
 
-void Map::updateInfoTile(Unit* unit, Point destination){
-    InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    InfoTile* destinationTile = infoMap[destination.x][destination.y];
-    int ownerID = tile->ownerID;
-    
-    tile->ownerID = -1;
-    tile->entity = NOT_DEFINED;
-    //update new tile
-    destinationTile->ownerID = ownerID;
-    destinationTile->entity = UNIT_ENTITY;
-    destinationTile->unitID = unit->getId();
+void Map::restoreUnit( Unit& unit ) {
+    entitiesLayer.set( &unit, unit.getPosition() );
 }
 
-void Map::moveUnit(Unit *unit, Point destination) {
-    //if unit has a valid position
-    if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
-        && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
-        if( unit->getPosition() != destination ) {
-            InfoTile* tile = infoMap[unit->getPosition().x][unit->getPosition().y];
-            InfoTile* destinationTile = infoMap[destination.x][destination.y];
-            
-            if( destinationTile->entity == BUILDING_ENTITY){
-                updateInfoTileBuilding(unit, destination);
-            }
-            
-            else if( tile->entity == UNIT_CAPTURING){
-                updateInfoTileUnitCapturing(unit, destination);
-            }
-            
-            else{
-                updateInfoTile(unit, destination);
-            }
-        }
-    } else {
-        throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
-                                        MAP_WIDTH, MAP_HEIGHT );
-    }
-}
-
-int Map::getOwnerIdInfoMap(Unit* unit){
-    return infoMap[unit->getPosition().x][unit->getPosition().y]->ownerID;
-}
-
-void Map::restoreTileInfoMap(Unit* unit, int savedOwnerID, Entity savedEntity) {
-    InfoTile* destinationTile = infoMap[unit->getPosition().x][unit->getPosition().y];
-    destinationTile->ownerID = savedOwnerID;
-    destinationTile->entity = savedEntity;
-    destinationTile->text->setVisible(true);
-}
-
-void Map::removeUnit(Unit *unit) {
-    if( unit->getPosition().x < MAP_WIDTH && unit->getPosition().x >= 0
-       && unit->getPosition().y < MAP_HEIGHT && unit->getPosition().y >=0 ) {
-        
-        InfoTile* unitTile = infoMap[unit->getPosition().x][unit->getPosition().y];
-        Building* building = getBuilding( unit->getPosition() );
-        
-        if( unitTile->entity == UNIT_CAPTURING ) {
-            unitTile->entity = BUILDING_ENTITY;
-            unitTile->ownerID = building->getOwnerID();
-        } else {
-            unitTile->cleanTile();
-        }
-    } else {
-        throw InvalidPositionException( unit->getPosition().x, unit->getPosition().y,
-                                       MAP_WIDTH, MAP_HEIGHT );
-    }
-}
-
-Path* Map::getPath(Point origin, Point destination)
-{
-    std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
-    Path* path = new Path(nodes);
-    return path;
-}
-
-//TODO Check if the complete path is larger or equals to the unit movement
-Path* Map::getUnitPath(Unit *unit, Point destination) {
-    Path* completePath = getPath(unit->getPosition(), destination);
-    Path* unitPath = completePath->splice(unit->getMovement()+1);
-    
-    return unitPath;
-}
-
-int Map::getShortestDistance(Point origin, Point destination) {
-    std::list<NodePath*> nodes = pathfinder->find(origin.x, origin.y, destination.x, destination.y);
-    Path* path = new Path(nodes);
-    return path->size();
-}
-
-bool Map::isOnBounds( Point position ) {
-    if( position.x < 0 && position.x >= MAP_WIDTH
-        && position.y < 0 && position.y >= MAP_HEIGHT ) {
-        return false;
-    }
-    return true;
+void Map::removeUnit( Unit& unit ) {
+    entitiesLayer.set( nullptr, unit.getPosition() );
 }

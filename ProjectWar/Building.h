@@ -29,7 +29,7 @@ public:
     int getCaptureValue();
     
     void setOwnerID(int id);
-    int getOwnerID();
+    int getOwnerID() const;
     
     bool isCaptured(int playerID);
 private:

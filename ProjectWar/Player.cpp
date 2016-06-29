@@ -47,6 +47,7 @@ Tile Player::getTile() {
 }
 
 void Player::addUnit(Unit *unit) {
+    unit->setOwnerID( getId() );
     units.push_back(unit);
 }
 

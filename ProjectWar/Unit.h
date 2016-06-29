@@ -53,17 +53,17 @@ public:
     bool isSelected();
     
     void setAttackRange(int attackRange);
-    int getAttackRange();
+    int getAttackRange() const;
     
     void setHP(int hp);
-    int getHP();
+    int getHP() const;
     
     //update his state whether is alive(set visible) or is dead(set visible false)
     void updateState();
     
     void addCommand(UnitCommand command);
     UnitCommand getCommand(int position);
-    void updateCommands(std::list<UnitCommand> commands);
+    void updateCommands( std::vector<UnitCommand> commands );
     
     int getNumCommands();
     
@@ -85,6 +85,9 @@ public:
     void addCaptureCommand( GameState& gameState, Building* building,
                             IMap* map, std::vector<Action*>* captureActions,
                             Player* player );
+    
+    void setOwnerID( int ownerID );
+    int getOwnerID() const;
 private:
     bool selected;
     bool active;
@@ -92,7 +95,8 @@ private:
     int movement;
     int hp;
     int attackRange;
-    std::list<UnitCommand> commands;
+    std::vector<UnitCommand> commands;
+    int ownerID;
 };
 
 #endif /* defined(__ProjectWar__Unit__) */

@@ -63,8 +63,7 @@ void Building::setOwnerID(int id)
     this->ownerID = id;
 }
 
-int Building::getOwnerID()
-{
+int Building::getOwnerID() const {
     return ownerID;
 }
 

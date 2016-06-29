@@ -13,13 +13,13 @@
 #include <iostream>
 #include <ostream>
 
-class Point
-{
+class Point {
     
 public:
     int x;
     int y;
     int z;
+    
     Point() : x(0), y(0), z(0) {
     
     }
@@ -33,7 +33,7 @@ public:
         this->z = z;
     }
     
-    bool isValid( int xLimit, int yLimit ) {
+    bool isValid( int xLimit, int yLimit ) const {
         if( x >= 0 && x <= xLimit && y >= 0 && y <= yLimit ) {
             return true;
         }
@@ -71,6 +71,13 @@ public:
     int distance( const Point& point ) const {
         return std::abs( point.x - this->x ) +
         std::abs( point.y - this->y );
+    }
+    
+    bool onRange( const Point& destination, int range ) {
+        if( distance( destination ) <= range ) {
+            return true;
+        }
+        return false;
     }
 };
 

@@ -14,29 +14,26 @@
 #include "AttackCommand.h"
 #include "CaptureCommand.h"
 
-UnitSelectedState::UnitSelectedState(Player* player) : State(player)
-{
+UnitSelectedState::UnitSelectedState(Player* player) : State(player) {
 
 }
 
-UnitSelectedState::~UnitSelectedState()
-{
+UnitSelectedState::~UnitSelectedState() {
 
 }
 
-void UnitSelectedState::enter()
-{
+void UnitSelectedState::enter() {
     //TODO refactor state class to avoid implicit cast here...
     Player* player = (Player*)model;
     Unit* unit = player->getSelectedUnit();
     //Update available area and set unit as selected
-    player->getMap()->updateUnitAvailableArea(unit);
-    std::list<UnitCommand> commands;
+    player->getMap()->updateUnitAvailableArea( *unit );
+    std::vector<UnitCommand> commands;
     commands.push_back(WAIT);
     //Check if there are any unit around
-    player->getMap()->checkNearEntities(unit, commands);
+    player->getMap()->checkNearEntities( *unit, commands );
     //Update commands
-    player->getSelectedUnit()->updateCommands(commands);
+    player->getSelectedUnit()->updateCommands( commands );
 }
 
 //Check if the Tile is necessary
@@ -48,7 +45,7 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
         {
             //Select new unit - keep state
             Unit* unit = player->getUnit(id);
-            player->getMap()->cleanUnitAvailableArea(unit);
+            player->getMap()->cleanUnitAvailableArea( *unit );
             player->setSelectedUnit(unit);
             player->getState()->enter();
         }
@@ -58,8 +55,9 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             Unit* unit = player->getSelectedUnit();
             
             if (unit->canReach(position.position)) {
-                Command* moveCommand = new MoveCommand(unit, player->getMap(), position.position);
-                player->getMap()->cleanUnitAvailableArea(unit);
+                Command* moveCommand = new MoveCommand(
+                                *unit, player->getMap(), position.position);
+                player->getMap()->cleanUnitAvailableArea( *unit );
                 //Always move before getting in the new state
                 moveCommand->execute();
                 player->updateState(new OnMoveState(player, player->getState(), moveCommand));

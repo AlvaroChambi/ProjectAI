@@ -26,23 +26,18 @@ class PlayerAI : public Player
 {
 public:
     PlayerAI();
-    PlayerAI(int id, Scene* scene, Renderer* renderer);
+    PlayerAI( int id );
     ~PlayerAI();
-    void setPlayerList(std::list<Player*> *players);
+    void setPlayerList( std::list<Player*> *players );
     std::list<Movement*>* genMovements( Unit* unit, Player* players,
                                         Map* map);
     std::list<Player*>* getPlayersList();
     
     std::list<Command*> play ();
-    
-    void testPathfinding(Point origin, Point destination);
     void executeMinimax();
     
 private:
     std::list<Player*> *playersList;
-    //TODO Minimax debug: remove
-    Scene* scene;
-    Renderer* renderer;
 };
 
 

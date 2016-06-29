@@ -17,8 +17,9 @@
 #include "AreaIterator.h"
 #include "GameState.h"
 
-Unit::Unit() : Model(), tile(), movement(0), hp(0), active(true), commands(), attackRange(0)
-{
+Unit::Unit()
+: Model(), tile(), movement(0), hp(0),
+  active(true), commands(), attackRange(0), ownerID( -1 ) {
     
 }
 
@@ -80,29 +81,24 @@ Point Unit::getPosition() const {
     return tile.position;
 }
 
-void Unit::setAttackRange(int attackRange)
-{
+void Unit::setAttackRange( int attackRange ) {
     this->attackRange = attackRange;
 }
 
-int Unit::getAttackRange()
-{
+int Unit::getAttackRange() const {
     return attackRange;
 }
 
-void Unit::setHP(int hp)
-{
+void Unit::setHP( int hp)  {
     this->hp = hp;
     this->notifyObservers(HP_UPDATE);
 }
 
-int Unit::getHP()
-{
+int Unit::getHP() const {
     return hp;
 }
 
-void Unit::updateCommands(std::list<UnitCommand> commands)
-{
+void Unit::updateCommands( std::vector<UnitCommand> commands ) {
     //Clean previous commands and set the new ones
     this->commands = commands;
     this->notifyObservers(COMMANDS_UPDATE);
@@ -113,18 +109,11 @@ void Unit::addCommand(UnitCommand command)
     commands.push_back(command);
 }
 
-UnitCommand Unit::getCommand(int position)
-{
-    std::list<UnitCommand>::iterator iterator;
-    iterator = commands.begin();
-    std::advance(iterator, position);
-    UnitCommand unit = *iterator;
-    return unit;
-
+UnitCommand Unit::getCommand( int position ) {
+    return commands.at( position  );
 }
 
-int Unit::getNumCommands()
-{
+int Unit::getNumCommands() {
     return (int)commands.size();
 }
 
@@ -263,4 +252,12 @@ void Unit::addCaptureCommand( GameState &gameState, Building *building,
 
 void Unit::updateState() {
     this->notifyObservers(STATE_UPDATE);
+}
+
+void Unit::setOwnerID( int ownerID ) {
+    this->ownerID = ownerID;
+}
+
+int Unit::getOwnerID() const {
+    return ownerID;
 }

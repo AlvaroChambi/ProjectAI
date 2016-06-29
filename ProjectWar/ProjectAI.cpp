@@ -110,7 +110,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     
     //Load map data model and view resources
     Map* map = new Map();
-    map->loadMap(renderer, 40, 40);
+    map->loadMap( renderer, 40, 40 );
     
     SpriteFactory* spriteFactory = new SpriteFactory;
     
@@ -125,7 +125,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
-    PlayerAI* player2 = new PlayerAI(1, scene ,renderer);
+    PlayerAI* player2 = new PlayerAI( 1 );
     player2->setPlayerList(&players);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);

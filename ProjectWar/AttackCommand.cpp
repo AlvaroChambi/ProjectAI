@@ -30,26 +30,26 @@ void AttackCommand::execute() {
     if (targetUnit->getHP() <= 0) {
         targetUnit->setHP(0);
         targetUnit->updateState();
-        map->removeUnit( targetUnit );
+        map->removeUnit( *targetUnit );
     }
     
     if( unit->getHP() <= 0 ) {
         unit->setHP(0);
         unit->updateState();
-        map->removeUnit( unit );
+        map->removeUnit( *unit );
     }
     
     updateHP( targetUnit, unit );
     if (unit->getHP() <= 0) {
         unit->setHP(0);
         unit->updateState();
-        map->removeUnit( unit );
+        map->removeUnit( *unit );
     }
     
     if( targetUnit->getHP() <= 0 ) {
         targetUnit->setHP(0);
         targetUnit->updateState();
-        map->removeUnit( targetUnit );
+        map->removeUnit( *targetUnit );
     }
 }
 
@@ -58,8 +58,8 @@ void AttackCommand::cancel() {
     unit->setHP( savedUnitHP );
     targetUnit->setHP( savedTargetHP );
 
-    map->restoreTileInfoMap( unit, savedOwnerIDUnit, savedUnitEntity );
-    map->restoreTileInfoMap( targetUnit, savedOwnerIDTarget, savedTargetEntity );
+    map->restoreUnit( *unit );
+    map->restoreUnit( *targetUnit );
     unit->updateState();
     targetUnit->updateState();
 }

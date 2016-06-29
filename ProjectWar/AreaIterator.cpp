@@ -22,7 +22,7 @@ bool AreaIterator::isValid( const Point& position ) {
     return true;
 }
 
-void AreaIterator::buildArea( Point& position,
+void AreaIterator::buildArea( const Point& position,
                               int range, int maxWidth, int maxHeight ) {
     if( position.isValid( maxWidth , maxHeight ) && range > 0 ) {
         Point start, end;

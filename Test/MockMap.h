@@ -16,7 +16,6 @@ class MockMap : public  IMap {
 public:
     MOCK_METHOD1( isValidPosition, bool( const Point& position ) );
     MOCK_METHOD2( getTile, Tile( int x, int y ) );
-    MOCK_METHOD1( isOnBounds, bool( Point position ) );
 };
 
 #endif /* MockMap_h */

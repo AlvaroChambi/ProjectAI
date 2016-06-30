@@ -63,10 +63,6 @@ void Scene::render()
         sprite->render(renderer);
     }
     
-    //InfoMap
-    //TODO hiding info map
-    map->drawInfoMap(renderer);
-    
     rootLayout->render(renderer);
 }
 

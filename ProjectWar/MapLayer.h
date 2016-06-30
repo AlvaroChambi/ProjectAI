@@ -26,16 +26,18 @@ public:
 
     void resize( int width, int height ) {
         if( width > 0 && height > 0 ) {
+            this->width = width;
+            this->height = height;
             data.resize( width*height, nullptr );
         } else {
-            //Illegal state exception
+            throw IllegalStateException("");
         }
     }
 
     void set( const T value, const Point& coord ) {
         if( coord.isValid( width, height ) ) {
             int i = coord.y * width + coord.x;
-            data.insert( data.begin() + i, value );
+            data[i] = value;
         } else {
             //Illegal state exception
         }
@@ -63,6 +65,14 @@ public:
         } else {
             throw IllegalStateException("");
         }
+    }
+    
+    T at( int position ) {
+        return data.at( position );
+    }
+    
+    int size() {
+        return data.size();
     }
 private:
     std::vector<T> data;

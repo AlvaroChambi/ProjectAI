@@ -17,7 +17,6 @@
 #include "Renderer.h"
 #include "SDLTexture.h"
 #include "Tile.h"
-#include "InfoTile.h"
 #include "Unit.h"
 #include "Building.h"
 #include "SpriteFactory.h"
@@ -38,8 +37,9 @@ public:
     //Width and height in tiles
     void loadMap(Renderer* renderer, int width, int height);
     void drawMap(Renderer* renderer);
-    void drawInfoMap(Renderer* renderer);
+    
     Tile* matchEvent( const Point& position );
+    
     //cast tile map position to absolute window coordinate position
     Point getAbsolutePosition( const Point& tilePosition );
     Point getAbsolutePosition(int x, int y);
@@ -49,7 +49,6 @@ public:
     
     void updateUnitAvailableArea( const Unit& unit );
     void cleanUnitAvailableArea( const Unit& unit );
-    const InfoTile getInfoTile( const Point& position );
     
     void addBuilding(Building* building);
     Building* getBuilding(int id);

@@ -27,7 +27,7 @@ void OnAttackState::enter()
     Player* player = (Player*)model;
     Unit* unit = player->getSelectedUnit();
     //Update unit commands
-    std::list<UnitCommand> commands;
+    std::vector<UnitCommand> commands;
     commands.push_back(CANCEL);
     commands.push_back(ATTACK);
     unit->updateCommands(commands);

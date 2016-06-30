@@ -148,7 +148,7 @@ void Map::cleanUnitAvailableArea( const Unit& unit ) {
     
     UnitMovementFilter filter( areaIterator, this, unit );
     while ( filter.hasNext() ) {
-        Point destination = areaIterator.next();
+        Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(true);
     }
 }
@@ -160,7 +160,7 @@ void Map::updateUnitAvailableArea( const Unit& unit ) {
     
     UnitMovementFilter filter( areaIterator, this, unit );
     while ( filter.hasNext() ) {
-        Point destination = areaIterator.next();
+        Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(false);
     }
 }
@@ -233,15 +233,14 @@ void Map::checkNearEntities( const Unit& unit,
     areaIterator.buildArea( unit.getPosition(), unit.getAttackRange(),
                            MAP_WIDTH, MAP_HEIGHT );
     
-    UnitMovementFilter filter( areaIterator, this, unit );
-    
     Building* structure = structuresLayer.get( unit.getPosition() );
     if( structure != nullptr && structure->getOwnerID() != unit.getOwnerID() ) {
         //structure available to capture
         commands.push_back( CAPTURE );
     }
     
-    while ( filter.hasNext() ) {
+    //Decorate with unit movement filter -> crash!
+    while ( areaIterator.hasNext() ) {
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );
         if( entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
@@ -253,7 +252,7 @@ void Map::checkNearEntities( const Unit& unit,
     
 }
 
-void Map::moveEntity( Unit &unit, const Point &destination ) {
+void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition() , destination );
 }
 

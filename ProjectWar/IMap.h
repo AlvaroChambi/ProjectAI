@@ -13,7 +13,6 @@ class IMap {
 public:
     virtual bool isValidPosition( const Point& position ) = 0;
     virtual Tile getTile( int x, int y ) = 0;
-    virtual bool isOnBounds( Point position ) = 0;
 };
 
 #endif /* IMap_h */

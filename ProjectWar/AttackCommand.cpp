@@ -20,12 +20,6 @@ AttackCommand::~AttackCommand() {
 }
 
 void AttackCommand::execute() {
-    this->savedOwnerIDUnit = map->getInfoTile( unit->getPosition() ).ownerID;
-    this->savedOwnerIDTarget = map->getInfoTile( targetUnit->getPosition() ).ownerID;
-    
-    this->savedUnitEntity = map->getInfoTile( unit->getPosition() ).entity;
-    this->savedTargetEntity = map->getInfoTile( targetUnit->getPosition() ).entity;
-    
     updateHP( unit, targetUnit );
     if (targetUnit->getHP() <= 0) {
         targetUnit->setHP(0);

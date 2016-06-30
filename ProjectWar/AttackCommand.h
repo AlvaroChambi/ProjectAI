@@ -27,17 +27,6 @@ private:
     int savedUnitHP;
     int savedTargetHP;
     
-    InfoTile savedTargetTile;
-    InfoTile savedUnitTile;
-    
-    Entity savedUnitEntity;
-    Entity savedTargetEntity;
-    
-    int savedOwnerIDUnit;
-    int savedOwnerIDTarget;
-    Point positionUnit;
-    Point positionTarget;
-    
     void updateHP(Unit* attacker, Unit* attacked);
 };
 

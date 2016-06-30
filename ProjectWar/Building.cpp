@@ -8,18 +8,19 @@
 
 #include "Building.h"
 
-Building::Building() : Model(), tile(nullptr), capturePoints(0), captureValue(0)
-{
+Building::Building()
+: Model(), capturePoints( 0 ), captureValue( 0 ) {
 
 }
 
-Building::~Building()
-{
-
+Building::Building( const Building& building ) {
+    this->ownerID = building.ownerID;
+    this->tile = building.tile;
+    this->capturePoints = building.getCapturePoints();
+    this->captureValue = building.getCaptureValue();
 }
 
-Tile Building::getTile()
-{
+Tile Building::getTile() const {
     return tile;
 }
 
@@ -27,25 +28,21 @@ Point Building::getPosition() const {
     return tile.position;
 }
 
-void Building::setPosition(Tile position)
-{
+void Building::setPosition( const Tile& position ) {
     this->tile = position;
     this->notifyObservers(POSITION_UPDATE);
 }
 
-void Building::setCapturePoints(int value)
-{
+void Building::setCapturePoints( int value ) {
     this->capturePoints = value;
 }
 
-int Building::getCapturePoints()
-{
+int Building::getCapturePoints() const {
     return capturePoints;
 }
 
 //capture value could never be higher than the capture point of the building
-void Building::setCaptureValue(int value)
-{
+void Building::setCaptureValue( int value ) {
     if (value > capturePoints) {
         value = capturePoints;
     }
@@ -53,13 +50,11 @@ void Building::setCaptureValue(int value)
     this->notifyObservers(CAPTURE_UPDATE);
 }
 
-int Building::getCaptureValue()
-{
+int Building::getCaptureValue() const {
     return captureValue;
 }
 
-void Building::setOwnerID(int id)
-{
+void Building::setOwnerID( int id ) {
     this->ownerID = id;
 }
 
@@ -68,10 +63,9 @@ int Building::getOwnerID() const {
 }
 
 //returns wether the building is capture for the given player or not
-bool Building::isCaptured(int playerID)
-{
+bool Building::isCaptured( int playerID ) const {
     bool result = false;
-    if(captureValue == capturePoints && ownerID == playerID){
+    if( captureValue == capturePoints && ownerID == playerID ) {
         result = true;
     }
     return result;

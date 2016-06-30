@@ -18,62 +18,61 @@
 #include "GameState.h"
 
 Unit::Unit()
-: Model(), tile(), movement(0), hp(0),
-  active(true), commands(), attackRange(0), ownerID( -1 ) {
+: Model(), tile(), movement( 0 ), hp( 0 ),
+  active( true ), commands(), attackRange( 0 ), ownerID( -1 ) {
     
 }
 
-Unit::~Unit()
-{
+Unit::Unit( const Unit& unit ) {
+    this->tile = unit.getTile();
+    this->movement = unit.getMovement();
+    this->hp = unit.getHP();
+    this->attackRange = unit.getAttackRange();
+    this->ownerID = unit.getOwnerID();
+}
+
+Unit::~Unit() {
 
 }
 
 //This method does not update the texture position, maybe we have to implement it
-void Unit::setPosition(int x, int y)
-{
+void Unit::setPosition( int x, int y ) {
     this->tile.position.x = x;
     this->tile.position.y = y;
 }
 
-void Unit::setPosition(const Tile tile)
-{
+void Unit::setPosition( const Tile tile ) {
     this->tile = tile;
-    this->notifyObservers(POSITION_UPDATE);
+    this->notifyObservers( POSITION_UPDATE );
 }
 
-void Unit::setMovement(int movement)
-{
+void Unit::setMovement( int movement ) {
     this->movement = movement;
 }
 
-int Unit::getMovement() const{
+int Unit::getMovement() const {
     return movement;
 }
 
-void Unit::setActive(bool active)
-{
+void Unit::setActive( bool active ) {
     this->active = active;
-    this->notifyObservers(ACTIVE_UPDATE);
+    this->notifyObservers( ACTIVE_UPDATE );
 }
 
-bool Unit::isActive()
-{
+bool Unit::isActive() const {
     return active;
 }
 
-void Unit::setSelected(bool selected)
-{
+void Unit::setSelected( bool selected ) {
     this->selected = selected;
     this->notifyObservers(SELECTED_UPDATE);
 }
 
-bool Unit::isSelected()
-{
+bool Unit::isSelected() const {
     return selected;
 }
 
-Tile Unit::getTile()
-{
+Tile Unit::getTile() const {
     return tile;
 }
 
@@ -89,9 +88,9 @@ int Unit::getAttackRange() const {
     return attackRange;
 }
 
-void Unit::setHP( int hp)  {
+void Unit::setHP( int hp )  {
     this->hp = hp;
-    this->notifyObservers(HP_UPDATE);
+    this->notifyObservers( HP_UPDATE );
 }
 
 int Unit::getHP() const {
@@ -101,66 +100,19 @@ int Unit::getHP() const {
 void Unit::updateCommands( std::vector<UnitCommand> commands ) {
     //Clean previous commands and set the new ones
     this->commands = commands;
-    this->notifyObservers(COMMANDS_UPDATE);
+    this->notifyObservers( COMMANDS_UPDATE );
 }
 
-void Unit::addCommand(UnitCommand command)
-{
+void Unit::addCommand( UnitCommand command ) {
     commands.push_back(command);
 }
 
-UnitCommand Unit::getCommand( int position ) {
+UnitCommand Unit::getCommand( int position ) const {
     return commands.at( position  );
 }
 
-int Unit::getNumCommands() {
+int Unit::getNumCommands() const {
     return (int)commands.size();
-}
-
-//TODO duplicated code here...
-bool Unit::canReach(Point destination)
-{
-    bool result = false;
-    int distance = std::abs(destination.x - this->getPosition().x) +
-                    std::abs(destination.y - this->getPosition().y);
-    if (distance <= movement) {
-        result = true;
-    }
-    return result;
-}
-
-bool Unit::canAttack(Point destination)
-{
-    bool result = false;
-    int distance = std::abs(destination.x - this->getPosition().x) +
-                    std::abs(destination.y - this->getPosition().y);
-    
-    if (distance <= attackRange) {
-        result = true;
-    }
-    return result;
-}
-
-//Movement added to the attack to know if the unit can attack the targeted unit in this turn
-bool Unit::canAttack(Unit* unit)
-{
-    bool result=false;
-    Point destination = unit->getPosition();
-    int distance = std::abs(destination.x - this->getPosition().x) +
-    std::abs(destination.y - this->getPosition().y);
-    
-    if (distance <= attackRange + movement) {
-        result = true;
-    }
-    return result;
-}
-
-bool Unit::onRange( const Point& destination, int range ) const {
-    int distance = tile.position.distance( destination );
-    if( distance <= range ) {
-        return true;
-    }
-    return false;
 }
 
 std::vector<Action*>* Unit::getAttackActions( IMap *map,
@@ -170,7 +122,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
     
     int range = getMovement() + getAttackRange();
     for ( Unit* target : targets ) {
-        if( this->onRange( target->getPosition() , range ) ) {
+        if( this->getPosition().onRange( target->getPosition() , range ) ) {
             AreaIterator* areaIterator = new AreaIterator;
             areaIterator->buildArea( tile.position,
                                     getMovement(),
@@ -180,7 +132,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
             
             while ( unitMoveIterator->hasNext() ) {
                 Point destination = unitMoveIterator->next();
-                if( target->onRange( destination , getAttackRange() )
+                if( target->getPosition().onRange( destination , getAttackRange() )
                    && !gameState.isInvalidated( destination ) ) {
                     
                     gameState.addToInvalidated( destination );
@@ -208,7 +160,7 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
     std::vector<Action*>* captureActions = new std::vector<Action*>;
     
     for ( Building* building : targets ) {
-        if( onRange( building->getPosition() , getMovement() )
+        if( tile.position.onRange( building->getPosition() , getMovement() )
            && !building->isCaptured( player->getId() )
            && !gameState.isInvalidated( building->getPosition() ) ) {
             

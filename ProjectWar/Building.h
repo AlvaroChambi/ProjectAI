@@ -17,21 +17,21 @@ class Building : public Model
 {
 public:
     Building();
-    virtual ~Building();
-    Tile getTile();
+    Building( const Building& building );
+    Tile getTile() const;
     Point getPosition() const;
-    void setPosition(Tile position);
+    void setPosition( const Tile& position );
     
-    void setCapturePoints(int value);
-    int getCapturePoints();
+    void setCapturePoints( int value );
+    int getCapturePoints() const;
     
     void setCaptureValue(int value);
-    int getCaptureValue();
+    int getCaptureValue() const;
     
     void setOwnerID(int id);
     int getOwnerID() const;
     
-    bool isCaptured(int playerID);
+    bool isCaptured( int playerID ) const;
 private:
     int ownerID;
     Tile tile;

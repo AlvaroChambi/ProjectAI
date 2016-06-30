@@ -54,7 +54,7 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
         {
             Unit* unit = player->getSelectedUnit();
             
-            if (unit->canReach(position.position)) {
+            if (unit->getPosition().onRange( position.position, unit->getMovement() ) ) {
                 Command* moveCommand = new MoveCommand(
                                 *unit, player->getMap(), position.position);
                 player->getMap()->cleanUnitAvailableArea( *unit );

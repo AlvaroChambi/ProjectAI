@@ -12,15 +12,14 @@
 #include <stdio.h>
 #include "Texture.h"
 
-class Tile
-{
+class Tile {
 public:
     Point position;
     Tile();
     Tile( int x, int y );
-    Tile(Texture* texture);
+    Tile( Texture* texture );
     Texture* getTexture();
-    void setTexture(Texture* texture);
+    void setTexture( Texture* texture );
     virtual ~Tile();
 private:
     Texture* texture;

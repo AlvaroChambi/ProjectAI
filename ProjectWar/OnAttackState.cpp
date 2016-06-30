@@ -56,8 +56,10 @@ void OnAttackState::handleInput(Input input, int id, Tile position, Unit* target
     switch (input) {
         case ENEMY_UNIT_CLICKED:
         {
+            Unit* unit = player->getSelectedUnit();
             //if can reach target selected enemy
-            if (player->getSelectedUnit()->canAttack(targetUnit->getPosition())) {
+            if (
+                unit->getPosition().onRange( targetUnit->getPosition(), unit->getMovement() ) ) {
                 //Move target tile over the attacked unit
                 player->setTile(player->getMap()->getTile(targetUnit->getPosition().x, targetUnit->getPosition().y));
                 this->targetUnit = targetUnit;

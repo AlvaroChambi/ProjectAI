@@ -31,7 +31,8 @@ void MoveCommand::execute() {
     if( unit->getPosition() != savedPosition.position ) {
         throw IllegalStateException( "Illegal unit position modification" );
     }
-    if( unit->onRange( destination.position , unit->getMovement() ) ) {
+    if( unit->getPosition().onRange(
+                            destination.position, unit->getMovement() ) ) {
         executed = true;
         map->moveEntity( *unit, destination.position );
         unit->setPosition( destination );

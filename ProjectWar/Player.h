@@ -30,6 +30,7 @@ class Player : public IPlayer, public Model
 public:
     Player();
     Player(int id);
+    Player( const Player& player );
     virtual ~Player();
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
     

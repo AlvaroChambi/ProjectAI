@@ -23,6 +23,10 @@ active(false), map(nullptr), headquarter( nullptr ) {
     this->setid(id);
 }
 
+Player::Player( const Player& player ) {
+    
+}
+
 Player::~Player() {
 
 }

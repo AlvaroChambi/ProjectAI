@@ -36,43 +36,37 @@ class Unit : public Model
 {
 public:
     Unit();
+    Unit( const Unit& unit );
     virtual ~Unit();
-    void setPosition(const Tile tile);
-    void setPosition(int x, int y);
+    void setPosition( const Tile tile );
+    void setPosition( int x, int y );
     
     void setMovement( int movement );
     int getMovement() const;
     
-    Tile getTile();
+    Tile getTile() const;
     Point getPosition() const;
     
-    void setActive(bool active);
-    bool isActive();
+    void setActive( bool active );
+    bool isActive() const;
     
-    void setSelected(bool selected);
-    bool isSelected();
+    void setSelected( bool selected );
+    bool isSelected() const;
     
-    void setAttackRange(int attackRange);
+    void setAttackRange( int attackRange );
     int getAttackRange() const;
     
-    void setHP(int hp);
+    void setHP( int hp );
     int getHP() const;
     
     //update his state whether is alive(set visible) or is dead(set visible false)
     void updateState();
     
-    void addCommand(UnitCommand command);
-    UnitCommand getCommand(int position);
+    void addCommand( UnitCommand command );
+    UnitCommand getCommand( int position ) const;
     void updateCommands( std::vector<UnitCommand> commands );
     
-    int getNumCommands();
-    
-    //TODO: clean
-    bool canReach(Point destination);
-    bool canAttack(Point destination);
-    bool canAttack(Unit* unit);
-    
-    bool onRange( const Point& destination, int range ) const;
+    int getNumCommands() const;
     
     std::vector<Action*>* getMoveActions( IMap* map );
     std::vector<Action*>* getAttackActions( IMap* map,
@@ -89,14 +83,15 @@ public:
     void setOwnerID( int ownerID );
     int getOwnerID() const;
 private:
-    bool selected;
-    bool active;
     Tile tile;
     int movement;
     int hp;
     int attackRange;
-    std::vector<UnitCommand> commands;
     int ownerID;
+    
+    std::vector<UnitCommand> commands;
+    bool selected;
+    bool active;
 };
 
 #endif /* defined(__ProjectWar__Unit__) */

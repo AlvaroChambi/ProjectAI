@@ -241,7 +241,7 @@ void Map::checkNearEntities( const Unit& unit,
     while ( areaIterator.hasNext() ) {
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );
-        if( unit.onRange( destination, unit.getAttackRange() )
+        if( unit.getPosition().onRange( destination , unit.getAttackRange() )
             && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
             commands.push_back( ATTACK );
             return;

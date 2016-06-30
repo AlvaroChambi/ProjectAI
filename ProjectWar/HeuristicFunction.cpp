@@ -76,7 +76,7 @@ int HeuristicFunction::getStaticEvaluation() {
     result = result + calculateBuildingsHealth( playerBuildings, enemyBuildings );
     result = result + calculateEnemyHeadquarterDistance( player->getHeadquarter(),
                                                          enemy->getHeadquarter() );
-    result = result + calculateUnitsHealth(player, enemy);
+    result = result + calculateUnitsHealth(player, enemy) * 5;
     
     return result;
 }

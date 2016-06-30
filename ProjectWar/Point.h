@@ -47,7 +47,7 @@ public:
         return false;
     }
     
-    bool operator ==( const Point& point ) {
+    bool operator ==( const Point& point ) const {
         bool result= false;
         if ( x == point.x && y == point.y) {
             result = true;
@@ -55,7 +55,7 @@ public:
         return result;
     }
     
-    bool operator !=( const Point& point ) {
+    bool operator !=( const Point& point ) const {
         bool result= false;
         if ( x != point.x || y != point.y) {
             result = true;

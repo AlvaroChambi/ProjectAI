@@ -43,7 +43,7 @@ public:
         }
     }
 
-    T get( const Point &coord ) {
+    T get( const Point& coord ) {
         if( coord.isValid( width, height ) ) {
             int i = coord.y * width + coord.x;
             return data.at( i );
@@ -54,13 +54,17 @@ public:
     void move( const Point& origin, const Point& destination ) {
         if( origin.isValid( width, height )
             && destination.isValid( width, height ) ) {
-            T originValue = get( origin );
             
-            if( originValue != nullptr && get( destination ) == nullptr ) {
-                set( nullptr, origin );
-                set( originValue, destination );
-            } else {
-                throw IllegalStateException("");
+            if( origin != destination ) {
+                T originValue = get( origin );
+                
+                if( originValue != nullptr
+                    && get( destination ) == nullptr ) {
+                    set( nullptr, origin );
+                    set( originValue, destination );
+                } else {
+                    throw IllegalStateException("");
+                }
             }
         } else {
             throw IllegalStateException("");
@@ -72,7 +76,7 @@ public:
     }
     
     int size() {
-        return data.size();
+        return (int)data.size();
     }
 private:
     std::vector<T> data;

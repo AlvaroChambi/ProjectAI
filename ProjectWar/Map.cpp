@@ -243,7 +243,8 @@ void Map::checkNearEntities( const Unit& unit,
     while ( areaIterator.hasNext() ) {
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );
-        if( entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
+        if( unit.onRange( destination, unit.getAttackRange() )
+            && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
             commands.push_back( ATTACK );
             return;
         }
@@ -253,7 +254,7 @@ void Map::checkNearEntities( const Unit& unit,
 }
 
 void Map::moveEntity( Unit& unit, const Point &destination ) {
-    entitiesLayer.move( unit.getPosition() , destination );
+    entitiesLayer.move( unit.getPosition(), destination );
 }
 
 void Map::restoreUnit( Unit& unit ) {

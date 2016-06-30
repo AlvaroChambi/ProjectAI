@@ -18,8 +18,6 @@
 Map::Map() {
     entitiesLayer.resize( MAP_WIDTH , MAP_HEIGHT );
     structuresLayer.resize( MAP_WIDTH, MAP_HEIGHT );
-    terrainLayer.resize( MAP_WIDTH, MAP_HEIGHT );
-    detailsLayer.resize( MAP_WIDTH, MAP_HEIGHT );
     
     matrix.resize(MAP_WIDTH);
     for(int i = 0; i < MAP_WIDTH; i++){

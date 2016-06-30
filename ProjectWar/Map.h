@@ -80,8 +80,6 @@ private:
     std::vector<Sprite*> sprites;
     Pathfinder* pathfinder;
     
-    MapLayer<Tile*> terrainLayer;
-    MapLayer<Texture*> detailsLayer;
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
  };

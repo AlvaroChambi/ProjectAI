@@ -254,10 +254,12 @@ void Map::checkNearEntities( const Unit& unit,
 
 void Map::addEntity( Unit& unit ) {
     entitiesLayer.set( &unit, unit.getPosition() );
+    entities[unit.getId()] = unit.getPosition();
 }
 
 void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition(), destination );
+    entities[unit.getId()] = unit.getPosition();
 }
 
 void Map::restoreUnit( Unit& unit ) {

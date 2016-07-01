@@ -84,12 +84,14 @@ private:
     
     std::vector<Building*> buildings;
     std::vector<Sprite*> sprites;
-    Pathfinder* pathfinder;
     
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
     
-    std::map<int, std::vector<>>
+    std::map<int,Point> redArmyUnits;
+    std::map<int,Point> blueArmyUnits;
+    
+    std::map<int,Point> entities;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

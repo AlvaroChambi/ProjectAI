@@ -30,16 +30,15 @@ class Player : public IPlayer, public Model
 public:
     Player();
     Player(int id);
-    Player( const Player& player );
     virtual ~Player();
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
     
     void setPosition( int x, int y);
     Point getPosition();
-    Tile getTile();
-    void setTile(const Tile tile);
+    Tile getTile() const;
+    void setTile( const Tile tile );
     void addUnit( Unit* unit );
-    Unit* getUnit(int id);
+    Unit* getUnit( int id ) const;
     
     std::list<Unit*>& getUnitList();
     std::vector<Unit*>& getAliveUnits();
@@ -72,13 +71,11 @@ public:
     void setHeadquarter( Building* headquarter );
 private:
     Point position;
-    //Now that the player has a map maybe we can remove the tile 
     Tile tile;
     std::list<Unit*> units;
     std::vector<Unit*> aliveUnits;
     
     State* state;
-    //TODO Dont need to have a selected unit instance if i already have a player with an active param
     Unit* selectedUnit;
     Map* map;
     bool active;

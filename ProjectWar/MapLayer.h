@@ -43,7 +43,7 @@ public:
         }
     }
 
-    T get( const Point& coord ) {
+    T get( const Point& coord ) const {
         if( coord.isValid( width, height ) ) {
             int i = coord.y * width + coord.x;
             return data.at( i );
@@ -71,11 +71,11 @@ public:
         }
     }
     
-    T at( int position ) {
+    T at( int position ) const {
         return data.at( position );
     }
     
-    int size() {
+    int size() const {
         return (int)data.size();
     }
 private:

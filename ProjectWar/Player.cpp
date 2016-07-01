@@ -26,124 +26,104 @@ Player::~Player() {
 
 }
 
-void Player::setPosition( int x, int y ) {
-    position.x = x;
-    position.y = y;
-    this->notifyObservers( POSITION_UPDATE );
-}
-
-Point Player::getPosition() {
-    return position;
-}
-
-void Player::setTile( const Tile tile ) {
-    this->tile = tile;
-    this->notifyObservers( POSITION_UPDATE );
-}
-
-Tile Player::getTile() const {
-    return tile;
-}
-
-void Player::addUnit( Unit *unit ) {
+void Player::addUnit( const Point& unitReference ) {
+    Unit* unit = map->getEntity( unitReference );
     unit->setOwnerID( getId() );
-    units.push_back( unit );
+    army.push_back( unitReference );
 }
 
 Unit* Player::getUnit( int id ) const {
     Unit* result = nullptr;
-    for ( Unit* unit : units ) {
-        if ( unit->getId() == id ) {
+    for ( Point reference : army ) {
+        Unit* unit = map->getEntity( reference );
+        if( unit != nullptr && unit->getId() == id ) {
             result = unit;
         }
     }
     return result;
 }
 
-std::list<Unit*>& Player::getUnitList() {
-    return this->units;
-}
-
-std::vector<Unit*>& Player::getAliveUnits() {
-    aliveUnits.clear();
-    for ( Unit* unit : units ) {
-        if( unit->getHP() > 0 ) {
-            aliveUnits.push_back( unit );
+std::vector<Unit*> Player::getUnits() const {
+    std::vector<Unit*> units;
+    for ( Point reference : army ) {
+        Unit* unit = map->getEntity( reference );
+        if( unit != nullptr ) {
+            units.push_back( unit );
         }
     }
-    return aliveUnits;
+    return units;
 }
 
-//Update the unit selected flag and the player reference to the unit
-//nullptr if there isn't any unit selected
 void Player::setSelectedUnit( Unit *unit ) {
-    if(unit != nullptr){
-        unit->setSelected(true);
-    }else{
-        this->selectedUnit->setSelected(false);
+    if( unit != nullptr ) {
+        unit->setSelected( true );
+    }else {
+        this->selectedUnit->setSelected( false );
     }
     this->selectedUnit = unit;
-    this->notifyObservers(SELECTED_UPDATE);
+    this->notifyObservers( SELECTED_UPDATE );
     
 }
 
-Unit* Player::getSelectedUnit() {
+Unit* Player::getSelectedUnit() const {
     return selectedUnit;
 }
 
-State* Player::getState() {
+State* Player::getState() const {
     return state;
 }
 
-void Player::setMap(Map *map) {
+void Player::setMap( Map *map ) {
     this->map = map;
 }
 
-Map* Player::getMap() {
+Map* Player::getMap() const {
     return map;
 }
 
-void Player::setType(PlayerType type) {
+void Player::setType( PlayerType type ) {
     this->type = type;
 }
 
-PlayerType Player::getType() {
+PlayerType Player::getType() const {
     return type;
 }
 
 //Update the player actual state and enter in it
-void Player::updateState(State *state) {
+void Player::updateState( State *state ) {
     this->state = state;
     this->state->enter();
 }
 
-void Player::setState(State *state) {
+void Player::setState( State *state ) {
     this->state = state;
 }
 
-void Player::setActive(bool active) {
+void Player::setActive( bool active ) {
     this->active = active;
-    this->notifyObservers(ACTIVE_UPDATE);
+    this->notifyObservers( ACTIVE_UPDATE );
 }
 
-bool Player::isActive() {
+bool Player::isActive() const {
     return active;
 }
 
-bool Player::hasUnit(int id) {
+bool Player::hasUnit( int id ) const {
     bool result = false;
-    for (Unit* unit : units) {
-        if(unit->getId() == id){
+    for ( Point reference : army ) {
+        Unit* unit = map->getEntity( reference );
+        if( unit->getId() == id ) {
             result = true;
         }
     }
     return result;
 }
 
-bool Player::hasUnitAlive() {
+bool Player::hasUnitAlive() const {
     bool result = false;
-    for (Unit* unit : units) {
-        if (unit->getHP() > 0) {
+    for ( Point reference : army ) {
+        Unit* unit = map->getEntity( reference );
+        if ( unit->getHP() > 0 ) {
             result = true;
         }
     }

@@ -62,7 +62,6 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
                 moveCommand->execute();
                 player->updateState(new OnMoveState(player, player->getState(), moveCommand));
             }else{
-                player->setTile(position);
                 player->updateState(new NothingSelectedState(player));
             }
         }

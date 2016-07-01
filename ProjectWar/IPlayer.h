@@ -11,7 +11,7 @@
 
 class IPlayer {
 public:
-    virtual bool hasUnitAlive() = 0;
+    virtual bool hasUnitAlive() const = 0;
     virtual bool hasCapturedHQ( Player* enemy ) = 0;
 };
 

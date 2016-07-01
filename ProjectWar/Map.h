@@ -22,6 +22,7 @@
 #include "SpriteFactory.h"
 #include "IMap.h"
 #include "MapLayer.h"
+#include <map>
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
@@ -73,6 +74,11 @@ public:
     
     void moveEntity( Unit& unit, const Point& destination );
     void loadInfoMap( std::list<Player *> &players );
+    
+    Unit* getEntity( const Point& reference ) const;
+    
+    void addEntity( Unit& unit );
+    
 private:
     TileMap matrix;
     
@@ -82,6 +88,8 @@ private:
     
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
+    
+    std::map<int, std::vector<>>
  };
 
 #endif /* defined(__ProjectWar__Map__) */

@@ -219,7 +219,8 @@ bool Map::isValidPosition( const Point& position ) {
 
 void Map::loadInfoMap( std::list<Player *> &players ) {
     for (Player* player : players) {
-        for( Unit* unit : player->getUnitList() ) {
+        std::vector<Unit*> units = player->getUnits();
+        for( Unit* unit : units ) {
             entitiesLayer.set( unit , unit->getPosition() );
         }
     }
@@ -251,6 +252,10 @@ void Map::checkNearEntities( const Unit& unit,
     
 }
 
+void Map::addEntity( Unit& unit ) {
+    entitiesLayer.set( &unit, unit.getPosition() );
+}
+
 void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition(), destination );
 }
@@ -261,4 +266,8 @@ void Map::restoreUnit( Unit& unit ) {
 
 void Map::removeUnit( Unit& unit ) {
     entitiesLayer.set( nullptr, unit.getPosition() );
+}
+
+Unit* Map::getEntity( const Point &reference ) const {
+    return entitiesLayer.get( reference );
 }

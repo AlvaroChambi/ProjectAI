@@ -154,7 +154,8 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite->resize(40, 40);
     //unit->setPosition(map->getTile(2, 1));
     unit->setPosition(map->getTile(8, 4));
-    player->addUnit(unit);
+    map->addEntity( *unit );
+    player->addUnit( unit->getPosition() );
     
     Unit* unit3 = new Unit();
     unit3->setResource("soldier_red.png");
@@ -169,7 +170,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite3->resize(40, 40);
     //unit3->setPosition(map->getTile(4, 4));
     unit3->setPosition(map->getTile(7, 2));
-    player->addUnit(unit3);
+    
+    map->addEntity( *unit3 );
+    player->addUnit( unit3->getPosition() );
     
     Unit* unit4 = new Unit();
     unit4->setResource("soldier_red.png");
@@ -184,7 +187,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite4->resize(40, 40);
     //unit4->setPosition(map->getTile(3, 8));
     unit4->setPosition(map->getTile(8, 8));
-    player->addUnit(unit4);
+    
+    map->addEntity( *unit4 );
+    player->addUnit( unit4->getPosition() );
     
     ///////////  PLAYER 2 UNITS ///////////
     Unit* unit2 = new Unit();
@@ -198,7 +203,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit2Sprite->setTexture(unit2Texture);
     unit2Sprite->resize(40, 40);
     unit2->setPosition(map->getTile(13,9));
-    player2->addUnit(unit2);
+    
+    map->addEntity( *unit2 );
+    player2->addUnit( unit2->getPosition() );
     
     Unit* unit5 = new Unit();
     unit5->setResource("soldier_blue.png");
@@ -211,7 +218,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite5->setTexture(unitTexture5);
     unitSprite5->resize(40, 40);
     unit5->setPosition(map->getTile(14, 5));
-    player2->addUnit(unit5);
+    
+    map->addEntity( *unit5 );
+    player2->addUnit( unit5->getPosition() );
     
     Unit* unit6 = new Unit();
     unit6->setResource("soldier_blue.png");
@@ -224,7 +233,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unitSprite6->setTexture(unitTexture6);
     unitSprite6->resize(40, 40);
     unit6->setPosition(map->getTile(11, 8));
-    player2->addUnit(unit6);
+    
+    map->addEntity( *unit6 );
+    player2->addUnit( unit6->getPosition() );
     
     //Load buildings
     map->loadBuildings( spriteFactory, renderer, player, player2 );

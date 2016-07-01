@@ -33,54 +33,43 @@ public:
     virtual ~Player();
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
     
-    void setPosition( int x, int y);
-    Point getPosition();
-    Tile getTile() const;
-    void setTile( const Tile tile );
-    void addUnit( Unit* unit );
+    void addUnit( const Point& unitReference );
     Unit* getUnit( int id ) const;
     
-    std::list<Unit*>& getUnitList();
-    std::vector<Unit*>& getAliveUnits();
+    std::vector<Unit*> getUnits() const;
     
-    Unit* getSelectedUnit();
-    void setSelectedUnit(Unit* unit);
+    Unit* getSelectedUnit() const;
+    void setSelectedUnit( Unit* unit );
     
-    State* getState();
-    void updateState(State* state);
-    void setState(State* state);
+    State* getState() const;
+    void updateState( State* state );
+    void setState( State* state );
     
     void setMap(Map* map);
-    Map* getMap();
+    Map* getMap() const;
     
-    void setActive(bool active);
-    bool isActive();
+    void setActive( bool active );
+    bool isActive() const;
     
-    PlayerType getType();
+    PlayerType getType() const;
     void setType( PlayerType type );
     
-    bool hasUnit(int id);
+    bool hasUnit( int id ) const;
     
-    //Add units data to the info map
-    void populateInfoMap(InfoMap& infoMap);
-    
-    bool hasUnitAlive();
+    bool hasUnitAlive() const;
     
     bool hasCapturedHQ( Player* enemy );
     Building* getHeadquarter();
     void setHeadquarter( Building* headquarter );
 private:
-    Point position;
-    Tile tile;
-    std::list<Unit*> units;
-    std::vector<Unit*> aliveUnits;
-    
     State* state;
     Unit* selectedUnit;
     Map* map;
     bool active;
     PlayerType type;
     Building* headquarter;
+    
+    std::vector<Point> army;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

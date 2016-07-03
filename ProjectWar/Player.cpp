@@ -22,8 +22,13 @@ Player::Player( int id )
     this->setid(id);
 }
 
-Player::~Player() {
+Player::Player( const Player& player ) {
+    this->army = player.army;
+    this->setid( player.getId() );
+}
 
+Player::~Player() {
+    army.clear();
 }
 
 void Player::addUnit( Unit& unit ) {

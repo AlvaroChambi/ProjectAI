@@ -29,9 +29,9 @@ class Player : public IPlayer, public Model
 {
 public:
     Player();
-    Player(int id);
+    Player( int id );
+    Player( const Player& player );
     virtual ~Player();
-    typedef std::vector< std::vector<InfoTile*> > InfoMap;
     
     void addUnit( Unit& unit );
     Unit* getUnit( int id ) const;
@@ -45,7 +45,7 @@ public:
     void updateState( State* state );
     void setState( State* state );
     
-    void setMap(Map* map);
+    void setMap( Map* map );
     Map* getMap() const;
     
     void setActive( bool active );

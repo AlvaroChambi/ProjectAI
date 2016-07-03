@@ -231,7 +231,7 @@ void Map::checkNearEntities( const Unit& unit,
                            MAP_WIDTH, MAP_HEIGHT );
     
     Building* structure = structuresLayer.get( unit.getPosition() );
-    if( structure != nullptr && structure->getOwnerID() != unit.getOwnerID() ) {
+    if( structure != nullptr && !structure->isCaptured( unit.getOwnerID() ) ) {
         //structure available to capture
         commands.push_back( CAPTURE );
     }

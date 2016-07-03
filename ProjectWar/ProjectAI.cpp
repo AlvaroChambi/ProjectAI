@@ -117,12 +117,6 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //TODO fix error assigning id to the sprites and models
     //Load player data model, view
     Player* player = new Player();
-    Sprite* playerSprite = spriteFactory->createSprite(PLAYER);
-    playerSprite->setModel(player);
-    Texture* texture = renderer->loadTexture("target_tile_white.png");
-    playerSprite->setTexture(texture);
-    playerSprite->resize(40, 40);
-    texture->setPosition(map->getAbsolutePosition(8,8));
     player->setMap(map);
     
     PlayerAI* player2 = new PlayerAI( 1 );
@@ -252,9 +246,6 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     scene->attachSprite(unitSprite5);
     scene->attachSprite(unitSprite6);
     scene->attachSprite(unitSprite);
-    
-    scene->attachSprite(playerSprite2);
-    scene->attachSprite(playerSprite);
     
     scene->registerListener(this);
     

@@ -79,6 +79,7 @@ public:
     
     void addEntity( Unit& unit );
     
+    Point getEntityReference( int id ) const;     
 private:
     TileMap matrix;
     
@@ -87,9 +88,6 @@ private:
     
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
-    
-    std::map<int,Point> redArmyUnits;
-    std::map<int,Point> blueArmyUnits;
     
     std::map<int,Point> entities;
  };

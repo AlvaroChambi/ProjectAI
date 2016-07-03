@@ -28,7 +28,7 @@ void UnitView::setModel(Model *model)
     this->unit = (Unit*)model;
     model->setid(this->getID());
     
-    text->setTextResource(std::to_string(unit->getHP()));
+    text->setTextResource(std::to_string(unit->getId()));
 }
 
 void UnitView::render(Renderer *renderer)
@@ -52,7 +52,7 @@ void UnitView::update( Update update )
             this->updateAnimated(false);
             break;
         case HP_UPDATE:
-            text->setTextResource(std::to_string(unit->getHP()));
+            text->setTextResource(std::to_string(unit->getId()));
             break;
         case STATE_UPDATE:
             if(unit->getHP() == 0){

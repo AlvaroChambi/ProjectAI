@@ -26,10 +26,9 @@ Player::~Player() {
 
 }
 
-void Player::addUnit( int unitReference ) {
-    Unit* unit = map->getEntity( unitReference );
-    unit->setOwnerID( getId() );
-    army.push_back( unitReference );
+void Player::addUnit( Unit& unit ) {
+    unit.setOwnerID( getId() );
+    army.push_back( unit.getId() );
 }
 
 Unit* Player::getUnit( int id ) const {
@@ -111,8 +110,7 @@ bool Player::isActive() const {
 bool Player::hasUnit( int id ) const {
     bool result = false;
     for ( int reference : army ) {
-        Unit* unit = map->getEntity( reference );
-        if( unit != nullptr && unit->getId() == id ) {
+        if( reference == id ) {
             result = true;
         }
     }
@@ -123,8 +121,8 @@ bool Player::hasUnitAlive() const {
     bool result = false;
     for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
-        if ( unit != nullptr && unit->getHP() > 0 ) {
-            result = true;
+        if ( unit != nullptr ) {
+            return true;
         }
     }
     return result;

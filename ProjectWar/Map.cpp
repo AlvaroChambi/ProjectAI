@@ -248,9 +248,17 @@ void Map::checkNearEntities( const Unit& unit,
     }
 }
 
+// An exception will be raised if the unit is already added
+// or his position is already occupied
 void Map::addEntity( Unit& unit ) {
-    entitiesLayer.set( &unit, unit.getPosition() );
-    entities[unit.getId()] = unit.getPosition();
+    if( entities.find( unit.getId() ) == entities.end()
+        && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
+        
+        entitiesLayer.set( &unit, unit.getPosition() );
+        entities[unit.getId()] = unit.getPosition();
+    } else {
+        throw IllegalStateException("");
+    }
 }
 
 void Map::moveEntity( Unit& unit, const Point &destination ) {
@@ -260,20 +268,25 @@ void Map::moveEntity( Unit& unit, const Point &destination ) {
 
 void Map::restoreUnit( Unit& unit ) {
     entitiesLayer.set( &unit, unit.getPosition() );
+    entities[unit.getId()].invalidated = false;
 }
 
 void Map::removeUnit( Unit& unit ) {
     entitiesLayer.set( nullptr, unit.getPosition() );
+    entities[unit.getId()].invalidated = true;
 }
 
 Unit* Map::getEntity( const Point &reference ) const {
-    return entitiesLayer.get( reference );
+    if( !reference.invalidated ) {
+        return entitiesLayer.get( reference );
+    }
+    return nullptr;
 }
 
 Unit* Map::getEntity( int id ) const {
-    auto iterator = entities.find( id );
-    if( iterator != entities.end() ) {
-        return entitiesLayer.get( iterator->second );
-    }
-    return nullptr;
+    return getEntity( entities.at( id ) );
+}
+
+Point Map::getEntityReference( int id ) const {
+    return entities.at( id );
 }

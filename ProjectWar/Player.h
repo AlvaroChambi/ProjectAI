@@ -33,7 +33,7 @@ public:
     virtual ~Player();
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
     
-    void addUnit( int unitReference );
+    void addUnit( Unit& unit );
     Unit* getUnit( int id ) const;
     
     std::vector<Unit*> getUnits() const;

@@ -19,8 +19,9 @@ public:
     int x;
     int y;
     int z;
+    bool invalidated;
     
-    Point() : x(0), y(0), z(0) {
+    Point() : x(0), y(0), z(0), invalidated( false ) {
     
     }
     

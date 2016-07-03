@@ -27,8 +27,6 @@
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
 
-class Path;
-class Pathfinder;
 class Player;
 class Map : public IMap {
 public:
@@ -76,6 +74,8 @@ public:
     void loadInfoMap( std::list<Player *> &players );
     
     Unit* getEntity( const Point& reference ) const;
+    
+    Unit* getEntity( int id ) const;
     
     void addEntity( Unit& unit );
     

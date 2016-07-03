@@ -9,7 +9,6 @@
 #include "PlayerAI.h"
 #include "Map.h"
 #include "MinimaxAlgorithm.hpp"
-#include "Path.h"
 #include "DotPath.h"
 #include "GameMinimax.h"
 #include <stdio.h>

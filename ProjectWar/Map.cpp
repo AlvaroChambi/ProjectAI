@@ -9,8 +9,6 @@
 #include "Map.h"
 #include "Player.h"
 #include <iostream>
-#include "Path.h"
-#include "Pathfinder.h"
 #include "GameException.h"
 #include "AreaIterator.h"
 #include "UnitFilter.h"
@@ -248,8 +246,6 @@ void Map::checkNearEntities( const Unit& unit,
             return;
         }
     }
-    
-    
 }
 
 void Map::addEntity( Unit& unit ) {
@@ -259,7 +255,7 @@ void Map::addEntity( Unit& unit ) {
 
 void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition(), destination );
-    entities[unit.getId()] = unit.getPosition();
+    entities[unit.getId()] = destination;
 }
 
 void Map::restoreUnit( Unit& unit ) {
@@ -272,4 +268,12 @@ void Map::removeUnit( Unit& unit ) {
 
 Unit* Map::getEntity( const Point &reference ) const {
     return entitiesLayer.get( reference );
+}
+
+Unit* Map::getEntity( int id ) const {
+    auto iterator = entities.find( id );
+    if( iterator != entities.end() ) {
+        return entitiesLayer.get( iterator->second );
+    }
+    return nullptr;
 }

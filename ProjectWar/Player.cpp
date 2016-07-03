@@ -26,7 +26,7 @@ Player::~Player() {
 
 }
 
-void Player::addUnit( const Point& unitReference ) {
+void Player::addUnit( int unitReference ) {
     Unit* unit = map->getEntity( unitReference );
     unit->setOwnerID( getId() );
     army.push_back( unitReference );
@@ -34,7 +34,7 @@ void Player::addUnit( const Point& unitReference ) {
 
 Unit* Player::getUnit( int id ) const {
     Unit* result = nullptr;
-    for ( Point reference : army ) {
+    for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
         if( unit != nullptr && unit->getId() == id ) {
             result = unit;
@@ -45,7 +45,7 @@ Unit* Player::getUnit( int id ) const {
 
 std::vector<Unit*> Player::getUnits() const {
     std::vector<Unit*> units;
-    for ( Point reference : army ) {
+    for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
         if( unit != nullptr ) {
             units.push_back( unit );
@@ -110,9 +110,9 @@ bool Player::isActive() const {
 
 bool Player::hasUnit( int id ) const {
     bool result = false;
-    for ( Point reference : army ) {
+    for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
-        if( unit->getId() == id ) {
+        if( unit != nullptr && unit->getId() == id ) {
             result = true;
         }
     }
@@ -121,9 +121,9 @@ bool Player::hasUnit( int id ) const {
 
 bool Player::hasUnitAlive() const {
     bool result = false;
-    for ( Point reference : army ) {
+    for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
-        if ( unit->getHP() > 0 ) {
+        if ( unit != nullptr && unit->getHP() > 0 ) {
             result = true;
         }
     }

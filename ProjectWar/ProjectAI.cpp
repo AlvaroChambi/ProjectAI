@@ -155,7 +155,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //unit->setPosition(map->getTile(2, 1));
     unit->setPosition(map->getTile(8, 4));
     map->addEntity( *unit );
-    player->addUnit( unit->getPosition() );
+    player->addUnit( unit->getId() );
     
     Unit* unit3 = new Unit();
     unit3->setResource("soldier_red.png");
@@ -172,7 +172,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit3->setPosition(map->getTile(7, 2));
     
     map->addEntity( *unit3 );
-    player->addUnit( unit3->getPosition() );
+    player->addUnit( unit3->getId() );
     
     Unit* unit4 = new Unit();
     unit4->setResource("soldier_red.png");
@@ -189,7 +189,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit4->setPosition(map->getTile(8, 8));
     
     map->addEntity( *unit4 );
-    player->addUnit( unit4->getPosition() );
+    player->addUnit( unit4->getId() );
     
     ///////////  PLAYER 2 UNITS ///////////
     Unit* unit2 = new Unit();
@@ -205,7 +205,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit2->setPosition(map->getTile(13,9));
     
     map->addEntity( *unit2 );
-    player2->addUnit( unit2->getPosition() );
+    player2->addUnit( unit2->getId() );
     
     Unit* unit5 = new Unit();
     unit5->setResource("soldier_blue.png");
@@ -220,7 +220,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit5->setPosition(map->getTile(14, 5));
     
     map->addEntity( *unit5 );
-    player2->addUnit( unit5->getPosition() );
+    player2->addUnit( unit5->getId() );
     
     Unit* unit6 = new Unit();
     unit6->setResource("soldier_blue.png");
@@ -235,7 +235,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     unit6->setPosition(map->getTile(11, 8));
     
     map->addEntity( *unit6 );
-    player2->addUnit( unit6->getPosition() );
+    player2->addUnit( unit6->getId() );
     
     //Load buildings
     map->loadBuildings( spriteFactory, renderer, player, player2 );

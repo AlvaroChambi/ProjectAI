@@ -10,6 +10,8 @@
 #define ProjectWar_MapLayer_h
 
 #include <vector>
+#include <map>
+
 #include "Point.h"
 #include "GameException.h"
 

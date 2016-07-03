@@ -33,7 +33,7 @@ public:
     virtual ~Player();
     typedef std::vector< std::vector<InfoTile*> > InfoMap;
     
-    void addUnit( const Point& unitReference );
+    void addUnit( int unitReference );
     Unit* getUnit( int id ) const;
     
     std::vector<Unit*> getUnits() const;
@@ -69,7 +69,7 @@ private:
     PlayerType type;
     Building* headquarter;
     
-    std::vector<Point> army;
+    std::vector<int> army;
 };
 
 #endif /* defined(__ProjectWar__Player__) */

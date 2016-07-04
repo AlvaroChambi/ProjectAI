@@ -49,13 +49,6 @@ public:
     void updateUnitAvailableArea( const Unit& unit );
     void cleanUnitAvailableArea( const Unit& unit );
     
-    void addBuilding(Building* building);
-    Building* getBuilding(int id);
-    Building* getBuilding(Point position);
-    std::list<Building*> getBuildingsByOwnerId(int ownerId);
-    int getNumBuildings(int ownerId);
-    std::vector<Building*>& getBuildings();
-    
     void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
                        Player* player, Player* opponent );
     
@@ -63,33 +56,34 @@ public:
     void checkNearEntities( const Unit& unit,
                             std::vector<UnitCommand>& commands);
     
-    void restoreUnit( Unit& unit );
-    void removeUnit( Unit& unit );
-    
     int getNumRows();
     int getNumColumns();
     bool isValidPosition( const Point& position );
-    
-    void moveEntity( Unit& unit, const Point& destination );
     void loadInfoMap( std::list<Player *> &players );
     
+    void restoreUnit( Unit& unit );
+    void removeUnit( Unit& unit );
+    
+    void moveEntity( Unit& unit, const Point& destination );
     Unit* getEntity( const Point& reference ) const;
-    
     Unit* getEntity( int id ) const;
-    
     void addEntity( Unit& unit );
+    Point getEntityReference( int id ) const;
     
-    Point getEntityReference( int id ) const;     
+    void addStructure( Building& building );
+    Point getStructureReference( int id );
+    Building* getStructure( const Point& reference ) const;
+    Building* getStructure( int id ) const;
+    std::vector<Building*> getStructures() const;
 private:
     TileMap matrix;
-    
-    std::vector<Building*> buildings;
     std::vector<Sprite*> sprites;
     
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
     
     std::map<int,Point> entities;
+    std::map<int,Point> structures;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

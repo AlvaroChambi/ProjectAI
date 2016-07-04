@@ -88,7 +88,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     std::vector<Action*>* actions = new std::vector<Action*>();
     
     std::vector<Action*>* capture =
-        unit->getCaptureActions( map, player, map->getBuildings(), *this );
+        unit->getCaptureActions( map, player, map->getStructures(), *this );
     if( !capture->empty() &&
         capture->size() <= numActions ) {
         actions->insert( actions->end(), capture->begin(), capture->end() );

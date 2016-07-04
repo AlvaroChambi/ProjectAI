@@ -35,45 +35,6 @@ int Map::getNumRows() {
     return MAP_HEIGHT;
 }
 
-void Map::addBuilding( Building *building ) {
-    buildings.push_back(building);
-    structuresLayer.set( building, building->getPosition() );
-}
-
-Building* Map::getBuilding(int id) {
-    Building* result = nullptr;
-    for (Building* building : buildings) {
-        if(building->getId() == id){
-            result = building;
-        }
-    }
-    return result;
-}
-
-std::vector<Building*>& Map::getBuildings() {
-    return buildings;
-}
-
-std::list<Building*> Map::getBuildingsByOwnerId(int ownerId) {
-    std::list<Building*> result;
-    for (Building* building : buildings) {
-        if(building->getOwnerID() == ownerId){
-            result.push_back(building);
-        }
-    }
-    return result;
-}
-
-int Map::getNumBuildings(int ownerId) {
-    int result = 0;
-    for (Building* building : buildings) {
-        if(building->getOwnerID() == ownerId){
-            result++;
-        }
-    }
-    return result;
-}
-
 //Using static map width and height for now
 void Map::loadMap( Renderer* renderer, int tileWidth, int tileHeight ) {
     for(int i = 0; i < MAP_WIDTH ; i++){
@@ -105,7 +66,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     buildingSprite->setRenderFrame(Point(3,0));
     building->setOwnerID(0);
     building->setCaptureValue(20);
-    this->addBuilding(building);
+    this->addStructure( *building );
     
     Building* building2 = new Building();
     Sprite* buildingSprite2 = spriteFactory->createSprite(BUILDING);
@@ -117,25 +78,14 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     building2->setOwnerID(1);
     building2->setCaptureValue(20);
     building2->setPosition(getTile(12,6));
-    this->addBuilding(building2);
+    this->addStructure( *building2 );
     
-    player->setHeadquarter( building );
-    opponent->setHeadquarter( building2 );
+    player->setHeadquarter( building->getId() );
+    opponent->setHeadquarter( building2->getId() );
     
     sprites.push_back(buildingSprite);
     sprites.push_back(buildingSprite2);
 }
-
-Building* Map::getBuilding(Point position) {
-    Building* result = nullptr;
-    for (Building* building : buildings) {
-        if (building->getPosition() == position) {
-            result = building;
-        }
-    }
-    return result;
-}
-
 
 void Map::cleanUnitAvailableArea( const Unit& unit ) {
     AreaIterator areaIterator;
@@ -289,4 +239,36 @@ Unit* Map::getEntity( int id ) const {
 
 Point Map::getEntityReference( int id ) const {
     return entities.at( id );
+}
+
+Building* Map::getStructure( const Point &reference ) const {
+    if( !reference.invalidated ) {
+        return structuresLayer.get( reference );
+    }
+    return nullptr;
+}
+
+Building* Map::getStructure( int id ) const {
+    return getStructure( structures.at( id ) );
+}
+
+// An exception will be raised if the structure is already added
+// or his position is already occupied
+void Map::addStructure( Building &building ) {
+    if( structures.find( building.getId() ) == structures.end()
+       && structuresLayer.get( building.getPosition() ) == nullptr ) {
+        
+        structuresLayer.set( &building, building.getPosition() );
+        structures[building.getId()] = building.getPosition();
+    } else {
+        throw IllegalStateException("");
+    }
+}
+
+std::vector<Building*> Map::getStructures() const {
+    std::vector<Building*> result;
+    for ( const auto &pair : structures ) {
+        result.push_back( getStructure( pair.second ) );
+    }
+    return result;
 }

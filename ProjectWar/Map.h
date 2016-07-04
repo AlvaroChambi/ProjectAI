@@ -22,12 +22,11 @@
 #include "SpriteFactory.h"
 #include "IMap.h"
 #include "MapLayer.h"
+#include <map>
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
 
-class Path;
-class Pathfinder;
 class Player;
 class Map : public IMap {
 public:
@@ -73,15 +72,24 @@ public:
     
     void moveEntity( Unit& unit, const Point& destination );
     void loadInfoMap( std::list<Player *> &players );
+    
+    Unit* getEntity( const Point& reference ) const;
+    
+    Unit* getEntity( int id ) const;
+    
+    void addEntity( Unit& unit );
+    
+    Point getEntityReference( int id ) const;     
 private:
     TileMap matrix;
     
     std::vector<Building*> buildings;
     std::vector<Sprite*> sprites;
-    Pathfinder* pathfinder;
     
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
+    
+    std::map<int,Point> entities;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

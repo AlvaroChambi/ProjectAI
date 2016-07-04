@@ -18,10 +18,10 @@ class Model : public Observable
 public:
     Model();
     virtual ~Model();
-    int getId();
-    void setid(int id);
-    void setResource(std::string resource);
-    std::string getResource();
+    int getId() const;
+    void setid( int id );
+    void setResource( std::string resource );
+    std::string getResource() const;
 private:
     int id;
     std::string resource ;

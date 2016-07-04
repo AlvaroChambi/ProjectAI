@@ -9,8 +9,6 @@
 #include "Map.h"
 #include "Player.h"
 #include <iostream>
-#include "Path.h"
-#include "Pathfinder.h"
 #include "GameException.h"
 #include "AreaIterator.h"
 #include "UnitFilter.h"
@@ -219,7 +217,8 @@ bool Map::isValidPosition( const Point& position ) {
 
 void Map::loadInfoMap( std::list<Player *> &players ) {
     for (Player* player : players) {
-        for( Unit* unit : player->getUnitList() ) {
+        std::vector<Unit*> units = player->getUnits();
+        for( Unit* unit : units ) {
             entitiesLayer.set( unit , unit->getPosition() );
         }
     }
@@ -232,7 +231,7 @@ void Map::checkNearEntities( const Unit& unit,
                            MAP_WIDTH, MAP_HEIGHT );
     
     Building* structure = structuresLayer.get( unit.getPosition() );
-    if( structure != nullptr && structure->getOwnerID() != unit.getOwnerID() ) {
+    if( structure != nullptr && !structure->isCaptured( unit.getOwnerID() ) ) {
         //structure available to capture
         commands.push_back( CAPTURE );
     }
@@ -247,18 +246,47 @@ void Map::checkNearEntities( const Unit& unit,
             return;
         }
     }
-    
-    
+}
+
+// An exception will be raised if the unit is already added
+// or his position is already occupied
+void Map::addEntity( Unit& unit ) {
+    if( entities.find( unit.getId() ) == entities.end()
+        && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
+        
+        entitiesLayer.set( &unit, unit.getPosition() );
+        entities[unit.getId()] = unit.getPosition();
+    } else {
+        throw IllegalStateException("");
+    }
 }
 
 void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition(), destination );
+    entities[unit.getId()] = destination;
 }
 
 void Map::restoreUnit( Unit& unit ) {
     entitiesLayer.set( &unit, unit.getPosition() );
+    entities[unit.getId()].invalidated = false;
 }
 
 void Map::removeUnit( Unit& unit ) {
     entitiesLayer.set( nullptr, unit.getPosition() );
+    entities[unit.getId()].invalidated = true;
+}
+
+Unit* Map::getEntity( const Point &reference ) const {
+    if( !reference.invalidated ) {
+        return entitiesLayer.get( reference );
+    }
+    return nullptr;
+}
+
+Unit* Map::getEntity( int id ) const {
+    return getEntity( entities.at( id ) );
+}
+
+Point Map::getEntityReference( int id ) const {
+    return entities.at( id );
 }

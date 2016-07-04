@@ -9,7 +9,6 @@
 #include "PlayerAI.h"
 #include "Map.h"
 #include "MinimaxAlgorithm.hpp"
-#include "Path.h"
 #include "DotPath.h"
 #include "GameMinimax.h"
 #include <stdio.h>
@@ -60,5 +59,7 @@ void PlayerAI::executeMinimax() {
         new MinimaxAlgorithm( new GameMinimax( game ) );
     algorithm->minimax( 4 );
     Movement* movement = (Movement*)algorithm->getBestMove();
-    movement->execute();
+    if( movement != nullptr ) {
+        movement->execute();
+    }
 }

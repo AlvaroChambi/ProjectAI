@@ -60,8 +60,6 @@ void OnAttackState::handleInput(Input input, int id, Tile position, Unit* target
             //if can reach target selected enemy
             if (
                 unit->getPosition().onRange( targetUnit->getPosition(), unit->getMovement() ) ) {
-                //Move target tile over the attacked unit
-                player->setTile(player->getMap()->getTile(targetUnit->getPosition().x, targetUnit->getPosition().y));
                 this->targetUnit = targetUnit;
                 //cancel previous executed command if there is one(Once cancelled the command is set to null)
                 this->cancelCommand();

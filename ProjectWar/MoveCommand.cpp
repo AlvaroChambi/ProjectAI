@@ -24,7 +24,6 @@ MoveCommand::~MoveCommand() {
 }
 
 void MoveCommand::execute() {
-    //TODO: Finish command error handling
     if( executed ) {
         throw IllegalStateException( "Command state was not restored after execution" );
     }

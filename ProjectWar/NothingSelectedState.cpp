@@ -44,9 +44,7 @@ void NothingSelectedState::handleInput(Input input, int id, Tile position)
             break;
         case MAP_CLICKED:
         {
-            //Move player - keep state
-            Player* player = (Player*)model;
-            player->setTile(position);
+
         }
             break;
         case ENEMY_UNIT_CLICKED:

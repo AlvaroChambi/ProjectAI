@@ -24,7 +24,7 @@ const int TACTIC_POSSIBILITIES = 4;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
-: player( player ), enemy( enemy ), map( map ){
+: player( player ), enemy( enemy ), map( map ) {
 
 }
 
@@ -69,13 +69,14 @@ std::vector<Option*>* GameState::getMovesList( Player* player,
         new std::vector<std::vector<Action*>*>;
     
     invalidatedPositions.clear();
-    for ( Unit* unit : player->getAliveUnits() ) {
+    std::vector<Unit*> units = player->getUnits();
+    for ( Unit* unit : units ) {
         std::vector<Action*>* unitActions =
             filterUnitActions( unit , player, opponent, TACTIC_POSSIBILITIES );
         unitsActions->push_back( unitActions );
     }
     
-    return &buildMovesList( (int)player->getAliveUnits().size(), *unitsActions );
+    return &buildMovesList( (int)units.size(), *unitsActions );
 }
 
 std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
@@ -99,7 +100,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
     }
     
     std::vector<Action*>* attack =
-        unit->getAttackActions( map, opponent->getAliveUnits(), *this );
+        unit->getAttackActions( map, opponent->getUnits(), *this );
     
     if ( !attack->empty()
          && (attack->size() + addedActions) <=  numActions ) {

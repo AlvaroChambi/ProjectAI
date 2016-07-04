@@ -40,10 +40,10 @@ int HeuristicFunction::calculateEnemyHeadquarterDistance( Building* playerHeadqu
     int result = 0;
     //TODO: FIX Headquarter reference
     if(enemyHeadquarter != nullptr && playerHeadquarter != nullptr){
-        for (Unit* unit : player->getAliveUnits()) {
+        for (Unit* unit : player->getUnits()) {
             result = result - unit->getPosition().distance(enemyHeadquarter->getPosition());
         }
-        for (Unit* unit : enemy->getAliveUnits()) {
+        for (Unit* unit : enemy->getUnits()) {
             result = result + unit->getPosition().distance(playerHeadquarter->getPosition());
         }
     }
@@ -52,10 +52,10 @@ int HeuristicFunction::calculateEnemyHeadquarterDistance( Building* playerHeadqu
 
 int HeuristicFunction::calculateUnitsHealth(Player* player, Player* enemy) {
     int result = 0;
-    for (Unit* unit : player->getAliveUnits()) {
+    for (Unit* unit : player->getUnits()) {
         result = result + unit->getHP();
     }
-    for (Unit* unit : enemy->getAliveUnits()) {
+    for (Unit* unit : enemy->getUnits()) {
         result = result - unit->getHP();
     }
     return result;
@@ -76,7 +76,7 @@ int HeuristicFunction::getStaticEvaluation() {
     result = result + calculateBuildingsHealth( playerBuildings, enemyBuildings );
     result = result + calculateEnemyHeadquarterDistance( player->getHeadquarter(),
                                                          enemy->getHeadquarter() );
-    result = result + calculateUnitsHealth(player, enemy) * 5;
+    result = result + calculateUnitsHealth(player, enemy) * 10;
     
     return result;
 }

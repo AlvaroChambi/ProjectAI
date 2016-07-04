@@ -16,19 +16,21 @@
 class HeuristicFunction {
 public:
     HeuristicFunction();
-    HeuristicFunction(Player* player, Player* enemy);
-    ~HeuristicFunction();
+    HeuristicFunction( const Player& player, const Player& enemy );
     
     static const int DRAW_VALUE = 0;
     
-    int calculateBuildingsHealth(std::list<Building*> playerBuildings, std::list<Building*> enemyBuildings);
-    int calculateEnemyHeadquarterDistance( Building* playerHeadquarter,
-                                           Building* enemyHeadquarter );
-    int calculateUnitsHealth(Player* player, Player* enemy);
+    int calculateBuildingsHealth(
+                            std::vector<Building*> playerBuildings,
+                            std::vector<Building*> enemyBuildings);
+    int calculateEnemyHeadquarterDistance(
+                                const Building& playerHeadquarter,
+                                const Building& enemyHeadquarter );
+    int calculateUnitsHealth();
     int getStaticEvaluation();
 private:
-    Player* player;
-    Player* enemy;
+    const Player& player;
+    const Player& enemy;
     
 };
 #endif /* HeuristicFunction_h */

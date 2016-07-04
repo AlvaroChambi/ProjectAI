@@ -58,17 +58,19 @@ public:
     
     bool hasUnitAlive() const;
     
-    bool hasCapturedHQ( Player* enemy );
-    Building* getHeadquarter();
-    void setHeadquarter( Building* headquarter );
+    bool hasCapturedHQ( Player* enemy ) const;
+    Building* getHeadquarter() const;
+    void setHeadquarter( int id );
+    
+    std::vector<Building*> getStructures() const;
 private:
     State* state;
     Unit* selectedUnit;
     Map* map;
     bool active;
     PlayerType type;
-    Building* headquarter;
     
+    int headquarter;
     std::vector<int> army;
 };
 

@@ -12,7 +12,7 @@
 class IPlayer {
 public:
     virtual bool hasUnitAlive() const = 0;
-    virtual bool hasCapturedHQ( Player* enemy ) = 0;
+    virtual bool hasCapturedHQ( Player* enemy ) const = 0;
 };
 
 #endif /* IPlayer_h */

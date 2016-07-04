@@ -13,8 +13,8 @@ static const int INFINITE = std::numeric_limits<int>::max();
 GameMinimax::GameMinimax( GameState* gameState )
 : gameState( gameState ) {
     heuristicFunction = new HeuristicFunction(
-                                (Player*)gameState->getPlayer(),
-                                (Player*)gameState->getEnemy() );
+                                *(Player*)gameState->getPlayer(),
+                                *(Player*)gameState->getEnemy() );
 }
 
 GameMinimax::~GameMinimax() {

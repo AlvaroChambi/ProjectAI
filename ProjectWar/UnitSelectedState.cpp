@@ -82,7 +82,7 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
         case CAPTURE_CLICKED:
         {
             //Picking the building thats is placed in the selected unit position
-            Building* building = player->getMap()->getBuilding(player->getSelectedUnit()->getPosition());
+            Building* building = player->getMap()->getStructure(player->getSelectedUnit()->getPosition());
             CaptureCommand* captureCommand = new CaptureCommand(player, player->getSelectedUnit(), building);
             captureCommand->execute();
             handleInput(WAIT_CLICKED, -1, nullptr);

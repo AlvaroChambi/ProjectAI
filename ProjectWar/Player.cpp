@@ -13,7 +13,7 @@
 Player::Player()
 : Model(), selectedUnit( nullptr ),
 active( false ), map( nullptr ), type( HUMAN_PLAYER ),
-headquarter( nullptr ) {
+headquarter( -1 ) {
     
 }
 
@@ -133,15 +133,26 @@ bool Player::hasUnitAlive() const {
     return result;
 }
 
-bool Player::hasCapturedHQ( Player* enemy ) {
+bool Player::hasCapturedHQ( Player* enemy ) const {
     Building* enemyHQ = enemy->getHeadquarter();
     return enemyHQ->isCaptured( getId() );
 }
 
-Building* Player::getHeadquarter() {
-    return headquarter;
+Building* Player::getHeadquarter() const {
+    return map->getStructure( headquarter );
 }
 
-void Player::setHeadquarter( Building *headquarter ) {
-    this->headquarter = headquarter;
+void Player::setHeadquarter( int id ) {
+    this->headquarter = id;
+}
+
+std::vector<Building*> Player::getStructures() const {
+    std::vector<Building*> structures = map->getStructures();
+    std::vector<Building*> playerStructures;
+    for( Building* building : structures ) {
+        if( building->getId() == getId() ) {
+            playerStructures.push_back( building );
+        }
+    }
+    return playerStructures;
 }

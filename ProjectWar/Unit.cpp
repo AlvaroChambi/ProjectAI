@@ -76,7 +76,7 @@ Tile Unit::getTile() const {
     return tile;
 }
 
-Point Unit::getPosition() const {
+const Point Unit::getPosition() const {
     return tile.position;
 }
 

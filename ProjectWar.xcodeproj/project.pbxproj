@@ -61,6 +61,7 @@
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
 		3A38925A1D266995009EB3E1 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
+		3A38925C1D2D174F009EB3E1 /* MovesBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A38925B1D2D174F009EB3E1 /* MovesBuilder.cpp */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
 		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
@@ -122,7 +123,7 @@
 		9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC0031AB1A6E600C4EB1F /* Event.cpp */; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
-		9CB5E66E1D291AE30067F160 /* PlayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5E66D1D291AE30067F160 /* PlayerTest.cpp */; settings = {ASSET_TAGS = (); }; };
+		9CB5E66E1D291AE30067F160 /* PlayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5E66D1D291AE30067F160 /* PlayerTest.cpp */; };
 		9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9BE1CF7758100CA82DE /* MinimaxTest.cpp */; };
 		9CBEB9C91CF77BF000CA82DE /* MinimaxAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */; };
 		9CBEB9CA1CF77BF000CA82DE /* MinimaxAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEB9C71CF77BF000CA82DE /* MinimaxAlgorithm.cpp */; };
@@ -187,6 +188,8 @@
 		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
 		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapLayerTest.cpp; sourceTree = "<group>"; };
+		3A38925B1D2D174F009EB3E1 /* MovesBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovesBuilder.cpp; sourceTree = "<group>"; };
+		3A38925D1D2D176E009EB3E1 /* MovesBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovesBuilder.h; sourceTree = "<group>"; };
 		3A3C1B131D23BC9800D0848F /* MapLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 				9CF246411CFF895E00AF606D /* AreaIterator.cpp */,
 				9CF246441CFF8F9200AF606D /* UnitFilter.cpp */,
 				9CF246471CFF8FCB00AF606D /* UnitFilter.h */,
+				3A38925B1D2D174F009EB3E1 /* MovesBuilder.cpp */,
+				3A38925D1D2D176E009EB3E1 /* MovesBuilder.h */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -1023,6 +1028,7 @@
 				9C800B141AB7443C003FE2AA /* Model.cpp in Sources */,
 				9C8FBFEA1AAEF47700C4EB1F /* InputHandler.cpp in Sources */,
 				9C800B171AB7443C003FE2AA /* Unit.cpp in Sources */,
+				3A38925C1D2D174F009EB3E1 /* MovesBuilder.cpp in Sources */,
 				9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */,
 				9C800B331AB88B48003FE2AA /* SpriteFactory.cpp in Sources */,
 				3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */,

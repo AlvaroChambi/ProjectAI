@@ -45,7 +45,7 @@ public:
     int getMovement() const;
     
     Tile getTile() const;
-    Point getPosition() const;
+    const Point getPosition() const;
     
     void setActive( bool active );
     bool isActive() const;

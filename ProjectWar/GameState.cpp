@@ -25,7 +25,7 @@ const int TACTIC_POSSIBILITIES = 4;
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       IMap* map )
 : player( player ), enemy( enemy ), map( map ) {
-
+    
 }
 
 GameState::~GameState() {
@@ -62,6 +62,24 @@ int GameState::getGameOverScore() {
     
     return gameScore;
 }
+
+int GameState::getStaticEvaluation() {
+    return 0;
+}
+
+//std::vector<Option*>& GameState::getLegalActions( const Player &player,
+//                                                  const Player &opponent ) {
+//    // build moves index -> vector< <0,0,0>, <1,1,1> >
+//    
+//    // get legal actions for each unit -> vector< <a,b,c>, <a,b,c> >
+//        // for each unit
+//        // get ALL legal unit actions -> vector< a[score], b[score], ... >
+//            //sorted by score
+//        // get {x} legal unit actions -> *vector first {x} items
+//    
+//    
+//    // map
+//}
 
 std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {

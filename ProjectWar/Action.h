@@ -25,6 +25,7 @@ public:
     void cancel();
     
     std::vector<Command*> commands;
+    int score;
 };
 
 #endif

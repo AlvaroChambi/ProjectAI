@@ -56,9 +56,9 @@ public:
     void checkNearEntities( const Unit& unit,
                             std::vector<UnitCommand>& commands);
     
-    int getNumRows();
-    int getNumColumns();
-    bool isValidPosition( const Point& position );
+    int getNumRows() const;
+    int getNumColumns() const;
+    bool isValidPosition( const Point& position ) const;
     void loadInfoMap( std::list<Player *> &players );
     
     void restoreUnit( Unit& unit );

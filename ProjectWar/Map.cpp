@@ -27,11 +27,11 @@ Map::~Map() {
 
 }
 
-int Map::getNumColumns() {
+int Map::getNumColumns() const {
     return MAP_WIDTH;
 }
 
-int Map::getNumRows() {
+int Map::getNumRows() const {
     return MAP_HEIGHT;
 }
 
@@ -161,7 +161,7 @@ Tile Map::getTile( Point point ) {
     return getTile( point.x, point.y );
 }
 
-bool Map::isValidPosition( const Point& position ) {
+bool Map::isValidPosition( const Point& position ) const {
     return entitiesLayer.get( position ) == nullptr;
 }
 

@@ -27,9 +27,14 @@ public:
     ~GameState();
     
     int getGameOverScore();
+    std::vector<Option*>& getLegalActions( const Player& player,
+                                           const Player& opponent );
+    int getStaticEvaluation();
+    
     
     std::vector<Option*>* getMovesList( Player* player,
                                         Player* opponent );
+    
     void generateTacticSequence(
                         std::vector<std::vector<int>> *sequence,
                         int numElements, std::vector<int> variation,
@@ -57,6 +62,10 @@ private:
     IPlayer* const enemy;
     IPlayer* const player;
     IMap* map;
+    
+    //StaticEvaluation
+    //LegalMoves
+
     std::vector<Point> invalidatedPositions;
 };
 

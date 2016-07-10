@@ -31,7 +31,7 @@ class Player;
 class Map : public MapContext {
 public:
     typedef std::vector< std::vector<Tile*> > TileMap;
-    Map();
+    Map( const Player& player, const Player& opponent );
     ~Map();
     //Width and height in tiles
     void loadMap( Renderer* renderer, int width, int height );
@@ -84,6 +84,9 @@ private:
     
     std::map<int,Point> entities;
     std::map<int,Point> structures;
+    
+    const Player& player;
+    const Player& opponent;
  };
 
 #endif /* defined(__ProjectWar__Map__) */

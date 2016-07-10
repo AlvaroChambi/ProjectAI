@@ -109,17 +109,16 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     button->setImageResource("end_button.bmp");
     
     //Load map data model and view resources
-    Map* map = new Map();
+    Player* player = new Player();
+    PlayerAI* player2 = new PlayerAI( 1 );
+    
+    Map* map = new Map( *player, *player2 );
     map->loadMap( renderer, 40, 40 );
     
     SpriteFactory* spriteFactory = new SpriteFactory;
-    
-    //TODO fix error assigning id to the sprites and models
-    //Load player data model, view
-    Player* player = new Player();
+
     player->setMap(map);
     
-    PlayerAI* player2 = new PlayerAI( 1 );
     player2->setPlayerList(&players);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);

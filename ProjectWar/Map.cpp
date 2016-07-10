@@ -13,7 +13,8 @@
 #include "AreaIterator.h"
 #include "UnitFilter.h"
 
-Map::Map() {
+Map::Map( const Player& player, const Player& opponent )
+: player( player ), opponent( opponent ) {
     entitiesLayer.resize( MAP_WIDTH , MAP_HEIGHT );
     structuresLayer.resize( MAP_WIDTH, MAP_HEIGHT );
     

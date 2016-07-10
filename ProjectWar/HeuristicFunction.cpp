@@ -71,3 +71,26 @@ int HeuristicFunction::getStaticEvaluation() {
     
     return result;
 }
+
+int HeuristicFunction::getGameOverScore() {
+    int gameScore = NOT_FINISHED;
+    bool playerHasCapturedHQ = player.hasCapturedHQ( enemy );
+    bool enemyHasCapturedHQ = enemy.hasCapturedHQ( player );
+    
+    bool playerHasUnitAlive = player.hasUnitAlive();
+    bool enemyHasUnitAlive = enemy.hasUnitAlive();
+    
+    if ( playerHasCapturedHQ && enemyHasCapturedHQ ) {
+        throw IllegalStateException( "both captured at the same time" );
+    } else if ( !playerHasUnitAlive && !enemyHasUnitAlive ) {
+        throw IllegalStateException( "HQ captured without units" );
+    } else {
+        if( !playerHasUnitAlive || enemyHasCapturedHQ ) {
+            return gameScore = LOST_VALUE;
+        }else if( !enemyHasUnitAlive || playerHasCapturedHQ ) {
+            return gameScore = WIN_VALUE;
+        }
+    }
+    
+    return gameScore;
+}

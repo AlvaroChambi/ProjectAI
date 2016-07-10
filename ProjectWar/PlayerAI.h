@@ -28,16 +28,12 @@ public:
     PlayerAI();
     PlayerAI( int id );
     ~PlayerAI();
-    void setPlayerList( std::list<Player*> *players );
-    std::list<Movement*>* genMovements( Unit* unit, Player* players,
-                                        Map* map);
-    std::list<Player*>* getPlayersList();
     
-    std::list<Command*> play ();
-    void executeMinimax();
+    void play ( MapContext* mapContext );
+    void executeMinimax( MapContext* mapContext );
     
 private:
-    std::list<Player*> *playersList;
+    MapContext* mapContext;
 };
 
 

@@ -41,7 +41,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     }
     
     //TODO: options memory cleanup
-    std::vector<Option*>& moves = miniMax->getMovesList( maximize );
+    std::vector<Option*> moves = miniMax->getMovesList( maximize );
     int bestSoFar = INFINITE;
     
     std::string actualNode = "";

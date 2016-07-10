@@ -10,11 +10,12 @@
 #include "GameException.h"
 
 static const int INFINITE = std::numeric_limits<int>::max();
-GameMinimax::GameMinimax( GameState* gameState )
-: gameState( gameState ) {
+GameMinimax::GameMinimax( MapContext& mapContext,
+                          const ActionsProvider& actionsProvider )
+: mapContext( mapContext ), actionsProvider( actionsProvider ) {
     heuristicFunction = new HeuristicFunction(
-                                *(Player*)gameState->getPlayer(),
-                                *(Player*)gameState->getEnemy() );
+                                mapContext.getPlayer(),
+                                mapContext.getOpponent() );
 }
 
 GameMinimax::~GameMinimax() {
@@ -22,21 +23,19 @@ GameMinimax::~GameMinimax() {
 }
 
 int GameMinimax::getGameOverScore() {
-    return gameState->getGameOverScore();
+    return heuristicFunction->getGameOverScore();
 }
 
 int GameMinimax::getStaticEvaluation() {
     return heuristicFunction->getStaticEvaluation();
 }
 
-//TODO: Implement getMaxMovesList and getMinMovesList in the minimax
-std::vector<Option*>& GameMinimax::getMovesList( const bool maximize ) {
+std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {
+    //TODO: Implement
     if ( maximize ) {
-        return *gameState->getMovesList( (Player*)gameState->getPlayer(),
-                                         (Player*)gameState->getEnemy() );
+        return actionsProvider.generateMovements( 1, 5 );
     } else {
-        return *gameState->getMovesList( (Player*)gameState->getEnemy(),
-                                        (Player*)gameState->getPlayer() );
+        return actionsProvider.generateMovements( 1, 5 );
     }
 }
 

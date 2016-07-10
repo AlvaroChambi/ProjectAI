@@ -23,7 +23,7 @@ const int GameState::NOT_FINISHED;
 const int TACTIC_POSSIBILITIES = 4;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
-                      IMap* map )
+                      MapContext* map )
 : player( player ), enemy( enemy ), map( map ) {
     
 }
@@ -38,29 +38,6 @@ IPlayer* const GameState::getPlayer() {
 
 IPlayer* const GameState::getEnemy() {
     return enemy;
-}
-
-int GameState::getGameOverScore() {
-    int gameScore = GameState::NOT_FINISHED;
-    bool playerHasCapturedHQ = player->hasCapturedHQ( (Player*)enemy );
-    bool enemyHasCapturedHQ = enemy->hasCapturedHQ( (Player*)player );
-    
-    bool playerHasUnitAlive = player->hasUnitAlive();
-    bool enemyHasUnitAlive = enemy->hasUnitAlive();
-    
-    if ( playerHasCapturedHQ && enemyHasCapturedHQ ) {
-        throw IllegalStateException( "both captured at the same time" );
-    } else if ( !playerHasUnitAlive && !enemyHasUnitAlive ) {
-        throw IllegalStateException( "HQ captured without units" );
-    } else {
-        if( !playerHasUnitAlive || enemyHasCapturedHQ ) {
-            return gameScore = GameState::LOST_VALUE;
-        }else if( !enemyHasUnitAlive || playerHasCapturedHQ ) {
-            return gameScore = GameState::WIN_VALUE;
-        }
-    }
-    
-    return gameScore;
 }
 
 int GameState::getStaticEvaluation() {

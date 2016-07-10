@@ -1,11 +1,3 @@
-//
-//  Map.cpp
-//  ProjectWar
-//
-//  Created by Alvaro Chambi Campos on 13/3/15.
-//  Copyright (c) 2015 Alvaro Chambi Campos. All rights reserved.
-//
-
 #include "Map.h"
 #include "Player.h"
 #include <iostream>
@@ -13,7 +5,8 @@
 #include "AreaIterator.h"
 #include "UnitFilter.h"
 
-Map::Map() {
+Map::Map( const Player& player, const Player& opponent )
+: player( player ), opponent( opponent ) {
     entitiesLayer.resize( MAP_WIDTH , MAP_HEIGHT );
     structuresLayer.resize( MAP_WIDTH, MAP_HEIGHT );
     
@@ -24,7 +17,7 @@ Map::Map() {
 }
 
 Map::~Map() {
-
+    
 }
 
 int Map::getNumColumns() const {
@@ -44,7 +37,7 @@ void Map::loadMap( Renderer* renderer, int tileWidth, int tileHeight ) {
             //use static color !Change this¡
             Color color = Color(0,153,0);
             Texture * texture = renderer->loadShape( RECTANGLE, color,
-                                                     tileWidth, tileHeight);
+                                                    tileWidth, tileHeight);
             texture->setPosition(posX, posY);
             Tile* tile = new Tile(texture);
             tile->position.x = i;
@@ -62,7 +55,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     buildingSprite->setModel(building);
     buildingSprite->setTexture(renderer->loadSprite("building.png", 32, 32));
     buildingSprite->resize(40, 40);
-    building->setPosition(getTile(2, 2));
+    building->setPosition(getTile( Point(2, 2) ));
     buildingSprite->setRenderFrame(Point(3,0));
     building->setOwnerID(0);
     building->setCaptureValue(20);
@@ -77,7 +70,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     buildingSprite2->setRenderFrame(Point(3,0));
     building2->setOwnerID(1);
     building2->setCaptureValue(20);
-    building2->setPosition(getTile(12,6));
+    building2->setPosition(getTile(Point(12,6)));
     this->addStructure( *building2 );
     
     player->setHeadquarter( building->getId() );
@@ -153,12 +146,8 @@ Point Map::getAbsolutePosition( int x, int y ) {
     return getAbsolutePosition( point );
 }
 
-Tile Map::getTile( int x, int y ) {
-    return *matrix[x][y];
-}
-
-Tile Map::getTile( Point point ) {
-    return getTile( point.x, point.y );
+Tile Map::getTile( const Point& point ) const {
+    return *matrix[point.x][point.y];
 }
 
 bool Map::isValidPosition( const Point& position ) const {
@@ -175,7 +164,7 @@ void Map::loadInfoMap( std::list<Player *> &players ) {
 }
 
 void Map::checkNearEntities( const Unit& unit,
-                             std::vector<UnitCommand>& commands ) {
+                            std::vector<UnitCommand>& commands ) {
     AreaIterator areaIterator;
     areaIterator.buildArea( unit.getPosition(), unit.getAttackRange(),
                            MAP_WIDTH, MAP_HEIGHT );
@@ -191,7 +180,7 @@ void Map::checkNearEntities( const Unit& unit,
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );
         if( unit.getPosition().onRange( destination , unit.getAttackRange() )
-            && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
+           && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
             commands.push_back( ATTACK );
             return;
         }
@@ -202,7 +191,7 @@ void Map::checkNearEntities( const Unit& unit,
 // or his position is already occupied
 void Map::addEntity( Unit& unit ) {
     if( entities.find( unit.getId() ) == entities.end()
-        && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
+       && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
         
         entitiesLayer.set( &unit, unit.getPosition() );
         entities[unit.getId()] = unit.getPosition();
@@ -271,4 +260,12 @@ std::vector<Building*> Map::getStructures() const {
         result.push_back( getStructure( pair.second ) );
     }
     return result;
+}
+
+const Player& Map::getPlayer() const {
+    return player;
+}
+
+const Player& Map::getOpponent() const {
+    return opponent;
 }

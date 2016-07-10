@@ -19,8 +19,8 @@
 #include "InfoTile.h"
 #include "Action.h"
 #include "Building.h"
-#include "IMap.h"
 
+class MapContext;
 class Player;
 class GameState;
 enum UnitCommand
@@ -68,16 +68,16 @@ public:
     
     int getNumCommands() const;
     
-    std::vector<Action*>* getMoveActions( IMap* map );
-    std::vector<Action*>* getAttackActions( IMap* map,
+    std::vector<Action*>* getMoveActions( MapContext* map );
+    std::vector<Action*>* getAttackActions( MapContext* map,
                                            std::vector<Unit*> targets,
                                            GameState& gameState );
-    std::vector<Action*>* getCaptureActions( IMap* map, Player* player,
+    std::vector<Action*>* getCaptureActions( MapContext* map, Player* player,
                                             std::vector<Building*> targets,
                                             GameState& gameState );
     
     void addCaptureCommand( GameState& gameState, Building* building,
-                            IMap* map, std::vector<Action*>* captureActions,
+                            MapContext* map, std::vector<Action*>* captureActions,
                             Player* player );
     
     void setOwnerID( int ownerID );

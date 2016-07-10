@@ -19,6 +19,9 @@ public:
     HeuristicFunction( const Player& player, const Player& enemy );
     
     static const int DRAW_VALUE = 0;
+    static const int WIN_VALUE = 10000;
+    static const int LOST_VALUE = -10000;
+    static const int NOT_FINISHED = 0;
     
     int calculateBuildingsHealth(
                             std::vector<Building*> playerBuildings,
@@ -28,6 +31,8 @@ public:
                                 const Building& enemyHeadquarter );
     int calculateUnitsHealth();
     int getStaticEvaluation();
+    
+    int getGameOverScore();
 private:
     const Player& player;
     const Player& enemy;

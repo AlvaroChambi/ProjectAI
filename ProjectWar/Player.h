@@ -58,7 +58,7 @@ public:
     
     bool hasUnitAlive() const;
     
-    bool hasCapturedHQ( Player* enemy ) const;
+    bool hasCapturedHQ( const Player& enemy ) const;
     Building* getHeadquarter() const;
     void setHeadquarter( int id );
     

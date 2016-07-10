@@ -11,15 +11,17 @@
 #include "MinimaxAlgorithm.hpp"
 #include "DotPath.h"
 #include "GameMinimax.h"
+#include "ActionsProvider.h"
+
 #include <stdio.h>
 #include <chrono>
 
-PlayerAI::PlayerAI() : Player(), playersList( nullptr ) {
+PlayerAI::PlayerAI() : Player() {
     setType(AI_PLAYER);
 }
 
 PlayerAI::PlayerAI( int id )
-:  Player(id), playersList(nullptr) {
+:  Player(id) {
     setType(AI_PLAYER);
 }
 
@@ -27,36 +29,23 @@ PlayerAI::~PlayerAI() {
 
 }
 
-void PlayerAI::setPlayerList(std::list<Player*> *players) {
-    this->playersList = players;
-}
-
-
-std::list<Command*> PlayerAI::play() {
-    std::list<Command*>commands;
+void PlayerAI::play( MapContext* mapContext ) {
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     std::cout << "Minimax on progress..." << std::endl;
-    executeMinimax();
+    executeMinimax( mapContext );
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Minimax took "
     << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
     << "ms.\n";
-    return commands;
 }
 
 
 
-void PlayerAI::executeMinimax() {
-    Player* enemy = nullptr;
-    
-    for (Player* player : *playersList) {
-        if (this->getId() != player->getId()) {
-            enemy = player;
-        }
-    }
-    GameState* game = new GameState( this, enemy, this->getMap() );
+void PlayerAI::executeMinimax( MapContext* mapContext ) {
+    GameMinimax* gameMinimax = new GameMinimax( *mapContext ,
+                                                ActionsProvider( *mapContext ) );
     MinimaxAlgorithm* algorithm =
-        new MinimaxAlgorithm( new GameMinimax( game ) );
+        new MinimaxAlgorithm( gameMinimax );
     algorithm->minimax( 4 );
     Movement* movement = (Movement*)algorithm->getBestMove();
     if( movement != nullptr ) {

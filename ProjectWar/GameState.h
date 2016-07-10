@@ -14,7 +14,7 @@
 #include "Player.h"
 
 #include "Scene.h"
-#include "IMap.h"
+#include "MapContext.h"
 
 class GameState {
 public:
@@ -23,10 +23,9 @@ public:
     static const int NOT_FINISHED = 0;
     
     GameState( IPlayer* const player, IPlayer* const enemy,
-               IMap* map );
+               MapContext* map );
     ~GameState();
     
-    int getGameOverScore();
     std::vector<Option*>& getLegalActions( const Player& player,
                                            const Player& opponent );
     int getStaticEvaluation();
@@ -61,11 +60,8 @@ public:
 private:
     IPlayer* const enemy;
     IPlayer* const player;
-    IMap* map;
     
-    //StaticEvaluation
-    //LegalMoves
-
+    MapContext* map;
     std::vector<Point> invalidatedPositions;
 };
 

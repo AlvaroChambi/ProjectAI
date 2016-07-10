@@ -75,6 +75,9 @@ public:
     Building* getStructure( const Point& reference ) const;
     Building* getStructure( int id ) const;
     std::vector<Building*> getStructures() const;
+    
+    const Player& getPlayer() const;
+    const Player& getOpponent() const;
 private:
     TileMap matrix;
     std::vector<Sprite*> sprites;

@@ -269,3 +269,11 @@ std::vector<Building*> Map::getStructures() const {
     }
     return result;
 }
+
+const Player& Map::getPlayer() const {
+    return player;
+}
+
+const Player& Map::getOpponent() const {
+    return opponent;
+}

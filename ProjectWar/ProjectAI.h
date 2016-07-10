@@ -64,6 +64,7 @@ private:
     
     UnitUIView* layout;
     GameUI* gameLayout;
+    MapContext* mapContext;
 };
 
 #endif /* defined(__ProjectWar__ProjectAI__) */

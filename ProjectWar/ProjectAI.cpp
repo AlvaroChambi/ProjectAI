@@ -82,7 +82,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
             activePlayer = this->nextPlayer();
             if (activePlayer->getType() == AI_PLAYER) {
                 PlayerAI* playerAI = (PlayerAI*)activePlayer;
-                playerAI->play();
+                playerAI->play( mapContext );
                 this->onUIComponentClicked(new Button(END_BUTTON));
             }
             break;
@@ -112,14 +112,13 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Player* player = new Player();
     PlayerAI* player2 = new PlayerAI( 1 );
     
-    Map* map = new Map( *player, *player2 );
+    Map* map = new Map( *player2, *player );
+    mapContext = map;
     map->loadMap( renderer, 40, 40 );
     
     SpriteFactory* spriteFactory = new SpriteFactory;
 
     player->setMap(map);
-    
-    player2->setPlayerList(&players);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
     Texture* texture2 = renderer->loadTexture("target_tile_white.png");

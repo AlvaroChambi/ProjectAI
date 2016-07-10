@@ -34,6 +34,9 @@ public:
     virtual Building* getStructure( const Point& reference ) const = 0;
     virtual Building* getStructure( int id ) const = 0;
     virtual std::vector<Building*> getStructures() const = 0;
+    
+    virtual const Player& getPlayer() const = 0;
+    virtual const Player& getOpponent() const = 0;
 };
 
 #endif /* MapContext_h */

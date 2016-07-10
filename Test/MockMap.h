@@ -35,6 +35,9 @@ public:
     MOCK_CONST_METHOD1( getStructure, Building*( const Point& reference ) );
     MOCK_CONST_METHOD1( getStructure, Building*( int id ) );
     MOCK_CONST_METHOD0( getStructures, std::vector<Building*>() );
+    
+    MOCK_CONST_METHOD0( getPlayer, const Player&() );
+    MOCK_CONST_METHOD0( getOpponent, const Player&() );
 };
 
 #endif /* MockMap_h */

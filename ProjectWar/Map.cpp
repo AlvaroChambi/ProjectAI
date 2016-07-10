@@ -13,7 +13,8 @@
 #include "AreaIterator.h"
 #include "UnitFilter.h"
 
-Map::Map() {
+Map::Map( const Player& player, const Player& opponent )
+: player( player ), opponent( opponent ) {
     entitiesLayer.resize( MAP_WIDTH , MAP_HEIGHT );
     structuresLayer.resize( MAP_WIDTH, MAP_HEIGHT );
     
@@ -27,11 +28,11 @@ Map::~Map() {
 
 }
 
-int Map::getNumColumns() {
+int Map::getNumColumns() const {
     return MAP_WIDTH;
 }
 
-int Map::getNumRows() {
+int Map::getNumRows() const {
     return MAP_HEIGHT;
 }
 
@@ -62,7 +63,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     buildingSprite->setModel(building);
     buildingSprite->setTexture(renderer->loadSprite("building.png", 32, 32));
     buildingSprite->resize(40, 40);
-    building->setPosition(getTile(2, 2));
+    building->setPosition(getTile( Point(2, 2) ));
     buildingSprite->setRenderFrame(Point(3,0));
     building->setOwnerID(0);
     building->setCaptureValue(20);
@@ -77,7 +78,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     buildingSprite2->setRenderFrame(Point(3,0));
     building2->setOwnerID(1);
     building2->setCaptureValue(20);
-    building2->setPosition(getTile(12,6));
+    building2->setPosition(getTile(Point(12,6)));
     this->addStructure( *building2 );
     
     player->setHeadquarter( building->getId() );
@@ -153,15 +154,11 @@ Point Map::getAbsolutePosition( int x, int y ) {
     return getAbsolutePosition( point );
 }
 
-Tile Map::getTile( int x, int y ) {
-    return *matrix[x][y];
+Tile Map::getTile( const Point& point ) const {
+    return *matrix[point.x][point.y];
 }
 
-Tile Map::getTile( Point point ) {
-    return getTile( point.x, point.y );
-}
-
-bool Map::isValidPosition( const Point& position ) {
+bool Map::isValidPosition( const Point& position ) const {
     return entitiesLayer.get( position ) == nullptr;
 }
 
@@ -271,4 +268,12 @@ std::vector<Building*> Map::getStructures() const {
         result.push_back( getStructure( pair.second ) );
     }
     return result;
+}
+
+const Player& Map::getPlayer() const {
+    return player;
+}
+
+const Player& Map::getOpponent() const {
+    return opponent;
 }

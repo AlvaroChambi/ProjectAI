@@ -10,8 +10,11 @@
 #include "GameException.h"
 
 static const int INFINITE = std::numeric_limits<int>::max();
-GameMinimax::GameMinimax( GameState* gameState )
-: gameState( gameState ) {
+GameMinimax::GameMinimax( MapContext* mapContext )
+: mapContext( mapContext ) {
+    gameState = new GameState( (IPlayer*)&mapContext->getPlayer(),
+                               (IPlayer*)&mapContext->getOpponent(),
+                               mapContext );
     heuristicFunction = new HeuristicFunction(
                                 *(Player*)gameState->getPlayer(),
                                 *(Player*)gameState->getEnemy() );

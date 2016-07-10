@@ -23,7 +23,7 @@ const int GameState::NOT_FINISHED;
 const int TACTIC_POSSIBILITIES = 4;
 
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
-                      IMap* map )
+                      MapContext* map )
 : player( player ), enemy( enemy ), map( map ) {
 
 }

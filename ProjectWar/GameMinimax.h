@@ -10,12 +10,13 @@
 #define GameMinimax_h
 
 #include "Minimax.h"
-#include "GameState.h"
+#include "MapContext.h"
 #include "HeuristicFunction.h"
+#include "GameState.h"
 
 class GameMinimax : public Minimax {
 public:
-    GameMinimax( GameState* gameState );
+    GameMinimax( MapContext* mapContext );
     ~GameMinimax();
     
     int getGameOverScore();
@@ -28,6 +29,7 @@ public:
                           Option* move, Option** bestMove, bool topBranch );
     
 private:
+    MapContext* mapContext;
     GameState* gameState;
     HeuristicFunction* heuristicFunction;
 };

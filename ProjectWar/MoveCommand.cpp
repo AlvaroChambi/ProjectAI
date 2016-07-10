@@ -11,12 +11,12 @@
 #include "OnMoveState.h"
 #include "GameException.h"
 
-MoveCommand::MoveCommand( Unit& unit, IMap* map, const Point& destination ) {
+MoveCommand::MoveCommand( Unit& unit, MapContext* map, const Point& destination ) {
     executed = false;
     this->unit = &unit;
     this->map = (Map*)map;
     this->savedPosition = unit.getTile();
-    this->destination = map->getTile(destination.x, destination.y);
+    this->destination = this->map->getTile(destination);
 }
 
 MoveCommand::~MoveCommand() {

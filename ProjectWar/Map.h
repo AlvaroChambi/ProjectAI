@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <vector>
-#include <list>
 
 #include "Texture.h"
 #include "Renderer.h"
@@ -20,58 +19,59 @@
 #include "Unit.h"
 #include "Building.h"
 #include "SpriteFactory.h"
-#include "IMap.h"
 #include "MapLayer.h"
+#include "MapContext.h"
+
 #include <map>
 
 static const int MAP_WIDTH = 15;
 static const int MAP_HEIGHT = 10;
 
 class Player;
-class Map : public IMap {
+class Map : public MapContext {
 public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     Map();
-    virtual ~Map();
+    ~Map();
     //Width and height in tiles
-    void loadMap(Renderer* renderer, int width, int height);
-    void drawMap(Renderer* renderer);
+    void loadMap( Renderer* renderer, int width, int height );
+    void drawMap( Renderer* renderer );
+    void loadInfoMap( std::list<Player *> &players );
     
     Tile* matchEvent( const Point& position );
     
     //cast tile map position to absolute window coordinate position
     Point getAbsolutePosition( const Point& tilePosition );
-    Point getAbsolutePosition(int x, int y);
-    
-    Tile getTile(int x, int y);
-    Tile getTile(Point point);
+    Point getAbsolutePosition( int x, int y );
     
     void updateUnitAvailableArea( const Unit& unit );
     void cleanUnitAvailableArea( const Unit& unit );
     
-    void loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
-                       Player* player, Player* opponent );
+    void loadBuildings( SpriteFactory* spriteFactory, Renderer* renderer,
+                        Player* player, Player* opponent );
     
-    //Check entities near the given unit(units, buildings...) and update his commands
     void checkNearEntities( const Unit& unit,
                             std::vector<UnitCommand>& commands);
     
+    //override
     int getNumRows();
     int getNumColumns();
+    
     bool isValidPosition( const Point& position );
-    void loadInfoMap( std::list<Player *> &players );
+    
+    Tile getTile(Point point);
+    
+    void addEntity( Unit& unit );
+    Unit* getEntity( const Point& reference ) const;
+    Unit* getEntity( int id ) const;
+    Point getEntityReference( int id ) const;
+    
+    void moveEntity( Unit& unit, const Point& destination );
     
     void restoreUnit( Unit& unit );
     void removeUnit( Unit& unit );
     
-    void moveEntity( Unit& unit, const Point& destination );
-    Unit* getEntity( const Point& reference ) const;
-    Unit* getEntity( int id ) const;
-    void addEntity( Unit& unit );
-    Point getEntityReference( int id ) const;
-    
     void addStructure( Building& building );
-    Point getStructureReference( int id );
     Building* getStructure( const Point& reference ) const;
     Building* getStructure( int id ) const;
     std::vector<Building*> getStructures() const;

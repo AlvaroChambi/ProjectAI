@@ -9,7 +9,7 @@
 #include "UnitFilter.h"
 
 UnitMovementFilter::UnitMovementFilter( Iterator& filter,
-                                        IMap* map, const Unit& unit )
+                                        MapContext* map, const Unit& unit )
 : IteratorFilter( filter ), unit( unit ) {
     this->map = (Map*)map;
 }

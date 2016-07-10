@@ -115,7 +115,7 @@ int Unit::getNumCommands() const {
     return (int)commands.size();
 }
 
-std::vector<Action*>* Unit::getAttackActions( IMap *map,
+std::vector<Action*>* Unit::getAttackActions( MapContext *map,
                                              std::vector<Unit *> targets,
                                              GameState& gameState ) {
     std::vector<Action*>* attackActions = new std::vector<Action*>;
@@ -154,7 +154,7 @@ std::vector<Action*>* Unit::getAttackActions( IMap *map,
 
 }
 
-std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
+std::vector<Action*>* Unit::getCaptureActions( MapContext *map, Player *player,
                                         std::vector<Building *> targets,
                                         GameState& gameState ) {
     std::vector<Action*>* captureActions = new std::vector<Action*>;
@@ -178,7 +178,7 @@ std::vector<Action*>* Unit::getCaptureActions( IMap *map, Player *player,
 }
 
 void Unit::addCaptureCommand( GameState &gameState, Building *building,
-                             IMap *map, std::vector<Action *> *captureActions,
+                             MapContext* map, std::vector<Action *> *captureActions,
                              Player* player ) {
     gameState.addToInvalidated( building->getPosition() );
     

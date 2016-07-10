@@ -234,6 +234,7 @@
 		9C0A5A791AC2D13F00BF793E /* link.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = link.bmp; sourceTree = "<group>"; };
 		9C0A5A7D1AC32E4600BF793E /* mario.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = mario.bmp; sourceTree = "<group>"; };
 		9C0A5A811AC57C5D00BF793E /* InfoTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTile.h; sourceTree = "<group>"; };
+		9C2B7CD51D323E550007CA6E /* MapContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapContext.h; sourceTree = "<group>"; };
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
@@ -326,7 +327,6 @@
 		9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateTest.cpp; sourceTree = "<group>"; };
 		9CF246321CFCD9B800AF606D /* IPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlayer.h; sourceTree = "<group>"; };
 		9CF246331CFCDA3F00AF606D /* MockPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockPlayer.h; sourceTree = "<group>"; };
-		9CF246351CFE293600AF606D /* IMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMap.h; sourceTree = "<group>"; };
 		9CF246361CFE2BA300AF606D /* MockMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockMap.h; sourceTree = "<group>"; };
 		9CF246371CFE2C4500AF606D /* MapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapTest.cpp; sourceTree = "<group>"; };
 		9CF246391CFE32BF00AF606D /* PointTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointTest.cpp; sourceTree = "<group>"; };
@@ -482,7 +482,6 @@
 				9C800B1C1AB74485003FE2AA /* Map.cpp */,
 				9C800B1D1AB74485003FE2AA /* Map.h */,
 				9C0A5A811AC57C5D00BF793E /* InfoTile.h */,
-				9CF246351CFE293600AF606D /* IMap.h */,
 				3A3C1B131D23BC9800D0848F /* MapLayer.h */,
 			);
 			name = map;
@@ -537,6 +536,7 @@
 				9C0A5A671AC03F0A00BF793E /* ProjectAI.cpp */,
 				9C0A5A681AC03F0A00BF793E /* ProjectAI.h */,
 				9CBEB9BB1CF37F5600CA82DE /* GameException.h */,
+				9C2B7CD51D323E550007CA6E /* MapContext.h */,
 			);
 			name = gamelogic;
 			sourceTree = "<group>";

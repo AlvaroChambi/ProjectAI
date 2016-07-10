@@ -10,12 +10,31 @@
 #define MockMap_h
 
 #include "gmock/gmock.h"
-#include "IMap.h"
+#include "MapContext.h"
 
-class MockMap : public  IMap {
+class MockMap : public  MapContext {
 public:
-    MOCK_METHOD1( isValidPosition, bool( const Point& position ) );
-    MOCK_METHOD2( getTile, Tile( int x, int y ) );
+    MOCK_CONST_METHOD0( getNumRows, int() );
+    MOCK_CONST_METHOD0( getNumColumns, int() );
+    
+    MOCK_CONST_METHOD1( isValidPosition, bool( const Point& position ) );
+    
+    MOCK_CONST_METHOD1( getTile, Tile( const Point& position ) );
+    
+    MOCK_METHOD1( addEntity, void( Unit& unit ) );
+    MOCK_CONST_METHOD1( getEntity, Unit*( const Point& reference ) );
+    MOCK_CONST_METHOD1( getEntity, Unit*( int id ) );
+    MOCK_CONST_METHOD1( getEntityReference, Point( int id ) );
+    
+    MOCK_METHOD2( moveEntity, void( Unit& unit, const Point& destination ) );
+    
+    MOCK_METHOD1( restoreUnit, void( Unit& unit ) );
+    MOCK_METHOD1( removeUnit, void( Unit& unit ) );
+    
+    MOCK_METHOD1( addStructure, void( Building& building ) );
+    MOCK_CONST_METHOD1( getStructure, Building*( const Point& reference ) );
+    MOCK_CONST_METHOD1( getStructure, Building*( int id ) );
+    MOCK_CONST_METHOD0( getStructures, std::vector<Building*>() );
 };
 
 #endif /* MockMap_h */

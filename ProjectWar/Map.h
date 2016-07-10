@@ -54,12 +54,12 @@ public:
                             std::vector<UnitCommand>& commands);
     
     //override
-    int getNumRows();
-    int getNumColumns();
+    int getNumRows() const;
+    int getNumColumns() const;
     
-    bool isValidPosition( const Point& position );
+    bool isValidPosition( const Point& position ) const;
     
-    Tile getTile(Point point);
+    Tile getTile( const Point& point ) const;
     
     void addEntity( Unit& unit );
     Unit* getEntity( const Point& reference ) const;

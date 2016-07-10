@@ -13,12 +13,12 @@
 
 class MapContext {
 public:
-    virtual int getNumRows() = 0;
-    virtual int getNumColumns() = 0;
+    virtual int getNumRows() const = 0;
+    virtual int getNumColumns() const = 0;
     
-    virtual bool isValidPosition( const Point& position ) = 0;
+    virtual bool isValidPosition( const Point& position ) const = 0;
     
-    virtual Tile getTile(Point point) = 0;
+    virtual Tile getTile( const Point& position) const= 0;
     
     virtual void addEntity( Unit& unit ) = 0;
     virtual Unit* getEntity( const Point& reference ) const = 0;

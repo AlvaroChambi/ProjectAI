@@ -118,7 +118,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
                 invalidatedPositions.push_back( destinations->at( pos ) );
                 Action* action = new Action;
                 MoveCommand* command =
-                new MoveCommand( *unit, map, destinations->at( pos ) );
+                new MoveCommand( *map, unit->getId(), destinations->at( pos ) );
                 action->commands.push_back( command );
                 actions->push_back( action );
             }

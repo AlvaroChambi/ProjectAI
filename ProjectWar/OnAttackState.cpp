@@ -63,9 +63,9 @@ void OnAttackState::handleInput(Input input, int id, Tile position, Unit* target
                 this->targetUnit = targetUnit;
                 //cancel previous executed command if there is one(Once cancelled the command is set to null)
                 this->cancelCommand();
-                executeCommand( new AttackCommand( player->getSelectedUnit(),
-                                                   targetUnit,
-                                                   player->getMap() ) );
+                executeCommand( new AttackCommand(  *player->getMap(),
+                                    player->getSelectedUnit()->getId(),
+                                    targetUnit->getId() ) );
             }
             break;
         }

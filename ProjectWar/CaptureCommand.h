@@ -14,18 +14,22 @@
 #include "Player.h"
 #include "Building.h"
 
-class CaptureCommand : public Command
-{
+class CaptureCommand : public Command {
 public:
-    CaptureCommand( Player* player, Unit* unit, Building* building );
+    CaptureCommand( MapContext& mapContext, const int unitID );
     virtual ~CaptureCommand();
     
+    bool changeContext( MapContext& mapContext );
     void execute();
     void cancel();
 private:
-    Player* player;
-    Unit* unit;
-    Building* building;
+    const int unitID;
+    int buildingID;
+    
+    MapContext* mapContext;
+    
+    bool executed;
+    
     int savedOwner;
     int savedCaptureValue;
 };

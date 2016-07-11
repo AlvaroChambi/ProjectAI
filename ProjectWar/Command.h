@@ -13,9 +13,12 @@
 #include <iostream>
 #include "Option.h"
 
+class MapContext;
+
 class Command : public Option {
 public:
     virtual ~Command(){}
+    virtual bool changeContext( MapContext& mapContext ) = 0;
     virtual void execute() = 0;
     virtual void cancel() = 0;
 };

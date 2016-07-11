@@ -18,7 +18,8 @@ class IMap;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand( MapContext& mapContext, int unitID, const Point& destination );
+    MoveCommand( MapContext& mapContext,
+                 int unitID, const Point& destination );
     virtual ~MoveCommand();
     
     bool changeContext( MapContext& mapContext );

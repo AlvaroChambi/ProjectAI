@@ -7,35 +7,46 @@
 //
 
 #include "CaptureCommand.h"
+#include "MapContext.h"
 
-CaptureCommand::CaptureCommand( Player* player, Unit* unit, Building* building )
-: player( player ), unit( unit ), building( building ) {
-    this->savedCaptureValue = building->getCaptureValue();
-    this->savedOwner = building->getOwnerID();
+CaptureCommand::CaptureCommand( MapContext& mapContext, const int unitID )
+: unitID( unitID ), mapContext( &mapContext ), executed( false ) {
+    
 }
 
 CaptureCommand::~CaptureCommand() {
 
 }
 
-bool CaptureCommand::changeContext( MapContext &mapContext ) {
+bool CaptureCommand::changeContext( MapContext& mapContext ) {
+    if( !executed ) {
+        return true;
+    }
     return false;
 }
 
-void CaptureCommand::cancel() {
-    building->setOwnerID( savedOwner) ;
-    building->setCaptureValue( savedCaptureValue );
-}
-
 void CaptureCommand::execute() {
+    Unit* unit = mapContext->getEntity( unitID );
+    Building* building = mapContext->getStructure( unit->getPosition() );
+    
+    buildingID = building->getId();
+    savedOwner = unit->getOwnerID();
+    savedCaptureValue = building->getCaptureValue();
+    
     int captureValue = 0;
-    if ( player->getId() == building->getOwnerID() ) {
+    if ( unit->getOwnerID() == building->getOwnerID() ) {
         captureValue = building->getCaptureValue() + unit->getHP();
-        
-    }else{
+    } else {
         captureValue = unit->getHP();
-        building->setOwnerID(player->getId());
+        building->setOwnerID( unit->getOwnerID() );
     }
     
     building->setCaptureValue( captureValue );
+}
+
+void CaptureCommand::cancel() {
+    Building* building = mapContext->getStructure( buildingID );
+    
+    building->setOwnerID( savedOwner) ;
+    building->setCaptureValue( savedCaptureValue );
 }

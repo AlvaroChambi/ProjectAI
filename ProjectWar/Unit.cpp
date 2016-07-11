@@ -185,8 +185,7 @@ void Unit::addCaptureCommand( GameState &gameState, Building *building,
     Action* action = new Action;
     MoveCommand* moveCommand = new MoveCommand( *map, getId() ,
                                                building->getPosition() );
-    CaptureCommand* captureCommand = new CaptureCommand( player,
-                                                        this, building );
+    CaptureCommand* captureCommand = new CaptureCommand( *map, getId());
     
     action->commands.push_back( moveCommand );
     action->commands.push_back( captureCommand );

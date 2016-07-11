@@ -22,7 +22,7 @@ MoveCommand::~MoveCommand() {
 
 }
 
-bool MoveCommand::changeContext( MapContext &mapContext ) {
+bool MoveCommand::changeContext( MapContext& mapContext ) {
     if( !executed ) {
         this->mapContext = mapContext;
         return true;

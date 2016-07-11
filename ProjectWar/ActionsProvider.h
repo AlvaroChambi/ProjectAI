@@ -19,7 +19,8 @@ public:
 
     void buildActions( int playerID, int numActions );
     
-    void buildUnitActions( int unitID, int playerID ,int numActions );
+    std::vector<Action*>& buildUnitActions( int unitID,
+                                            int playerID ,int numActions );
     
     void appendUnitActions( std::vector<Action*> actions, int numActions );
     

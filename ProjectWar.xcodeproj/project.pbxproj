@@ -96,6 +96,8 @@
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
+		9C7DEA7D1D3419F00045B3B8 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7C1D3419F00045B3B8 /* ActionBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
+		9C7DEA7E1D3419F00045B3B8 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7C1D3419F00045B3B8 /* ActionBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -242,6 +244,8 @@
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
+		9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionBuilder.h; sourceTree = "<group>"; };
+		9C7DEA7C1D3419F00045B3B8 /* ActionBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionBuilder.cpp; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		9C800B031AB743F3003FE2AA /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		9C800B051AB7440E003FE2AA /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerView.cpp; sourceTree = "<group>"; };
@@ -452,6 +456,8 @@
 				9CF246471CFF8FCB00AF606D /* UnitFilter.h */,
 				9C2B7CD61D327DF40007CA6E /* ActionsProvider.h */,
 				9C2B7CDB1D327E160007CA6E /* ActionsProvider.cpp */,
+				9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */,
+				9C7DEA7C1D3419F00045B3B8 /* ActionBuilder.cpp */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -953,6 +959,7 @@
 				3A0779DE1CF49D2400B8C065 /* ProjectAI.cpp in Sources */,
 				3A0779DF1CF49D2400B8C065 /* Sprite.cpp in Sources */,
 				9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
+				9C7DEA7E1D3419F00045B3B8 /* ActionBuilder.cpp in Sources */,
 				9CF246491D00AA6F00AF606D /* AreaIteratorTest.cpp in Sources */,
 				3A0779E11CF49D2400B8C065 /* Map.cpp in Sources */,
 				9CF366D01D089229005A2B18 /* UnitMovementFilterTest.cpp in Sources */,
@@ -995,6 +1002,7 @@
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,
 				9C800B2D1AB86A97003FE2AA /* UnitController.cpp in Sources */,
 				55966F4A1ADC164300B36FA8 /* Building.cpp in Sources */,
+				9C7DEA7D1D3419F00045B3B8 /* ActionBuilder.cpp in Sources */,
 				9C800B3F1ABADC7F003FE2AA /* NothingSelectedState.cpp in Sources */,
 				55F447EF1AD713FC00F994F2 /* PlayerAI.cpp in Sources */,
 				55966F4D1ADC166300B36FA8 /* CaptureCommand.cpp in Sources */,

@@ -106,11 +106,19 @@ const Point& AreaIterator::next() {
         return cached;
     }
 
+    throw EndOfIteratorException( currentPosition, getWidth(), getHeight() );
+}
+
+int AreaIterator::getWidth() const {
     Point start = area.first;
     Point end = area.second;
-    int width = end.x - start.x + 1;
-    int height = end.y - start.y + 1;
-    throw EndOfIteratorException( currentPosition, width, height );
+    return end.x - start.x + 1;
+}
+
+int AreaIterator::getHeight() const {
+    Point start = area.first;
+    Point end = area.second;
+    return end.y - start.y + 1;
 }
 
 const Point& AreaIterator::getCachedPosition() {

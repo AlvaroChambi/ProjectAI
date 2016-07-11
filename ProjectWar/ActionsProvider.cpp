@@ -28,13 +28,12 @@ void ActionsProvider::buildActions( int playerID, int numActions ) {
 
 // iterate over the unit valid area and append (numActions) unit actions
 // to the actions vector
-void ActionsProvider::buildUnitActions( int unitID, int playerID,
+std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID, int playerID,
                                         int numActions ) {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
-    std::vector<Action*> unitActions( maxAllowedActions ); //keep in the head
-                                                           //and send reference
+    std::vector<Action*>* unitActions = new std::vector<Action*>( maxAllowedActions );
     
     int explorationRange = unit->getMovement() + unit->getAttackRange();
     AreaIterator areaIterator;
@@ -45,10 +44,9 @@ void ActionsProvider::buildUnitActions( int unitID, int playerID,
         if( unit->getPosition().onRange( destination, explorationRange ) ) {
             // return action builder
             resolveActions( *unit, playerID, destination, actions );
-            
-            //builder.append( actions )
         }
     }
+    return *unitActions;
 }
 
 void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
@@ -60,7 +58,7 @@ void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
 
 // resolve the action needed to build for the given destination
 void ActionsProvider::resolveActions( const Unit& unit, int playerID,
-                                  const Point& destination,
+                                      const Point& destination,
                                   std::vector<Action*>& actions ) {
     Unit* entity = mapContext.getEntity( destination );
     Building* structure = mapContext.getStructure( destination );

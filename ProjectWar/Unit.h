@@ -90,6 +90,7 @@ private:
     int ownerID;
     
     std::vector<UnitCommand> commands;
+    std::vector<Action*> actions;
     bool selected;
     bool active;
 };

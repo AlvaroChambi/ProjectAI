@@ -9,60 +9,70 @@
 #include "AttackCommand.h"
 #include "Map.h"
 
-AttackCommand::AttackCommand(Unit* unit, Unit* targetUnit, Map* map)
-: unit(unit), targetUnit(targetUnit), map( map ) {
-    this->savedUnitHP = unit->getHP();
-    this->savedTargetHP = targetUnit->getHP();
-}
-
-AttackCommand::~AttackCommand() {
+AttackCommand::AttackCommand( MapContext& mapContext,
+                              const int unitID, const int targetID )
+: unitID( unitID ), targetID( targetID ), mapContext( mapContext ),
+ executed( false ) {
 
 }
 
 bool AttackCommand::changeContext( MapContext &mapContext ) {
+    if ( !executed ) {
+        this->mapContext = mapContext;
+    }
     return false;
 }
 
 void AttackCommand::execute() {
+    Unit* unit = mapContext.getEntity( unitID );
+    Unit* targetUnit = mapContext.getEntity( targetID );
+    
+    savedUnitHP = unit->getHP();
+    savedTargetHP = targetUnit->getHP();
+    
     updateHP( unit, targetUnit );
-    if (targetUnit->getHP() <= 0) {
-        targetUnit->setHP(0);
+    if ( targetUnit->getHP() <= 0 ) {
+        targetUnit->setHP( 0 );
         targetUnit->updateState();
-        map->removeUnit( *targetUnit );
+        mapContext.removeUnit( *targetUnit );
     }
     
     if( unit->getHP() <= 0 ) {
-        unit->setHP(0);
+        unit->setHP( 0 );
         unit->updateState();
-        map->removeUnit( *unit );
+        mapContext.removeUnit( *unit );
     }
     
     updateHP( targetUnit, unit );
-    if (unit->getHP() <= 0) {
-        unit->setHP(0);
+    if ( unit->getHP() <= 0 ) {
+        unit->setHP( 0 );
         unit->updateState();
-        map->removeUnit( *unit );
+        mapContext.removeUnit( *unit );
     }
     
     if( targetUnit->getHP() <= 0 ) {
-        targetUnit->setHP(0);
+        targetUnit->setHP( 0 );
         targetUnit->updateState();
-        map->removeUnit( *targetUnit );
+        mapContext.removeUnit( *targetUnit );
     }
+    executed = true;
 }
 
 void AttackCommand::cancel() {
+    Unit* unit = mapContext.getEntity( unitID );
+    Unit* targetUnit = mapContext.getEntity( targetID );
     
     unit->setHP( savedUnitHP );
     targetUnit->setHP( savedTargetHP );
 
-    map->restoreUnit( *unit );
-    map->restoreUnit( *targetUnit );
+    mapContext.restoreUnit( *unit );
+    mapContext.restoreUnit( *targetUnit );
     unit->updateState();
     targetUnit->updateState();
+    executed = false;
 }
 
-void AttackCommand::updateHP( Unit* attacker,Unit* attacked ) {
+void AttackCommand::updateHP( Unit* attacker, Unit* attacked ) {
     int damage = attacker->getHP() * 0.5;
     attacked->setHP( attacked->getHP() - damage );
 }

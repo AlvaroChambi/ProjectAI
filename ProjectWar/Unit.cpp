@@ -140,7 +140,7 @@ std::vector<Action*>* Unit::getAttackActions( MapContext *map,
                     MoveCommand* move =
                     new MoveCommand( *map, getId() , destination );
                     AttackCommand* attack =
-                    new AttackCommand( this, target, (Map*)map );
+                    new AttackCommand( *map, getId(), target->getId() );
                     
                     action->commands.push_back( move );
                     action->commands.push_back( attack );

@@ -15,19 +15,23 @@
 
 class AttackCommand : public Command {
 public:
-    AttackCommand(Unit* unit, Unit* targetUnit, Map* map);
-    virtual ~AttackCommand();
+    AttackCommand( MapContext& mapContext,
+                   const int unitID, const int targetID );
     
     bool changeContext( MapContext& mapContext );
     void cancel();
     void execute();
     
 private:
-    Unit* unit;
-    Unit* targetUnit;
-    Map* map;
+    int unitID;
+    int targetID;
+    
+    MapContext& mapContext;
+    
     int savedUnitHP;
     int savedTargetHP;
+    
+    bool executed;
     
     void updateHP(Unit* attacker, Unit* attacked);
 };

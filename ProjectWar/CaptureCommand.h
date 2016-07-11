@@ -20,6 +20,7 @@ public:
     CaptureCommand( Player* player, Unit* unit, Building* building );
     virtual ~CaptureCommand();
     
+    bool changeContext( MapContext& mapContext );
     void execute();
     void cancel();
 private:

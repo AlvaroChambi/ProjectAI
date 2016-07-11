@@ -19,6 +19,10 @@ AttackCommand::~AttackCommand() {
 
 }
 
+bool AttackCommand::changeContext( MapContext &mapContext ) {
+    return false;
+}
+
 void AttackCommand::execute() {
     updateHP( unit, targetUnit );
     if (targetUnit->getHP() <= 0) {

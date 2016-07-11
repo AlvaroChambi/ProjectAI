@@ -138,7 +138,7 @@ std::vector<Action*>* Unit::getAttackActions( MapContext *map,
                     gameState.addToInvalidated( destination );
                     Action* action = new Action;
                     MoveCommand* move =
-                    new MoveCommand( *this, map, destination );
+                    new MoveCommand( *map, getId() , destination );
                     AttackCommand* attack =
                     new AttackCommand( this, target, (Map*)map );
                     
@@ -183,7 +183,7 @@ void Unit::addCaptureCommand( GameState &gameState, Building *building,
     gameState.addToInvalidated( building->getPosition() );
     
     Action* action = new Action;
-    MoveCommand* moveCommand = new MoveCommand( *this, (Map*)map,
+    MoveCommand* moveCommand = new MoveCommand( *map, getId() ,
                                                building->getPosition() );
     CaptureCommand* captureCommand = new CaptureCommand( player,
                                                         this, building );

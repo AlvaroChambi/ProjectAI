@@ -18,6 +18,10 @@ CaptureCommand::~CaptureCommand() {
 
 }
 
+bool CaptureCommand::changeContext( MapContext &mapContext ) {
+    return false;
+}
+
 void CaptureCommand::cancel() {
     building->setOwnerID( savedOwner) ;
     building->setCaptureValue( savedCaptureValue );

@@ -17,6 +17,8 @@ class AttackCommand : public Command {
 public:
     AttackCommand(Unit* unit, Unit* targetUnit, Map* map);
     virtual ~AttackCommand();
+    
+    bool changeContext( MapContext& mapContext );
     void cancel();
     void execute();
     

@@ -18,16 +18,18 @@ class IMap;
 class MoveCommand : public Command
 {
 public:
-    MoveCommand( Unit& unit, MapContext* map, const Point& destination );
+    MoveCommand( MapContext& mapContext, int unitID, const Point& destination );
     virtual ~MoveCommand();
     
+    bool changeContext( MapContext& mapContext );
     void execute();
     void cancel();
 private:
-    Map* map;
-    Unit* unit;
-    Tile savedPosition;
-    Tile destination;
+    MapContext& mapContext;
+    const int unitID;
+    const Point& destination;
+    
+    Point savedPosition;
     bool executed;
 };
 

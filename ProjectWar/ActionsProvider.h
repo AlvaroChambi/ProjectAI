@@ -10,17 +10,22 @@
 #define ActionsProvider_h
 
 #include "MapContext.h"
+#include "ActionBuilder.h"
 
 class ActionsProvider {
 public:
     ActionsProvider( MapContext& context );
     
-    std::vector<Option*> generateMovements( int playerID, int numActions ) const;
+    std::vector<Option*> generateMovements( int playerID,
+                                            int numActions ) const;
 
     void buildActions( int playerID, int numActions );
     
     std::vector<Action*>& buildUnitActions( int unitID,
-                                            int playerID ,int numActions );
+                                     int playerID ,int numActions );
+    ActionBuilder& createActionBuilder( const Unit& unit, int playerID,
+                                        const Point& destination );
+    
     
     void appendUnitActions( std::vector<Action*> actions, int numActions );
     

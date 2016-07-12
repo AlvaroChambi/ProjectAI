@@ -33,20 +33,21 @@ std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID, int playerI
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
-    std::vector<Action*>* unitActions = new std::vector<Action*>( maxAllowedActions );
+    //ActionBuilder* actionBuilder = new ActionBuilder( maxAllowedActions );
+    std::vector<Action*>* actions = new std::vector<Action*>( maxAllowedActions );
     
     int explorationRange = unit->getMovement() + unit->getAttackRange();
     AreaIterator areaIterator;
     areaIterator.buildArea( unit->getPosition(), explorationRange,
-                           mapContext.getNumColumns(), mapContext.getNumRows() );
+                            mapContext.getNumColumns(), mapContext.getNumRows() );
     while( areaIterator.hasNext() ) {
         const Point destination = areaIterator.next();
         if( unit->getPosition().onRange( destination, explorationRange ) ) {
-            // return action builder
-            resolveActions( *unit, playerID, destination, actions );
+
+            resolveActions( *unit, playerID, destination, *actions );
         }
     }
-    return *unitActions;
+    return *actions;
 }
 
 void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
@@ -54,6 +55,26 @@ void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
     //sort actions
         //std::sort( actions )
     //this->actions.append( (actions)0 - numActions )
+}
+
+ActionBuilder& ActionsProvider::createActionBuilder(
+                                            const Unit& unit, int playerID,
+                                            const Point& destination  ) {
+    
+    Unit* entity = mapContext.getEntity( destination );
+    Building* structure = mapContext.getStructure( destination );
+    
+    if( entity != nullptr && entity->getId() != playerID ) {
+        appendAttackActions( unit, *entity, actions );
+    } else if( mapContext.isValidPosition( destination )
+              && entity->getPosition().onRange( destination, unit.getMovement()) ) {
+        if ( structure != nullptr && !structure->isCaptured( playerID ) ) {
+            appendCaptureAction( unit, *structure, actions );
+        } else {
+            appendMoveAction( unit, actions );
+        }
+    }
+
 }
 
 // resolve the action needed to build for the given destination

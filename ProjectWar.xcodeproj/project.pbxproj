@@ -100,6 +100,8 @@
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
+		9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
+		9C7DEA811D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -251,6 +253,8 @@
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
 		9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionBuilder.h; sourceTree = "<group>"; };
+		9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsBuilder.cpp; sourceTree = "<group>"; };
+		9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionsBuilder.h; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
 		9C800B031AB743F3003FE2AA /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		9C800B051AB7440E003FE2AA /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerView.cpp; sourceTree = "<group>"; };
@@ -466,6 +470,8 @@
 				3A3892611D353003009EB3E1 /* EntityActionFactory.h */,
 				3A3892621D35311D009EB3E1 /* EntityActionFactory.cpp */,
 				3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */,
+				9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */,
+				9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -983,6 +989,7 @@
 				3A0779E81CF49D2400B8C065 /* Game.cpp in Sources */,
 				9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */,
 				3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */,
+				9C7DEA811D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */,
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */,
 				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
@@ -1043,6 +1050,7 @@
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
 				3A3892661D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */,
 				9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
+				9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,
 				3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */,
 				9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */,

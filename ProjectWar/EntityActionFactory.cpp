@@ -8,16 +8,8 @@
 
 #include "EntityActionFactory.h"
 
-Action& EntityActionFactory::createAction( const ActionType &actionType ) {
-    switch ( actionType ) {
-        case MOVE_ACTION:
-            break;
-        case ATTACK_ACTION:
-            break;
-        case CAPTURE_ACTION:
-            break;
-        default:
-            break;
-    }
+void EntityActionFactory::appendActions(
+                            const Unit& unit, const Unit& target,
+                            std::vector<Action*>& actions ) {
     
 }

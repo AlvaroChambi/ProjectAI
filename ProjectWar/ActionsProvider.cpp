@@ -57,26 +57,6 @@ void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
     //this->actions.append( (actions)0 - numActions )
 }
 
-ActionBuilder& ActionsProvider::createActionBuilder(
-                                            const Unit& unit, int playerID,
-                                            const Point& destination  ) {
-    
-    Unit* entity = mapContext.getEntity( destination );
-    Building* structure = mapContext.getStructure( destination );
-    
-    if( entity != nullptr && entity->getId() != playerID ) {
-        appendAttackActions( unit, *entity, actions );
-    } else if( mapContext.isValidPosition( destination )
-              && entity->getPosition().onRange( destination, unit.getMovement()) ) {
-        if ( structure != nullptr && !structure->isCaptured( playerID ) ) {
-            appendCaptureAction( unit, *structure, actions );
-        } else {
-            appendMoveAction( unit, actions );
-        }
-    }
-
-}
-
 // resolve the action needed to build for the given destination
 void ActionsProvider::resolveActions( const Unit& unit, int playerID,
                                       const Point& destination,
@@ -85,7 +65,9 @@ void ActionsProvider::resolveActions( const Unit& unit, int playerID,
     Building* structure = mapContext.getStructure( destination );
     
     if( entity != nullptr && entity->getId() != playerID ) {
-        appendAttackActions( unit, *entity, actions );
+        //appendAttackActions( unit, *entity, actions );
+        
+               
     } else if( mapContext.isValidPosition( destination )
               && entity->getPosition().onRange( destination, unit.getMovement()) ) {
         if ( structure != nullptr && !structure->isCaptured( playerID ) ) {

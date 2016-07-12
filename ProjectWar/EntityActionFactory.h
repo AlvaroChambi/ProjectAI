@@ -10,10 +10,12 @@
 #define ProjectWar_EntityActionFactory_h
 
 #include "ActionFactory.h"
+#include "Unit.h"
 
 class EntityActionFactory : public ActionFactory {
 public:
-    Action& createAction( const ActionType& actionType );
+    void appendActions( const Unit& unit, const Unit& target,
+                        std::vector<Action*>& actions );
 };
 
 #endif

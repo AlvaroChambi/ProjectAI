@@ -10,7 +10,7 @@
 #define ActionsProvider_h
 
 #include "MapContext.h"
-#include "ActionBuilder.h"
+#include "ActionsBuilder.h"
 
 class ActionsProvider {
 public:
@@ -21,23 +21,11 @@ public:
 
     void buildActions( int playerID, int numActions );
     
-    std::vector<Action*>& buildUnitActions( int unitID,
-                                     int playerID ,int numActions );
-    ActionBuilder& createActionBuilder( const Unit& unit, int playerID,
-                                        const Point& destination );
+    std::vector<Action*>& buildUnitActions( const int unitID,
+                                    ActionsBuilder& actionsBuilder );
     
-    
-    void appendUnitActions( std::vector<Action*> actions, int numActions );
-    
-    void resolveActions( const Unit& unit, int playerID,
-                        const Point& destination,
-                        std::vector<Action*>& actions );
-    void appendAttackActions( const Unit& unit, const Unit& target,
-                             std::vector<Action*>& actions );
-    void appendCaptureAction( const Unit& unit, const Building& structure,
-                             std::vector<Action*>& actions );
-    void appendMoveAction( const Unit& unit,
-                          std::vector<Action*>& actions );
+    TargetTile getTargetTileForPosition( const int unitID,
+                                         const Point& position );
 private:
     MapContext& mapContext;
     std::vector<Action*> actions;

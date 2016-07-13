@@ -28,12 +28,11 @@ void ActionsProvider::buildActions( int playerID, int numActions ) {
 
 // iterate over the unit valid area and append (numActions) unit actions
 // to the actions vector
-std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID, int playerID,
-                                        int numActions ) {
+std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID,
+                                                ActionsBuilder& actionsBuilder ) {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
-    //ActionBuilder* actionBuilder = new ActionBuilder( maxAllowedActions );
     std::vector<Action*>* actions = new std::vector<Action*>( maxAllowedActions );
     
     int explorationRange = unit->getMovement() + unit->getAttackRange();
@@ -43,72 +42,32 @@ std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID, int playerI
     while( areaIterator.hasNext() ) {
         const Point destination = areaIterator.next();
         if( unit->getPosition().onRange( destination, explorationRange ) ) {
-
-            resolveActions( *unit, playerID, destination, *actions );
+            TargetTile targetTile = getTargetTileForPosition( unit->getId(),
+                                                              destination );
+            if( targetTile != TARGET_NOT_AVAILABLE ) {
+                actionsBuilder.appendActions( targetTile, mapContext, unitID,
+                                              destination, *actions );
+            }
         }
     }
     return *actions;
 }
 
-void ActionsProvider::appendUnitActions( std::vector<Action *> actions,
-                                         int numActions ) {
-    //sort actions
-        //std::sort( actions )
-    //this->actions.append( (actions)0 - numActions )
-}
-
-// resolve the action needed to build for the given destination
-void ActionsProvider::resolveActions( const Unit& unit, int playerID,
-                                      const Point& destination,
-                                  std::vector<Action*>& actions ) {
-    Unit* entity = mapContext.getEntity( destination );
-    Building* structure = mapContext.getStructure( destination );
+TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
+                                                      const Point& position ) {
+    Unit* unit = mapContext.getEntity( unitID );
+    Unit* entity = mapContext.getEntity( position );
+    Building* structure = mapContext.getStructure( position );
     
-    if( entity != nullptr && entity->getId() != playerID ) {
-        //appendAttackActions( unit, *entity, actions );
-        
-               
-    } else if( mapContext.isValidPosition( destination )
-              && entity->getPosition().onRange( destination, unit.getMovement()) ) {
-        if ( structure != nullptr && !structure->isCaptured( playerID ) ) {
-            appendCaptureAction( unit, *structure, actions );
+    if( entity != nullptr && entity->getId() != unit->getOwnerID() ) {
+        return TARGET_ENTITY;
+    } else if( mapContext.isValidPosition( position )
+              && entity->getPosition().onRange( position, unit->getMovement()) ) {
+        if ( structure != nullptr && !structure->isCaptured( unit->getOwnerID() ) ) {
+            return TARGET_STRUCTURE;
         } else {
-            appendMoveAction( unit, actions );
+            return TARGET_POSITION;
         }
     }
-}
-
-// append attacks actions available for the given position
-void ActionsProvider::appendAttackActions( const Unit& unit, const Unit& target,
-                                           std::vector<Action*>& actions ) {
-    AreaIterator areaIterator;
-    areaIterator.buildArea( target.getPosition(), unit.getAttackRange(),
-                           mapContext.getNumColumns(), mapContext.getNumRows() );
-    while ( areaIterator.hasNext() ) {
-        const Point destination = areaIterator.next();
-        if( unit.getPosition().onRange( destination, unit.getMovement() ) ) {
-            // create move command
-            // create attack command
-            
-            // create and add Action( move, attack, score )
-        }
-    }
-}
-
-// append capture actions available for the given position
-void ActionsProvider::appendCaptureAction( const Unit& unit,
-                                           const Building& structure,
-                                           std::vector<Action*>& actions ) {
-    // create move command
-    // create attack commmand
-    
-    // create and add Action( move, capture, score )
-}
-
-// append move actions available for the given position
-void ActionsProvider::appendMoveAction( const Unit& unit,
-                                        std::vector<Action*>& actions ) {
-    // create move command
-    
-    // create and add Action( move, score )
+    return TARGET_NOT_AVAILABLE;
 }

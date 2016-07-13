@@ -61,8 +61,6 @@
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
 		3A38925A1D266995009EB3E1 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
-		3A3892631D35311D009EB3E1 /* EntityActionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892621D35311D009EB3E1 /* EntityActionFactory.cpp */; };
-		3A3892641D35311D009EB3E1 /* EntityActionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892621D35311D009EB3E1 /* EntityActionFactory.cpp */; };
 		3A3892661D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */; };
 		3A3892671D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
@@ -100,8 +98,8 @@
 		9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6613861AA771930094B72F /* SDL2.framework */; };
 		9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */; };
 		9C6685C81AD6E49C00C9DFAD /* target_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C6685C71AD6E49C00C9DFAD /* target_tile.png */; };
-		9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
-		9C7DEA811D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; settings = {ASSET_TAGS = (); }; };
+		9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; };
+		9C7DEA811D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */; };
 		9C800B041AB743F3003FE2AA /* PlayerController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B021AB743F3003FE2AA /* PlayerController.cpp */; };
 		9C800B091AB7440E003FE2AA /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B051AB7440E003FE2AA /* PlayerView.cpp */; };
 		9C800B141AB7443C003FE2AA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C800B0C1AB7443C003FE2AA /* Model.cpp */; };
@@ -196,8 +194,6 @@
 		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapLayerTest.cpp; sourceTree = "<group>"; };
 		3A3892601D352F18009EB3E1 /* ActionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionFactory.h; sourceTree = "<group>"; };
-		3A3892611D353003009EB3E1 /* EntityActionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntityActionFactory.h; sourceTree = "<group>"; };
-		3A3892621D35311D009EB3E1 /* EntityActionFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityActionFactory.cpp; sourceTree = "<group>"; };
 		3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionBuilder.cpp; sourceTree = "<group>"; };
 		3A3C1B131D23BC9800D0848F /* MapLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
@@ -467,8 +463,6 @@
 				9C2B7CDB1D327E160007CA6E /* ActionsProvider.cpp */,
 				9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */,
 				3A3892601D352F18009EB3E1 /* ActionFactory.h */,
-				3A3892611D353003009EB3E1 /* EntityActionFactory.h */,
-				3A3892621D35311D009EB3E1 /* EntityActionFactory.cpp */,
 				3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */,
 				9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */,
 				9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */,
@@ -954,7 +948,6 @@
 				3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */,
 				9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */,
 				3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */,
-				3A3892641D35311D009EB3E1 /* EntityActionFactory.cpp in Sources */,
 				9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */,
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
 				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
@@ -1014,7 +1007,6 @@
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,
 				9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */,
 				9CCD60C41ACDCCC3004537F8 /* Text.cpp in Sources */,
-				3A3892631D35311D009EB3E1 /* EntityActionFactory.cpp in Sources */,
 				9C8FBFED1AAF043A00C4EB1F /* Renderer.cpp in Sources */,
 				9C800B4F1ABD8323003FE2AA /* MoveCommand.cpp in Sources */,
 				9C800B2D1AB86A97003FE2AA /* UnitController.cpp in Sources */,

@@ -14,24 +14,22 @@
 #include "MoveCommand.h"
 #include "CaptureCommand.h"
 
-ActionsBuilder::ActionsBuilder( const int unitID,
-                                            const Point& position )
-: unitID( unitID ), position( position ) {
-
-}
-
 void ActionsBuilder::appendActions( const TargetTile &targetTile,
-                                    MapContext &context,
-                                    std::vector<Action *> &vector ) const {
+                            MapContext &context,
+                            const int unitID, const Point& position,
+                            std::vector<Action *> &vector ) const {
     switch ( targetTile ) {
         case TARGET_ENTITY:
-            createAppendAttackActions( context, vector );
+            createAppendAttackActions( context, unitID,
+                                       position ,vector );
             break;
         case TARGET_STRUCTURE:
-            createAppendCaptureAction( context, vector );
+            createAppendCaptureAction( context, unitID,
+                                       position, vector );
             break;
         case TARGET_POSITION:
-            createAppendMoveAction( context, vector );
+            createAppendMoveAction( context, unitID,
+                                    position, vector );
             break;
         default:
             break;
@@ -39,7 +37,8 @@ void ActionsBuilder::appendActions( const TargetTile &targetTile,
 }
 
 void ActionsBuilder::createAppendCaptureAction( MapContext &context,
-                                        std::vector<Action *> &vector ) const {
+                                const int unitID, const Point& position,
+                                std::vector<Action *> &vector ) const {
     Action* action = new Action();
     MoveCommand* moveCommand = new MoveCommand( context, unitID, position );
     CaptureCommand* captureCommand = new CaptureCommand( context, unitID );
@@ -51,7 +50,8 @@ void ActionsBuilder::createAppendCaptureAction( MapContext &context,
 }
 
 void ActionsBuilder::createAppendMoveAction( MapContext &context,
-                                        std::vector<Action *> &vector ) const {
+                                const int unitID, const Point& position,
+                                std::vector<Action *> &vector ) const {
     Action* action = new Action();
     MoveCommand* moveCommand = new MoveCommand( context, unitID, position );
     
@@ -60,8 +60,9 @@ void ActionsBuilder::createAppendMoveAction( MapContext &context,
     vector.push_back( action );
 }
 
-void ActionsBuilder::createAppendAttackActions(
-                MapContext &context, std::vector<Action*>& vector) const {
+void ActionsBuilder::createAppendAttackActions( MapContext &context,
+                                const int unitID, const Point& position,
+                                std::vector<Action*>& vector) const {
     
     Unit* unit = context.getEntity( unitID );
     Unit* entity = context.getEntity( position );

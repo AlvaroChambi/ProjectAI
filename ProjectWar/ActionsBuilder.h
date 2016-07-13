@@ -13,6 +13,7 @@
 #include "Point.h"
 
 enum TargetTile {
+    TARGET_NOT_AVAILABLE,
     TARGET_ENTITY,
     TARGET_STRUCTURE,
     TARGET_POSITION,
@@ -20,26 +21,21 @@ enum TargetTile {
 
 class ActionsBuilder {
 public:
-    ActionsBuilder( const int unitID, const Point& position );
-    
     void createAppendAttackActions( MapContext& context,
-                              std::vector<Action*>& vector ) const;
+                            const int unitID, const Point& position,
+                            std::vector<Action*>& vector ) const;
     
     void createAppendMoveAction( MapContext& context,
+                                const int unitID, const Point& position,
                                  std::vector<Action*>& vector ) const;
     void createAppendCaptureAction( MapContext& context,
+                                   const int unitID, const Point& position,
                                    std::vector<Action*>& vector  ) const;
     
     void appendActions( const TargetTile& targetTile,
                         MapContext& context,
+                        const int unitID, const Point& position,
                         std::vector<Action*>& vector ) const;
-    
-    //targetEntityTile
-    //targetStructureTile
-    //targetPositionTile
-private:
-    const int unitID;
-    const Point& position;
 };
 
 #endif /* AttackActionsBuilder_h */

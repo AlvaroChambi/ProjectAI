@@ -28,8 +28,7 @@ void ActionsProvider::buildActions( int playerID, int numActions ) {
 
 // iterate over the unit valid area and append (numActions) unit actions
 // to the actions vector
-std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID,
-                                                ActionsBuilder& actionsBuilder ) {
+std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;

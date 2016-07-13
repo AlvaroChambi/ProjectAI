@@ -61,8 +61,8 @@
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
 		3A38925A1D266995009EB3E1 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
-		3A3892661D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */; };
-		3A3892671D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */; };
+		3AB9717A1D36730D006E9DA9 /* ActionsProviderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */; };
+		3AB9717C1D367319006E9DA9 /* ActionsBuilderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
 		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
@@ -193,9 +193,9 @@
 		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
 		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapLayerTest.cpp; sourceTree = "<group>"; };
-		3A3892601D352F18009EB3E1 /* ActionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionFactory.h; sourceTree = "<group>"; };
-		3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionBuilder.cpp; sourceTree = "<group>"; };
 		3A3C1B131D23BC9800D0848F /* MapLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
+		3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsProviderTest.cpp; sourceTree = "<group>"; };
+		3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsBuilderTest.cpp; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
 		55891C651AEE8A4400888AC7 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
@@ -248,7 +248,6 @@
 		9C6613861AA771930094B72F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C6685C71AD6E49C00C9DFAD /* target_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_tile.png; sourceTree = "<group>"; };
-		9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionBuilder.h; sourceTree = "<group>"; };
 		9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsBuilder.cpp; sourceTree = "<group>"; };
 		9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionsBuilder.h; sourceTree = "<group>"; };
 		9C800B021AB743F3003FE2AA /* PlayerController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerController.cpp; sourceTree = "<group>"; };
@@ -413,6 +412,8 @@
 				9CF366D11D0892D3005A2B18 /* MockIterator.h */,
 				3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */,
 				9CB5E66D1D291AE30067F160 /* PlayerTest.cpp */,
+				3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */,
+				3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -461,9 +462,6 @@
 				9CF246471CFF8FCB00AF606D /* UnitFilter.h */,
 				9C2B7CD61D327DF40007CA6E /* ActionsProvider.h */,
 				9C2B7CDB1D327E160007CA6E /* ActionsProvider.cpp */,
-				9C7DEA7B1D3419E20045B3B8 /* ActionBuilder.h */,
-				3A3892601D352F18009EB3E1 /* ActionFactory.h */,
-				3A3892651D3534D5009EB3E1 /* ActionBuilder.cpp */,
 				9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */,
 				9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */,
 			);
@@ -951,7 +949,6 @@
 				9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */,
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
 				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
-				3A3892671D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */,
 				3A0779D41CF49D2400B8C065 /* BuildingView.cpp in Sources */,
 				3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */,
 				3A0779D51CF49D2400B8C065 /* UnitUIView.cpp in Sources */,
@@ -979,12 +976,14 @@
 				3A0779E51CF49D2400B8C065 /* Text.cpp in Sources */,
 				3A0779E61CF49D2400B8C065 /* UIComponent.cpp in Sources */,
 				3A0779E71CF49D2400B8C065 /* Tile.cpp in Sources */,
+				3AB9717A1D36730D006E9DA9 /* ActionsProviderTest.cpp in Sources */,
 				3A0779E81CF49D2400B8C065 /* Game.cpp in Sources */,
 				9CF246431CFF895E00AF606D /* AreaIterator.cpp in Sources */,
 				3A0779E91CF49D2400B8C065 /* Scene.cpp in Sources */,
 				9C7DEA811D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */,
 				3A0779EA1CF49D2400B8C065 /* Event.cpp in Sources */,
 				3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */,
+				3AB9717C1D367319006E9DA9 /* ActionsBuilderTest.cpp in Sources */,
 				3A0779EB1CF49D2400B8C065 /* SDLRenderer.cpp in Sources */,
 				9CB5E66E1D291AE30067F160 /* PlayerTest.cpp in Sources */,
 				9C2B7CDD1D327E160007CA6E /* ActionsProvider.cpp in Sources */,
@@ -1040,7 +1039,6 @@
 				55966F471ADC163A00B36FA8 /* BuildingView.cpp in Sources */,
 				9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */,
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
-				3A3892661D3534D5009EB3E1 /* ActionBuilder.cpp in Sources */,
 				9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
 				9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,

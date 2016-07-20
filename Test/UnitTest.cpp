@@ -17,14 +17,8 @@ public:
     }
     
     virtual void SetUp() {
-        unit = new Unit;
     }
     
     virtual void TearDown() {
     }
-    
-    Unit* unit;
-    MockMap map;
 };
-
-//TODO: Reimplement tests, functionality added and not tested

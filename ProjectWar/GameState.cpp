@@ -143,7 +143,7 @@ std::vector<Point>* GameState::getBestUnitDestination( const Building& headquart
     areaIterator.buildArea( unitPosition , unit.getMovement(),
                              MAP_WIDTH, MAP_HEIGHT );
     UnitMovementFilter unitMoveIterator = UnitMovementFilter( areaIterator,
-                                                    (Map*)map, unit );
+                                                    *map, unit );
     
     int distanceHQ = unit.getPosition().distance( headquarter.getPosition() );
     int distanceOwnHQ = unit.getPosition().distance( ownHeadquarter.getPosition() );

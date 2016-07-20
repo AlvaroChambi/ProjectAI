@@ -60,9 +60,9 @@
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
-		3A38925A1D266995009EB3E1 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		3AB9717A1D36730D006E9DA9 /* ActionsProviderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */; };
 		3AB9717C1D367319006E9DA9 /* ActionsBuilderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */; };
+		3AC8981D1D3FC8050056448C /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
 		5529C7871D00DEBF00FF3D5F /* HeuristicFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55D24B641D00D58900949485 /* HeuristicFunction.cpp */; };
 		5567C0CE1CDA6D6D00DD8F3D /* soldier_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */; };
@@ -142,7 +142,6 @@
 		9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
 		9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
 		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
-		9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */; };
 		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; };
 		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; };
@@ -336,7 +335,6 @@
 		9CF246291CFCD0EF00AF606D /* GameMinimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMinimax.h; sourceTree = "<group>"; };
 		9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMinimax.cpp; sourceTree = "<group>"; };
 		9CF2462D1CFCD2B900AF606D /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
-		9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateTest.cpp; sourceTree = "<group>"; };
 		9CF246321CFCD9B800AF606D /* IPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlayer.h; sourceTree = "<group>"; };
 		9CF246331CFCDA3F00AF606D /* MockPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockPlayer.h; sourceTree = "<group>"; };
 		9CF246361CFE2BA300AF606D /* MockMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockMap.h; sourceTree = "<group>"; };
@@ -362,7 +360,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A38925A1D266995009EB3E1 /* gmock.framework in Frameworks */,
+				3AC8981D1D3FC8050056448C /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -399,7 +397,6 @@
 				9CBEB9CE1CF796E700CA82DE /* MockOption.h */,
 				3A0779FC1CF885A700B8C065 /* DotTest.cpp */,
 				3A077A001CF8882F00B8C065 /* MockGraphLogger.h */,
-				9CF246301CFCD3CD00AF606D /* GameStateTest.cpp */,
 				9CF246331CFCDA3F00AF606D /* MockPlayer.h */,
 				9CF246361CFE2BA300AF606D /* MockMap.h */,
 				9CF246371CFE2C4500AF606D /* MapTest.cpp */,
@@ -929,7 +926,6 @@
 				9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */,
 				3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */,
 				3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */,
-				9CF246311CFCD3CD00AF606D /* GameStateTest.cpp in Sources */,
 				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
 				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
 				3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */,

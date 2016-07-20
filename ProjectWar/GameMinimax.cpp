@@ -13,9 +13,7 @@ static const int INFINITE = std::numeric_limits<int>::max();
 GameMinimax::GameMinimax( MapContext& mapContext,
                           const ActionsProvider& actionsProvider )
 : mapContext( mapContext ), actionsProvider( actionsProvider ) {
-    heuristicFunction = new HeuristicFunction(
-                                mapContext.getPlayer(),
-                                mapContext.getOpponent() );
+    heuristicFunction = new HeuristicFunction( );
 }
 
 GameMinimax::~GameMinimax() {
@@ -23,11 +21,13 @@ GameMinimax::~GameMinimax() {
 }
 
 int GameMinimax::getGameOverScore() {
-    return heuristicFunction->getGameOverScore();
+    return heuristicFunction->getGameOverScore( mapContext.getPlayer(),
+                                                mapContext.getOpponent() );
 }
 
 int GameMinimax::getStaticEvaluation() {
-    return heuristicFunction->getStaticEvaluation();
+    return heuristicFunction->getStaticEvaluation( mapContext.getPlayer(),
+                                                   mapContext.getOpponent() );
 }
 
 std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {

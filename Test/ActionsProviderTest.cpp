@@ -10,6 +10,7 @@
 #include "ActionsProvider.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "MockMap.h"
 
 class ActionsProviderTest : public ::testing::Test {
 public:
@@ -25,7 +26,7 @@ public:
     }
     
     ActionsProvider* actionsProvider;
-    MapContext mockContext;
+    MockMap mockContext;
 };
 
 TEST_F( ActionsProviderTest, getTileEmptyUnavailableTile ) {

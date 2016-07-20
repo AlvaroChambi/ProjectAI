@@ -15,27 +15,28 @@
 
 class HeuristicFunction {
 public:
-    HeuristicFunction();
-    HeuristicFunction( const Player& player, const Player& enemy );
-    
     static const int DRAW_VALUE = 0;
     static const int WIN_VALUE = 10000;
     static const int LOST_VALUE = -10000;
     static const int NOT_FINISHED = 0;
     
     int calculateBuildingsHealth(
+                            const Player& player,
+                            const Player& enemy,
                             std::vector<Building*> playerBuildings,
                             std::vector<Building*> enemyBuildings);
     int calculateEnemyHeadquarterDistance(
+                                const Player& player,
+                                const Player& enemy,
                                 const Building& playerHeadquarter,
                                 const Building& enemyHeadquarter );
-    int calculateUnitsHealth();
-    int getStaticEvaluation();
+    int calculateUnitsHealth( const Player& player,
+                              const Player& enemy );
+    int getStaticEvaluation( const Player& player,
+                             const Player& enemy );
     
-    int getGameOverScore();
-private:
-    const Player& player;
-    const Player& enemy;
+    int getGameOverScore( const Player& player,
+                          const Player& enemy );
     
 };
 #endif /* HeuristicFunction_h */

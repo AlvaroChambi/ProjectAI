@@ -12,18 +12,7 @@
 
 class ActionsBuilderTest : public ::testing::Test {
 public:
-    ActionsBuilder() {
-        
-    }
-    
-    virtual void SetUp() {
 
-    }
-    
-    virtual void TearDown() {
-    }
 };
 
-TEST_F( ActionsBuilder, appendAttackActionsTest ) {
-    
-}
+

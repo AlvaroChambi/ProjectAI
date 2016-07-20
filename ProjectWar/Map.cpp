@@ -85,7 +85,7 @@ void Map::cleanUnitAvailableArea( const Unit& unit ) {
     areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
                            MAP_WIDTH, MAP_HEIGHT );
     
-    UnitMovementFilter filter( areaIterator, this, unit );
+    UnitMovementFilter filter( areaIterator, *this, unit );
     while ( filter.hasNext() ) {
         Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(true);
@@ -97,7 +97,7 @@ void Map::updateUnitAvailableArea( const Unit& unit ) {
     areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
                            MAP_WIDTH, MAP_HEIGHT );
     
-    UnitMovementFilter filter( areaIterator, this, unit );
+    UnitMovementFilter filter( areaIterator, *this, unit );
     while ( filter.hasNext() ) {
         Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(false);

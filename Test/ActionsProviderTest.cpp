@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "ActionsProvider.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 class ActionsProviderTest : public ::testing::Test {

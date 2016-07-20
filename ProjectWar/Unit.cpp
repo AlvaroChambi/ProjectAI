@@ -128,7 +128,7 @@ std::vector<Action*>* Unit::getAttackActions( MapContext *map,
                                     getMovement(),
                                     MAP_WIDTH, MAP_HEIGHT );
             Iterator* unitMoveIterator =
-            new UnitMovementFilter( *areaIterator,(Map*)map, *this );
+            new UnitMovementFilter( *areaIterator,*map, *this );
             
             while ( unitMoveIterator->hasNext() ) {
                 Point destination = unitMoveIterator->next();

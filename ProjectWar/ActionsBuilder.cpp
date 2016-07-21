@@ -67,18 +67,24 @@ void ActionsBuilder::createAppendAttackActions( MapContext &context,
     Unit* unit = context.getEntity( unitID );
     Unit* entity = context.getEntity( position );
     
+    if( unit->getPosition() == position ) {
+        throw IllegalStateException( "No allowed more than one unit in the same position" );
+    }
+    
     AreaIterator areaIterator;
     areaIterator.buildArea( position, unit->getAttackRange(),
                     context.getNumColumns(), context.getNumRows() );
-    UnitMovementFilter filter = UnitMovementFilter( areaIterator, context, *unit );
+    UnitMovementFilter filter = UnitMovementFilter( areaIterator, context,
+                                                    *unit );
     while ( filter.hasNext() ) {
         const Point destination = filter.next();
-        if( destination != position ) {
+        if( entity->getPosition().onRange( destination,
+                                           unit->getAttackRange() ) ) {
             Action* action = new Action();
             MoveCommand* moveCommand = new MoveCommand(
-                                            context, unitID, destination );
-            AttackCommand* attackCommand = new AttackCommand(
-                                            context, unitID, entity->getId() );
+                                                       context, unitID, destination );
+            AttackCommand* attackCommand = new AttackCommand( context,
+                                                             unitID, entity->getId() );
             
             action->commands.push_back( moveCommand );
             action->commands.push_back( attackCommand );

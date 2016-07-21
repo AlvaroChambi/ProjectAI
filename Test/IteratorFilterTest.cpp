@@ -34,10 +34,6 @@ TEST_F( IteratorFilterTest, hasNextAvailablePosition ) {
     unit->setPosition( 1, 1 );
     unit->setMovement( 1 );
     
-    EXPECT_CALL( map , isValidPosition( testing::_ ) )
-    .Times( 2 )
-    .WillRepeatedly( testing::Return( true ) );
-    
     std::pair<Point, Point>* area = new std::pair<Point,Point>;
     area->first = Point( 0, 0 );
     area->second = Point( 2, 2 );
@@ -57,9 +53,20 @@ TEST_F( IteratorFilterTest, notNextAvailablePosition ) {
     unit->setPosition( 1, 1 );
     unit->setMovement( 1 );
     
+    Unit entity;
+    
+    EXPECT_CALL( map, getEntity( Point(0,0) ) )
+    .WillOnce( testing::Return( &entity ) );
+    EXPECT_CALL( map, getEntity( Point(0,1) ) )
+    .WillOnce( testing::Return( &entity ) );
+    EXPECT_CALL( map, getEntity( Point(1,0) ) )
+    .WillOnce( testing::Return( &entity ) );
+    EXPECT_CALL( map, getEntity( Point(1,1) ) )
+    .WillOnce( testing::Return( &entity ) );
+    
     std::pair<Point, Point>* area = new std::pair<Point,Point>;
     area->first = Point( 0, 0 );
-    area->second = Point( 2, 2 );
+    area->second = Point( 1, 1 );
     
     areaIterator->setArea( *area );
     iteratorFiter = new UnitMovementFilter( *areaIterator, map, *unit );

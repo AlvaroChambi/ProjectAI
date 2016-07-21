@@ -14,7 +14,7 @@ UnitMovementFilter::UnitMovementFilter( Iterator& filter,
 }
 
 bool UnitMovementFilter::isValid( const Point& position ) {
-    bool valid = map.isValidPosition( position )
+    bool valid = map.getEntity( position ) == nullptr
     && unit.getPosition().onRange( position, unit.getMovement() );
     
     return iterator.isValid( position ) && valid;

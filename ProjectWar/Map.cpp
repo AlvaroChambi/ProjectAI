@@ -150,6 +150,7 @@ Tile Map::getTile( const Point& point ) const {
     return *matrix[point.x][point.y];
 }
 
+//TODO: Remove method
 bool Map::isValidPosition( const Point& position ) const {
     return entitiesLayer.get( position ) == nullptr;
 }

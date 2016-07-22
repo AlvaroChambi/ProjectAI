@@ -12,16 +12,17 @@
 #include "Minimax.h"
 #include "MapContext.h"
 #include "HeuristicFunction.h"
-#include "GameState.h"
+#include "ActionsProvider.h"
 
 class GameMinimax : public Minimax {
 public:
-    GameMinimax( MapContext* mapContext );
+    GameMinimax( MapContext& mapContext,
+                 const ActionsProvider& actionsProvider );
     ~GameMinimax();
     
     int getGameOverScore();
     int getStaticEvaluation();
-    std::vector<Option*>& getMovesList( const bool maximize );
+    std::vector<Option*> getMovesList( const bool maximize );
     void processMove(Option* move);
     void unprocessMove(Option* move);
     int minimaxMin( const int bestSoFar, const int score );
@@ -29,9 +30,9 @@ public:
                           Option* move, Option** bestMove, bool topBranch );
     
 private:
-    MapContext* mapContext;
-    GameState* gameState;
+    MapContext& mapContext;
     HeuristicFunction* heuristicFunction;
+    const ActionsProvider& actionsProvider;
 };
 
 #endif /* GameMinimax_h */

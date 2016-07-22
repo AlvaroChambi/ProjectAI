@@ -48,10 +48,10 @@ public:
     void cleanUnitAvailableArea( const Unit& unit );
     
     void loadBuildings( SpriteFactory* spriteFactory, Renderer* renderer,
-                        Player* player, Player* opponent );
+                       Player* player, Player* opponent );
     
     void checkNearEntities( const Unit& unit,
-                            std::vector<UnitCommand>& commands);
+                           std::vector<UnitCommand>& commands);
     
     //override
     int getNumRows() const;
@@ -90,6 +90,6 @@ private:
     
     const Player& player;
     const Player& opponent;
- };
+};
 
 #endif /* defined(__ProjectWar__Map__) */

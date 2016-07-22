@@ -11,6 +11,8 @@
 #include "MinimaxAlgorithm.hpp"
 #include "DotPath.h"
 #include "GameMinimax.h"
+#include "ActionsProvider.h"
+
 #include <stdio.h>
 #include <chrono>
 
@@ -40,8 +42,10 @@ void PlayerAI::play( MapContext* mapContext ) {
 
 
 void PlayerAI::executeMinimax( MapContext* mapContext ) {
+    GameMinimax* gameMinimax = new GameMinimax( *mapContext ,
+                                                ActionsProvider( *mapContext ) );
     MinimaxAlgorithm* algorithm =
-        new MinimaxAlgorithm( new GameMinimax( mapContext ) );
+        new MinimaxAlgorithm( gameMinimax );
     algorithm->minimax( 4 );
     Movement* movement = (Movement*)algorithm->getBestMove();
     if( movement != nullptr ) {

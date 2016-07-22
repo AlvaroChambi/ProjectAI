@@ -11,6 +11,7 @@
 
 #include "gmock/gmock.h"
 #include "MapContext.h"
+#include "Player.h"
 
 class MockMap : public  MapContext {
 public:

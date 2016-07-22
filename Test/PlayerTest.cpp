@@ -17,11 +17,9 @@ public:
     }
     
     virtual void SetUp() {
-        player = new Player;
     }
     
     virtual void TearDown() {
     }
     
-    Player* player;
 };

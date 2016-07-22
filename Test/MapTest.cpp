@@ -17,13 +17,15 @@ public:
     }
     
     virtual void SetUp() {
-        map = new Map;
+        map = new Map( player, opponent );
     }
     
     virtual void TearDown() {
     }
     
     Map* map;
+    Player player;
+    Player opponent;
 };
 
 TEST_F( MapTest, MapAddEntityTest ) {

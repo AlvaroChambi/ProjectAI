@@ -1,11 +1,3 @@
-//
-//  Map.cpp
-//  ProjectWar
-//
-//  Created by Alvaro Chambi Campos on 13/3/15.
-//  Copyright (c) 2015 Alvaro Chambi Campos. All rights reserved.
-//
-
 #include "Map.h"
 #include "Player.h"
 #include <iostream>
@@ -25,7 +17,7 @@ Map::Map( const Player& player, const Player& opponent )
 }
 
 Map::~Map() {
-
+    
 }
 
 int Map::getNumColumns() const {
@@ -45,7 +37,7 @@ void Map::loadMap( Renderer* renderer, int tileWidth, int tileHeight ) {
             //use static color !Change this¡
             Color color = Color(0,153,0);
             Texture * texture = renderer->loadShape( RECTANGLE, color,
-                                                     tileWidth, tileHeight);
+                                                    tileWidth, tileHeight);
             texture->setPosition(posX, posY);
             Tile* tile = new Tile(texture);
             tile->position.x = i;
@@ -93,7 +85,7 @@ void Map::cleanUnitAvailableArea( const Unit& unit ) {
     areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
                            MAP_WIDTH, MAP_HEIGHT );
     
-    UnitMovementFilter filter( areaIterator, this, unit );
+    UnitMovementFilter filter( areaIterator, *this, unit );
     while ( filter.hasNext() ) {
         Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(true);
@@ -105,7 +97,7 @@ void Map::updateUnitAvailableArea( const Unit& unit ) {
     areaIterator.buildArea( unit.getPosition(), unit.getMovement(),
                            MAP_WIDTH, MAP_HEIGHT );
     
-    UnitMovementFilter filter( areaIterator, this, unit );
+    UnitMovementFilter filter( areaIterator, *this, unit );
     while ( filter.hasNext() ) {
         Point destination = filter.next();
         matrix[destination.x][destination.y]->getTexture()->setVisible(false);
@@ -158,6 +150,7 @@ Tile Map::getTile( const Point& point ) const {
     return *matrix[point.x][point.y];
 }
 
+//TODO: Remove method
 bool Map::isValidPosition( const Point& position ) const {
     return entitiesLayer.get( position ) == nullptr;
 }
@@ -171,8 +164,9 @@ void Map::loadInfoMap( std::list<Player *> &players ) {
     }
 }
 
+//TODO: Replace for get target tile function in the actions provider
 void Map::checkNearEntities( const Unit& unit,
-                             std::vector<UnitCommand>& commands ) {
+                            std::vector<UnitCommand>& commands ) {
     AreaIterator areaIterator;
     areaIterator.buildArea( unit.getPosition(), unit.getAttackRange(),
                            MAP_WIDTH, MAP_HEIGHT );
@@ -183,12 +177,11 @@ void Map::checkNearEntities( const Unit& unit,
         commands.push_back( CAPTURE );
     }
     
-    //Decorate with unit movement filter -> crash!
     while ( areaIterator.hasNext() ) {
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );
         if( unit.getPosition().onRange( destination , unit.getAttackRange() )
-            && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
+           && entity != nullptr && entity->getOwnerID() != unit.getOwnerID() ) {
             commands.push_back( ATTACK );
             return;
         }
@@ -199,7 +192,7 @@ void Map::checkNearEntities( const Unit& unit,
 // or his position is already occupied
 void Map::addEntity( Unit& unit ) {
     if( entities.find( unit.getId() ) == entities.end()
-        && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
+       && entitiesLayer.get( unit.getPosition() ) == nullptr ) {
         
         entitiesLayer.set( &unit, unit.getPosition() );
         entities[unit.getId()] = unit.getPosition();

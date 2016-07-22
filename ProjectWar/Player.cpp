@@ -133,8 +133,8 @@ bool Player::hasUnitAlive() const {
     return result;
 }
 
-bool Player::hasCapturedHQ( Player* enemy ) const {
-    Building* enemyHQ = enemy->getHeadquarter();
+bool Player::hasCapturedHQ( const Player& enemy ) const {
+    Building* enemyHQ = enemy.getHeadquarter();
     return enemyHQ->isCaptured( getId() );
 }
 

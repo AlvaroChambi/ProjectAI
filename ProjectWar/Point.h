@@ -74,7 +74,7 @@ public:
         std::abs( point.y - this->y );
     }
     
-    bool onRange( const Point& destination, int range ) {
+    bool onRange( const Point& destination, int range ) const {
         if( distance( destination ) <= range ) {
             return true;
         }

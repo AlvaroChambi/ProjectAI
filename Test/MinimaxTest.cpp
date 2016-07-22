@@ -46,7 +46,7 @@ TEST_F( MinimaxTest, MinimaxReachPlyLimitTest ) {
 
 TEST_F( MinimaxTest, MinimaxMaximizeEmptyMoves ) {
     EXPECT_CALL( mockMinimax , getMovesList( true ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     int ply = 1;
     ASSERT_EQ( INFINITE, minimax->minimax( ply, -100, +100, true ) );
 }
@@ -58,7 +58,7 @@ TEST_F( MinimaxTest, MinimaxMaximizePlyReachedTest ) {
     
     moves.push_back( &option );
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, 10, testing::_,
                                           testing::_, testing::_ ) )
@@ -76,7 +76,7 @@ TEST_F( MinimaxTest, MinimaxMinimizePlyReachedTest ) {
     
     moves.push_back( &option );
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMin( testing::_, 10 ) )
     .WillOnce( testing::Return( 20 ) );
@@ -93,7 +93,7 @@ TEST_F( MinimaxTest, MinimaxAlphaValueHigherUpdatePrun ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
                                          testing::_, testing::_, testing::_ ) )
@@ -113,7 +113,7 @@ TEST_F( MinimaxTest, MinimaxAlphaValueEqualUpdatePrun ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
                                          testing::_, testing::_, testing::_ ) )
@@ -133,7 +133,7 @@ TEST_F( MinimaxTest, MinimaxBetaValueUpdatePrun ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
     .WillOnce( testing::Return( 25 ) );
@@ -152,7 +152,7 @@ TEST_F( MinimaxTest, MinimaxMinimazePunedAvoided ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
     .Times( 2 )
@@ -173,7 +173,7 @@ TEST_F( MinimaxTest, MinimaxMaximizePunedAvoided ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
                                           testing::_, testing::_, testing::_ ) )
@@ -197,7 +197,7 @@ TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     moves.push_back( &option );
     
     EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
-    .WillOnce( testing::ReturnRef( moves ) );
+    .WillOnce( testing::Return( moves ) );
     
     int ply = 1;
     int alpha = 40;
@@ -233,9 +233,9 @@ TEST_F( MinimaxTest, MinimaxPly2IterationTest ) {
     
     EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
     .Times( 3 )
-    .WillOnce( testing::ReturnRef( moves ) )
-    .WillOnce( testing::ReturnRef( moves1 ) )
-    .WillOnce( testing::ReturnRef( moves3 ) );
+    .WillOnce( testing::Return( moves ) )
+    .WillOnce( testing::Return( moves1 ) )
+    .WillOnce( testing::Return( moves3 ) );
     
     int ply = 2;
     int alpha = 40;
@@ -273,9 +273,9 @@ TEST_F( MinimaxTest, MinimaxPly2PruneIterationTest ) {
     
     EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
     .Times( 3 )
-    .WillOnce( testing::ReturnRef( moves ) )
-    .WillOnce( testing::ReturnRef( moves1 ) )
-    .WillOnce( testing::ReturnRef( moves3 ) );
+    .WillOnce( testing::Return( moves ) )
+    .WillOnce( testing::Return( moves1 ) )
+    .WillOnce( testing::Return( moves3 ) );
     
     int ply = 2;
     int alpha = 40;

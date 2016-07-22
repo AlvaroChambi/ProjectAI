@@ -133,7 +133,7 @@ void UIComponent::setPosition(Point position)
     this->position = position;
 }
 
-Point UIComponent::getPosition() const{
+Point UIComponent::getPosition() const {
     return position;
 }
 

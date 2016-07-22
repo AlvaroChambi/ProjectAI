@@ -45,7 +45,7 @@ public:
     int getMovement() const;
     
     Tile getTile() const;
-    Point getPosition() const;
+    const Point getPosition() const;
     
     void setActive( bool active );
     bool isActive() const;
@@ -68,18 +68,6 @@ public:
     
     int getNumCommands() const;
     
-    std::vector<Action*>* getMoveActions( MapContext* map );
-    std::vector<Action*>* getAttackActions( MapContext* map,
-                                           std::vector<Unit*> targets,
-                                           GameState& gameState );
-    std::vector<Action*>* getCaptureActions( MapContext* map, Player* player,
-                                            std::vector<Building*> targets,
-                                            GameState& gameState );
-    
-    void addCaptureCommand( GameState& gameState, Building* building,
-                            MapContext* map, std::vector<Action*>* captureActions,
-                            Player* player );
-    
     void setOwnerID( int ownerID );
     int getOwnerID() const;
 private:
@@ -90,6 +78,7 @@ private:
     int ownerID;
     
     std::vector<UnitCommand> commands;
+    std::vector<Action*> actions;
     bool selected;
     bool active;
 };

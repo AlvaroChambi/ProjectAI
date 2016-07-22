@@ -10,14 +10,10 @@
 #include "GameException.h"
 
 static const int INFINITE = std::numeric_limits<int>::max();
-GameMinimax::GameMinimax( MapContext* mapContext )
-: mapContext( mapContext ) {
-    gameState = new GameState( (IPlayer*)&mapContext->getPlayer(),
-                               (IPlayer*)&mapContext->getOpponent(),
-                               mapContext );
-    heuristicFunction = new HeuristicFunction(
-                                *(Player*)gameState->getPlayer(),
-                                *(Player*)gameState->getEnemy() );
+GameMinimax::GameMinimax( MapContext& mapContext,
+                          const ActionsProvider& actionsProvider )
+: mapContext( mapContext ), actionsProvider( actionsProvider ) {
+    heuristicFunction = new HeuristicFunction( );
 }
 
 GameMinimax::~GameMinimax() {
@@ -25,21 +21,23 @@ GameMinimax::~GameMinimax() {
 }
 
 int GameMinimax::getGameOverScore() {
-    return gameState->getGameOverScore();
+    return heuristicFunction->getGameOverScore( mapContext.getPlayer(),
+                                                mapContext.getOpponent() );
 }
 
 int GameMinimax::getStaticEvaluation() {
-    return heuristicFunction->getStaticEvaluation();
+    return heuristicFunction->getStaticEvaluation( mapContext.getPlayer(),
+                                                   mapContext.getOpponent() );
 }
 
-//TODO: Implement getMaxMovesList and getMinMovesList in the minimax
-std::vector<Option*>& GameMinimax::getMovesList( const bool maximize ) {
+std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {
+    int numActions = 5;
     if ( maximize ) {
-        return *gameState->getMovesList( (Player*)gameState->getPlayer(),
-                                         (Player*)gameState->getEnemy() );
+        return actionsProvider.generateMovements(
+                                mapContext.getPlayer().getId(), numActions );
     } else {
-        return *gameState->getMovesList( (Player*)gameState->getEnemy(),
-                                        (Player*)gameState->getPlayer() );
+        return actionsProvider.generateMovements(
+                                mapContext.getOpponent().getId(), numActions );
     }
 }
 

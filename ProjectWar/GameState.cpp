@@ -25,7 +25,7 @@ const int TACTIC_POSSIBILITIES = 4;
 GameState::GameState( IPlayer* const player, IPlayer* const enemy,
                       MapContext* map )
 : player( player ), enemy( enemy ), map( map ) {
-
+    
 }
 
 GameState::~GameState() {
@@ -40,28 +40,23 @@ IPlayer* const GameState::getEnemy() {
     return enemy;
 }
 
-int GameState::getGameOverScore() {
-    int gameScore = GameState::NOT_FINISHED;
-    bool playerHasCapturedHQ = player->hasCapturedHQ( (Player*)enemy );
-    bool enemyHasCapturedHQ = enemy->hasCapturedHQ( (Player*)player );
-    
-    bool playerHasUnitAlive = player->hasUnitAlive();
-    bool enemyHasUnitAlive = enemy->hasUnitAlive();
-    
-    if ( playerHasCapturedHQ && enemyHasCapturedHQ ) {
-        throw IllegalStateException( "both captured at the same time" );
-    } else if ( !playerHasUnitAlive && !enemyHasUnitAlive ) {
-        throw IllegalStateException( "HQ captured without units" );
-    } else {
-        if( !playerHasUnitAlive || enemyHasCapturedHQ ) {
-            return gameScore = GameState::LOST_VALUE;
-        }else if( !enemyHasUnitAlive || playerHasCapturedHQ ) {
-            return gameScore = GameState::WIN_VALUE;
-        }
-    }
-    
-    return gameScore;
+int GameState::getStaticEvaluation() {
+    return 0;
 }
+
+//std::vector<Option*>& GameState::getLegalActions( const Player &player,
+//                                                  const Player &opponent ) {
+//    // build moves index -> vector< <0,0,0>, <1,1,1> >
+//    
+//    // get legal actions for each unit -> vector< <a,b,c>, <a,b,c> >
+//        // for each unit
+//        // get ALL legal unit actions -> vector< a[score], b[score], ... >
+//            //sorted by score
+//        // get {x} legal unit actions -> *vector first {x} items
+//    
+//    
+//    // map
+//}
 
 std::vector<Option*>* GameState::getMovesList( Player* player,
                                                Player* opponent ) {
@@ -123,7 +118,7 @@ std::vector<Action*>* GameState::filterUnitActions( Unit *unit,
                 invalidatedPositions.push_back( destinations->at( pos ) );
                 Action* action = new Action;
                 MoveCommand* command =
-                new MoveCommand( *unit, map, destinations->at( pos ) );
+                new MoveCommand( *map, unit->getId(), destinations->at( pos ) );
                 action->commands.push_back( command );
                 actions->push_back( action );
             }
@@ -148,7 +143,7 @@ std::vector<Point>* GameState::getBestUnitDestination( const Building& headquart
     areaIterator.buildArea( unitPosition , unit.getMovement(),
                              MAP_WIDTH, MAP_HEIGHT );
     UnitMovementFilter unitMoveIterator = UnitMovementFilter( areaIterator,
-                                                    (Map*)map, unit );
+                                                    *map, unit );
     
     int distanceHQ = unit.getPosition().distance( headquarter.getPosition() );
     int distanceOwnHQ = unit.getPosition().distance( ownHeadquarter.getPosition() );

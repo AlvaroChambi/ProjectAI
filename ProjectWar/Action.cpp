@@ -13,7 +13,7 @@ Action::Action() {
 }
 
 Action::~Action() {
-
+    commands.clear();
 }
 
 void Action::execute() {

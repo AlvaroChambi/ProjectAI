@@ -32,6 +32,8 @@ public:
     const Point& next();
     bool isValid( const Point& position );
     
+    int getWidth() const;
+    int getHeight() const;
 private:
     int currentPosition;
     bool hasCached;

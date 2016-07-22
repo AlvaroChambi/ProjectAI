@@ -7,34 +7,43 @@
 //
 
 #include "MoveCommand.h"
-#include "Map.h"
-#include "OnMoveState.h"
+#include "MapContext.h"
 #include "GameException.h"
 
-MoveCommand::MoveCommand( Unit& unit, MapContext* map, const Point& destination ) {
-    executed = false;
-    this->unit = &unit;
-    this->map = (Map*)map;
-    this->savedPosition = unit.getTile();
-    this->destination = this->map->getTile(destination);
+MoveCommand::MoveCommand( MapContext& mapContext,
+                          const int unitID, const Point& destination )
+: executed( false ), unitID( unitID ), destination( destination )
+, mapContext( mapContext ) {
+    
 }
 
 MoveCommand::~MoveCommand() {
 
 }
 
-void MoveCommand::execute() {
+bool MoveCommand::changeContext( MapContext& mapContext ) {
+    if( !executed ) {
+        this->mapContext = mapContext;
+        return true;
+    }
+    return false;
+}
+
+void MoveCommand::execute( ) {
+    Unit* unit = mapContext.getEntity( unitID );
+    savedPosition = unit->getPosition();
+    
     if( executed ) {
         throw IllegalStateException( "Command state was not restored after execution" );
     }
-    if( unit->getPosition() != savedPosition.position ) {
+    if( unit->getPosition() != savedPosition ) {
         throw IllegalStateException( "Illegal unit position modification" );
     }
     if( unit->getPosition().onRange(
-                            destination.position, unit->getMovement() ) ) {
+                            destination, unit->getMovement() ) ) {
         executed = true;
-        map->moveEntity( *unit, destination.position );
-        unit->setPosition( destination );
+        mapContext.moveEntity( *unit, destination );
+        unit->setPosition( mapContext.getTile( destination ) );
     }else {
         throw IllegalStateException( "Unit destination not on range" );
     }
@@ -42,6 +51,7 @@ void MoveCommand::execute() {
 
 void MoveCommand::cancel() {
     executed = false;
-    map->moveEntity( *unit, savedPosition.position );
-    unit->setPosition( savedPosition );
+    Unit* unit = mapContext.getEntity( unitID );
+    mapContext.moveEntity( *unit, savedPosition );
+    unit->setPosition( mapContext.getTile( savedPosition ) );
 }

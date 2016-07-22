@@ -15,12 +15,12 @@
 
 class UnitMovementFilter : public IteratorFilter {
 public:
-    UnitMovementFilter( Iterator& filter, MapContext* map,
+    UnitMovementFilter( Iterator& filter, MapContext& map,
                         const Unit& unit );
     
     bool isValid( const Point& position );
 private:
-    Map* map;
+    MapContext& map;
     const Unit& unit;
 };
 

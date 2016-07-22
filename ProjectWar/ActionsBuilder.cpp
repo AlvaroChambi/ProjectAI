@@ -67,7 +67,7 @@ void ActionsBuilder::createAppendAttackActions( MapContext &context,
     Unit* unit = context.getEntity( unitID );
     Unit* entity = context.getEntity( position );
     
-    if( unit->getPosition() == position ) {
+    if( unit->getPosition() == entity->getPosition() ) {
         throw IllegalStateException( "No allowed more than one unit in the same position" );
     }
     

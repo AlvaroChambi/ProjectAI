@@ -47,6 +47,23 @@ TEST_F( ActionsBuilderTest, appendAttackNoAvailable ) {
     .Times( 2 )
     .WillRepeatedly( testing::Return( &entity ) );
     
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    
     actionsBuilder.createAppendAttackActions( mockContext, 0, position,
                                               vector);
 
@@ -55,6 +72,7 @@ TEST_F( ActionsBuilderTest, appendAttackNoAvailable ) {
 
 TEST_F( ActionsBuilderTest, appendAttackAvailable ) {
     Point position( 1, 1 );
+    
     Unit unit;
     unit.setid( 0 );
     unit.setMovement( 1 );
@@ -62,6 +80,7 @@ TEST_F( ActionsBuilderTest, appendAttackAvailable ) {
     unit.setPosition( 0, 2 );
     
     Unit entity;
+    entity.setPosition( 1, 1 );
     
     std::vector<Action*> vector;
     
@@ -74,7 +93,25 @@ TEST_F( ActionsBuilderTest, appendAttackAvailable ) {
     .WillOnce( testing::Return( &unit ) );
     
     EXPECT_CALL( mockContext, getEntity( position ) )
-    .WillOnce( testing::Return( &entity ) );
+    .Times( 2 )
+    .WillRepeatedly( testing::Return( &entity ) );
+    
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
     
     actionsBuilder.createAppendAttackActions( mockContext, 0, position,
                                              vector);
@@ -91,6 +128,7 @@ TEST_F( ActionsBuilderTest, appendAttackAllPositionsAvailable ) {
     unit.setPosition( 0, 2 );
     
     Unit entity;
+    entity.setPosition( 1, 1 );
     
     std::vector<Action*> vector;
     
@@ -103,7 +141,25 @@ TEST_F( ActionsBuilderTest, appendAttackAllPositionsAvailable ) {
     .WillOnce( testing::Return( &unit ) );
     
     EXPECT_CALL( mockContext, getEntity( position ) )
-    .WillOnce( testing::Return( &entity ) );
+    .Times( 2 )
+    .WillRepeatedly( testing::Return( &entity ) );
+    
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 0 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 1 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 0, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 1, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
+    EXPECT_CALL( mockContext, getEntity( Point( 2, 2 ) ) )
+    .WillOnce( testing::Return( nullptr ) );
     
     actionsBuilder.createAppendAttackActions( mockContext, 0, position,
                                               vector);
@@ -120,6 +176,7 @@ TEST_F( ActionsBuilderTest, appendAttackUnitAndEntitySamePosition ) {
     unit.setPosition( 1, 1 );
     
     Unit entity;
+    entity.setPosition( 1, 1 );
     
     std::vector<Action*> vector;
     

@@ -26,8 +26,6 @@ void ActionsProvider::buildActions( int playerID, int numActions ) {
     actions.reserve( numUnits * numActions );
 }
 
-// iterate over the unit valid area and append (numActions) unit actions
-// to the actions vector
 std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
     Unit* unit = mapContext.getEntity( unitID );
     

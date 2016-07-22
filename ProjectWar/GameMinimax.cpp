@@ -31,11 +31,13 @@ int GameMinimax::getStaticEvaluation() {
 }
 
 std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {
-    //TODO: Implement
+    int numActions = 5;
     if ( maximize ) {
-        return actionsProvider.generateMovements( 1, 5 );
+        return actionsProvider.generateMovements(
+                                mapContext.getPlayer().getId(), numActions );
     } else {
-        return actionsProvider.generateMovements( 1, 5 );
+        return actionsProvider.generateMovements(
+                                mapContext.getOpponent().getId(), numActions );
     }
 }
 

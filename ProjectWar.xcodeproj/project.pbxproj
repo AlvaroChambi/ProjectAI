@@ -141,8 +141,6 @@
 		9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CCD60D01AD3DEF3004537F8 /* AttackCommand.cpp */; };
 		9CF2462B1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
 		9CF2462C1CFCD10300AF606D /* GameMinimax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */; };
-		9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
-		9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2462D1CFCD2B900AF606D /* GameState.cpp */; };
 		9CF246381CFE2C4500AF606D /* MapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246371CFE2C4500AF606D /* MapTest.cpp */; };
 		9CF2463A1CFE32BF00AF606D /* PointTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF246391CFE32BF00AF606D /* PointTest.cpp */; };
 		9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF2463B1CFF4FFC00AF606D /* UnitTest.cpp */; };
@@ -197,7 +195,6 @@
 		3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsBuilderTest.cpp; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
 		5567C0CF1CDA701900DD8F3D /* soldier_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_red.png; sourceTree = "<group>"; };
-		55891C651AEE8A4400888AC7 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		55891C671AEE8A6700888AC7 /* Minimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Minimax.h; sourceTree = "<group>"; };
 		55891C681AEE8A6700888AC7 /* Option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
 		55891C721AEE8AA200888AC7 /* Movement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
@@ -334,7 +331,6 @@
 		9CCD60D11AD3DEF3004537F8 /* AttackCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackCommand.h; sourceTree = "<group>"; };
 		9CF246291CFCD0EF00AF606D /* GameMinimax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMinimax.h; sourceTree = "<group>"; };
 		9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMinimax.cpp; sourceTree = "<group>"; };
-		9CF2462D1CFCD2B900AF606D /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		9CF246321CFCD9B800AF606D /* IPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlayer.h; sourceTree = "<group>"; };
 		9CF246331CFCDA3F00AF606D /* MockPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockPlayer.h; sourceTree = "<group>"; };
 		9CF246361CFE2BA300AF606D /* MockMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockMap.h; sourceTree = "<group>"; };
@@ -444,8 +440,6 @@
 			children = (
 				9CF246291CFCD0EF00AF606D /* GameMinimax.h */,
 				9CF2462A1CFCD10300AF606D /* GameMinimax.cpp */,
-				55891C651AEE8A4400888AC7 /* GameState.h */,
-				9CF2462D1CFCD2B900AF606D /* GameState.cpp */,
 				55D24B631D00D3F600949485 /* HeuristicFunction.h */,
 				55D24B641D00D58900949485 /* HeuristicFunction.cpp */,
 				55891C751AEE8ABF00888AC7 /* player */,
@@ -923,7 +917,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF246341CFCE8C400AF606D /* GameState.cpp in Sources */,
 				3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */,
 				3A0779EF1CF49D4800B8C065 /* main.cpp in Sources */,
 				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
@@ -996,7 +989,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C2B7CDC1D327E160007CA6E /* ActionsProvider.cpp in Sources */,
-				9CF2462E1CFCD2B900AF606D /* GameState.cpp in Sources */,
 				9CCD60B81AC80DD8004537F8 /* OnCommandState.cpp in Sources */,
 				9C8FBFF31AAF048D00C4EB1F /* Scene.cpp in Sources */,
 				9C8FBFF61AAF06DF00C4EB1F /* SDLRenderer.cpp in Sources */,

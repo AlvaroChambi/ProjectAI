@@ -13,10 +13,7 @@
 
 #include "Command.h"
 #include "Unit.h"
-class Map;
-class IMap;
-class MoveCommand : public Command
-{
+class MoveCommand : public Command {
 public:
     MoveCommand( MapContext& mapContext,
                  int unitID, const Point& destination );

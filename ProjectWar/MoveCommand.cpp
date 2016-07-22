@@ -7,14 +7,13 @@
 //
 
 #include "MoveCommand.h"
-#include "Map.h"
-#include "OnMoveState.h"
+#include "MapContext.h"
 #include "GameException.h"
 
 MoveCommand::MoveCommand( MapContext& mapContext,
                           const int unitID, const Point& destination )
 : executed( false ), unitID( unitID ), destination( destination )
-, mapContext( mapContext ){
+, mapContext( mapContext ) {
     
 }
 

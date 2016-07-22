@@ -164,6 +164,7 @@ void Map::loadInfoMap( std::list<Player *> &players ) {
     }
 }
 
+//TODO: Replace for get target tile function in the actions provider
 void Map::checkNearEntities( const Unit& unit,
                             std::vector<UnitCommand>& commands ) {
     AreaIterator areaIterator;
@@ -176,7 +177,6 @@ void Map::checkNearEntities( const Unit& unit,
         commands.push_back( CAPTURE );
     }
     
-    //Decorate with unit movement filter -> crash!
     while ( areaIterator.hasNext() ) {
         Point destination = areaIterator.next();
         Unit* entity = entitiesLayer.get( destination );

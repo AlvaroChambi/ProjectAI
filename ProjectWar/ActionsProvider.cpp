@@ -11,6 +11,7 @@
 #include "Option.h"
 #include "Player.h"
 #include "GameException.h"
+#include <cmath>
 
 ActionsProvider::ActionsProvider( MapContext& mapContext )
 : mapContext( mapContext ) {
@@ -71,12 +72,19 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
 }
 
 std::vector<Movement*>& ActionsProvider::mapVariations(
+                        const int numUnits,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) {
-    
-    int numUnits = (int)variations.size();
     std::vector<Movement*>* movements = new std::vector<Movement*>();
-    movements->reserve( numUnits );
+    movements->reserve( (int)variations.size() );
+    
+    if( variations.empty() && actions.empty() ) {
+        return *movements;
+    }
+    
+    if( actions.size() != variations.at( 0 ).size() * numUnits ) {
+        throw IllegalStateException( "Params not valid" );
+    }
     
     for ( int i = 0; i < variations.size(); i++ ) {
         std::vector<int> actionIDs = variations.at( i );

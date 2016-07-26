@@ -27,6 +27,7 @@ public:
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position );
     std::vector<Movement*>& mapVariations(
+                        const int numUnits,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions );
 private:

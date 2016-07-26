@@ -17,9 +17,14 @@
 class Movement : public Option {
 public:
     Movement();
+    Movement( int numActions );
     void execute();
     void cancel();
     virtual ~Movement();
+    
+    void reserve( int numActions );
+    
+    bool isValid() const;
 
     std::vector<Action*> actions;
 };

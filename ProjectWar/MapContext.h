@@ -37,6 +37,8 @@ public:
     
     virtual const Player& getPlayer() const = 0;
     virtual const Player& getOpponent() const = 0;
+    
+    virtual const Player* getPlayer( const int id ) const = 0;
 };
 
 #endif /* MapContext_h */

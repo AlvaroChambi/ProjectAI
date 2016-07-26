@@ -9,6 +9,8 @@
 #include "ActionsProvider.h"
 #include "AreaIterator.h"
 #include "Option.h"
+#include "Player.h"
+#include "GameException.h"
 
 ActionsProvider::ActionsProvider( MapContext& mapContext )
 : mapContext( mapContext ) {
@@ -66,4 +68,37 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
         }
     }
     return TARGET_NOT_AVAILABLE;
+}
+
+std::vector<Movement*>& ActionsProvider::mapVariations(
+                        std::vector<std::vector<int>>& variations,
+                        std::vector<Action*>& actions ) {
+    
+    int numUnits = (int)variations.size();
+    std::vector<Movement*>* movements = new std::vector<Movement*>();
+    movements->reserve( numUnits );
+    
+    for ( int i = 0; i < variations.size(); i++ ) {
+        std::vector<int> actionIDs = variations.at( i );
+        int numActions = (int)actionIDs.size();
+        Movement* movement = new Movement( numActions );
+        for ( int j = 0; j < actionIDs.size(); j++ ) {
+            int actionID = actionIDs.at( j );
+            int key = actionID + j*numActions;
+            movement->actions.push_back( actions[key] );
+        }
+        movements->push_back( movement );
+    }
+    
+    return *movements;
+}
+
+void validateMovements( std::vector<Movement*>& movements ) {
+    //TODO: Will be implemented in a future user story
+    for ( int i = 0; i < movements.size(); i++ ) {
+        Movement* movement = movements.at( i );
+        if( movement->isValid() ) {
+            
+        }
+    }
 }

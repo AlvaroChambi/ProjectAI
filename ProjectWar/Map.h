@@ -78,6 +78,8 @@ public:
     
     const Player& getPlayer() const;
     const Player& getOpponent() const;
+    
+    const Player* getPlayer( const int id ) const;
 private:
     TileMap matrix;
     std::vector<Sprite*> sprites;

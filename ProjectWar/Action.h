@@ -19,6 +19,9 @@
 class Action {
 public:
     Action();
+    Action( int score ) : score( score ) {
+        
+    }
     ~Action();
     
     void execute();

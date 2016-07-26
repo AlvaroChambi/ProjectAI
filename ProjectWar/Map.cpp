@@ -270,3 +270,14 @@ const Player& Map::getPlayer() const {
 const Player& Map::getOpponent() const {
     return opponent;
 }
+
+const Player* Map::getPlayer( const int id ) const {
+    if( player.getId() == id ) {
+        return &player;
+    }
+    if ( opponent.getId() == id ) {
+        return &opponent;
+    }
+    
+    return nullptr;
+}

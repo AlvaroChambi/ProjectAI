@@ -11,6 +11,7 @@
 
 #include "MapContext.h"
 #include "ActionsBuilder.h"
+#include "Movement.h"
 
 class ActionsProvider {
 public:
@@ -25,6 +26,9 @@ public:
     
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position );
+    std::vector<Movement*>& mapVariations(
+                        std::vector<std::vector<int>>& variations,
+                        std::vector<Action*>& actions );
 private:
     MapContext& mapContext;
     ActionsBuilder actionsBuilder;

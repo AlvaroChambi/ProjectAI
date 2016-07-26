@@ -39,6 +39,8 @@ public:
     
     MOCK_CONST_METHOD0( getPlayer, const Player&() );
     MOCK_CONST_METHOD0( getOpponent, const Player&() );
+    
+    MOCK_CONST_METHOD1( getPlayer, const Player*( const int id ) );
 };
 
 #endif /* MockMap_h */

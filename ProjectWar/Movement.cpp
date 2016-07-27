@@ -9,7 +9,11 @@
 #include "Movement.h"
 
 Movement::Movement() {
+    
+}
 
+Movement::Movement( int numActions ) {
+    reserve( numActions );
 }
 
 Movement::~Movement() {
@@ -28,4 +32,11 @@ void Movement::cancel() {
     }
 }
 
+void Movement::reserve( int numActions ) {
+    actions.reserve( numActions );
+}
 
+bool Movement::isValid() const {
+    //TODO: Will be implemented in a future user story
+    return true;
+}

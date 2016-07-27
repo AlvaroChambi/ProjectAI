@@ -312,3 +312,57 @@ TEST_F( ActionsProviderTest, getTileOwnEntityAndStructure ) {
                                                                 position );
     ASSERT_EQ( TARGET_NOT_AVAILABLE, tile );
 }
+
+TEST_F( ActionsProviderTest, mapVariationsTest ) {
+    int numUnits = 2;
+    std::vector<int> var0 = { 0, 0 };
+    std::vector<int> var1 = { 0, 1 };
+    std::vector<int> var2 = { 1, 0 };
+    std::vector<int> var3 = { 1, 1 };
+    
+    std::vector<std::vector<int>> variations = { var0, var1, var2, var3 };
+    Action* actionA0 = new Action;
+    Action* actionA1 = new Action;
+    Action* actionB0 = new Action;
+    Action* actionB1 = new Action;
+    
+    std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
+    std::vector<Movement*> result = actionsProvider->mapVariations( numUnits,
+                                    variations, actions );
+    ASSERT_EQ( 4 , (int)result.size() );
+    ASSERT_EQ( actionA0, result.at( 0 )->actions.at( 0 ) );
+    ASSERT_EQ( actionB0, result.at( 0 )->actions.at( 1 ) );
+    
+    ASSERT_EQ( actionA0, result.at( 1 )->actions.at( 0 ) );
+    ASSERT_EQ( actionB1, result.at( 1 )->actions.at( 1 ) );
+    
+    ASSERT_EQ( actionA1, result.at( 2 )->actions.at( 0 ) );
+    ASSERT_EQ( actionB0, result.at( 2 )->actions.at( 1 ) );
+    
+    ASSERT_EQ( actionA1, result.at( 3 )->actions.at( 0 ) );
+    ASSERT_EQ( actionB1, result.at( 3 )->actions.at( 1 ) );
+}
+
+TEST_F( ActionsProviderTest, mapVariationsEmptyParamsTest ) {
+    int numUnits = 0;
+    std::vector<std::vector<int>> variations;
+       std::vector<Action*> actions;
+    std::vector<Movement*> result = actionsProvider->mapVariations( numUnits,
+                                                    variations, actions );
+    ASSERT_TRUE( result.empty() );
+}
+
+TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
+    std::vector<Action*> actions;
+    int numUnits = 2;
+    
+    std::vector<int> var0 = { 0, 0 };
+    std::vector<int> var1 = { 0, 1 };
+    std::vector<int> var2 = { 1, 0 };
+    std::vector<int> var3 = { 1, 1 };
+    
+    std::vector<std::vector<int>> variations = { var0, var1, var2, var3 };
+
+    ASSERT_ANY_THROW( actionsProvider->mapVariations( numUnits,
+                                                      variations, actions ) );
+}

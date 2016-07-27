@@ -37,6 +37,7 @@ public:
     Unit* getUnit( int id ) const;
     
     std::vector<Unit*> getUnits() const;
+    std::vector<int> getUnitsReference() const;
     
     Unit* getSelectedUnit() const;
     void setSelectedUnit( Unit* unit );

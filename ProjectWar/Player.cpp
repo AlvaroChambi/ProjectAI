@@ -58,6 +58,10 @@ std::vector<Unit*> Player::getUnits() const {
     return units;
 }
 
+std::vector<int> Player::getUnitsReference() const {
+    return army;
+}
+
 void Player::setSelectedUnit( Unit *unit ) {
     if( unit != nullptr ) {
         unit->setSelected( true );

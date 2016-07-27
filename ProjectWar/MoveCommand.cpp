@@ -55,3 +55,14 @@ void MoveCommand::cancel() {
     mapContext.moveEntity( *unit, savedPosition );
     unit->setPosition( mapContext.getTile( savedPosition ) );
 }
+
+const Point& MoveCommand::getDestination() const {
+    return destination;
+}
+
+bool MoveCommand::operator==( const MoveCommand& moveCommand ) const {
+    if( destination == moveCommand.getDestination() ) {
+        return true;
+    }
+    return false;
+}

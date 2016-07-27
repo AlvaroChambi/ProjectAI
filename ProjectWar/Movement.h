@@ -23,9 +23,10 @@ public:
     virtual ~Movement();
     
     void reserve( int numActions );
+    bool addAction( Action& action );
     
-    bool isValid() const;
-
+    const std::vector<Action*>& getActions() const;
+private:
     std::vector<Action*> actions;
 };
 

@@ -64,10 +64,15 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
     } else if( unit->getPosition().onRange( position, unit->getMovement()) ) {
         if ( structure != nullptr && !structure->isCaptured( unit->getOwnerID() ) ) {
             return TARGET_STRUCTURE;
+        } else if( entity != nullptr ) {
+            if( entity->getId() == unit->getId() ) {
+                return TARGET_POSITION;
+            }
         } else {
             return TARGET_POSITION;
         }
     }
+    
     return TARGET_NOT_AVAILABLE;
 }
 
@@ -93,20 +98,10 @@ std::vector<Movement*>& ActionsProvider::mapVariations(
         for ( int j = 0; j < actionIDs.size(); j++ ) {
             int actionID = actionIDs.at( j );
             int key = actionID + j*numActions;
-            movement->actions.push_back( actions[key] );
+            movement->addAction( *actions[key] );
         }
         movements->push_back( movement );
     }
     
     return *movements;
-}
-
-void validateMovements( std::vector<Movement*>& movements ) {
-    //TODO: Will be implemented in a future user story
-    for ( int i = 0; i < movements.size(); i++ ) {
-        Movement* movement = movements.at( i );
-        if( movement->isValid() ) {
-            
-        }
-    }
 }

@@ -8,6 +8,8 @@
 
 #include "Movement.h"
 
+#include <algorithm>
+
 Movement::Movement() {
     
 }
@@ -36,7 +38,26 @@ void Movement::reserve( int numActions ) {
     actions.reserve( numActions );
 }
 
-bool Movement::isValid() const {
-    //TODO: Will be implemented in a future user story
-    return true;
+const std::vector<Action*>& Movement::getActions() const {
+    return actions;
+}
+
+bool Movement::contains( const Action& action ) const {
+    for( Action* currentAction : actions ) {
+        if( *currentAction == action ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+//will not add the actions if there is already one that targets the same tile
+bool Movement::addAction( Action& action ) {
+    //danger! danger! heavy operation!
+    if( contains( action ) ) {
+        return false;
+    } else {
+        actions.push_back( &action );
+        return true;
+    }
 }

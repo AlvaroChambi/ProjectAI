@@ -9,13 +9,16 @@
 #ifndef ProjectWar_Action_h
 #define ProjectWar_Action_h
 
+#include "Point.h"
+
 #include <vector>
-#include "Command.h"
 
 /**
  * Unit action, can be a move, attack or capture action
  * capture and attack actions also includes a move command
  */
+class MoveCommand;
+class Command;
 class Action {
 public:
     Action();
@@ -27,7 +30,11 @@ public:
     void execute();
     void cancel();
     
-    std::vector<Command*> commands;
+    bool operator==( const Action& action ) const ;
+    
+    MoveCommand* moveCommand;
+    Command* command;
+
     int score;
 };
 

@@ -11,6 +11,7 @@
 
 #include "Action.h"
 #include "Point.h"
+#include "MapContext.h"
 
 enum TargetTile {
     TARGET_NOT_AVAILABLE,

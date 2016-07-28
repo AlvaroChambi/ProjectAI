@@ -22,6 +22,9 @@ public:
     bool changeContext( MapContext& mapContext );
     void execute();
     void cancel();
+    
+    const Point& getDestination() const;
+    bool operator==( const MoveCommand& moveCommand ) const ;
 private:
     MapContext& mapContext;
     const int unitID;

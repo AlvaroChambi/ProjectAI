@@ -26,6 +26,8 @@ void ActionsBuilder::appendActions( const TargetTile &targetTile,
         case TARGET_STRUCTURE:
             createAppendCaptureAction( context, unitID,
                                        position, vector );
+            createAppendMoveAction( context, unitID,
+                                    position, vector );
             break;
         case TARGET_POSITION:
             createAppendMoveAction( context, unitID,
@@ -43,8 +45,8 @@ void ActionsBuilder::createAppendCaptureAction( MapContext &context,
     MoveCommand* moveCommand = new MoveCommand( context, unitID, position );
     CaptureCommand* captureCommand = new CaptureCommand( context, unitID );
     
-    action->commands.push_back( moveCommand );
-    action->commands.push_back( captureCommand );
+    action->moveCommand = moveCommand;
+    action->command = captureCommand;
     
     vector.push_back( action );
 }
@@ -55,7 +57,7 @@ void ActionsBuilder::createAppendMoveAction( MapContext &context,
     Action* action = new Action();
     MoveCommand* moveCommand = new MoveCommand( context, unitID, position );
     
-    action->commands.push_back( moveCommand );
+    action->moveCommand = moveCommand;
     
     vector.push_back( action );
 }
@@ -86,8 +88,8 @@ void ActionsBuilder::createAppendAttackActions( MapContext &context,
             AttackCommand* attackCommand = new AttackCommand( context,
                                                              unitID, entity->getId() );
             
-            action->commands.push_back( moveCommand );
-            action->commands.push_back( attackCommand );
+            action->moveCommand = moveCommand;
+            action->command = attackCommand;
             
             vector.push_back( action );
         }

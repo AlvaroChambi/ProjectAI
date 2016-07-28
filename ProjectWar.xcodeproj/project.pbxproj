@@ -55,7 +55,7 @@
 		3A0779FB1CF8614500B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FC1CF885A700B8C065 /* DotTest.cpp */; };
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
-		3A1965261D47B121002CBAA7 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
+		3A1965281D48FEF2002CBAA7 /* MovementTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
@@ -185,6 +185,7 @@
 		3A0779FC1CF885A700B8C065 /* DotTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DotTest.cpp; sourceTree = "<group>"; };
 		3A0779FF1CF887B100B8C065 /* GraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphLogger.h; sourceTree = "<group>"; };
 		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
+		3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovementTest.cpp; sourceTree = "<group>"; };
 		3A2F169E1CFF1F1C00254750 /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		3A2F169F1CFF1F2C00254750 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
 		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
@@ -356,7 +357,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A1965261D47B121002CBAA7 /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -407,6 +407,7 @@
 				9CB5E66D1D291AE30067F160 /* PlayerTest.cpp */,
 				3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */,
 				3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */,
+				3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -922,6 +923,7 @@
 				3A0779C11CF49D2400B8C065 /* SDLInputHandler.cpp in Sources */,
 				3A0779C21CF49D2400B8C065 /* InputHandler.cpp in Sources */,
 				3A0779C31CF49D2400B8C065 /* PlayerAI.cpp in Sources */,
+				3A1965281D48FEF2002CBAA7 /* MovementTest.cpp in Sources */,
 				3A0779C41CF49D2400B8C065 /* Movement.cpp in Sources */,
 				3A0779CA1CF49D2400B8C065 /* CaptureCommand.cpp in Sources */,
 				3A0779CB1CF49D2400B8C065 /* MoveCommand.cpp in Sources */,
@@ -1078,7 +1080,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1097,7 +1099,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lgmock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

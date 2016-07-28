@@ -97,6 +97,7 @@ TEST_F( ActionsProviderTest, getTileOwnEntityAvailableTile ) {
     
     Unit entity;
     entity.setOwnerID( 0 );
+    entity.setid( 1 );
     
     EXPECT_CALL( mockContext, getEntity( 0 ) )
     .WillOnce( testing::Return( &unit ) );
@@ -106,6 +107,28 @@ TEST_F( ActionsProviderTest, getTileOwnEntityAvailableTile ) {
     
     TargetTile tile = actionsProvider->getTargetTileForPosition( 0,
                                                                 position );
+    ASSERT_EQ( TARGET_NOT_AVAILABLE, tile );
+}
+
+TEST_F( ActionsProviderTest, getTileOwnPosition ) {
+    Point position( 0, 1 );
+    
+    Unit unit;
+    unit.setOwnerID( 0 );
+    unit.setid( 0 );
+    unit.setMovement( 1 );
+    unit.setAttackRange( 1 );
+    unit.setPosition( 0, 0 );
+    
+    EXPECT_CALL( mockContext, getEntity( 0 ) )
+    .WillOnce( testing::Return( &unit ) );
+    
+    EXPECT_CALL( mockContext, getEntity( position ) )
+    .WillOnce( testing::Return( &unit ) );
+    
+    TargetTile tile = actionsProvider->getTargetTileForPosition( 0,
+                                                                position );
+    
     ASSERT_EQ( TARGET_POSITION, tile );
 }
 
@@ -330,17 +353,17 @@ TEST_F( ActionsProviderTest, mapVariationsTest ) {
     std::vector<Movement*> result = actionsProvider->mapVariations( numUnits,
                                     variations, actions );
     ASSERT_EQ( 4 , (int)result.size() );
-    ASSERT_EQ( actionA0, result.at( 0 )->actions.at( 0 ) );
-    ASSERT_EQ( actionB0, result.at( 0 )->actions.at( 1 ) );
+    ASSERT_EQ( actionA0, result.at( 0 )->getActions().at( 0 ) );
+    ASSERT_EQ( actionB0, result.at( 0 )->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA0, result.at( 1 )->actions.at( 0 ) );
-    ASSERT_EQ( actionB1, result.at( 1 )->actions.at( 1 ) );
+    ASSERT_EQ( actionA0, result.at( 1 )->getActions().at( 0 ) );
+    ASSERT_EQ( actionB1, result.at( 1 )->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA1, result.at( 2 )->actions.at( 0 ) );
-    ASSERT_EQ( actionB0, result.at( 2 )->actions.at( 1 ) );
+    ASSERT_EQ( actionA1, result.at( 2 )->getActions().at( 0 ) );
+    ASSERT_EQ( actionB0, result.at( 2 )->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA1, result.at( 3 )->actions.at( 0 ) );
-    ASSERT_EQ( actionB1, result.at( 3 )->actions.at( 1 ) );
+    ASSERT_EQ( actionA1, result.at( 3 )->getActions().at( 0 ) );
+    ASSERT_EQ( actionB1, result.at( 3 )->getActions().at( 1 ) );
 }
 
 TEST_F( ActionsProviderTest, mapVariationsEmptyParamsTest ) {

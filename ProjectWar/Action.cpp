@@ -7,24 +7,40 @@
 //
 
 #include "Action.h"
+#include "MoveCommand.h"
 
-Action::Action() {
+Action::Action() : moveCommand( nullptr ), command( nullptr ) {
 
 }
 
 Action::~Action() {
-    commands.clear();
+    
 }
 
 void Action::execute() {
-    for ( Command* command : commands ) {
+    if( moveCommand != nullptr ) {
+        moveCommand->execute();
+    }
+    if( command != nullptr ) {
         command->execute();
     }
 }
 
 void Action::cancel() {
-    int i;
-    for (i=commands.size()-1; i>=0; i--){
-        commands.at(i)->cancel();
+    if( command != nullptr ) {
+        command->execute();
     }
+    if( moveCommand != nullptr ) {
+        moveCommand->execute();
+    }
+}
+
+bool Action::operator==( const Action& action ) const {
+    if( moveCommand == nullptr || action.moveCommand == nullptr ) {
+        return false;
+    }
+    if( *moveCommand == *action.moveCommand ) {
+        return true;
+    }
+    return false;
 }

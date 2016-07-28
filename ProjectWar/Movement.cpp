@@ -42,11 +42,19 @@ const std::vector<Action*>& Movement::getActions() const {
     return actions;
 }
 
+bool Movement::contains( const Action& action ) const {
+    for( Action* currentAction : actions ) {
+        if( *currentAction == action ) {
+            return true;
+        }
+    }
+    return false;
+}
+
 //will not add the actions if there is already one that targets the same tile
 bool Movement::addAction( Action& action ) {
     //danger! danger! heavy operation!
-    if( std::find(
-            actions.begin(), actions.end(), &action ) != actions.end() ) {
+    if( contains( action ) ) {
         return false;
     } else {
         actions.push_back( &action );

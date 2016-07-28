@@ -24,6 +24,7 @@ public:
     
     void reserve( int numActions );
     bool addAction( Action& action );
+    bool contains( const Action& action ) const;
     
     const std::vector<Action*>& getActions() const;
 private:

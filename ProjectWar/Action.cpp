@@ -36,9 +36,11 @@ void Action::cancel() {
 }
 
 bool Action::operator==( const Action& action ) const {
-    bool result= false;
-    if( moveCommand == action.moveCommand ) {
+    if( moveCommand == nullptr || action.moveCommand == nullptr ) {
+        return false;
+    }
+    if( *moveCommand == *action.moveCommand ) {
         return true;
     }
-    return result;
+    return false;
 }

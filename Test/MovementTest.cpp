@@ -35,11 +35,28 @@ TEST_F( MovementTest, addActionFirstValueTest ) {
     ASSERT_EQ( 1, movement.getActions().size() );
 }
 
-TEST_F( MovementTest, addActionNewValueTest ) {
+TEST_F( MovementTest, addActionNewEmptyValueTest ) {
     Movement movement;
     
     Action action0;
     Action action1;
+    
+    movement.addAction( action0 );
+    
+    ASSERT_TRUE( movement.addAction( action1 ) );
+    ASSERT_EQ( 2, movement.getActions().size() );
+}
+
+TEST_F( MovementTest, addActionNewValueTest ) {
+    Movement movement;
+    MockMap mockMap;
+    
+    Action action0;
+    MoveCommand moveCommand0( mockMap, 0, Point( 0, 0 ) );
+    action0.moveCommand = &moveCommand0;
+    Action action1;
+    MoveCommand moveCommand1( mockMap, 0, Point( 1, 0 ) );
+    action1.moveCommand = &moveCommand1;
     
     movement.addAction( action0 );
     

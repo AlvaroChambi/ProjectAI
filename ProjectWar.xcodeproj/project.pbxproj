@@ -56,6 +56,8 @@
 		3A0779FD1CF885A700B8C065 /* DotTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FC1CF885A700B8C065 /* DotTest.cpp */; };
 		3A0779FE1CF886AC00B8C065 /* DotPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0779FA1CF8614500B8C065 /* DotPath.cpp */; };
 		3A1965281D48FEF2002CBAA7 /* MovementTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */; };
+		3A19652C1D4A41C4002CBAA7 /* ActionEvaluator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A19652B1D4A41C4002CBAA7 /* ActionEvaluator.cpp */; };
+		3A19652D1D4A41C4002CBAA7 /* ActionEvaluator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A19652B1D4A41C4002CBAA7 /* ActionEvaluator.cpp */; };
 		3A2F16A01CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A11CFF1F2C00254750 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F169F1CFF1F2C00254750 /* Action.cpp */; };
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
@@ -186,6 +188,9 @@
 		3A0779FF1CF887B100B8C065 /* GraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphLogger.h; sourceTree = "<group>"; };
 		3A077A001CF8882F00B8C065 /* MockGraphLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGraphLogger.h; sourceTree = "<group>"; };
 		3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovementTest.cpp; sourceTree = "<group>"; };
+		3A1965291D4A4198002CBAA7 /* Evaluator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluator.h; sourceTree = "<group>"; };
+		3A19652A1D4A41AD002CBAA7 /* ActionEvaluator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionEvaluator.h; sourceTree = "<group>"; };
+		3A19652B1D4A41C4002CBAA7 /* ActionEvaluator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionEvaluator.cpp; sourceTree = "<group>"; };
 		3A2F169E1CFF1F1C00254750 /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		3A2F169F1CFF1F2C00254750 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
 		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
@@ -456,6 +461,9 @@
 				9C2B7CDB1D327E160007CA6E /* ActionsProvider.cpp */,
 				9C7DEA7F1D35870E0045B3B8 /* ActionsBuilder.cpp */,
 				9C7DEA821D35871F0045B3B8 /* ActionsBuilder.h */,
+				3A1965291D4A4198002CBAA7 /* Evaluator.h */,
+				3A19652A1D4A41AD002CBAA7 /* ActionEvaluator.h */,
+				3A19652B1D4A41C4002CBAA7 /* ActionEvaluator.cpp */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -937,6 +945,7 @@
 				3A0779D11CF49D2400B8C065 /* OnAttackState.cpp in Sources */,
 				9CF2464B1D00CC5500AF606D /* IteratorFilterTest.cpp in Sources */,
 				3A0779D21CF49D2400B8C065 /* PlayerController.cpp in Sources */,
+				3A19652D1D4A41C4002CBAA7 /* ActionEvaluator.cpp in Sources */,
 				9CF2463C1CFF4FFC00AF606D /* UnitTest.cpp in Sources */,
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
 				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
@@ -1015,6 +1024,7 @@
 				9C800B281AB86673003FE2AA /* UnitView.cpp in Sources */,
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
+				3A19652C1D4A41C4002CBAA7 /* ActionEvaluator.cpp in Sources */,
 				9CCD60D21AD3DEF3004537F8 /* AttackCommand.cpp in Sources */,
 				55D24B651D00D58900949485 /* HeuristicFunction.cpp in Sources */,
 				9C8FBFF01AAF047A00C4EB1F /* Texture.cpp in Sources */,

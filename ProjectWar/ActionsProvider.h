@@ -24,6 +24,10 @@ public:
     
     std::vector<Action*>& buildUnitActions( const int unitID );
     
+    std::vector<Action*>& filterUnitActions(
+                        const std::vector<Action*> actions,
+                        const int numActions ) const;
+    
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position );
     std::vector<Movement*>& mapVariations(

@@ -11,10 +11,11 @@
 
 #include "MapContext.h"
 
+class Action;
 class Evaluator {
 public:
-    virtual int getEvaluation( const Action& action,
-                               const MapContext& context );
+    virtual float getEvaluation( const Action& action,
+                                 const MapContext& context ) const = 0;
 };
 
 #endif

@@ -63,6 +63,8 @@
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
+		3A4068DF1D4F890400123868 /* ActionEvaluatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */; };
+		3A4068E01D4F9A2300123868 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		3AB9717A1D36730D006E9DA9 /* ActionsProviderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */; };
 		3AB9717C1D367319006E9DA9 /* ActionsBuilderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
@@ -197,6 +199,7 @@
 		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapLayerTest.cpp; sourceTree = "<group>"; };
 		3A3C1B131D23BC9800D0848F /* MapLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
+		3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionEvaluatorTest.cpp; sourceTree = "<group>"; };
 		3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsProviderTest.cpp; sourceTree = "<group>"; };
 		3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionsBuilderTest.cpp; sourceTree = "<group>"; };
 		5567C0CD1CDA6D6D00DD8F3D /* soldier_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldier_blue.png; sourceTree = "<group>"; };
@@ -362,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4068E01D4F9A2300123868 /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -413,6 +417,7 @@
 				3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */,
 				3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */,
 				3A1965271D48FEF2002CBAA7 /* MovementTest.cpp */,
+				3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -950,6 +955,7 @@
 				9CBEB9BF1CF7758100CA82DE /* MinimaxTest.cpp in Sources */,
 				3A0779D31CF49D2400B8C065 /* UnitController.cpp in Sources */,
 				3A0779D41CF49D2400B8C065 /* BuildingView.cpp in Sources */,
+				3A4068DF1D4F890400123868 /* ActionEvaluatorTest.cpp in Sources */,
 				3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */,
 				3A0779D51CF49D2400B8C065 /* UnitUIView.cpp in Sources */,
 				3A0779D61CF49D2400B8C065 /* PlayerView.cpp in Sources */,
@@ -1090,7 +1096,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1109,7 +1115,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -10,6 +10,7 @@
 #define ProjectWar_Action_h
 
 #include "Point.h"
+#include "ActionEvaluator.h"
 
 #include <vector>
 
@@ -29,6 +30,9 @@ public:
     
     void execute();
     void cancel();
+    
+    float getValue( const ActionEvaluator&  evaluator,
+                    const MapContext& context ) const;
     
     bool operator==( const Action& action ) const ;
     

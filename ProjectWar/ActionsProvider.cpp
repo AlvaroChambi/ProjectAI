@@ -47,6 +47,7 @@ std::vector<Action*>& ActionsProvider::filterUnitActions(
     std::vector<Action*>* filteredActions = new std::vector<Action*>;
     
     //sort actions
+        //actionValud = action.getScore( actionEvaluator );
     
     //get first (numActions) values
     

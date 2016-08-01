@@ -44,3 +44,8 @@ bool Action::operator==( const Action& action ) const {
     }
     return false;
 }
+
+float Action::getValue( const ActionEvaluator &evaluator,
+                        const MapContext& context ) const {
+    return evaluator.getEvaluation( *this, context );
+}

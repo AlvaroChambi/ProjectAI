@@ -196,6 +196,8 @@ void Map::addEntity( Unit& unit ) {
         
         entitiesLayer.set( &unit, unit.getPosition() );
         entities[unit.getId()] = unit.getPosition();
+        
+        //update influence
     } else {
         throw IllegalStateException("");
     }
@@ -204,6 +206,8 @@ void Map::addEntity( Unit& unit ) {
 void Map::moveEntity( Unit& unit, const Point &destination ) {
     entitiesLayer.move( unit.getPosition(), destination );
     entities[unit.getId()] = destination;
+    
+    //update influence  
 }
 
 void Map::restoreUnit( Unit& unit ) {
@@ -250,6 +254,8 @@ void Map::addStructure( Building &building ) {
         
         structuresLayer.set( &building, building.getPosition() );
         structures[building.getId()] = building.getPosition();
+        
+        //update influence
     } else {
         throw IllegalStateException("");
     }

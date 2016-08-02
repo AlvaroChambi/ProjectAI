@@ -9,7 +9,8 @@
 #include "Action.h"
 #include "MoveCommand.h"
 
-Action::Action() : moveCommand( nullptr ), command( nullptr ) {
+Action::Action()
+: moveCommand( nullptr ), command( nullptr ), score( NULL_SCORE ) {
 
 }
 
@@ -45,7 +46,10 @@ bool Action::operator==( const Action& action ) const {
     return false;
 }
 
-float Action::getValue( const ActionEvaluator &evaluator,
-                        const MapContext& context ) const {
-    return evaluator.getEvaluation( *this, context );
+float Action::getValue( const Evaluator &evaluator,
+                        const MapContext& context ) {
+    if( score == NULL_SCORE ) {
+        score = evaluator.getEvaluation( *this, context );
+    }
+    return score;
 }

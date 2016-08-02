@@ -10,6 +10,7 @@
 #define ActionsProvider_h
 
 #include "MapContext.h"
+#include "Evaluator.h"
 #include "ActionsBuilder.h"
 #include "Movement.h"
 
@@ -24,9 +25,8 @@ public:
     
     std::vector<Action*>& buildUnitActions( const int unitID );
     
-    std::vector<Action*>& filterUnitActions(
-                        const std::vector<Action*> actions,
-                        const int numActions ) const;
+    void sortActions( std::vector<Action*>& actions,
+                      const Evaluator& evaluator ) const;
     
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position );

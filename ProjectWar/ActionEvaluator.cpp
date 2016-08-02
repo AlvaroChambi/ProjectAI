@@ -13,9 +13,12 @@
 //will evaluate if the action is worth been explored
 float ActionEvaluator::getEvaluation( const Action& action,
                                      const MapContext& context ) const {
-    // capture and attack actions are considered to have enough impact the be evaluated if there is one of them
+    
+    // capture and attack actions are considered to have enough impact the be evaluated if there is one of them so we set a high score
+    float captureAttackModifier = 0;
+
     if ( action.command != nullptr ) {
-        //max score?
+        captureAttackModifier = 1;
     }
 
     //influence for position
@@ -27,7 +30,7 @@ float ActionEvaluator::getEvaluation( const Action& action,
             getAlliesInfluence( destination, context ),
             getOpponentsInfluence( destination, context ) );
     
-    return positionInfluence;
+    return positionInfluence + captureAttackModifier;
 }
 
 float ActionEvaluator::evaluateValues( const float headquarterInfluence,

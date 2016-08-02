@@ -84,8 +84,6 @@ private:
     TileMap matrix;
     std::vector<Sprite*> sprites;
     
-    MapLayer<Tile*> influenceLayer;
-    
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
     

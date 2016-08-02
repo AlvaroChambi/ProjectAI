@@ -250,6 +250,8 @@ void Map::addStructure( Building &building ) {
         
         structuresLayer.set( &building, building.getPosition() );
         structures[building.getId()] = building.getPosition();
+        
+        //update influence
     } else {
         throw IllegalStateException("");
     }

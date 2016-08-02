@@ -27,6 +27,31 @@ std::vector<Option*> ActionsProvider::generateMovements(
 void ActionsProvider::buildActions( int playerID, int numActions ) {
     int numUnits = 0;
     actions.reserve( numUnits * numActions );
+    
+    //for each unit
+        //actions - buildUnitActions;
+        //filter actions if needed
+    
+    //result {unit<0,n>...unitN<0,n>}
+    
+    //getVariations: {<0,0>,<0,1>,<1,0>,<1,1>}
+    
+    //mapVariations: movements = vector<Movement>
+    
+    //return movements
+}
+
+std::vector<Action*>& ActionsProvider::filterUnitActions(
+                            const std::vector<Action *> actions,
+                            const int numActions ) const {
+    std::vector<Action*>* filteredActions = new std::vector<Action*>;
+    
+    //sort actions
+        //actionValud = action.getScore( actionEvaluator );
+    
+    //get first (numActions) values
+    
+    return *filteredActions;
 }
 
 std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {

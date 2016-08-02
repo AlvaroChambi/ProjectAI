@@ -9,8 +9,13 @@
 #ifndef MapContext_h
 #define MapContext_h
 
-#include "Unit.h"
+#include "Tile.h"
 
+#include <vector>
+
+class Unit;
+class Building;
+class Player;
 class MapContext {
 public:
     virtual int getNumRows() const = 0;

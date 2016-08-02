@@ -20,11 +20,9 @@
 #include "Action.h"
 #include "Building.h"
 
-class MapContext;
 class Player;
 class GameState;
-enum UnitCommand
-{
+enum UnitCommand {
     CANCEL,
     WAIT,
     ATTACK,

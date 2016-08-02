@@ -83,10 +83,10 @@ void ActionsBuilder::createAppendAttackActions( MapContext &context,
         if( entity->getPosition().onRange( destination,
                                            unit->getAttackRange() ) ) {
             Action* action = new Action();
-            MoveCommand* moveCommand = new MoveCommand(
-                                                       context, unitID, destination );
+            MoveCommand* moveCommand = new MoveCommand( context, unitID,
+                                                        destination );
             AttackCommand* attackCommand = new AttackCommand( context,
-                                                             unitID, entity->getId() );
+                                                unitID, entity->getId() );
             
             action->moveCommand = moveCommand;
             action->command = attackCommand;

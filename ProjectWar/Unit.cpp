@@ -7,15 +7,7 @@
 //
 
 #include "Unit.h"
-#include "Map.h"
 #include "Player.h"
-#include "MoveCommand.h"
-#include "AttackCommand.h"
-#include "CaptureCommand.h"
-#include "GameException.h"
-#include "UnitFilter.h"
-#include "AreaIterator.h"
-#include "GameState.h"
 
 Unit::Unit()
 : Model(), tile(), movement( 0 ), hp( 0 ),

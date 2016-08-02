@@ -20,27 +20,30 @@ ActionsProvider::ActionsProvider( MapContext& mapContext )
 
 }
 
-std::vector<Option*> ActionsProvider::generateMovements(
+std::vector<Option*>& ActionsProvider::generateMovements(
                                     int playerID, int numActions ) const {
-    std::vector<Option*>* options = new std::vector<Option*>;
-    return *options;
-}
-
-void ActionsProvider::buildActions( int playerID, int numActions ) {
-    int numUnits = 0;
-    actions.reserve( numUnits * numActions );
+    const Evaluator& evaluator = ActionEvaluator();
+    std::vector<Action*> actionsSet;
     
-    //for each unit
-        //actions - buildUnitActions;
-        //filter actions if needed
+    const Player* player = mapContext.getPlayer( playerID );
     
-    //result {unit<0,n>...unitN<0,n>}
+    std::vector<int> army = player->getUnitsReference();
+    int numUnits = (int)army.size();
+    actionsSet.reserve( numUnits );
     
-    //getVariations: {<0,0>,<0,1>,<1,0>,<1,1>}
+    for ( const int unitID : army ) {
+        std::vector<Action*> unitActions = buildUnitActions( unitID );
+        sortActions( unitActions, evaluator );
+        actionsSet.insert( actionsSet.end(), unitActions.begin(), unitActions.end() );
+    }
     
-    //mapVariations: movements = vector<Movement>
+    std::vector<std::vector<int>> variations = generateVariations( numActions,
+                                                                  numUnits );
     
-    //return movements
+    std::vector<Option*>& movements = mapVariations( numUnits, variations,
+                                                     actionsSet );
+    
+    return movements;
 }
 
 void ActionsProvider::sortActions( std::vector<Action *>& actions,
@@ -49,7 +52,7 @@ void ActionsProvider::sortActions( std::vector<Action *>& actions,
                                     Compare( evaluator, mapContext ) );
 }
 
-std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
+std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) const {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
@@ -74,7 +77,7 @@ std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
 }
 
 TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
-                                                      const Point& position ) {
+                                                      const Point& position ) const {
     Unit* unit = mapContext.getEntity( unitID );
     Unit* entity = mapContext.getEntity( position );
     Building* structure = mapContext.getStructure( position );
@@ -96,11 +99,11 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
     return TARGET_NOT_AVAILABLE;
 }
 
-std::vector<Movement*>& ActionsProvider::mapVariations(
+std::vector<Option*>& ActionsProvider::mapVariations(
                         const int numUnits,
                         std::vector<std::vector<int>>& variations,
-                        std::vector<Action*>& actions ) {
-    std::vector<Movement*>* movements = new std::vector<Movement*>();
+                        std::vector<Action*>& actions ) const {
+    std::vector<Option*>* movements = new std::vector<Option*>();
     movements->reserve( (int)variations.size() );
     
     if( variations.empty() && actions.empty() ) {
@@ -124,4 +127,27 @@ std::vector<Movement*>& ActionsProvider::mapVariations(
     }
     
     return *movements;
+}
+
+std::vector<std::vector<int>>& ActionsProvider::generateVariations(
+                                         int numActions, int numUnits ) const {
+    std::vector<std::vector<int>>* variations = new std::vector<std::vector<int>>;
+    variations->reserve( numActions );
+    std::vector<int> variation( numUnits );
+    generateVariations( variations, numActions, variation, 0 );
+    
+    return *variations;
+}
+
+void ActionsProvider::generateVariations( std::vector<std::vector<int>> *sequence,
+                         int numElements, std::vector<int> variation,
+                         int count ) const {
+    if( count < variation.size() ){
+        for( int i = 0; i < numElements; i++ ) {
+            variation[count] = i;
+            generateVariations( sequence, numElements, variation, count+1 );
+        }
+    }else{
+        sequence->push_back( variation );
+    }
 }

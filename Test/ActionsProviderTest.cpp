@@ -353,27 +353,31 @@ TEST_F( ActionsProviderTest, mapVariationsTest ) {
     Action* actionB1 = new Action;
     
     std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
-    std::vector<Movement*> result = actionsProvider->mapVariations( numUnits,
+    std::vector<Option*> result = actionsProvider->mapVariations( numUnits,
                                     variations, actions );
     ASSERT_EQ( 4 , (int)result.size() );
-    ASSERT_EQ( actionA0, result.at( 0 )->getActions().at( 0 ) );
-    ASSERT_EQ( actionB0, result.at( 0 )->getActions().at( 1 ) );
+    Movement* movement0 = (Movement*)result.at( 0 );
+    ASSERT_EQ( actionA0, movement0->getActions().at( 0 ) );
+    ASSERT_EQ( actionB0, movement0->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA0, result.at( 1 )->getActions().at( 0 ) );
-    ASSERT_EQ( actionB1, result.at( 1 )->getActions().at( 1 ) );
+    Movement* movement1 = (Movement*)result.at( 1 );
+    ASSERT_EQ( actionA0, movement1->getActions().at( 0 ) );
+    ASSERT_EQ( actionB1, movement1->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA1, result.at( 2 )->getActions().at( 0 ) );
-    ASSERT_EQ( actionB0, result.at( 2 )->getActions().at( 1 ) );
+    Movement* movement2 = (Movement*)result.at( 2 );
+    ASSERT_EQ( actionA1, movement2->getActions().at( 0 ) );
+    ASSERT_EQ( actionB0, movement2->getActions().at( 1 ) );
     
-    ASSERT_EQ( actionA1, result.at( 3 )->getActions().at( 0 ) );
-    ASSERT_EQ( actionB1, result.at( 3 )->getActions().at( 1 ) );
+    Movement* movement3 = (Movement*)result.at( 3 );
+    ASSERT_EQ( actionA1, movement3->getActions().at( 0 ) );
+    ASSERT_EQ( actionB1, movement3->getActions().at( 1 ) );
 }
 
 TEST_F( ActionsProviderTest, mapVariationsEmptyParamsTest ) {
     int numUnits = 0;
     std::vector<std::vector<int>> variations;
        std::vector<Action*> actions;
-    std::vector<Movement*> result = actionsProvider->mapVariations( numUnits,
+    std::vector<Option*> result = actionsProvider->mapVariations( numUnits,
                                                     variations, actions );
     ASSERT_TRUE( result.empty() );
 }
@@ -432,4 +436,30 @@ TEST_F( ActionsProviderTest, sortActionsTest ) {
     ASSERT_EQ( actionA0, actions.at( 1 ) );
     ASSERT_EQ( actionB1, actions.at( 2 ) );
     ASSERT_EQ( actionB0, actions.at( 3 ) );
+}
+
+TEST_F( ActionsProviderTest, generateVariationsTest ) {
+    std::vector<std::vector<int>> variations;
+    variations.reserve( 4 );
+    
+    int numUnits = 2;
+    int numActions = 2;
+    
+    variations = actionsProvider->generateVariations( numActions, numUnits );
+    std::vector<int> vec0 = variations.at( 0 );
+    std::vector<int> vec1 = variations.at( 1 );
+    std::vector<int> vec2 = variations.at( 2 );
+    std::vector<int> vec3 = variations.at( 3 );
+    
+    ASSERT_EQ( 0, vec0.at( 0 ) );
+    ASSERT_EQ( 0, vec0.at( 1 ) );
+    
+    ASSERT_EQ( 0, vec1.at( 0 ) );
+    ASSERT_EQ( 1, vec1.at( 1 ) );
+    
+    ASSERT_EQ( 1, vec2.at( 0 ) );
+    ASSERT_EQ( 0, vec2.at( 1 ) );
+    
+    ASSERT_EQ( 1, vec3.at( 0 ) );
+    ASSERT_EQ( 1, vec3.at( 1 ) );
 }

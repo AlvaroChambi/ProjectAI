@@ -11,6 +11,8 @@
 #include "Option.h"
 #include "Player.h"
 #include "GameException.h"
+#include "ActionEvaluator.h"
+
 #include <cmath>
 
 ActionsProvider::ActionsProvider( MapContext& mapContext )
@@ -41,17 +43,10 @@ void ActionsProvider::buildActions( int playerID, int numActions ) {
     //return movements
 }
 
-std::vector<Action*>& ActionsProvider::filterUnitActions(
-                            const std::vector<Action *> actions,
-                            const int numActions ) const {
-    std::vector<Action*>* filteredActions = new std::vector<Action*>;
-    
-    //sort actions
-        //actionValud = action.getScore( actionEvaluator );
-    
-    //get first (numActions) values
-    
-    return *filteredActions;
+void ActionsProvider::sortActions( std::vector<Action *>& actions,
+                                   const Evaluator& evaluator ) const {
+    std::sort( actions.begin(), actions.end(),
+                                    Compare( evaluator, mapContext ) );
 }
 
 std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {

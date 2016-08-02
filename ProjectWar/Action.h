@@ -10,7 +10,7 @@
 #define ProjectWar_Action_h
 
 #include "Point.h"
-#include "ActionEvaluator.h"
+#include "Evaluator.h"
 
 #include <vector>
 
@@ -23,23 +23,35 @@ class Command;
 class Action {
 public:
     Action();
-    Action( int score ) : score( score ) {
-        
-    }
+    
     ~Action();
     
     void execute();
     void cancel();
     
-    float getValue( const ActionEvaluator&  evaluator,
-                    const MapContext& context ) const;
+    float getValue( const Evaluator&  evaluator,
+                    const MapContext& context );
     
     bool operator==( const Action& action ) const ;
     
     MoveCommand* moveCommand;
     Command* command;
 
-    int score;
+    float score;
+};
+
+struct Compare {
+    Compare( const Evaluator& evaluator, const MapContext& context )
+    : evaluator( evaluator ), context( context ) {
+    
+    }
+    inline bool operator() ( Action* lh, Action* rh ) {
+        return ( lh->getValue( evaluator, context ) <
+                    rh->getValue( evaluator, context ) );
+    }
+    
+    const Evaluator& evaluator;
+    const MapContext& context;
 };
 
 #endif

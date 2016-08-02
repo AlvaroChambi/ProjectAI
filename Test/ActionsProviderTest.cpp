@@ -11,6 +11,9 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "MockMap.h"
+#include "MockEvaluator.h"
+
+#include "MoveCommand.h"
 
 class ActionsProviderTest : public ::testing::Test {
 public:
@@ -389,3 +392,55 @@ TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
     ASSERT_ANY_THROW( actionsProvider->mapVariations( numUnits,
                                                       variations, actions ) );
 }
+
+TEST_F( ActionsProviderTest, sortActionsTest ) {
+    Action* actionA0 = new Action;
+    MoveCommand* moveCommand0 = new MoveCommand( mockContext, 0, Point( 0, 0 ) );
+    actionA0->moveCommand = moveCommand0;
+    
+    Action* actionA1 = new Action;
+    MoveCommand* moveCommand1 = new MoveCommand( mockContext, 0, Point( 1, 0 ) );
+    actionA1->moveCommand = moveCommand1;
+    
+    Action* actionB0 = new Action;
+    MoveCommand* moveCommand2 = new MoveCommand( mockContext, 0, Point( 0, 1 ) );
+    actionB0->moveCommand = moveCommand2;
+    
+    Action* actionB1 = new Action;
+    MoveCommand* moveCommand3 = new MoveCommand( mockContext, 0, Point( 1, 1 ) );
+    actionB1->moveCommand = moveCommand3;
+    
+    std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
+    
+    MockEvaluator mockEvaluator;
+    
+    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA0, testing::_ ) )
+    .WillRepeatedly( testing::Return( 2 ) );
+    
+    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA1, testing::_ ) )
+    .WillRepeatedly( testing::Return( 0 ) );
+    
+    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB0, testing::_ ) )
+    .WillRepeatedly( testing::Return( 5 ) );
+    
+    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB1, testing::_ ) )
+    .WillRepeatedly( testing::Return( 3 ) );
+    
+    actionsProvider->sortActions( actions, mockEvaluator );
+    
+    ASSERT_EQ( actionA1, actions.at( 0 ) );
+    ASSERT_EQ( actionA0, actions.at( 1 ) );
+    ASSERT_EQ( actionB1, actions.at( 2 ) );
+    ASSERT_EQ( actionB0, actions.at( 3 ) );
+}
+
+
+
+
+
+
+
+
+
+
+

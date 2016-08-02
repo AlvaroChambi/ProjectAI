@@ -64,6 +64,7 @@
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
 		3A4068DF1D4F890400123868 /* ActionEvaluatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */; };
+		3A4068E21D50CDE900123868 /* gmock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2463D1CFF51F800AF606D /* gmock.framework */; };
 		3AB9717A1D36730D006E9DA9 /* ActionsProviderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB971791D36730D006E9DA9 /* ActionsProviderTest.cpp */; };
 		3AB9717C1D367319006E9DA9 /* ActionsBuilderTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9717B1D367319006E9DA9 /* ActionsBuilderTest.cpp */; };
 		3AD2FE9F1D0ECB31002B7911 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCD60B51AC6B283004537F8 /* OpenSans-Regular.ttf */; };
@@ -365,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4068E21D50CDE900123868 /* gmock.framework in Frameworks */,
 				3A0779F41CF49EFB00B8C065 /* gtest.framework in Frameworks */,
 				3A0779F01CF49EFB00B8C065 /* SDL2_image.framework in Frameworks */,
 				3A0779F11CF49EFB00B8C065 /* SDL2_ttf.framework in Frameworks */,
@@ -1096,7 +1098,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1115,7 +1117,7 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-lgmock";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

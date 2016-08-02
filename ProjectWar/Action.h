@@ -20,8 +20,12 @@
  */
 class MoveCommand;
 class Command;
+
+const static float NULL_SCORE = -1.0;
+
 class Action {
 public:
+    
     Action();
     
     ~Action();

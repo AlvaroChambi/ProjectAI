@@ -433,14 +433,3 @@ TEST_F( ActionsProviderTest, sortActionsTest ) {
     ASSERT_EQ( actionB1, actions.at( 2 ) );
     ASSERT_EQ( actionB0, actions.at( 3 ) );
 }
-
-
-
-
-
-
-
-
-
-
-

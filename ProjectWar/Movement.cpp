@@ -29,8 +29,9 @@ void Movement::execute() {
 }
 
 void Movement::cancel() {
-    for ( Action* action : actions ) {
-        action->cancel();
+    std::vector<Action*>::reverse_iterator reverseIterator = actions.rbegin();
+    for ( ; reverseIterator!= actions.rend(); ++reverseIterator ) {
+        (*reverseIterator)->cancel();
     }
 }
 

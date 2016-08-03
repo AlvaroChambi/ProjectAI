@@ -65,11 +65,16 @@ void AttackCommand::execute() {
 
 void AttackCommand::cancel() {
     if( savedTarget != nullptr ) {
+        if( savedUnit->getHP() == 0 ) {
+            mapContext.restoreUnit( *savedUnit );
+        }
+        
+        if ( savedTarget->getHP() == 0 ) {
+            mapContext.restoreUnit( *savedTarget );
+        }
         savedUnit->setHP( savedUnitHP );
         savedTarget->setHP( savedTargetHP );
-        
-        mapContext.restoreUnit( *savedUnit );
-        mapContext.restoreUnit( *savedTarget );
+
         savedUnit->updateState();
         savedTarget->updateState();
     }

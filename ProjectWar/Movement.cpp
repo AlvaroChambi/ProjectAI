@@ -54,7 +54,6 @@ bool Movement::contains( const Action& action ) const {
 
 //will not add the actions if there is already one that targets the same tile
 bool Movement::addAction( Action& action ) {
-    //danger! danger! heavy operation!
     if( contains( action ) ) {
         return false;
     } else {

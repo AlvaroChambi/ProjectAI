@@ -256,7 +256,7 @@ TEST_F( ActionsProviderTest, getTileOpponentStructureUnavailableTile ) {
 }
 
 TEST_F( ActionsProviderTest, getTileOpponentStructureAvailableTile ) {
-    Point position( 0, 2 );
+    Point position( 0, 1 );
     
     Unit unit;
     unit.setOwnerID( 0 );
@@ -276,11 +276,11 @@ TEST_F( ActionsProviderTest, getTileOpponentStructureAvailableTile ) {
     
     TargetTile tile = actionsProvider->getTargetTileForPosition( 0,
                                                                 position );
-    ASSERT_EQ( TARGET_NOT_AVAILABLE, tile );
+    ASSERT_EQ( TARGET_STRUCTURE, tile );
 }
 
 TEST_F( ActionsProviderTest, getTileOpponentEntityAndStructure ) {
-    Point position( 0, 2 );
+    Point position( 0, 1 );
     
     Unit unit;
     unit.setOwnerID( 0 );
@@ -309,8 +309,8 @@ TEST_F( ActionsProviderTest, getTileOpponentEntityAndStructure ) {
     ASSERT_EQ( TARGET_ENTITY, tile );
 }
 
-TEST_F( ActionsProviderTest, getTileOwnEntityAndStructure ) {
-    Point position( 0, 2 );
+TEST_F( ActionsProviderTest, getTileOwnEntityOpponentStructure ) {
+    Point position( 0, 1 );
     
     Unit unit;
     unit.setOwnerID( 0 );
@@ -321,6 +321,36 @@ TEST_F( ActionsProviderTest, getTileOwnEntityAndStructure ) {
     
     Building structure;
     structure.setOwnerID( 1 );
+    
+    Unit entity;
+    entity.setOwnerID( 0 );
+    
+    EXPECT_CALL( mockContext, getEntity( 0 ) )
+    .WillOnce( testing::Return( &unit ) );
+    
+    EXPECT_CALL( mockContext, getEntity( position ) )
+    .WillOnce( testing::Return( &entity ) );
+    
+    EXPECT_CALL( mockContext, getStructure( position ) )
+    .WillOnce( testing::Return( &structure ) );
+    
+    TargetTile tile = actionsProvider->getTargetTileForPosition( 0,
+                                                                position );
+    ASSERT_EQ( TARGET_NOT_AVAILABLE, tile );
+}
+
+TEST_F( ActionsProviderTest, getTileOwnEntityOwnStructure ) {
+    Point position( 0, 1 );
+    
+    Unit unit;
+    unit.setOwnerID( 0 );
+    unit.setid( 0 );
+    unit.setMovement( 1 );
+    unit.setAttackRange( 1 );
+    unit.setPosition( 0, 0 );
+    
+    Building structure;
+    structure.setOwnerID( 0 );
     
     Unit entity;
     entity.setOwnerID( 0 );

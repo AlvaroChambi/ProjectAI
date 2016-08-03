@@ -119,6 +119,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     SpriteFactory* spriteFactory = new SpriteFactory;
 
     player->setMap(map);
+    player2->setMap(map);
     Sprite* playerSprite2 = spriteFactory->createSprite(PLAYER);
     playerSprite2->setModel(player2);
     Texture* texture2 = renderer->loadTexture("target_tile_white.png");

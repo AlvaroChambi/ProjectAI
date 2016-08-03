@@ -84,8 +84,16 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
     Unit* entity = mapContext.getEntity( position );
     Building* structure = mapContext.getStructure( position );
     
-    if( entity != nullptr && entity->getOwnerID() != unit->getOwnerID() ) {
-        return TARGET_ENTITY;
+    if( unit == entity ) {
+        return TARGET_POSITION;
+    }
+
+    if( entity != nullptr  ) {
+        if( entity->getOwnerID() != unit->getOwnerID() ) {
+            return TARGET_ENTITY;
+        } else {
+            return TARGET_NOT_AVAILABLE;
+        }
     } else if( unit->getPosition().onRange( position, unit->getMovement()) ) {
         if ( structure != nullptr && !structure->isCaptured( unit->getOwnerID() ) ) {
             return TARGET_STRUCTURE;

@@ -29,10 +29,10 @@ void Action::execute() {
 
 void Action::cancel() {
     if( command != nullptr ) {
-        command->execute();
+        command->cancel();
     }
     if( moveCommand != nullptr ) {
-        moveCommand->execute();
+        moveCommand->cancel();
     }
 }
 

@@ -217,7 +217,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     Unit* unit6 = new Unit();
     unit6->setResource("soldier_blue.png");
     Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
-    unit6->setMovement(2);
+    unit6->setMovement(3);
     unit6->setAttackRange(1);
     unit6->setHP(10);
     unitSprite6->setModel(unit6);

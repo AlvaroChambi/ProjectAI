@@ -27,20 +27,21 @@ std::vector<Option*>& ActionsProvider::generateMovements(
     
     const Player* player = mapContext.getPlayer( playerID );
     
-    std::vector<int> army = player->getUnitsReference();
+    std::vector<Unit*> army = player->getUnits();
     int numUnits = (int)army.size();
     actionsSet.reserve( numUnits );
     
-    for ( const int unitID : army ) {
-        std::vector<Action*> unitActions = buildUnitActions( unitID );
+    for ( const Unit* unit : army ) {
+        std::vector<Action*> unitActions = buildUnitActions( unit->getId() );
         sortActions( unitActions, evaluator );
-        actionsSet.insert( actionsSet.end(), unitActions.begin(), unitActions.end() );
+        actionsSet.insert( actionsSet.end(),
+                           unitActions.begin(), unitActions.begin() + numActions );
     }
     
     std::vector<std::vector<int>> variations = generateVariations( numActions,
-                                                                  numUnits );
+                                                                   numUnits );
     
-    std::vector<Option*>& movements = mapVariations( numUnits, variations,
+    std::vector<Option*>& movements = mapVariations( numActions, variations,
                                                      actionsSet );
     
     return movements;
@@ -56,7 +57,8 @@ std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) const {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
-    std::vector<Action*>* actions = new std::vector<Action*>( maxAllowedActions );
+    std::vector<Action*>* actions = new std::vector<Action*>();
+    actions->reserve( maxAllowedActions );
     
     int explorationRange = unit->getMovement() + unit->getAttackRange();
     AreaIterator areaIterator;
@@ -100,7 +102,7 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
 }
 
 std::vector<Option*>& ActionsProvider::mapVariations(
-                        const int numUnits,
+                        const int numActions,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) const {
     std::vector<Option*>* movements = new std::vector<Option*>();
@@ -110,18 +112,18 @@ std::vector<Option*>& ActionsProvider::mapVariations(
         return *movements;
     }
     
-    if( actions.size() != variations.at( 0 ).size() * numUnits ) {
+    if( actions.size() < variations.at( 0 ).size() * numActions ) {
         throw IllegalStateException( "Params not valid" );
     }
     
     for ( int i = 0; i < variations.size(); i++ ) {
         std::vector<int> actionIDs = variations.at( i );
-        int numActions = (int)actionIDs.size();
-        Movement* movement = new Movement( numActions );
+        int numUnits = (int)actionIDs.size();
+        Movement* movement = new Movement( numUnits );
         for ( int j = 0; j < actionIDs.size(); j++ ) {
             int actionID = actionIDs.at( j );
             int key = actionID + j*numActions;
-            movement->addAction( *actions[key] );
+            movement->addAction( *actions[key] ); 
         }
         movements->push_back( movement );
     }

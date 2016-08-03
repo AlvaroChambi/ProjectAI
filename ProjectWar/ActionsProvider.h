@@ -29,7 +29,7 @@ public:
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position ) const;
     std::vector<Option*>& mapVariations(
-                        const int numUnits,
+                        const int numActions,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) const;
     

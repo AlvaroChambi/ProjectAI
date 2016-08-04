@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <chrono>
 
+#include "DotPath.h"
+
 PlayerAI::PlayerAI() : Player() {
     setType(AI_PLAYER);
 }
@@ -46,7 +48,10 @@ void PlayerAI::executeMinimax( MapContext* mapContext ) {
                                                 ActionsProvider( *mapContext ) );
     MinimaxAlgorithm* algorithm =
         new MinimaxAlgorithm( gameMinimax );
+    DotBuilder logger;
+    algorithm->setDebugLogger( &logger );
     algorithm->minimax( 4 );
+    std::cout << "nodes evaluated:  " << logger.getIndex() << std::endl;
     Movement* movement = (Movement*)algorithm->getBestMove();
     if( movement != nullptr ) {
         movement->execute();

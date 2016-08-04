@@ -31,51 +31,53 @@ public:
 };
 
 TEST_F( ActionEvaluatorTest, AlliesInfluenceTest ) {
-    Unit unit0, unit1;
-    unit0.setid( 0 );
-    unit0.setPosition( 1, 1 );
-    unit1.setid( 1 );
-    unit1.setPosition( 1, 2 );
+    Unit* unit0 = new Unit;
+    Unit* unit1 = new Unit;
+    unit0->setid( 0 );
+    unit0->setPosition( 1, 1 );
+    unit1->setid( 1 );
+    unit1->setPosition( 1, 2 );
     
     Player player;
-    player.addUnit( unit0 );
-    player.addUnit( unit1 );
+    player.addUnit( *unit0 );
+    player.addUnit( *unit1 );
+    player.setMap( &context );
+    EXPECT_CALL( context, getEntity( 0 ) ).WillOnce(
+                                        testing::Return( unit0 ) );
+    EXPECT_CALL( context, getEntity( 1 ) ).WillOnce(
+                                        testing::Return( unit1 ) );
     
-    //TODO:Fix test
-//    EXPECT_CALL( context, getEntityReference( 0 ) ).WillOnce(
-//                                        testing::Return( Point( 1, 1 ) ) );
-//    EXPECT_CALL( context, getEntityReference( 1 ) ).WillOnce(
-//                                        testing::Return( Point( 1, 2 ) ) );
-//    
-//    EXPECT_CALL( context, getPlayer() ).WillOnce( testing::ReturnRef( player ) );
-//    
-//    ASSERT_FLOAT_EQ( 2.5, evaluator.getAlliesInfluence(  Point( 0, 0 ),
-//                                                         context ) );
+    EXPECT_CALL( context, getPlayer() ).WillOnce( testing::ReturnRef( player ) );
+    
+    ASSERT_FLOAT_EQ( 2.5, evaluator.getAlliesInfluence(  Point( 0, 0 ),
+                                                         context ) );
 }
 
 TEST_F( ActionEvaluatorTest, OpponentsInfluenceTest ) {
     
-    Unit unit0, unit1;
-    unit0.setid( 0 );
-    unit0.setPosition( 1, 1 );
-    unit1.setid( 1 );
-    unit1.setPosition( 1, 2 );
+    Unit* unit0 = new Unit;
+    Unit* unit1 = new Unit;
+    unit0->setid( 0 );
+    unit0->setPosition( 1, 1 );
+    unit1->setid( 1 );
+    unit1->setPosition( 1, 2 );
     
     Player player;
-    player.addUnit( unit0 );
-    player.addUnit( unit1 );
+    player.addUnit( *unit0 );
+    player.addUnit( *unit1 );
+    player.setMap( &context );
     
-    //TODO: Fix test
-//    EXPECT_CALL( context, getEntityReference( 0 ) ).WillOnce(
-//                                        testing::Return( Point( 1, 1 ) ) );
-//    EXPECT_CALL( context, getEntityReference( 1 ) ).WillOnce(
-//                                        testing::Return( Point( 1, 2 ) ) );
-//    
-//    EXPECT_CALL( context, getOpponent() ).WillOnce(
-//                                                testing::ReturnRef( player ) );
-//    
-//    ASSERT_FLOAT_EQ( 2.5, evaluator.getOpponentsInfluence(  Point( 0, 0 ),
-//                                                            context ) );
+
+    EXPECT_CALL( context, getEntity( 0 ) ).WillOnce(
+                                        testing::Return( unit0 ) );
+    EXPECT_CALL( context, getEntity( 1 ) ).WillOnce(
+                                        testing::Return( unit1 ) );
+    
+    EXPECT_CALL( context, getOpponent() ).WillOnce(
+                                                testing::ReturnRef( player ) );
+    
+    ASSERT_FLOAT_EQ( 2.5, evaluator.getOpponentsInfluence(  Point( 0, 0 ),
+                                                            context ) );
 }
 
 TEST_F( ActionEvaluatorTest, EvaluateValuesTest ) {

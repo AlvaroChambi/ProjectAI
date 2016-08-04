@@ -26,12 +26,13 @@ void UnitSelectedState::enter() {
     //TODO refactor state class to avoid implicit cast here...
     Player* player = (Player*)model;
     Unit* unit = player->getSelectedUnit();
+    Map* map = (Map*)player->getMap();
     //Update available area and set unit as selected
-    player->getMap()->updateUnitAvailableArea( *unit );
+    map->updateUnitAvailableArea( *unit );
     std::vector<UnitCommand> commands;
     commands.push_back(WAIT);
     //Check if there are any unit around
-    player->getMap()->checkNearEntities( *unit, commands );
+    map->checkNearEntities( *unit, commands );
     //Update commands
     player->getSelectedUnit()->updateCommands( commands );
 }
@@ -40,12 +41,14 @@ void UnitSelectedState::enter() {
 void UnitSelectedState::handleInput(Input input, int id, Tile position)
 {
     Player* player = (Player*)model;
+    Map* map = (Map*)player->getMap();
     switch (input) {
         case UNIT_CLICKED:
         {
+            Map* map = (Map*)player->getMap();
             //Select new unit - keep state
             Unit* unit = player->getUnit(id);
-            player->getMap()->cleanUnitAvailableArea( *unit );
+            map->cleanUnitAvailableArea( *unit );
             player->setSelectedUnit(unit);
             player->getState()->enter();
         }
@@ -57,7 +60,7 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             if (unit->getPosition().onRange( position.position, unit->getMovement() ) ) {
                 Command* moveCommand = new MoveCommand(
                             *player->getMap(), unit->getId() , position.position);
-                player->getMap()->cleanUnitAvailableArea( *unit );
+                map->cleanUnitAvailableArea( *unit );
                 //Always move before getting in the new state
                 moveCommand->execute();
                 player->updateState(new OnMoveState(player, player->getState(), moveCommand));

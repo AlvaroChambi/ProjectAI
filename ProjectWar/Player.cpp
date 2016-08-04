@@ -81,11 +81,11 @@ State* Player::getState() const {
     return state;
 }
 
-void Player::setMap( Map *map ) {
+void Player::setMap( MapContext* map ) {
     this->map = map;
 }
 
-Map* Player::getMap() const {
+MapContext* Player::getMap() const {
     return map;
 }
 

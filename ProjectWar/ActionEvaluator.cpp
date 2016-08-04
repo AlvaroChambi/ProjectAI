@@ -37,8 +37,22 @@ float ActionEvaluator::evaluateValues( const float headquarterInfluence,
                                     const float enemyHeadquarterInfluence,
                                     const float alliesInfluence,
                                     const float opponentsInfluence ) const {
-    float result = 1/headquarterInfluence + 1/enemyHeadquarterInfluence
-                    + 1/alliesInfluence - 1/opponentsInfluence;
+    float headquaterWight, opponentHeadquarterWeight, alliesWeight, opponentsWeight;
+    if( headquarterInfluence != 0 ) {
+        headquaterWight = 1/headquarterInfluence;
+    }
+    if( enemyHeadquarterInfluence != 0 ){
+        opponentHeadquarterWeight = 1/enemyHeadquarterInfluence;
+    }
+    if( alliesInfluence != 0 ) {
+        alliesWeight = 1/alliesInfluence;
+    }
+    if ( opponentsInfluence != 0 ) {
+        opponentsWeight = 1/opponentsInfluence;
+    }
+    
+    float result = headquaterWight + opponentHeadquarterWeight
+                    + alliesWeight - opponentsWeight;
     return result;
 }
 
@@ -64,9 +78,9 @@ float ActionEvaluator::getAlliesInfluence( const Point &destination,
     // + if i have friendly units closer
     // iterate friendly units and calculate distance
     float alliesDistance = 0;
-    std::vector<int> allies = context.getPlayer().getUnitsReference();
-    for( int unitReference : allies ) {
-        Point position = context.getEntityReference( unitReference );
+    std::vector<Unit*> allies = context.getPlayer().getUnits();
+    for( const Unit* unit : allies ) {
+        Point position = unit->getPosition();
         alliesDistance += position.distance( destination );
     }
     return alliesDistance / allies.size();
@@ -77,9 +91,9 @@ float ActionEvaluator::getOpponentsInfluence( const Point &destination,
     // - if i have enemy units closer
     // iterate enemy units and calculate distance
     float opponentsDistance = 0;
-    std::vector<int> opponents = context.getOpponent().getUnitsReference();
-    for( int unitReference : opponents ) {
-        Point position = context.getEntityReference( unitReference );
+    std::vector<Unit*> opponents = context.getOpponent().getUnits();
+    for( const Unit* unit : opponents ) {
+        Point position = unit->getPosition();
         opponentsDistance += position.distance( destination );
     }
     return opponentsDistance / opponents.size();

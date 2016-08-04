@@ -26,6 +26,9 @@ private:
     int unitID;
     int targetID;
     
+    Unit* savedUnit;
+    Unit* savedTarget;
+    
     MapContext& mapContext;
     
     int savedUnitHP;

@@ -29,8 +29,9 @@ void Movement::execute() {
 }
 
 void Movement::cancel() {
-    for ( Action* action : actions ) {
-        action->cancel();
+    std::vector<Action*>::reverse_iterator reverseIterator = actions.rbegin();
+    for ( ; reverseIterator!= actions.rend(); ++reverseIterator ) {
+        (*reverseIterator)->cancel();
     }
 }
 
@@ -53,7 +54,6 @@ bool Movement::contains( const Action& action ) const {
 
 //will not add the actions if there is already one that targets the same tile
 bool Movement::addAction( Action& action ) {
-    //danger! danger! heavy operation!
     if( contains( action ) ) {
         return false;
     } else {

@@ -18,26 +18,30 @@ class ActionsProvider {
 public:
     ActionsProvider( MapContext& context );
     
-    std::vector<Option*> generateMovements( int playerID,
+    std::vector<Option*>& generateMovements( int playerID,
                                             int numActions ) const;
-
-    void buildActions( int playerID, int numActions );
     
-    std::vector<Action*>& buildUnitActions( const int unitID );
+    std::vector<Action*>& buildUnitActions( const int unitID ) const;
     
     void sortActions( std::vector<Action*>& actions,
                       const Evaluator& evaluator ) const;
     
     TargetTile getTargetTileForPosition( const int unitID,
-                                         const Point& position );
-    std::vector<Movement*>& mapVariations(
-                        const int numUnits,
+                                         const Point& position ) const;
+    std::vector<Option*>& mapVariations(
+                        const int numActions,
                         std::vector<std::vector<int>>& variations,
-                        std::vector<Action*>& actions );
+                        std::vector<Action*>& actions ) const;
+    
+    std::vector<std::vector<int>>& generateVariations(
+                                        int numActions, int numUnits ) const;
 private:
+    void generateVariations( std::vector<std::vector<int>> *sequence,
+                            int numElements, std::vector<int> variation,
+                            int count ) const;
+    
     MapContext& mapContext;
     ActionsBuilder actionsBuilder;
-    std::vector<Action*> actions;
 };
 
 #endif /* ActionsProvider_h */

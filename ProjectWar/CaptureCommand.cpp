@@ -30,7 +30,7 @@ void CaptureCommand::execute() {
     Building* building = mapContext->getStructure( unit->getPosition() );
     
     buildingID = building->getId();
-    savedOwner = unit->getOwnerID();
+    savedOwner = building->getOwnerID();
     savedCaptureValue = building->getCaptureValue();
     
     int captureValue = 0;

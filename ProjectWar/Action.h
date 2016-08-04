@@ -50,7 +50,7 @@ struct Compare {
     
     }
     inline bool operator() ( Action* lh, Action* rh ) {
-        return ( lh->getValue( evaluator, context ) <
+        return ( lh->getValue( evaluator, context ) >
                     rh->getValue( evaluator, context ) );
     }
     

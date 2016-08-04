@@ -20,27 +20,31 @@ ActionsProvider::ActionsProvider( MapContext& mapContext )
 
 }
 
-std::vector<Option*> ActionsProvider::generateMovements(
+std::vector<Option*>& ActionsProvider::generateMovements(
                                     int playerID, int numActions ) const {
-    std::vector<Option*>* options = new std::vector<Option*>;
-    return *options;
-}
-
-void ActionsProvider::buildActions( int playerID, int numActions ) {
-    int numUnits = 0;
-    actions.reserve( numUnits * numActions );
+    const Evaluator& evaluator = ActionEvaluator();
+    std::vector<Action*> actionsSet;
     
-    //for each unit
-        //actions - buildUnitActions;
-        //filter actions if needed
+    const Player* player = mapContext.getPlayer( playerID );
     
-    //result {unit<0,n>...unitN<0,n>}
+    std::vector<Unit*> army = player->getUnits();
+    int numUnits = (int)army.size();
+    actionsSet.reserve( numUnits );
     
-    //getVariations: {<0,0>,<0,1>,<1,0>,<1,1>}
+    for ( const Unit* unit : army ) {
+        std::vector<Action*> unitActions = buildUnitActions( unit->getId() );
+        sortActions( unitActions, evaluator );
+        actionsSet.insert( actionsSet.end(),
+                           unitActions.begin(), unitActions.begin() + numActions );
+    }
     
-    //mapVariations: movements = vector<Movement>
+    std::vector<std::vector<int>> variations = generateVariations( numActions,
+                                                                   numUnits );
     
-    //return movements
+    std::vector<Option*>& movements = mapVariations( numActions, variations,
+                                                     actionsSet );
+    
+    return movements;
 }
 
 void ActionsProvider::sortActions( std::vector<Action *>& actions,
@@ -49,11 +53,12 @@ void ActionsProvider::sortActions( std::vector<Action *>& actions,
                                     Compare( evaluator, mapContext ) );
 }
 
-std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
+std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) const {
     Unit* unit = mapContext.getEntity( unitID );
     
     int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
-    std::vector<Action*>* actions = new std::vector<Action*>( maxAllowedActions );
+    std::vector<Action*>* actions = new std::vector<Action*>();
+    actions->reserve( maxAllowedActions );
     
     int explorationRange = unit->getMovement() + unit->getAttackRange();
     AreaIterator areaIterator;
@@ -74,13 +79,21 @@ std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) {
 }
 
 TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
-                                                      const Point& position ) {
+                                                      const Point& position ) const {
     Unit* unit = mapContext.getEntity( unitID );
     Unit* entity = mapContext.getEntity( position );
     Building* structure = mapContext.getStructure( position );
     
-    if( entity != nullptr && entity->getOwnerID() != unit->getOwnerID() ) {
-        return TARGET_ENTITY;
+    if( unit == entity ) {
+        return TARGET_POSITION;
+    }
+
+    if( entity != nullptr  ) {
+        if( entity->getOwnerID() != unit->getOwnerID() ) {
+            return TARGET_ENTITY;
+        } else {
+            return TARGET_NOT_AVAILABLE;
+        }
     } else if( unit->getPosition().onRange( position, unit->getMovement()) ) {
         if ( structure != nullptr && !structure->isCaptured( unit->getOwnerID() ) ) {
             return TARGET_STRUCTURE;
@@ -96,32 +109,55 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
     return TARGET_NOT_AVAILABLE;
 }
 
-std::vector<Movement*>& ActionsProvider::mapVariations(
-                        const int numUnits,
+std::vector<Option*>& ActionsProvider::mapVariations(
+                        const int numActions,
                         std::vector<std::vector<int>>& variations,
-                        std::vector<Action*>& actions ) {
-    std::vector<Movement*>* movements = new std::vector<Movement*>();
+                        std::vector<Action*>& actions ) const {
+    std::vector<Option*>* movements = new std::vector<Option*>();
     movements->reserve( (int)variations.size() );
     
     if( variations.empty() && actions.empty() ) {
         return *movements;
     }
     
-    if( actions.size() != variations.at( 0 ).size() * numUnits ) {
+    if( actions.size() < variations.at( 0 ).size() * numActions ) {
         throw IllegalStateException( "Params not valid" );
     }
     
     for ( int i = 0; i < variations.size(); i++ ) {
         std::vector<int> actionIDs = variations.at( i );
-        int numActions = (int)actionIDs.size();
-        Movement* movement = new Movement( numActions );
+        int numUnits = (int)actionIDs.size();
+        Movement* movement = new Movement( numUnits );
         for ( int j = 0; j < actionIDs.size(); j++ ) {
             int actionID = actionIDs.at( j );
             int key = actionID + j*numActions;
-            movement->addAction( *actions[key] );
+            movement->addAction( *actions[key] ); 
         }
         movements->push_back( movement );
     }
     
     return *movements;
+}
+
+std::vector<std::vector<int>>& ActionsProvider::generateVariations(
+                                         int numActions, int numUnits ) const {
+    std::vector<std::vector<int>>* variations = new std::vector<std::vector<int>>;
+    variations->reserve( numActions );
+    std::vector<int> variation( numUnits );
+    generateVariations( variations, numActions, variation, 0 );
+    
+    return *variations;
+}
+
+void ActionsProvider::generateVariations( std::vector<std::vector<int>> *sequence,
+                         int numElements, std::vector<int> variation,
+                         int count ) const {
+    if( count < variation.size() ){
+        for( int i = 0; i < numElements; i++ ) {
+            variation[count] = i;
+            generateVariations( sequence, numElements, variation, count+1 );
+        }
+    }else{
+        sequence->push_back( variation );
+    }
 }

@@ -46,8 +46,8 @@ public:
     void updateState( State* state );
     void setState( State* state );
     
-    void setMap( Map* map );
-    Map* getMap() const;
+    void setMap( MapContext* map );
+    MapContext* getMap() const;
     
     void setActive( bool active );
     bool isActive() const;
@@ -67,7 +67,7 @@ public:
 private:
     State* state;
     Unit* selectedUnit;
-    Map* map;
+    MapContext* map;
     bool active;
     PlayerType type;
     

@@ -27,48 +27,57 @@ void AttackCommand::execute() {
     Unit* unit = mapContext.getEntity( unitID );
     Unit* targetUnit = mapContext.getEntity( targetID );
     
-    savedUnitHP = unit->getHP();
-    savedTargetHP = targetUnit->getHP();
+    savedUnit = unit;
+    savedTarget = targetUnit;
     
-    updateHP( unit, targetUnit );
-    if ( targetUnit->getHP() <= 0 ) {
-        targetUnit->setHP( 0 );
-        targetUnit->updateState();
-        mapContext.removeUnit( *targetUnit );
-    }
-    
-    if( unit->getHP() <= 0 ) {
-        unit->setHP( 0 );
-        unit->updateState();
-        mapContext.removeUnit( *unit );
-    }
-    
-    updateHP( targetUnit, unit );
-    if ( unit->getHP() <= 0 ) {
-        unit->setHP( 0 );
-        unit->updateState();
-        mapContext.removeUnit( *unit );
-    }
-    
-    if( targetUnit->getHP() <= 0 ) {
-        targetUnit->setHP( 0 );
-        targetUnit->updateState();
-        mapContext.removeUnit( *targetUnit );
+    if( targetUnit != nullptr ) {
+        savedUnitHP = unit->getHP();
+        savedTargetHP = targetUnit->getHP();
+        
+        updateHP( unit, targetUnit );
+        if ( targetUnit->getHP() <= 0 ) {
+            targetUnit->setHP( 0 );
+            targetUnit->updateState();
+            mapContext.removeUnit( *targetUnit );
+        }
+        
+        if( unit->getHP() <= 0 ) {
+            unit->setHP( 0 );
+            unit->updateState();
+            mapContext.removeUnit( *unit );
+        }
+        
+        updateHP( targetUnit, unit );
+        if ( unit->getHP() <= 0 ) {
+            unit->setHP( 0 );
+            unit->updateState();
+            mapContext.removeUnit( *unit );
+        }
+        
+        if( targetUnit->getHP() <= 0 ) {
+            targetUnit->setHP( 0 );
+            targetUnit->updateState();
+            mapContext.removeUnit( *targetUnit );
+        }
     }
     executed = true;
 }
 
 void AttackCommand::cancel() {
-    Unit* unit = mapContext.getEntity( unitID );
-    Unit* targetUnit = mapContext.getEntity( targetID );
-    
-    unit->setHP( savedUnitHP );
-    targetUnit->setHP( savedTargetHP );
+    if( savedTarget != nullptr ) {
+        if( savedUnit->getHP() == 0 ) {
+            mapContext.restoreUnit( *savedUnit );
+        }
+        
+        if ( savedTarget->getHP() == 0 ) {
+            mapContext.restoreUnit( *savedTarget );
+        }
+        savedUnit->setHP( savedUnitHP );
+        savedTarget->setHP( savedTargetHP );
 
-    mapContext.restoreUnit( *unit );
-    mapContext.restoreUnit( *targetUnit );
-    unit->updateState();
-    targetUnit->updateState();
+        savedUnit->updateState();
+        savedTarget->updateState();
+    }
     executed = false;
 }
 

@@ -11,10 +11,10 @@
 #include "GameException.h"
 
 MoveCommand::MoveCommand( MapContext& mapContext,
-                          const int unitID, const Point& destination )
+                          const int unitID, const Point destination )
 : executed( false ), unitID( unitID ), destination( destination )
 , mapContext( mapContext ) {
-    
+
 }
 
 MoveCommand::~MoveCommand() {
@@ -40,7 +40,7 @@ void MoveCommand::execute( ) {
         throw IllegalStateException( "Illegal unit position modification" );
     }
     if( unit->getPosition().onRange(
-                            destination, unit->getMovement() ) ) {
+                                    destination, unit->getMovement() ) ) {
         executed = true;
         mapContext.moveEntity( *unit, destination );
         unit->setPosition( mapContext.getTile( destination ) );
@@ -54,6 +54,10 @@ void MoveCommand::cancel() {
     Unit* unit = mapContext.getEntity( unitID );
     mapContext.moveEntity( *unit, savedPosition );
     unit->setPosition( mapContext.getTile( savedPosition ) );
+}
+
+const int MoveCommand::getUnitID() const {
+    return unitID;
 }
 
 const Point& MoveCommand::getDestination() const {

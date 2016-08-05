@@ -16,6 +16,52 @@ Map::Map( const Player& player, const Player& opponent )
     }
 }
 
+Map::Map( const MapContext& context ) {
+    this->structuresLayer = copyStructures( map );
+    this->entitiesLayer = copyEntities( map );
+    
+    this->entitiesIndex = context.entitiesIndex;
+    this->structuresIndex = map.structuresIndex;
+    
+    this->player = &context.getPlayer();
+    
+}
+
+const MapLayer<Unit*>& Map::getEntitiesLayer() const {
+    return entitiesLayer;
+}
+
+const MapLayer<Building*>& Map::getStructuresLayer() const {
+    return structuresLayer;
+}
+
+MapLayer<Unit*> Map::copyEntities( const MapContext& context ) const {
+    MapLayer<Unit*>* copy = new MapLayer<Unit*>;
+    copy->resize( MAP_WIDTH, MAP_HEIGHT );
+    for ( int i = 0; i < context.getEntitiesLayer().size(); i++ ) {
+        Unit* copyUnit = context.getEntitiesLayer().at( i );
+        if( copyUnit != nullptr ) {
+            Unit* unit = new Unit( *copyUnit );
+            copy->add( i, unit );
+        }
+    }
+    return *copy;
+}
+
+MapLayer<Building*> Map::copyStructures( const MapContext& context ) const {
+    MapLayer<Building*>* copy = new MapLayer<Building*>;
+    copy->resize( MAP_WIDTH, MAP_HEIGHT );
+    for ( int i = 0; i < context.getStructuresLayer().size(); i++ ) {
+        Building* copyStructure = context.getStructuresLayer().at( i );
+        
+        if( copyStructure != nullptr ) {
+            Building* structure = new Building( *copyStructure );
+            copy->add( i, structure );
+        }
+    }
+    return *copy;
+}
+
 Map::~Map() {
     
 }

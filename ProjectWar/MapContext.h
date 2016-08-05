@@ -10,6 +10,7 @@
 #define MapContext_h
 
 #include "Tile.h"
+#include "MapLayer.h"
 
 #include <vector>
 
@@ -20,6 +21,9 @@ class MapContext {
 public:
     virtual int getNumRows() const = 0;
     virtual int getNumColumns() const = 0;
+    
+    virtual const MapLayer<Unit*>& getEntitiesLayer() const = 0;
+    virtual const MapLayer<Building*>& getStructuresLayer() const = 0;
     
     virtual bool isValidPosition( const Point& position ) const = 0;
     

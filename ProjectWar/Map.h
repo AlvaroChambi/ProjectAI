@@ -32,7 +32,11 @@ class Map : public MapContext {
 public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     Map( const Player& player, const Player& opponent );
+    Map( const MapContext& context );
     ~Map();
+    MapLayer<Unit*> copyEntities( const MapContext& context ) const;
+    MapLayer<Building*> copyStructures( const MapContext& context ) const;
+    
     //Width and height in tiles
     void loadMap( Renderer* renderer, int width, int height );
     void drawMap( Renderer* renderer );
@@ -80,12 +84,14 @@ public:
     const Player& getOpponent() const;
     
     const Player* getPlayer( const int id ) const;
-private:
-    TileMap matrix;
-    std::vector<Sprite*> sprites;
     
+    const MapLayer<Unit*>& getEntitiesLayer() const;
+    const MapLayer<Building*>& getStructuresLayer() const;
+private:
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;
+    TileMap matrix;
+    std::vector<Sprite*> sprites;
     
     std::map<int,Point> entities;
     std::map<int,Point> structures;

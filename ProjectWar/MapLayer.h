@@ -77,6 +77,10 @@ public:
         return data.at( position );
     }
     
+    void add( int position, T value ) {
+        data[position] = value;
+    }
+    
     int size() const {
         return (int)data.size();
     }

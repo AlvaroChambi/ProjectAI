@@ -18,6 +18,7 @@ Building::Building( const Building& building ) {
     this->tile = building.tile;
     this->capturePoints = building.getCapturePoints();
     this->captureValue = building.getCaptureValue();
+    setid( building.getId() );
 }
 
 Tile Building::getTile() const {

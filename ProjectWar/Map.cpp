@@ -16,15 +16,20 @@ Map::Map( const Player& player, const Player& opponent )
     }
 }
 
-Map::Map( const MapContext& context )
-: player( context.getPlayerCopy() ),
- opponent( context.getOpponentCopy() ) {
+Map::Map( const Map& context )
+: player( context.getPlayerCopy( *this ) ),
+ opponent( context.getOpponentCopy( *this ) ) {
      MapLayer<Unit*>* entitiesLayerCopy =
                         new MapLayer<Unit*>( context.getEntitiesLayer() );
      MapLayer<Building*>* structuresLayerCopy =
                         new MapLayer<Building*>( context.getStructuresLayer() );
      entitiesLayer = *entitiesLayerCopy;
      structuresLayer = *structuresLayerCopy;
+     
+     entities = context.entities;
+     structures = context.structures;
+     
+     matrix = context.matrix;
 }
 
 const MapLayer<Unit*>& Map::getEntitiesLayer() const {
@@ -35,13 +40,15 @@ const MapLayer<Building*>& Map::getStructuresLayer() const {
     return structuresLayer;
 }
 
-const Player& Map::getPlayerCopy() const {
+const Player& Map::getPlayerCopy( MapContext& context ) const {
     Player* playerCopy = new Player( player );
+    playerCopy->setMap( &context );
     return *playerCopy;
 }
 
-const Player& Map::getOpponentCopy() const {
+const Player& Map::getOpponentCopy( MapContext& context ) const {
     Player* opponentCopy = new Player( opponent );
+    opponentCopy->setMap( &context );
     return *opponentCopy;
 }
 

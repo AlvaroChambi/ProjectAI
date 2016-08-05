@@ -32,7 +32,7 @@ class Map : public MapContext {
 public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     Map( const Player& player, const Player& opponent );
-    Map( const MapContext& context );
+    Map( const Map& context );
     MapLayer<Unit*> copyEntities( const MapContext& context ) const;
     MapLayer<Building*> copyStructures( const MapContext& context ) const;
     
@@ -87,8 +87,8 @@ public:
     const MapLayer<Unit*>& getEntitiesLayer() const;
     const MapLayer<Building*>& getStructuresLayer() const;
     
-    const Player& getPlayerCopy() const;
-    const Player& getOpponentCopy() const;
+    const Player& getPlayerCopy( MapContext& context ) const;
+    const Player& getOpponentCopy( MapContext& context ) const;
     
 private:
     MapLayer<Building*> structuresLayer;

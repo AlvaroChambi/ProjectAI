@@ -33,7 +33,7 @@ int HeuristicFunction::calculateEnemyHeadquarterDistance(
     int result = 0;
     for ( Unit* unit : player.getUnits() ) {
         result = result -
-        unit->getPosition().distance( enemyHeadquarter.getPosition() );
+            unit->getPosition().distance( enemyHeadquarter.getPosition() );
     }
     for ( Unit* unit : enemy.getUnits() ) {
         result = result +

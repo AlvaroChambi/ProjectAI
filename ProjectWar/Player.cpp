@@ -24,6 +24,7 @@ Player::Player( int id )
 
 Player::Player( const Player& player ) {
     this->army = player.army;
+    this->headquarter = player.headquarter;
     this->setid( player.getId() );
 }
 

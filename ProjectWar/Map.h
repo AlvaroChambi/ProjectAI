@@ -33,7 +33,6 @@ public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     Map( const Player& player, const Player& opponent );
     Map( const MapContext& context );
-    ~Map();
     MapLayer<Unit*> copyEntities( const MapContext& context ) const;
     MapLayer<Building*> copyStructures( const MapContext& context ) const;
     
@@ -87,6 +86,10 @@ public:
     
     const MapLayer<Unit*>& getEntitiesLayer() const;
     const MapLayer<Building*>& getStructuresLayer() const;
+    
+    const Player& getPlayerCopy() const;
+    const Player& getOpponentCopy() const;
+    
 private:
     MapLayer<Building*> structuresLayer;
     MapLayer<Unit*> entitiesLayer;

@@ -22,6 +22,20 @@ public:
     : width( 0 ), height( 0 ) {
         
     }
+    
+    MapLayer( const MapLayer& mapLayer )
+    : width( mapLayer.width ), height( mapLayer.height ){
+        data.resize( width * height );
+        typedef typename std::remove_pointer<T>::type A;
+        for ( int i = 0; i < mapLayer.data.size(); i++ ) {
+            T item = mapLayer.data[i];
+            if( item != nullptr ) {
+                T newItem = new A( *item );
+                data[i] = newItem;
+            }
+        }
+    }
+    
     ~MapLayer() {
         data.clear();
     }
@@ -84,10 +98,12 @@ public:
     int size() const {
         return (int)data.size();
     }
-private:
+    
     std::vector<T> data;
     int width;
     int height;
+private:
+   
 };
 
 #endif

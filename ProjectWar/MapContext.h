@@ -48,6 +48,9 @@ public:
     virtual const Player& getOpponent() const = 0;
     
     virtual const Player* getPlayer( const int id ) const = 0;
+    
+    virtual const Player& getPlayerCopy() const = 0;
+    virtual const Player& getOpponentCopy() const = 0;
 };
 
 #endif /* MapContext_h */

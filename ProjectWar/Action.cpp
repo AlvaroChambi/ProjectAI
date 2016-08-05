@@ -36,6 +36,16 @@ void Action::cancel() {
     }
 }
 
+void Action::updateContext( MapContext &context ) {
+    if( command != nullptr ) {
+        command->changeContext( context );
+    }
+    if( moveCommand != nullptr ) {
+        moveCommand->changeContext( context );
+    }
+
+}
+
 bool Action::operator==( const Action& action ) const {
     if( moveCommand == nullptr || action.moveCommand == nullptr ) {
         return false;

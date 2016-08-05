@@ -26,6 +26,8 @@ public:
     bool addAction( Action& action );
     bool contains( const Action& action ) const;
     
+    void updateContext( MapContext& context );
+    
     const std::vector<Action*>& getActions() const;
 private:
     std::vector<Action*> actions;

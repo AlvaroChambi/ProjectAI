@@ -38,6 +38,8 @@ public:
     
     bool operator==( const Action& action ) const ;
     
+    void updateContext( MapContext& context );
+    
     MoveCommand* moveCommand;
     Command* command;
 

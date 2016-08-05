@@ -83,7 +83,13 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
             if (activePlayer->getType() == AI_PLAYER) {
                 PlayerAI* playerAI = (PlayerAI*)activePlayer;
                 MapContext* copyContext = new Map( *mapContext );
-                playerAI->play( copyContext );
+                Movement* movement = playerAI->play( copyContext );
+                
+                movement->updateContext( *mapContext );
+                if( movement != nullptr ) {
+                    movement->execute();
+                }
+                
                 this->onUIComponentClicked(new Button(END_BUTTON));
             }
             break;

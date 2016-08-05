@@ -31,19 +31,20 @@ PlayerAI::~PlayerAI() {
 
 }
 
-void PlayerAI::play( MapContext* mapContext ) {
+Movement* PlayerAI::play( MapContext* mapContext ) {
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     std::cout << "Minimax on progress..." << std::endl;
-    executeMinimax( mapContext );
+    Movement* result = executeMinimax( mapContext );
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Minimax took "
     << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
     << "ms.\n";
+    return result;
 }
 
 
 
-void PlayerAI::executeMinimax( MapContext* mapContext ) {
+Movement* PlayerAI::executeMinimax( MapContext* mapContext ) {
     GameMinimax* gameMinimax = new GameMinimax( *mapContext ,
                                                 ActionsProvider( *mapContext ) );
     MinimaxAlgorithm* algorithm =
@@ -53,7 +54,5 @@ void PlayerAI::executeMinimax( MapContext* mapContext ) {
     algorithm->minimax( 4 );
     std::cout << "nodes evaluated:  " << logger.getIndex() << std::endl;
     Movement* movement = (Movement*)algorithm->getBestMove();
-    if( movement != nullptr ) {
-        movement->execute();
-    }
+    return movement;
 }

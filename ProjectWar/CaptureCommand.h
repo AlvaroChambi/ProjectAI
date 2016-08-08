@@ -16,11 +16,10 @@
 
 class CaptureCommand : public Command {
 public:
-    CaptureCommand( MapContext& mapContext, const int unitID );
+    CaptureCommand( const int unitID );
     virtual ~CaptureCommand();
     
-    bool changeContext( MapContext& mapContext );
-    void execute();
+    void execute( MapContext& context );
     void cancel();
 private:
     const int unitID;

@@ -51,7 +51,8 @@ void OnMoveState::handleInput(Input input, int id, Tile position)
             break;
         case CAPTURE_CLICKED:
         {
-            executeCommand(new CaptureCommand( *player->getMap(), player->getSelectedUnit()->getId() ));
+            executeCommand(new CaptureCommand(
+                                    player->getSelectedUnit()->getId() ));
             OnCommandState::handleInput(WAIT_CLICKED, -1, nullptr);
         }
             break;

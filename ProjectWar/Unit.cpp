@@ -21,6 +21,7 @@ Unit::Unit( const Unit& unit ) {
     this->hp = unit.getHP();
     this->attackRange = unit.getAttackRange();
     this->ownerID = unit.getOwnerID();
+    setid( unit.getId() );
 }
 
 Unit::~Unit() {

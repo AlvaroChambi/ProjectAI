@@ -460,19 +460,19 @@ TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
 
 TEST_F( ActionsProviderTest, sortActionsTest ) {
     Action* actionA0 = new Action;
-    MoveCommand* moveCommand0 = new MoveCommand( mockContext, 0, Point( 0, 0 ) );
+    MoveCommand* moveCommand0 = new MoveCommand( 0, Point( 0, 0 ) );
     actionA0->moveCommand = moveCommand0;
     
     Action* actionA1 = new Action;
-    MoveCommand* moveCommand1 = new MoveCommand( mockContext, 0, Point( 1, 0 ) );
+    MoveCommand* moveCommand1 = new MoveCommand( 0, Point( 1, 0 ) );
     actionA1->moveCommand = moveCommand1;
     
     Action* actionB0 = new Action;
-    MoveCommand* moveCommand2 = new MoveCommand( mockContext, 0, Point( 0, 1 ) );
+    MoveCommand* moveCommand2 = new MoveCommand( 0, Point( 0, 1 ) );
     actionB0->moveCommand = moveCommand2;
     
     Action* actionB1 = new Action;
-    MoveCommand* moveCommand3 = new MoveCommand( mockContext, 0, Point( 1, 1 ) );
+    MoveCommand* moveCommand3 = new MoveCommand( 0, Point( 1, 1 ) );
     actionB1->moveCommand = moveCommand3;
     
     std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };

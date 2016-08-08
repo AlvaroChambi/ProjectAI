@@ -18,12 +18,12 @@ Action::~Action() {
     
 }
 
-void Action::execute() {
+void Action::execute( MapContext& context ) {
     if( moveCommand != nullptr ) {
-        moveCommand->execute();
+        moveCommand->execute( context );
     }
     if( command != nullptr ) {
-        command->execute();
+        command->execute( context );
     }
 }
 

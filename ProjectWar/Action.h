@@ -27,10 +27,9 @@ class Action {
 public:
     
     Action();
-    
     ~Action();
     
-    void execute();
+    void execute( MapContext& context );
     void cancel();
     
     float getValue( const Evaluator&  evaluator,

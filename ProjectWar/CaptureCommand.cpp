@@ -9,8 +9,8 @@
 #include "CaptureCommand.h"
 #include "MapContext.h"
 
-CaptureCommand::CaptureCommand( MapContext& mapContext, const int unitID )
-: unitID( unitID ), mapContext( &mapContext ), executed( false ) {
+CaptureCommand::CaptureCommand( const int unitID )
+: unitID( unitID ), mapContext( nullptr ) {
     
 }
 
@@ -18,14 +18,14 @@ CaptureCommand::~CaptureCommand() {
 
 }
 
-bool CaptureCommand::changeContext( MapContext& mapContext ) {
-    if( !executed ) {
-        return true;
+void CaptureCommand::execute( MapContext& context ) {
+    if ( mapContext != nullptr ) {
+        throw IllegalStateException(
+                            "Command state not restored after execution" );
     }
-    return false;
-}
-
-void CaptureCommand::execute() {
+    
+    mapContext = &context;
+    
     Unit* unit = mapContext->getEntity( unitID );
     Building* building = mapContext->getStructure( unit->getPosition() );
     
@@ -49,4 +49,6 @@ void CaptureCommand::cancel() {
     
     building->setOwnerID( savedOwner) ;
     building->setCaptureValue( savedCaptureValue );
+    
+    mapContext = nullptr;
 }

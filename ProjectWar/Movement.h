@@ -18,7 +18,7 @@ class Movement : public Option {
 public:
     Movement();
     Movement( int numActions );
-    void execute();
+    void execute( MapContext& context );
     void cancel();
     virtual ~Movement();
     

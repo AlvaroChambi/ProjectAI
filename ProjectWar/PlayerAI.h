@@ -29,8 +29,8 @@ public:
     PlayerAI( int id );
     ~PlayerAI();
     
-    void play ( MapContext* mapContext );
-    void executeMinimax( MapContext* mapContext );
+    Movement* play ( MapContext* mapContext );
+    Movement* executeMinimax( MapContext* mapContext );
     
 private:
     MapContext* mapContext;

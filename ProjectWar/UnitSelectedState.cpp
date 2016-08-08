@@ -58,11 +58,11 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             Unit* unit = player->getSelectedUnit();
             
             if (unit->getPosition().onRange( position.position, unit->getMovement() ) ) {
-                Command* moveCommand = new MoveCommand(
-                            *player->getMap(), unit->getId() , position.position);
+                Command* moveCommand = new MoveCommand( unit->getId(),
+                                                        position.position);
                 map->cleanUnitAvailableArea( *unit );
                 //Always move before getting in the new state
-                moveCommand->execute();
+                moveCommand->execute( *player->getMap() );
                 player->updateState(new OnMoveState(player, player->getState(), moveCommand));
             }else{
                 player->updateState(new NothingSelectedState(player));
@@ -84,8 +84,8 @@ void UnitSelectedState::handleInput(Input input, int id, Tile position)
             break;
         case CAPTURE_CLICKED:
         {
-            CaptureCommand* captureCommand = new CaptureCommand(*player->getMap(), player->getSelectedUnit()->getId());
-            captureCommand->execute();
+            CaptureCommand* captureCommand = new CaptureCommand(player->getSelectedUnit()->getId());
+            captureCommand->execute(*player->getMap());
             handleInput(WAIT_CLICKED, -1, nullptr);
         }
             break;

@@ -18,8 +18,7 @@ class MapContext;
 class Command : public Option {
 public:
     virtual ~Command(){}
-    virtual bool changeContext( MapContext& mapContext ) = 0;
-    virtual void execute() = 0;
+    virtual void execute( MapContext& context ) = 0;
     virtual void cancel() = 0;
 };
 

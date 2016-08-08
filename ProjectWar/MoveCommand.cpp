@@ -10,10 +10,9 @@
 #include "MapContext.h"
 #include "GameException.h"
 
-MoveCommand::MoveCommand( MapContext& mapContext,
-                          const int unitID, const Point destination )
-: executed( false ), unitID( unitID ), destination( destination )
-, mapContext( mapContext ) {
+MoveCommand::MoveCommand( const int unitID, const Point destination )
+: unitID( unitID ), destination( destination ),
+ mapContext( nullptr ) {
 
 }
 
@@ -21,39 +20,32 @@ MoveCommand::~MoveCommand() {
 
 }
 
-bool MoveCommand::changeContext( MapContext& mapContext ) {
-    if( !executed ) {
-        this->mapContext = mapContext;
-        return true;
-    }
-    return false;
-}
-
-void MoveCommand::execute( ) {
-    Unit* unit = mapContext.getEntity( unitID );
-    savedPosition = unit->getPosition();
-    
-    if( executed ) {
+void MoveCommand::execute( MapContext& context ) {
+    if( this->mapContext != nullptr ) {
         throw IllegalStateException( "Command state was not restored after execution" );
     }
+    mapContext = &context;
+    
+    Unit* unit = mapContext->getEntity( unitID );
+    savedPosition = unit->getPosition();
+    
     if( unit->getPosition() != savedPosition ) {
         throw IllegalStateException( "Illegal unit position modification" );
     }
     if( unit->getPosition().onRange(
                                     destination, unit->getMovement() ) ) {
-        executed = true;
-        mapContext.moveEntity( *unit, destination );
-        unit->setPosition( mapContext.getTile( destination ) );
+        mapContext->moveEntity( *unit, destination );
+        unit->setPosition( mapContext->getTile( destination ) );
     }else {
         throw IllegalStateException( "Unit destination not on range" );
     }
 }
 
 void MoveCommand::cancel() {
-    executed = false;
-    Unit* unit = mapContext.getEntity( unitID );
-    mapContext.moveEntity( *unit, savedPosition );
-    unit->setPosition( mapContext.getTile( savedPosition ) );
+    Unit* unit = mapContext->getEntity( unitID );
+    mapContext->moveEntity( *unit, savedPosition );
+    unit->setPosition( mapContext->getTile( savedPosition ) );
+    mapContext = nullptr;
 }
 
 const int MoveCommand::getUnitID() const {

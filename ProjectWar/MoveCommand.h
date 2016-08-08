@@ -15,12 +15,11 @@
 #include "Unit.h"
 class MoveCommand : public Command {
 public:
-    MoveCommand( MapContext& mapContext,
-                 int unitID, const Point destination );
+    MoveCommand( int unitID, const Point destination );
     virtual ~MoveCommand();
     
-    bool changeContext( MapContext& mapContext );
-    void execute();
+    bool changeContext( MapContext& context );
+    void execute( MapContext& mapContext );
     void cancel();
     
     const Point& getDestination() const;
@@ -28,12 +27,11 @@ public:
     
     const int getUnitID() const;
 private:
-    MapContext& mapContext;
+    MapContext* mapContext;
     const int unitID;
     const Point destination;
     
     Point savedPosition;
-    bool executed;
 };
 
 #endif /* defined(__ProjectWar__MoveCommand__) */

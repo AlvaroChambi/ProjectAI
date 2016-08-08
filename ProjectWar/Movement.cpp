@@ -22,9 +22,9 @@ Movement::~Movement() {
 
 }
 
-void Movement::execute() {
+void Movement::execute( MapContext& context ) {
     for ( Action* action : actions ) {
-        action->execute();
+        action->execute( context );
     }
 }
 

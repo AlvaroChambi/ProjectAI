@@ -10,6 +10,7 @@
 #define MapContext_h
 
 #include "Tile.h"
+#include "MapLayer.h"
 
 #include <vector>
 

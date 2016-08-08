@@ -22,9 +22,6 @@ public:
     virtual int getNumRows() const = 0;
     virtual int getNumColumns() const = 0;
     
-    virtual const MapLayer<Unit*>& getEntitiesLayer() const = 0;
-    virtual const MapLayer<Building*>& getStructuresLayer() const = 0;
-    
     virtual bool isValidPosition( const Point& position ) const = 0;
     
     virtual Tile getTile( const Point& position) const= 0;
@@ -48,9 +45,6 @@ public:
     virtual const Player& getOpponent() const = 0;
     
     virtual const Player* getPlayer( const int id ) const = 0;
-    
-    virtual const Player& getPlayerCopy( MapContext& context ) const = 0;
-    virtual const Player& getOpponentCopy( MapContext& context ) const = 0;
 };
 
 #endif /* MapContext_h */

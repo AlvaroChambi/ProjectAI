@@ -52,10 +52,10 @@ TEST_F( MovementTest, addActionNewValueTest ) {
     MockMap mockMap;
     
     Action action0;
-    MoveCommand moveCommand0( mockMap, 0, Point( 0, 0 ) );
+    MoveCommand moveCommand0( 0, Point( 0, 0 ) );
     action0.moveCommand = &moveCommand0;
     Action action1;
-    MoveCommand moveCommand1( mockMap, 0, Point( 1, 0 ) );
+    MoveCommand moveCommand1( 0, Point( 1, 0 ) );
     action1.moveCommand = &moveCommand1;
     
     movement.addAction( action0 );
@@ -69,10 +69,10 @@ TEST_F( MovementTest, addActionRepeatedValueTest ) {
     MockMap mockMap;
     
     Action action0;
-    MoveCommand moveCommand0( mockMap, 0, Point( 0, 0 ) );
+    MoveCommand moveCommand0( 0, Point( 0, 0 ) );
     action0.moveCommand = &moveCommand0;
     Action action1;
-    MoveCommand moveCommand1( mockMap, 0, Point( 0, 0 ) );
+    MoveCommand moveCommand1( 0, Point( 0, 0 ) );
     action1.moveCommand = &moveCommand1;
     
     movement.addAction( action0 );

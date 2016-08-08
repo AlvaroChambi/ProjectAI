@@ -12,9 +12,10 @@
 #include "gmock/gmock.h"
 #include "Option.h"
 
+class MapContext;
 class MockOption : public  Option {
 public:
-    MOCK_METHOD0( execute, void() );
+    MOCK_METHOD1( execute, void( MapContext& context ) );
     MOCK_METHOD0( cancel, void() );
 };
 

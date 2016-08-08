@@ -33,8 +33,6 @@ public:
     typedef std::vector< std::vector<Tile*> > TileMap;
     Map( const Player& player, const Player& opponent );
     Map( const Map& context );
-    MapLayer<Unit*> copyEntities( const MapContext& context ) const;
-    MapLayer<Building*> copyStructures( const MapContext& context ) const;
     
     //Width and height in tiles
     void loadMap( Renderer* renderer, int width, int height );

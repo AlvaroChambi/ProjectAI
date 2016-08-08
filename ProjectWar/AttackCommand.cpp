@@ -9,23 +9,20 @@
 #include "AttackCommand.h"
 #include "Map.h"
 
-AttackCommand::AttackCommand( MapContext& mapContext,
-                              const int unitID, const int targetID )
-: unitID( unitID ), targetID( targetID ), mapContext( mapContext ),
- executed( false ) {
+AttackCommand::AttackCommand( const int unitID, const int targetID )
+: unitID( unitID ), targetID( targetID ), mapContext( nullptr ) {
 
 }
 
-bool AttackCommand::changeContext( MapContext &mapContext ) {
-    if ( !executed ) {
-        this->mapContext = mapContext;
+void AttackCommand::execute( MapContext& context ) {
+    if( mapContext != nullptr ) {
+        throw IllegalStateException(
+                            "Command state not restored after execution");
     }
-    return false;
-}
-
-void AttackCommand::execute() {
-    Unit* unit = mapContext.getEntity( unitID );
-    Unit* targetUnit = mapContext.getEntity( targetID );
+    mapContext = &context;
+    
+    Unit* unit = mapContext->getEntity( unitID );
+    Unit* targetUnit = mapContext->getEntity( targetID );
     
     savedUnit = unit;
     savedTarget = targetUnit;
@@ -38,39 +35,38 @@ void AttackCommand::execute() {
         if ( targetUnit->getHP() <= 0 ) {
             targetUnit->setHP( 0 );
             targetUnit->updateState();
-            mapContext.removeUnit( *targetUnit );
+            mapContext->removeUnit( *targetUnit );
         }
         
         if( unit->getHP() <= 0 ) {
             unit->setHP( 0 );
             unit->updateState();
-            mapContext.removeUnit( *unit );
+            mapContext->removeUnit( *unit );
         }
         
         updateHP( targetUnit, unit );
         if ( unit->getHP() <= 0 ) {
             unit->setHP( 0 );
             unit->updateState();
-            mapContext.removeUnit( *unit );
+            mapContext->removeUnit( *unit );
         }
         
         if( targetUnit->getHP() <= 0 ) {
             targetUnit->setHP( 0 );
             targetUnit->updateState();
-            mapContext.removeUnit( *targetUnit );
+            mapContext->removeUnit( *targetUnit );
         }
     }
-    executed = true;
 }
 
 void AttackCommand::cancel() {
     if( savedTarget != nullptr ) {
         if( savedUnit->getHP() == 0 ) {
-            mapContext.restoreUnit( *savedUnit );
+            mapContext->restoreUnit( *savedUnit );
         }
         
         if ( savedTarget->getHP() == 0 ) {
-            mapContext.restoreUnit( *savedTarget );
+            mapContext->restoreUnit( *savedTarget );
         }
         savedUnit->setHP( savedUnitHP );
         savedTarget->setHP( savedTargetHP );
@@ -78,7 +74,9 @@ void AttackCommand::cancel() {
         savedUnit->updateState();
         savedTarget->updateState();
     }
-    executed = false;
+    mapContext = nullptr;
+    savedUnit = nullptr;
+    savedTarget = nullptr;
 }
 
 void AttackCommand::updateHP( Unit* attacker, Unit* attacked ) {

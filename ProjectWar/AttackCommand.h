@@ -15,13 +15,10 @@
 
 class AttackCommand : public Command {
 public:
-    AttackCommand( MapContext& mapContext,
-                   const int unitID, const int targetID );
+    AttackCommand( const int unitID, const int targetID );
     
-    bool changeContext( MapContext& mapContext );
+    void execute( MapContext& context );
     void cancel();
-    void execute();
-    
 private:
     int unitID;
     int targetID;
@@ -29,12 +26,10 @@ private:
     Unit* savedUnit;
     Unit* savedTarget;
     
-    MapContext& mapContext;
+    MapContext* mapContext;
     
     int savedUnitHP;
     int savedTargetHP;
-    
-    bool executed;
     
     void updateHP(Unit* attacker, Unit* attacked);
 };

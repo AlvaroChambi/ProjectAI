@@ -18,15 +18,13 @@ class Movement : public Option {
 public:
     Movement();
     Movement( int numActions );
-    void execute();
+    void execute( MapContext& context );
     void cancel();
     virtual ~Movement();
     
     void reserve( int numActions );
     bool addAction( Action& action );
     bool contains( const Action& action ) const;
-    
-    void updateContext( MapContext& context );
     
     const std::vector<Action*>& getActions() const;
 private:

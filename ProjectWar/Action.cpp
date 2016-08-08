@@ -18,12 +18,12 @@ Action::~Action() {
     
 }
 
-void Action::execute() {
+void Action::execute( MapContext& context ) {
     if( moveCommand != nullptr ) {
-        moveCommand->execute();
+        moveCommand->execute( context );
     }
     if( command != nullptr ) {
-        command->execute();
+        command->execute( context );
     }
 }
 
@@ -34,16 +34,6 @@ void Action::cancel() {
     if( moveCommand != nullptr ) {
         moveCommand->cancel();
     }
-}
-
-void Action::updateContext( MapContext &context ) {
-    if( command != nullptr ) {
-        command->changeContext( context );
-    }
-    if( moveCommand != nullptr ) {
-        moveCommand->changeContext( context );
-    }
-
 }
 
 bool Action::operator==( const Action& action ) const {

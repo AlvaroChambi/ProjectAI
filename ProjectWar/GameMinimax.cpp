@@ -42,7 +42,7 @@ std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {
 }
 
 void GameMinimax::processMove( Option *move ) {
-    move->execute();
+    move->execute( mapContext );
 }
 
 void GameMinimax::unprocessMove( Option *move ) {

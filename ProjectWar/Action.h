@@ -27,18 +27,15 @@ class Action {
 public:
     
     Action();
-    
     ~Action();
     
-    void execute();
+    void execute( MapContext& context );
     void cancel();
     
     float getValue( const Evaluator&  evaluator,
                     const MapContext& context );
     
     bool operator==( const Action& action ) const ;
-    
-    void updateContext( MapContext& context );
     
     MoveCommand* moveCommand;
     Command* command;

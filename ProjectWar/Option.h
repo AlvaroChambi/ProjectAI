@@ -9,10 +9,11 @@
 #ifndef ProjectWar_Option_h
 #define ProjectWar_Option_h
 
+class MapContext;
 class Option
 {
 public:
-    virtual void execute() = 0;
+    virtual void execute( MapContext& context ) = 0;
     virtual void cancel() = 0;
 };
 

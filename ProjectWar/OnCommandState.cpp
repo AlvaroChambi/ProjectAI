@@ -58,6 +58,7 @@ void OnCommandState::cancelCommand()
 
 void OnCommandState::executeCommand(Command *command)
 {
+    Player* player = (Player*) model;
     this->command = command;
-    command->execute();
+    command->execute( *player->getMap() );
 }

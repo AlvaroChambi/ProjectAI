@@ -22,9 +22,9 @@ Movement::~Movement() {
 
 }
 
-void Movement::execute() {
+void Movement::execute( MapContext& context ) {
     for ( Action* action : actions ) {
-        action->execute();
+        action->execute( context );
     }
 }
 
@@ -50,12 +50,6 @@ bool Movement::contains( const Action& action ) const {
         }
     }
     return false;
-}
-
-void Movement::updateContext( MapContext &context ) {
-    for ( Action* action : actions ) {
-        action->updateContext( context );
-    }
 }
 
 //will not add the actions if there is already one that targets the same tile

@@ -15,6 +15,10 @@
 
 #include <cmath>
 
+#ifdef _WIN32
+#include <algorithm>
+#endif
+
 ActionsProvider::ActionsProvider( MapContext& mapContext )
 : mapContext( mapContext ) {
 

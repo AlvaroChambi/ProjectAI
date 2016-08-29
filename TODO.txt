@@ -1,0 +1,10 @@
+﻿- Menú inicial: botón jugar que pasa a acción
+
+- Ventana juego: indicador turno, nº edificios, nº unidades.
+
+- Rendimiento IA
+- Extraer valores de configuración a fichero 
+- Crear unidades desde el edificio fábrica. Número de edificios en total: base, edificio normal y fábrica.
+
+- Animaciones de sprites
+- Assets para UI y ejercitos.

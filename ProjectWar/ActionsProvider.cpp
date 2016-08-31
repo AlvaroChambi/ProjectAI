@@ -135,7 +135,8 @@ std::vector<Option*>& ActionsProvider::mapVariations(
         for ( int j = 0; j < actionIDs.size(); j++ ) {
             int actionID = actionIDs.at( j );
             int key = actionID + j*numActions;
-            movement->addAction( *actions[key] ); 
+            movement->addAction( *actions[key] );
+            movement->data = actions;
         }
         movements->push_back( movement );
     }

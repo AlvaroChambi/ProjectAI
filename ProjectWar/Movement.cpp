@@ -19,7 +19,11 @@ Movement::Movement( int numActions ) {
 }
 
 Movement::~Movement() {
-
+    std::cout << "Dellocated Movement" << std::endl;
+    for ( Action* action : actions ) {
+        delete action;
+    }
+    actions.clear();
 }
 
 void Movement::execute( MapContext& context ) {

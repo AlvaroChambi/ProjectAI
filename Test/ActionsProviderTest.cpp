@@ -383,8 +383,8 @@ TEST_F( ActionsProviderTest, mapVariationsTest ) {
     std::vector<int> var7 = { 2, 1 };
     std::vector<int> var8 = { 2, 2 };
     
-    std::vector<std::vector<int>> variations = { var0, var1, var2, var3, var4, var5,
-                                                 var6, var7, var8 };
+    std::vector<std::vector<int>> variations = { var0, var1, var2, var3, var4,
+                                                 var5, var6, var7, var8 };
     Action* actionA0 = new Action;
     Action* actionA1 = new Action;
     Action* actionA2 = new Action;
@@ -458,46 +458,46 @@ TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
                                                       variations, actions ) );
 }
 
-TEST_F( ActionsProviderTest, sortActionsTest ) {
-    Action* actionA0 = new Action;
-    MoveCommand* moveCommand0 = new MoveCommand( 0, Point( 0, 0 ) );
-    actionA0->moveCommand = moveCommand0;
-    
-    Action* actionA1 = new Action;
-    MoveCommand* moveCommand1 = new MoveCommand( 0, Point( 1, 0 ) );
-    actionA1->moveCommand = moveCommand1;
-    
-    Action* actionB0 = new Action;
-    MoveCommand* moveCommand2 = new MoveCommand( 0, Point( 0, 1 ) );
-    actionB0->moveCommand = moveCommand2;
-    
-    Action* actionB1 = new Action;
-    MoveCommand* moveCommand3 = new MoveCommand( 0, Point( 1, 1 ) );
-    actionB1->moveCommand = moveCommand3;
-    
-    std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
-    
-    MockEvaluator mockEvaluator;
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA0, testing::_ ) )
-    .WillRepeatedly( testing::Return( 2 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA1, testing::_ ) )
-    .WillRepeatedly( testing::Return( 0 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB0, testing::_ ) )
-    .WillRepeatedly( testing::Return( 5 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB1, testing::_ ) )
-    .WillRepeatedly( testing::Return( 3 ) );
-    
-    actionsProvider->sortActions( actions, mockEvaluator );
-    
-    ASSERT_EQ( actionA1, actions.at( 3 ) );
-    ASSERT_EQ( actionA0, actions.at( 2 ) );
-    ASSERT_EQ( actionB1, actions.at( 1 ) );
-    ASSERT_EQ( actionB0, actions.at( 0 ) );
-}
+//TEST_F( ActionsProviderTest, sortActionsTest ) {
+//    Action* actionA0 = new Action;
+//    MoveCommand* moveCommand0 = new MoveCommand( 0, Point( 0, 0 ) );
+//    actionA0->moveCommand = moveCommand0;
+//    
+//    Action* actionA1 = new Action;
+//    MoveCommand* moveCommand1 = new MoveCommand( 0, Point( 1, 0 ) );
+//    actionA1->moveCommand = moveCommand1;
+//    
+//    Action* actionB0 = new Action;
+//    MoveCommand* moveCommand2 = new MoveCommand( 0, Point( 0, 1 ) );
+//    actionB0->moveCommand = moveCommand2;
+//    
+//    Action* actionB1 = new Action;
+//    MoveCommand* moveCommand3 = new MoveCommand( 0, Point( 1, 1 ) );
+//    actionB1->moveCommand = moveCommand3;
+//    
+//    std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
+//    
+//    MockEvaluator mockEvaluator;
+//    
+//    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA0, testing::_ ) )
+//    .WillRepeatedly( testing::Return( 2 ) );
+//    
+//    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA1, testing::_ ) )
+//    .WillRepeatedly( testing::Return( 0 ) );
+//    
+//    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB0, testing::_ ) )
+//    .WillRepeatedly( testing::Return( 5 ) );
+//    
+//    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB1, testing::_ ) )
+//    .WillRepeatedly( testing::Return( 3 ) );
+//    
+//    actionsProvider->sortActions( actions, mockEvaluator );
+//    
+//    ASSERT_EQ( actionA1, actions.at( 3 ) );
+//    ASSERT_EQ( actionA0, actions.at( 2 ) );
+//    ASSERT_EQ( actionB1, actions.at( 1 ) );
+//    ASSERT_EQ( actionB0, actions.at( 0 ) );
+//}
 
 TEST_F( ActionsProviderTest, generateVariationsTest ) {
     std::vector<std::vector<int>> variations;

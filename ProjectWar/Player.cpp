@@ -29,6 +29,7 @@ Player::Player( const Player& player ) {
 }
 
 Player::~Player() {
+    std::cout << "player deleted";
     army.clear();
 }
 

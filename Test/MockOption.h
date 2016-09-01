@@ -15,7 +15,6 @@
 class MapContext;
 class MockOption : public  Option {
 public:
-    virtual ~MockOption(){}
     MOCK_METHOD1( execute, void( MapContext& context ) );
     MOCK_METHOD0( cancel, void() );
 };

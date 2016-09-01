@@ -15,13 +15,7 @@ Action::Action()
 }
 
 Action::~Action() {
-    std::cout << "Dellocated Action: score: " << score << std::endl;
-    if(moveCommand != nullptr) {
-        delete moveCommand;
-    }
-    if(command != nullptr){
-        delete command;
-    }
+    
 }
 
 void Action::execute( MapContext& context ) {

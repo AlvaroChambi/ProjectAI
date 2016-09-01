@@ -76,12 +76,6 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             }
         }
     }
-    for ( Option* option : moves ) {
-        moves.empty();
-        delete option;
-    }
-    moves.clear();
-    
     return bestSoFar;
 }
 

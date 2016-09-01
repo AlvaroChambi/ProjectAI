@@ -13,7 +13,6 @@ class MapContext;
 class Option
 {
 public:
-    virtual ~Option() {}
     virtual void execute( MapContext& context ) = 0;
     virtual void cancel() = 0;
 };

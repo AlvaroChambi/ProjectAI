@@ -11,7 +11,7 @@
 
 SpriteFactory::SpriteFactory() : idCount(0)
 {
-
+    std::cout << "Sprite factory" << std::endl;
 }
 
 SpriteFactory::~SpriteFactory()

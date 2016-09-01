@@ -87,7 +87,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
                 Movement* movement = playerAI->play( copyContext );
                 
                 if( movement != nullptr ) {
-                    movement->execute( *mapContext );
+                    //movement->execute( *mapContext );
                 }
                 
                 this->onUIComponentClicked(new Button(END_BUTTON));
@@ -192,20 +192,20 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     player->addUnit( *unit4 );
     
     ///////////  PLAYER 2 UNITS ///////////
-    Unit* unit2 = new Unit();
-    unit2->setResource("soldier_blue.png");
-    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
-    unit2->setMovement(3);
-    unit2->setAttackRange(1);
-    unit2->setHP(10);
-    unit2Sprite->setModel(unit2);
-    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 128, 90);
-    unit2Sprite->setTexture(unit2Texture);
-    unit2Sprite->resize(40, 40);
-    unit2->setPosition(map->getTile(Point(13,9)));
-    
-    map->addEntity( *unit2 );
-    player2->addUnit( *unit2 );
+//    Unit* unit2 = new Unit();
+//    unit2->setResource("soldier_blue.png");
+//    Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
+//    unit2->setMovement(3);
+//    unit2->setAttackRange(1);
+//    unit2->setHP(10);
+//    unit2Sprite->setModel(unit2);
+//    Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 128, 90);
+//    unit2Sprite->setTexture(unit2Texture);
+//    unit2Sprite->resize(40, 40);
+//    unit2->setPosition(map->getTile(Point(13,9)));
+//    
+//    map->addEntity( *unit2 );
+//    player2->addUnit( *unit2 );
     
     Unit* unit5 = new Unit();
     unit5->setResource("soldier_blue.png");
@@ -246,7 +246,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     //register game and player controller as an scene events listener
     scene->attachMap(map);
     
-    scene->attachSprite(unit2Sprite);
+    //scene->attachSprite(unit2Sprite);
     scene->attachSprite(unitSprite3);
     scene->attachSprite(unitSprite4);
     scene->attachSprite(unitSprite5);

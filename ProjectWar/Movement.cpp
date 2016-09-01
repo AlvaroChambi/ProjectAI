@@ -10,16 +10,20 @@
 
 #include <algorithm>
 
+static int NUM_MOVEMENTS = 0;
+
 Movement::Movement() {
-    
+    std::cout <<        "Movements allocated: " << ++NUM_MOVEMENTS << std::endl;
 }
 
 Movement::Movement( int numActions ) {
     reserve( numActions );
+    std::cout  <<       "Movements allocated: " << ++NUM_MOVEMENTS << std::endl;
 }
 
 Movement::~Movement() {
-
+    actions.clear();
+    std::cout  <<       "Movements dellocated: " << --NUM_MOVEMENTS << std::endl ;
 }
 
 void Movement::execute( MapContext& context ) {

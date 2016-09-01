@@ -3,12 +3,13 @@
 
 #include "Option.h"
 #include <vector>
+#include "MovementsList.h"
 
 class Minimax {
 public:
     virtual int getGameOverScore() = 0;
     virtual int getStaticEvaluation() = 0;
-    virtual std::vector<Option*> getMovesList( const bool maximize ) = 0;
+    virtual MovementsList& getMovesList( const bool maximize ) = 0;
     virtual void processMove(Option* move) = 0;
     virtual void unprocessMove(Option* move) = 0;
     virtual int minimaxMin( const int bestSoFar, const int score ) = 0;

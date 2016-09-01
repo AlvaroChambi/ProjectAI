@@ -9,13 +9,23 @@
 #include "Action.h"
 #include "MoveCommand.h"
 
+static int NUMACTIONS = 0;
+
 Action::Action()
 : moveCommand( nullptr ), command( nullptr ), score( NULL_SCORE ) {
-
+    NUMACTIONS++;
+    std::cout << "Allocated Actions: " << NUMACTIONS <<std::endl;
 }
 
 Action::~Action() {
-    
+    NUMACTIONS--;
+    std::cout << "      Dellocated Action: " << NUMACTIONS << std::endl;
+    if(moveCommand != nullptr) {
+        delete moveCommand;
+    }
+    if(command != nullptr){
+        delete command;
+    }
 }
 
 void Action::execute( MapContext& context ) {

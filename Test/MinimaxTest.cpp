@@ -20,12 +20,10 @@ public:
     }
     
     virtual void TearDown() {
-        //moves.clear();
+
     }
     std::vector<Option*> moves;
-    //MockMovementsList* mockMoves;
     MovementsList* mockMoves;
-    MockOption option;
     MinimaxAlgorithm* minimax;
     MockMinimax mockMinimax;
     MockGraphLogger mockGraphLogger;
@@ -60,7 +58,7 @@ TEST_F( MinimaxTest, MinimaxMaximizePlyReachedTest ) {
     EXPECT_CALL( mockMinimax , getStaticEvaluation() )
     .WillOnce( Return( 10 ) );
     
-    moves.push_back( &option );
+    moves.push_back( new MockOption );
     mockMoves->setMovementsVector( moves );
     
     EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
@@ -75,43 +73,46 @@ TEST_F( MinimaxTest, MinimaxMaximizePlyReachedTest ) {
     ASSERT_EQ( 20, minimax->minimax( ply, -100, +100, maximaze ) );
 }
 
-//TEST_F( MinimaxTest, MinimaxMinimizePlyReachedTest ) {
-//    bool maximaze = false;
-//    EXPECT_CALL( mockMinimax , getStaticEvaluation() )
-//    .WillOnce( Return( 10 ) );
-//    
-//    moves.push_back( &option );
-//    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-//    .WillOnce( testing::Return( moves ) );
-//    
-//    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, 10 ) )
-//    .WillOnce( testing::Return( 20 ) );
-//    
-//    int ply = 1;
-//    
-//    ASSERT_EQ( 20, minimax->minimax( ply, -100, +100, maximaze ) );
-//}
-//
-//TEST_F( MinimaxTest, MinimaxAlphaValueHigherUpdatePrun ) {
-//    bool maximaze = true;
-//    
-//    moves.push_back( &option );
-//    moves.push_back( &option );
-//    
-//    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
-//    .WillOnce( testing::Return( moves ) );
-//    
-//    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-//                                         testing::_, testing::_, testing::_ ) )
-//    .WillOnce( testing::Return( 5 ) );
-//    
-//    int ply = 1;
-//    int alpha = 20;
-//    int beta = 10;
-//    
-//    ASSERT_EQ( 5, minimax->minimax( ply, alpha, beta, maximaze ) );
-//}
-//
+TEST_F( MinimaxTest, MinimaxMinimizePlyReachedTest ) {
+    bool maximaze = false;
+    EXPECT_CALL( mockMinimax , getStaticEvaluation() )
+    .WillOnce( Return( 10 ) );
+    
+    moves.push_back( new MockOption );
+    mockMoves->setMovementsVector( moves );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( *mockMoves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, 10 ) )
+    .WillOnce( testing::Return( 20 ) );
+    
+    int ply = 1;
+    
+    ASSERT_EQ( 20, minimax->minimax( ply, -100, +100, maximaze ) );
+}
+
+TEST_F( MinimaxTest, MinimaxAlphaValueHigherUpdatePrun ) {
+    bool maximaze = true;
+    
+    moves.push_back( new MockOption );
+    moves.push_back( new MockOption );
+    mockMoves->setMovementsVector( moves );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( maximaze ) )
+    .WillOnce( testing::ReturnRef( *mockMoves ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                         testing::_, testing::_, testing::_ ) )
+    .WillOnce( testing::Return( 5 ) );
+    
+    int ply = 1;
+    int alpha = 20;
+    int beta = 10;
+    
+    ASSERT_EQ( 5, minimax->minimax( ply, alpha, beta, maximaze ) );
+}
+
 //TEST_F( MinimaxTest, MinimaxAlphaValueEqualUpdatePrun ) {
 //    bool maximaze = true;
 //    

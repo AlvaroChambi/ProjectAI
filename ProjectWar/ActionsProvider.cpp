@@ -19,9 +19,25 @@
 #include <algorithm>
 #endif
 
+std::unordered_map<int, std::vector<std::vector<int>>> ActionsProvider::variations;
+
+
+
 ActionsProvider::ActionsProvider( MapContext& mapContext )
 : mapContext( mapContext ) {
 
+}
+
+void ActionsProvider::init() {
+
+	for ( int i = 1; i <= 3; i++ ) {
+		std::vector<std::vector<int>>* v = new std::vector<std::vector<int>>;
+		v->reserve(4);
+		std::vector<int> variation(i);
+		generateVariations(v, 4, variation, 0);
+		variations[i] = *v;
+		delete v;
+	}
 }
 
 std::vector<Option*>& ActionsProvider::generateMovements(
@@ -145,17 +161,23 @@ std::vector<Option*>& ActionsProvider::mapVariations(
 
 std::vector<std::vector<int>>& ActionsProvider::generateVariations(
                                          int numActions, int numUnits ) const {
-    std::vector<std::vector<int>>* variations = new std::vector<std::vector<int>>;
-    variations->reserve( numActions );
-    std::vector<int> variation( numUnits );
-    generateVariations( variations, numActions, variation, 0 );
-    
-    return *variations;
+	// look for a pre-calculated variation, if it doesn´t exist, create a new one
+	auto iterator = ActionsProvider::variations.find(numUnits);
+	if ( iterator != ActionsProvider::variations.end() ) {
+		return iterator->second;
+	} else {
+		std::vector<std::vector<int>>* v = new std::vector<std::vector<int>>;
+		v->reserve(numActions);
+		std::vector<int> variation(numUnits);
+		generateVariations(v, numActions, variation, 0);
+		ActionsProvider::variations[numUnits] = *v;
+		return ActionsProvider::variations[numUnits];
+	}
 }
 
 void ActionsProvider::generateVariations( std::vector<std::vector<int>> *sequence,
                          int numElements, std::vector<int> variation,
-                         int count ) const {
+                         int count ) {
     if( count < variation.size() ){
         for( int i = 0; i < numElements; i++ ) {
             variation[count] = i;

@@ -9,6 +9,8 @@
 #ifndef ActionsProvider_h
 #define ActionsProvider_h
 
+#include <unordered_map>
+
 #include "MapContext.h"
 #include "Evaluator.h"
 #include "ActionsBuilder.h"
@@ -16,6 +18,8 @@
 
 class ActionsProvider {
 public:
+	static void init();
+
     ActionsProvider( MapContext& context );
     
     std::vector<Option*>& generateMovements( int playerID,
@@ -32,16 +36,19 @@ public:
                         const int numActions,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) const;
-    
-    std::vector<std::vector<int>>& generateVariations(
-                                        int numActions, int numUnits ) const;
+
 private:
-    void generateVariations( std::vector<std::vector<int>> *sequence,
-                            int numElements, std::vector<int> variation,
-                            int count ) const;
-    
-    MapContext& mapContext;
-    ActionsBuilder actionsBuilder;
+	static std::unordered_map<int, std::vector<std::vector<int>>> variations;
+
+	static void generateVariations(std::vector<std::vector<int>> *sequence,
+		int numElements, std::vector<int> variation,
+		int count);
+
+	MapContext& mapContext;
+	ActionsBuilder actionsBuilder;
+
+	std::vector<std::vector<int>>& generateVariations(
+		int numActions, int numUnits) const;
 };
 
 #endif /* ActionsProvider_h */

@@ -8,6 +8,7 @@
 
 #include "ProjectAI.h"
 #include "UnitUIView.h"
+#include "ActionsProvider.h"
 #include "PlayerAI.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
@@ -116,6 +117,7 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
     button->setImageResource("end_button.bmp");
     
     //Load map data model and view resources
+	ActionsProvider::init();
     Player* player = new Player();
     PlayerAI* player2 = new PlayerAI( 1 );
     

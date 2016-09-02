@@ -15,12 +15,14 @@
 
 class MovementsList {
 public:
+    MovementsList();
     MovementsList( std::vector<Action*>& actions );
-    ~MovementsList();
+    virtual ~MovementsList();
     
     void addMovement( Movement& movement );
     void reserve( int size );
     std::vector<Option*> getMovementsVector() const;
+    void setMovementsVector( std::vector<Option*>& options );
 private:
     std::vector<Option*> movements;
     std::vector<Action*>& actions;

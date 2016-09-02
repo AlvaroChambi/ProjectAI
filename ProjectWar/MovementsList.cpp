@@ -13,6 +13,10 @@ MovementsList::MovementsList( std::vector<Action*>& actions )
 
 }
 
+MovementsList::MovementsList() : actions( *new std::vector<Action*> ) {
+
+}
+
 MovementsList::~MovementsList() {
     //std::cout << "Dellocated moves list" << std::endl;
     for ( Option* movement : movements ) {
@@ -29,6 +33,10 @@ MovementsList::~MovementsList() {
 
 std::vector<Option*> MovementsList::getMovementsVector() const {
     return movements;
+}
+
+void MovementsList::setMovementsVector( std::vector<Option *> &options ) {
+    this->movements = options;
 }
 
 void MovementsList::reserve( int size ) {

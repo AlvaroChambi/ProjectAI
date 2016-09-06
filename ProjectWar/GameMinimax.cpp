@@ -31,7 +31,7 @@ int GameMinimax::getStaticEvaluation() {
 }
 
 MovementsList& GameMinimax::getMovesList( const bool maximize ) {
-    int numActions = 2;
+    int numActions = 3;
     if ( maximize ) {
         return actionsProvider.generateMovements( mapContext.getPlayer().getId(),
                                                   numActions );

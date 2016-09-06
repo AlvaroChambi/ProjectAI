@@ -30,6 +30,53 @@ public:
     MockGraphLogger mockGraphLogger;
 };
 
+TEST_F( MinimaxTest, MinimaxPly2IterationTest ) {
+    bool maximaze = true;
+    
+    MovementsList* mockMoves0 = new MovementsList;
+    MovementsList* mockMoves1 = new MovementsList;
+    MovementsList* mockMoves2 = new MovementsList;
+    
+    moves.push_back( new MockOption );
+    moves.push_back( new MockOption );
+    mockMoves0->setMovementsVector( moves );
+    
+    std::vector<Option*> moves1;
+    std::vector<Option*> moves3;
+    
+    moves1.push_back( new MockOption );
+    mockMoves1->setMovementsVector( moves1 );
+    
+    moves3.push_back( new MockOption );
+    moves3.push_back( new MockOption );
+    moves3.push_back( new MockOption );
+    mockMoves2->setMovementsVector( moves3 );
+    
+    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
+                                         testing::_, testing::_, testing::_ ) )
+    .Times( 2 )
+    .WillRepeatedly( testing::Return( 20 ) );
+    
+    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
+    .Times( 4 )
+    .WillRepeatedly( testing::Return( 50 ) );
+    
+    EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
+    .Times( 3 )
+    .WillOnce( testing::ReturnRef( *mockMoves0 ) )
+    .WillOnce( testing::ReturnRef( *mockMoves1 ) )
+    .WillOnce( testing::ReturnRef( *mockMoves2 ) );
+    
+    int ply = 2;
+    int alpha = 40;
+    int beta = 50;
+    minimax->setDebugLogger( new DotBuilder );
+    minimax->minimax( ply, alpha, beta, maximaze );
+    ASSERT_EQ( "0--1--2\n1--0--5--6\n5--8\n5--10\n" ,
+              minimax->getGraphLog() );
+}
+
+
 TEST_F( MinimaxTest, MinimaxReachGameOverTest ) {
     EXPECT_CALL( mockMinimax , getGameOverScore() )
     .WillOnce( Return( 10 ) );
@@ -220,51 +267,9 @@ TEST_F( MinimaxTest, MinimaxLoggerTestPly1 ) {
     ASSERT_EQ( "0--1\n0--3\n", minimax->getGraphLog() );
 }
 
-TEST_F( MinimaxTest, MinimaxPly2IterationTest ) {
-    bool maximaze = true;
-    
-    MovementsList* mockMoves0 = new MovementsList;
-    MovementsList* mockMoves1 = new MovementsList;
-    MovementsList* mockMoves2 = new MovementsList;
-    
-    moves.push_back( new MockOption );
-    moves.push_back( new MockOption );
-    mockMoves0->setMovementsVector( moves );
-    
-    std::vector<Option*> moves1;
-    std::vector<Option*> moves3;
-    
-    moves1.push_back( new MockOption );
-    mockMoves1->setMovementsVector( moves1 );
-    
-    moves3.push_back( new MockOption );
-    moves3.push_back( new MockOption );
-    moves3.push_back( new MockOption );
-    mockMoves2->setMovementsVector( moves3 );
-    
-    EXPECT_CALL( mockMinimax, minimaxMax( testing::_, testing::_,
-                                         testing::_, testing::_, testing::_ ) )
-    .Times( 2 )
-    .WillRepeatedly( testing::Return( 20 ) );
-    
-    EXPECT_CALL( mockMinimax, minimaxMin( testing::_, testing::_ ) )
-    .Times( 4 )
-    .WillRepeatedly( testing::Return( 50 ) );
-    
-    EXPECT_CALL( mockMinimax , getMovesList( testing::_ ) )
-    .Times( 3 )
-    .WillOnce( testing::ReturnRef( *mockMoves0 ) )
-    .WillOnce( testing::ReturnRef( *mockMoves1 ) )
-    .WillOnce( testing::ReturnRef( *mockMoves2 ) );
-    
-    int ply = 2;
-    int alpha = 40;
-    int beta = 50;
-    minimax->setDebugLogger( new DotBuilder );
-    minimax->minimax( ply, alpha, beta, maximaze );
-    ASSERT_EQ( "0--1--2\n1--0--5--6\n5--8\n5--10\n" ,
-              minimax->getGraphLog() );
-}
+///////////////
+
+////////////////
 
 TEST_F( MinimaxTest, MinimaxPly2PruneIterationTest ) {
     bool maximaze = true;

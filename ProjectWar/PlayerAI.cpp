@@ -50,7 +50,7 @@ Movement* PlayerAI::executeMinimax( MapContext* mapContext ) {
     MinimaxAlgorithm* algorithm = new MinimaxAlgorithm( gameMinimax );
     DotBuilder logger;
     algorithm->setDebugLogger( &logger );
-    algorithm->minimax( 2 );
+    algorithm->minimax( 4 );
     std::cout << "nodes evaluated:  " << logger.getIndex() << std::endl;
     Movement* movement = (Movement*)algorithm->getBestMove();
     return movement;

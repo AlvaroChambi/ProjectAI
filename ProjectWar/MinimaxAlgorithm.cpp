@@ -43,6 +43,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     
     //TODO: options memory cleanup
     MovementsList& movesList = miniMax->getMovesList( maximize );
+    //std::cout << "Reserved: " << movesList.getMovementsVector().size() << std::endl;
     std::vector<Option*> moves = movesList.getMovementsVector();
     
     int bestSoFar = INFINITE;
@@ -72,6 +73,8 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             if( graphLogger != nullptr ) {
                 graphLogger->nextPath();
             }
+            //std::cout << "Deleted: " << movesList.getMovementsVector().size() << std::endl;
+            delete &movesList;
             return bestSoFar;
         } else {
             if( graphLogger != nullptr ) {
@@ -80,6 +83,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         }
     }
     
+    //std::cout << "Deleted: " << movesList.getMovementsVector().size() << std::endl;
     delete &movesList;
     //moves.clear();
     

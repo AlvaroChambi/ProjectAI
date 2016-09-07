@@ -37,7 +37,7 @@ float ActionEvaluator::evaluateValues( const float headquarterInfluence,
                                     const float enemyHeadquarterInfluence,
                                     const float alliesInfluence,
                                     const float opponentsInfluence ) const {
-    float headquaterWight, opponentHeadquarterWeight, alliesWeight, opponentsWeight;
+    float headquaterWight = 0, opponentHeadquarterWeight = 0, alliesWeight = 0, opponentsWeight = 0;
     if( headquarterInfluence != 0 ) {
         headquaterWight = 1/headquarterInfluence;
     }

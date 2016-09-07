@@ -8,11 +8,11 @@
 #include "DotPath.h"
 
 DotPath::DotPath() {
-
+    
 }
 
 DotPath::~DotPath() {
-
+    nodes.clear();
 }
 
 void DotPath::addNode( std::string nodeKey ) {
@@ -41,7 +41,10 @@ DotFile::DotFile() {
 }
 
 DotFile::~DotFile() {
-
+    for ( DotPath* path : paths) {
+        delete path;
+    }
+    paths.clear();
 }
 
 void DotFile::addPath( DotPath *dotPath ) {
@@ -64,7 +67,7 @@ DotBuilder::DotBuilder() : index( 0 ) {
 }
 
 DotBuilder::~DotBuilder() {
-
+    delete dotFile;
 }
 
 DotFile* DotBuilder::getDotFile() {

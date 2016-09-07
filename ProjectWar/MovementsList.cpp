@@ -29,6 +29,8 @@ MovementsList::~MovementsList() {
     
     movements.clear();
     actions.clear();
+    
+    delete &actions;
 }
 
 std::vector<Option*> MovementsList::getMovementsVector() const {

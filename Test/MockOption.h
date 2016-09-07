@@ -18,6 +18,7 @@ public:
     ~MockOption(){}
     MOCK_METHOD1( execute, void( MapContext& context ) );
     MOCK_METHOD0( cancel, void() );
+    MOCK_METHOD0( clone, Option&() );
 };
 
 #endif /* MockOption_h */

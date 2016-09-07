@@ -89,6 +89,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
                 
                 if( movement != nullptr ) {
                     movement->execute( *mapContext );
+                    delete movement;
                 }
                 
                 this->onUIComponentClicked(new Button(END_BUTTON));

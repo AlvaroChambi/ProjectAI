@@ -88,7 +88,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
                 Movement* movement = playerAI->play( copyContext );
                 
                 if( movement != nullptr ) {
-                    //movement->execute( *mapContext );
+                    movement->execute( *mapContext );
                 }
                 
                 this->onUIComponentClicked(new Button(END_BUTTON));

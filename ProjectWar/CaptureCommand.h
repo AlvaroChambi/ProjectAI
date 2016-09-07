@@ -17,17 +17,17 @@
 class CaptureCommand : public Command {
 public:
     CaptureCommand( const int unitID );
+    CaptureCommand( const CaptureCommand& captureCommand );
     virtual ~CaptureCommand();
     
     void execute( MapContext& context );
     void cancel();
+    Command& clone();
 private:
     const int unitID;
     int buildingID;
     
     MapContext* mapContext;
-    
-    bool executed;
     
     int savedOwner;
     int savedCaptureValue;

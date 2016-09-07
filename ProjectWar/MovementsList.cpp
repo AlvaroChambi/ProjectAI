@@ -18,7 +18,6 @@ MovementsList::MovementsList() : actions( *new std::vector<Action*> ) {
 }
 
 MovementsList::~MovementsList() {
-    //std::cout << "Dellocated moves list" << std::endl;
     for ( Option* movement : movements ) {
         delete movement;
     }

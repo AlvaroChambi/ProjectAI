@@ -73,7 +73,6 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             if( graphLogger != nullptr ) {
                 graphLogger->nextPath();
             }
-            //std::cout << "Deleted: " << movesList.getMovementsVector().size() << std::endl;
             delete &movesList;
             return bestSoFar;
         } else {
@@ -83,10 +82,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         }
     }
     
-    //std::cout << "Deleted: " << movesList.getMovementsVector().size() << std::endl;
     delete &movesList;
-    //moves.clear();
-    
     return bestSoFar;
 }
 

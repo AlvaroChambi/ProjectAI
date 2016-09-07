@@ -66,7 +66,7 @@ int GameMinimax::minimaxMax( const int bestSoFar, const int score,
         result = score;
         //TODO: Move best move update to another method in Minimax
         if( topBranch ) {
-            *bestMove = move;
+            *bestMove = &move->clone();
         }
     }
     

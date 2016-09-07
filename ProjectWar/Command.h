@@ -20,6 +20,7 @@ public:
     virtual ~Command(){}
     virtual void execute( MapContext& context ) = 0;
     virtual void cancel() = 0;
+    virtual Command& clone() = 0;
 };
 
 #endif /* defined(__ProjectWar__Command__) */

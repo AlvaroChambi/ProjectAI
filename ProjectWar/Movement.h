@@ -17,9 +17,11 @@
 class Movement : public Option {
 public:
     Movement();
+    Movement( const Movement& movement );
     Movement( int numActions );
     void execute( MapContext& context );
     void cancel();
+    Option& clone();
     virtual ~Movement();
     
     void reserve( int numActions );

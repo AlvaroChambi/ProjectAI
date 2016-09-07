@@ -14,6 +14,20 @@ AttackCommand::AttackCommand( const int unitID, const int targetID )
 
 }
 
+AttackCommand::AttackCommand( const AttackCommand& attackCommand )
+: unitID( attackCommand.unitID ), targetID( attackCommand.targetID ),
+ savedTarget( attackCommand.savedTarget ),
+ savedUnit( attackCommand.savedUnit ),
+ mapContext( attackCommand.mapContext ),
+ savedUnitHP( attackCommand.savedUnitHP ),
+ savedTargetHP( attackCommand.savedTargetHP ) {
+
+}
+
+Command& AttackCommand::clone() {
+    return *new AttackCommand( *this );
+}
+
 void AttackCommand::execute( MapContext& context ) {
     if( mapContext != nullptr ) {
         throw IllegalStateException(

@@ -16,6 +16,7 @@ public:
     virtual ~Option() {}
     virtual void execute( MapContext& context ) = 0;
     virtual void cancel() = 0;
+    virtual Option& clone() = 0;
 };
 
 #endif

@@ -9,17 +9,23 @@
 #include "Action.h"
 #include "MoveCommand.h"
 
-static int NUMACTIONS = 0;
-
 Action::Action()
 : moveCommand( nullptr ), command( nullptr ), score( NULL_SCORE ) {
-//    NUMACTIONS++;
-//    std::cout << "Allocated Actions: " << NUMACTIONS <<std::endl;
+
+}
+
+Action::Action( const Action& action )
+ : moveCommand( nullptr ), command( nullptr ) {
+     if( action.moveCommand != nullptr ) {
+         moveCommand = new MoveCommand( *action.moveCommand );
+     }
+     
+     if( action.command != nullptr ) {
+         command = &action.command->clone();
+     }
 }
 
 Action::~Action() {
-//    NUMACTIONS--;
-//    std::cout << "      Dellocated Action: " << NUMACTIONS << std::endl;
     if(moveCommand != nullptr) {
         delete moveCommand;
     }

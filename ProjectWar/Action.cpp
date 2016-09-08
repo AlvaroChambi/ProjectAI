@@ -52,6 +52,13 @@ void Action::cancel() {
     }
 }
 
+void Action::calculateValue(const Evaluator&  evaluator,
+	const MapContext& context) {
+
+	this->value = getValue(evaluator, context);
+}
+
+
 bool Action::operator==( const Action& action ) const {
     if( moveCommand == nullptr || action.moveCommand == nullptr ) {
         return false;

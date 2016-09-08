@@ -33,6 +33,9 @@ public:
     void execute( MapContext& context );
     void cancel();
     
+	void calculateValue(const Evaluator&  evaluator,
+		const MapContext& context);
+
     float getValue( const Evaluator&  evaluator,
                     const MapContext& context );
     
@@ -42,6 +45,13 @@ public:
     Command* command;
 
     float score;
+
+	int getEvaluationValue() const {
+		return value;
+	}
+
+private:
+	int value;
 };
 
 struct Compare {

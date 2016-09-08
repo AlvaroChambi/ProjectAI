@@ -28,9 +28,6 @@ public:
     
     std::vector<Action*>& buildUnitActions( const int unitID ) const;
     
-    void sortActions( std::vector<Action*>& actions,
-                      const Evaluator& evaluator ) const;
-    
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position ) const;
     MovementsList& mapVariations(
@@ -50,6 +47,10 @@ private:
 
 	std::vector<std::vector<int>>& generateVariations(
 		int numActions, int numUnits) const;
+
+	void getBestActions(std::vector<Action*>& actions,
+		const Evaluator& evaluator) const;
+
 };
 
 #endif /* ActionsProvider_h */

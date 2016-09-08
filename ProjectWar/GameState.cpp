@@ -17,6 +17,10 @@
 #include "UnitFilter.h"
 #include "Movement.h"
 
+#if _WIN32
+#include <algorithm>
+#endif
+
 const int GameState::WIN_VALUE;
 const int GameState::LOST_VALUE;
 const int GameState::NOT_FINISHED;

@@ -90,11 +90,13 @@ float ActionEvaluator::getOpponentsInfluence( const Point &destination,
                                         const MapContext &context ) const {
     // - if i have enemy units closer
     // iterate enemy units and calculate distance
-    float opponentsDistance = 0;
+   /* float opponentsDistance = 0;
     std::vector<Unit*> opponents = context.getOpponent().getUnits();
     for( const Unit* unit : opponents ) {
         Point position = unit->getPosition();
         opponentsDistance += position.distance( destination );
     }
-    return opponentsDistance / opponents.size();
+    return opponentsDistance / opponents.size();*/
+
+	return 5;
 }

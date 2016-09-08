@@ -22,7 +22,6 @@
 std::unordered_map<int, std::vector<std::vector<int>>> ActionsProvider::variations;
 
 
-
 ActionsProvider::ActionsProvider( MapContext& mapContext )
 : mapContext( mapContext ) {
 
@@ -52,7 +51,7 @@ MovementsList& ActionsProvider::generateMovements(
     
     for ( const Unit* unit : army ) {
         std::vector<Action*>& unitActions = buildUnitActions( unit->getId() );
-        sortActions( unitActions, evaluator );
+		getBestActions( unitActions, evaluator );
         actionsSet->insert( actionsSet->end(),
                            unitActions.begin(), unitActions.begin() + numActions );
         
@@ -75,10 +74,20 @@ MovementsList& ActionsProvider::generateMovements(
     return movements;
 }
 
-void ActionsProvider::sortActions( std::vector<Action *>& actions,
-                                   const Evaluator& evaluator ) const {
-    std::sort( actions.begin(), actions.end(),
-                                    Compare( evaluator, mapContext ) );
+
+void ActionsProvider::getBestActions(std::vector<Action*>& actions,
+	const Evaluator& evaluator) const {
+
+	const int size = actions.size();
+	for (int i = 0; i < size; i++) {
+		actions[i]->calculateValue(evaluator, mapContext);
+	}
+
+	auto comparator = [](const Action* lv, const Action* rv) -> bool {
+		return lv->getEvaluationValue() < rv->getEvaluationValue();
+	};
+
+	std::sort(actions.begin(), actions.end(), comparator);
 }
 
 std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) const {

@@ -47,8 +47,7 @@ Movement* PlayerAI::play( MapContext* mapContext ) {
 Movement* PlayerAI::executeMinimax( MapContext* mapContext ) {
     GameMinimax* gameMinimax = new GameMinimax( *mapContext ,
                                                 ActionsProvider( *mapContext ) );
-    MinimaxAlgorithm* algorithm =
-        new MinimaxAlgorithm( gameMinimax );
+    MinimaxAlgorithm* algorithm = new MinimaxAlgorithm( gameMinimax );
     DotBuilder logger;
     algorithm->setDebugLogger( &logger );
     algorithm->minimax( 4 );

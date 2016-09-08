@@ -11,15 +11,26 @@
 #include <algorithm>
 
 Movement::Movement() {
-    
+
+}
+
+Movement::Movement( const Movement& movement ) {
+    for (  Action* action : movement.actions ) {
+        actions.push_back( new Action( *action ) );
+    }
 }
 
 Movement::Movement( int numActions ) {
     reserve( numActions );
+
 }
 
 Movement::~Movement() {
+    actions.clear();
+}
 
+Option& Movement::clone() {
+    return *new Movement(*this);
 }
 
 void Movement::execute( MapContext& context ) {

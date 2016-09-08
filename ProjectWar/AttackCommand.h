@@ -16,9 +16,11 @@
 class AttackCommand : public Command {
 public:
     AttackCommand( const int unitID, const int targetID );
+    AttackCommand( const AttackCommand& attackCommand );
     
     void execute( MapContext& context );
     void cancel();
+    Command& clone();
 private:
     int unitID;
     int targetID;

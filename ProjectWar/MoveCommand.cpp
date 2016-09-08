@@ -16,8 +16,19 @@ MoveCommand::MoveCommand( const int unitID, const Point destination )
 
 }
 
+MoveCommand::MoveCommand( const MoveCommand& moveCommand )
+ : mapContext( moveCommand.mapContext ),
+ unitID( moveCommand.unitID ), destination( moveCommand.destination ),
+ savedPosition( moveCommand.savedPosition ) {
+
+ }
+
 MoveCommand::~MoveCommand() {
 
+}
+
+Command& MoveCommand::clone() {
+    return *new MoveCommand( *this );
 }
 
 void MoveCommand::execute( MapContext& context ) {

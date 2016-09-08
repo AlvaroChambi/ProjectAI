@@ -392,10 +392,12 @@ TEST_F( ActionsProviderTest, mapVariationsTest ) {
     Action* actionB1 = new Action;
     Action* actionB2 = new Action;
     
-    std::vector<Action*> actions = { actionA0, actionA1, actionA2,
+    std::vector<Action*>* actions =
+    new std::vector<Action*> { actionA0, actionA1, actionA2,
                                      actionB0, actionB1, actionB2 };
-    std::vector<Option*> result = actionsProvider->mapVariations( numActions,
-                                    variations, actions );
+    MovementsList resultList = actionsProvider->mapVariations( numActions,
+                                    variations, *actions );
+    std::vector<Option*> result = resultList.getMovementsVector();
     ASSERT_EQ( 9 , (int)result.size() );
     Movement* movement0 = (Movement*)result.at( 0 );
     ASSERT_EQ( actionA0, movement0->getActions().at( 0 ) );
@@ -437,10 +439,10 @@ TEST_F( ActionsProviderTest, mapVariationsTest ) {
 TEST_F( ActionsProviderTest, mapVariationsEmptyParamsTest ) {
     int numUnits = 0;
     std::vector<std::vector<int>> variations;
-       std::vector<Action*> actions;
-    std::vector<Option*> result = actionsProvider->mapVariations( numUnits,
-                                                    variations, actions );
-    ASSERT_TRUE( result.empty() );
+    std::vector<Action*>* actions = new std::vector<Action*>;
+    MovementsList result = actionsProvider->mapVariations( numUnits,
+                                                    variations, *actions );
+    ASSERT_TRUE( result.getMovementsVector().empty() );
 }
 
 TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
@@ -456,71 +458,4 @@ TEST_F( ActionsProviderTest, mapVariationsInvalidParamsTest ) {
 
     ASSERT_ANY_THROW( actionsProvider->mapVariations( numUnits,
                                                       variations, actions ) );
-}
-
-TEST_F( ActionsProviderTest, sortActionsTest ) {
-    Action* actionA0 = new Action;
-    MoveCommand* moveCommand0 = new MoveCommand( 0, Point( 0, 0 ) );
-    actionA0->moveCommand = moveCommand0;
-    
-    Action* actionA1 = new Action;
-    MoveCommand* moveCommand1 = new MoveCommand( 0, Point( 1, 0 ) );
-    actionA1->moveCommand = moveCommand1;
-    
-    Action* actionB0 = new Action;
-    MoveCommand* moveCommand2 = new MoveCommand( 0, Point( 0, 1 ) );
-    actionB0->moveCommand = moveCommand2;
-    
-    Action* actionB1 = new Action;
-    MoveCommand* moveCommand3 = new MoveCommand( 0, Point( 1, 1 ) );
-    actionB1->moveCommand = moveCommand3;
-    
-    std::vector<Action*> actions = { actionA0, actionA1, actionB0, actionB1 };
-    
-    MockEvaluator mockEvaluator;
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA0, testing::_ ) )
-    .WillRepeatedly( testing::Return( 2 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionA1, testing::_ ) )
-    .WillRepeatedly( testing::Return( 0 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB0, testing::_ ) )
-    .WillRepeatedly( testing::Return( 5 ) );
-    
-    EXPECT_CALL( mockEvaluator, getEvaluation( *actionB1, testing::_ ) )
-    .WillRepeatedly( testing::Return( 3 ) );
-    
-    actionsProvider->sortActions( actions, mockEvaluator );
-    
-    ASSERT_EQ( actionA1, actions.at( 3 ) );
-    ASSERT_EQ( actionA0, actions.at( 2 ) );
-    ASSERT_EQ( actionB1, actions.at( 1 ) );
-    ASSERT_EQ( actionB0, actions.at( 0 ) );
-}
-
-TEST_F( ActionsProviderTest, generateVariationsTest ) {
-    std::vector<std::vector<int>> variations;
-    variations.reserve( 4 );
-    
-    int numUnits = 2;
-    int numActions = 2;
-    
-    variations = actionsProvider->generateVariations( numActions, numUnits );
-    std::vector<int> vec0 = variations.at( 0 );
-    std::vector<int> vec1 = variations.at( 1 );
-    std::vector<int> vec2 = variations.at( 2 );
-    std::vector<int> vec3 = variations.at( 3 );
-    
-    ASSERT_EQ( 0, vec0.at( 0 ) );
-    ASSERT_EQ( 0, vec0.at( 1 ) );
-    
-    ASSERT_EQ( 0, vec1.at( 0 ) );
-    ASSERT_EQ( 1, vec1.at( 1 ) );
-    
-    ASSERT_EQ( 1, vec2.at( 0 ) );
-    ASSERT_EQ( 0, vec2.at( 1 ) );
-    
-    ASSERT_EQ( 1, vec3.at( 0 ) );
-    ASSERT_EQ( 1, vec3.at( 1 ) );
 }

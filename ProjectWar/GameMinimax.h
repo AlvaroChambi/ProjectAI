@@ -13,6 +13,7 @@
 #include "MapContext.h"
 #include "HeuristicFunction.h"
 #include "ActionsProvider.h"
+#include "MovementsList.h"
 
 class GameMinimax : public Minimax {
 public:
@@ -22,7 +23,7 @@ public:
     
     int getGameOverScore();
     int getStaticEvaluation();
-    std::vector<Option*> getMovesList( const bool maximize );
+    MovementsList& getMovesList( const bool maximize );
     void processMove(Option* move);
     void unprocessMove(Option* move);
     int minimaxMin( const int bestSoFar, const int score );

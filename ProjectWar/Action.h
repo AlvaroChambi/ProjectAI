@@ -27,6 +27,7 @@ class Action {
 public:
     
     Action();
+    Action( const Action& action );
     ~Action();
     
     void execute( MapContext& context );

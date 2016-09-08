@@ -14,8 +14,21 @@ CaptureCommand::CaptureCommand( const int unitID )
     
 }
 
+CaptureCommand::CaptureCommand( const CaptureCommand& captureCommand )
+: unitID( captureCommand.unitID ),
+ buildingID( captureCommand.buildingID ),
+ mapContext( captureCommand.mapContext ),
+ savedOwner( captureCommand.savedOwner ),
+ savedCaptureValue( captureCommand.savedCaptureValue ) {
+
+}
+
 CaptureCommand::~CaptureCommand() {
 
+}
+
+Command& CaptureCommand::clone() {
+    return *new CaptureCommand( *this );
 }
 
 void CaptureCommand::execute( MapContext& context ) {

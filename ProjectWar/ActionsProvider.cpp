@@ -29,40 +29,48 @@ ActionsProvider::ActionsProvider( MapContext& mapContext )
 }
 
 void ActionsProvider::init() {
-
-	for ( int i = 1; i <= 3; i++ ) {
-		std::vector<std::vector<int>>* v = new std::vector<std::vector<int>>;
-		v->reserve(4);
-		std::vector<int> variation(i);
-		generateVariations(v, 4, variation, 0);
-		variations[i] = *v;
-		delete v;
-	}
+    for ( int i = 1; i <= 3; i++ ) {
+        std::vector<std::vector<int>>* v = new std::vector<std::vector<int>>;
+        v->reserve(4);
+        std::vector<int> variation(i);
+        generateVariations(v, 4, variation, 0);
+        variations[i] = *v;
+        delete v;
+    }
 }
 
-std::vector<Option*>& ActionsProvider::generateMovements(
+MovementsList& ActionsProvider::generateMovements(
                                     int playerID, int numActions ) const {
     const Evaluator& evaluator = ActionEvaluator();
-    std::vector<Action*> actionsSet;
+    std::vector<Action*>* actionsSet = new std::vector<Action*>;
     
     const Player* player = mapContext.getPlayer( playerID );
     
     std::vector<Unit*> army = player->getUnits();
     int numUnits = (int)army.size();
-    actionsSet.reserve( numUnits );
+    actionsSet->reserve( numUnits );
     
     for ( const Unit* unit : army ) {
-        std::vector<Action*> unitActions = buildUnitActions( unit->getId() );
+        std::vector<Action*>& unitActions = buildUnitActions( unit->getId() );
         sortActions( unitActions, evaluator );
-        actionsSet.insert( actionsSet.end(),
+        actionsSet->insert( actionsSet->end(),
                            unitActions.begin(), unitActions.begin() + numActions );
+        
+        std::vector<Action*> unusedActions;
+        unusedActions.insert( unusedActions.end(), unitActions.begin() + numActions,
+                              unitActions.end() );
+        unitActions.clear();
+        delete &unitActions;
+        for ( Action* action : unusedActions ) {
+            delete action;
+        }
     }
     
     std::vector<std::vector<int>> variations = generateVariations( numActions,
                                                                    numUnits );
     
-    std::vector<Option*>& movements = mapVariations( numActions, variations,
-                                                     actionsSet );
+    MovementsList& movements = mapVariations( numActions, variations,
+                                                     *actionsSet );
     
     return movements;
 }
@@ -129,15 +137,15 @@ TargetTile ActionsProvider::getTargetTileForPosition( const int unitID,
     return TARGET_NOT_AVAILABLE;
 }
 
-std::vector<Option*>& ActionsProvider::mapVariations(
+MovementsList& ActionsProvider::mapVariations(
                         const int numActions,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) const {
-    std::vector<Option*>* movements = new std::vector<Option*>();
-    movements->reserve( (int)variations.size() );
+    MovementsList* movementsList = new MovementsList( actions );
+    movementsList->reserve( (int)variations.size() );
     
     if( variations.empty() && actions.empty() ) {
-        return *movements;
+        return *movementsList;
     }
     
     if( actions.size() < variations.at( 0 ).size() * numActions ) {
@@ -151,12 +159,12 @@ std::vector<Option*>& ActionsProvider::mapVariations(
         for ( int j = 0; j < actionIDs.size(); j++ ) {
             int actionID = actionIDs.at( j );
             int key = actionID + j*numActions;
-            movement->addAction( *actions[key] ); 
+            movement->addAction( *actions[key] );
         }
-        movements->push_back( movement );
+        movementsList->addMovement( *movement );
     }
     
-    return *movements;
+    return *movementsList;
 }
 
 std::vector<std::vector<int>>& ActionsProvider::generateVariations(

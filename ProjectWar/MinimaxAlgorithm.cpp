@@ -2,6 +2,7 @@
 #include "MinimaxAlgorithm.hpp"
 #include <stdio.h>
 #include <algorithm>
+#include "MovementsList.h"
 
 MinimaxAlgorithm::MinimaxAlgorithm( Minimax* minimax )
 : miniMax( minimax ), bestMove( nullptr ), graphLogger( nullptr ) {
@@ -41,7 +42,10 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
     }
     
     //TODO: options memory cleanup
-    std::vector<Option*> moves = miniMax->getMovesList( maximize );
+    MovementsList& movesList = miniMax->getMovesList( maximize );
+    //std::cout << "Reserved: " << movesList.getMovementsVector().size() << std::endl;
+    std::vector<Option*> moves = movesList.getMovementsVector();
+    
     int bestSoFar = INFINITE;
     
     std::string actualNode = "";
@@ -50,7 +54,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
         graphLogger->addToPath( actualNode );
     }
 
-    for (Option* option : moves) {
+    for ( Option* option : moves ) {
         miniMax->processMove(option);
         int score = minimax( ply-1, alpha, beta, !maximize );
         miniMax->unprocessMove(option);
@@ -69,6 +73,7 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             if( graphLogger != nullptr ) {
                 graphLogger->nextPath();
             }
+            delete &movesList;
             return bestSoFar;
         } else {
             if( graphLogger != nullptr ) {
@@ -76,6 +81,8 @@ int MinimaxAlgorithm::minimax( int ply, int alpha,
             }
         }
     }
+    
+    delete &movesList;
     return bestSoFar;
 }
 

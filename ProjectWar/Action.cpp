@@ -14,8 +14,24 @@ Action::Action()
 
 }
 
+Action::Action( const Action& action )
+ : moveCommand( nullptr ), command( nullptr ) {
+     if( action.moveCommand != nullptr ) {
+         moveCommand = new MoveCommand( *action.moveCommand );
+     }
+     
+     if( action.command != nullptr ) {
+         command = &action.command->clone();
+     }
+}
+
 Action::~Action() {
-    
+    if(moveCommand != nullptr) {
+        delete moveCommand;
+    }
+    if(command != nullptr){
+        delete command;
+    }
 }
 
 void Action::execute( MapContext& context ) {

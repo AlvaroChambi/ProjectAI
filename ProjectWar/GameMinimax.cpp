@@ -30,14 +30,14 @@ int GameMinimax::getStaticEvaluation() {
                                                    mapContext.getOpponent() );
 }
 
-std::vector<Option*> GameMinimax::getMovesList( const bool maximize ) {
+MovementsList& GameMinimax::getMovesList( const bool maximize ) {
     int numActions = 4;
     if ( maximize ) {
-        return actionsProvider.generateMovements(
-                                mapContext.getPlayer().getId(), numActions );
+        return actionsProvider.generateMovements( mapContext.getPlayer().getId(),
+                                                  numActions );
     } else {
-        return actionsProvider.generateMovements(
-                                mapContext.getOpponent().getId(), numActions );
+        return actionsProvider.generateMovements( mapContext.getOpponent().getId(),
+                                                  numActions );
     }
 }
 
@@ -66,7 +66,7 @@ int GameMinimax::minimaxMax( const int bestSoFar, const int score,
         result = score;
         //TODO: Move best move update to another method in Minimax
         if( topBranch ) {
-            *bestMove = move;
+            *bestMove = &move->clone();
         }
     }
     

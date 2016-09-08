@@ -16,11 +16,13 @@
 class MoveCommand : public Command {
 public:
     MoveCommand( int unitID, const Point destination );
+    MoveCommand( const MoveCommand& moveCommand );
     virtual ~MoveCommand();
     
     bool changeContext( MapContext& context );
     void execute( MapContext& mapContext );
     void cancel();
+    Command& clone();
     
     const Point& getDestination() const;
     bool operator==( const MoveCommand& moveCommand ) const ;

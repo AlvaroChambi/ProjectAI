@@ -89,6 +89,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
                 
                 if( movement != nullptr ) {
                     movement->execute( *mapContext );
+                    delete movement;
                 }
                 
                 this->onUIComponentClicked(new Button(END_BUTTON));
@@ -100,8 +101,7 @@ void ProjectAI::onUIComponentClicked(UIComponent* component)
     }
 }
 
-void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer)
-{
+void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     
     //Set scene ui
     layout = new UnitUIView();

@@ -15,6 +15,7 @@
 #include "Evaluator.h"
 #include "ActionsBuilder.h"
 #include "Movement.h"
+#include "MovementsList.h"
 
 class ActionsProvider {
 public:
@@ -22,7 +23,7 @@ public:
 
     ActionsProvider( MapContext& context );
     
-    std::vector<Option*>& generateMovements( int playerID,
+    MovementsList& generateMovements( int playerID,
                                             int numActions ) const;
     
     std::vector<Action*>& buildUnitActions( const int unitID ) const;
@@ -32,7 +33,7 @@ public:
     
     TargetTile getTargetTileForPosition( const int unitID,
                                          const Point& position ) const;
-    std::vector<Option*>& mapVariations(
+    MovementsList& mapVariations(
                         const int numActions,
                         std::vector<std::vector<int>>& variations,
                         std::vector<Action*>& actions ) const;

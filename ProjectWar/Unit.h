@@ -21,7 +21,6 @@
 #include "Building.h"
 
 class Player;
-class GameState;
 enum UnitCommand {
     CANCEL,
     WAIT,

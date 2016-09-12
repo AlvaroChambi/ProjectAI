@@ -50,6 +50,7 @@ Unit* Player::getUnit( int id ) const {
 
 std::vector<Unit*> Player::getUnits() const {
     std::vector<Unit*> units;
+    units.reserve( army.size() );
     for ( int reference : army ) {
         Unit* unit = map->getEntity( reference );
         if( unit != nullptr ) {

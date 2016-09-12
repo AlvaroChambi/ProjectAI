@@ -84,7 +84,7 @@ void ActionsProvider::getBestActions(std::vector<Action*>& actions,
 	}
 
 	auto comparator = [](const Action* lv, const Action* rv) -> bool {
-		return lv->getEvaluationValue() < rv->getEvaluationValue();
+		return lv->getEvaluationValue() > rv->getEvaluationValue();
 	};
 
 	std::sort(actions.begin(), actions.end(), comparator);

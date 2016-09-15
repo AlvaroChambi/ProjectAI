@@ -4,6 +4,7 @@
 #include "GameException.h"
 #include "AreaIterator.h"
 #include "UnitFilter.h"
+#include "Game.h"
 
 Map::Map( const Player& player, const Player& opponent )
 : player( player ), opponent( opponent ) {
@@ -75,7 +76,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
                         Player* player, Player* opponent ) {
     Building* building = new Building();
     Sprite* buildingSprite = spriteFactory->createSprite(BUILDING);
-    building->setCapturePoints(20);
+    building->setCapturePoints(Game::config.get("building_capture_value", 20));
     buildingSprite->setModel(building);
     buildingSprite->setTexture(renderer->loadSprite("building.png", 32, 32));
     buildingSprite->resize(40, 40);
@@ -87,7 +88,7 @@ void Map::loadBuildings(SpriteFactory* spriteFactory, Renderer* renderer,
     
     Building* building2 = new Building();
     Sprite* buildingSprite2 = spriteFactory->createSprite(BUILDING);
-    building2->setCapturePoints(20);
+    building2->setCapturePoints(Game::config.get("building_capture_value", 20));
     buildingSprite2->setModel(building2);
     buildingSprite2->setTexture(renderer->loadSprite("building.png", 32, 32));
     buildingSprite2->resize(40, 40);

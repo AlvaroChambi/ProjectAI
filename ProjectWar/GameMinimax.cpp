@@ -8,6 +8,7 @@
 
 #include "GameMinimax.h"
 #include "GameException.h"
+#include "Game.h"
 
 static const int INFINITE = std::numeric_limits<int>::max();
 GameMinimax::GameMinimax( MapContext& mapContext,
@@ -31,7 +32,7 @@ int GameMinimax::getStaticEvaluation() {
 }
 
 MovementsList& GameMinimax::getMovesList( const bool maximize ) {
-    int numActions = 4;
+    int numActions = Game::config.get("num_actions", 4);
     if ( maximize ) {
         return actionsProvider.generateMovements( mapContext.getPlayer().getId(),
                                                   numActions );

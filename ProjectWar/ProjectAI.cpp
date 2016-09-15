@@ -10,6 +10,7 @@
 #include "UnitUIView.h"
 #include "ActionsProvider.h"
 #include "PlayerAI.h"
+#include "Game.h"
 
 ProjectAI::ProjectAI() : activePlayer(nullptr), day(0), playerTurn(0)
 {
@@ -146,9 +147,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit = new Unit();
     unit->setResource("soldier_red.png");
     Sprite* unitSprite = spriteFactory->createSprite(UNIT);
-    unit->setMovement(3);
-    unit->setAttackRange(1);
-    unit->setHP(10);
+    unit->setMovement(Game::config.get("unit_movement", 3));
+    unit->setAttackRange(Game::config.get("unit_attack_range", 1));
+    unit->setHP(Game::config.get("unit_health", 10));
     unitSprite->setModel(unit);
     Texture* unitTexture = renderer->loadSprite(unit->getResource(), 128, 90);
     unitSprite->setTexture(unitTexture);
@@ -162,9 +163,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit3 = new Unit();
     unit3->setResource("soldier_red.png");
     Sprite* unitSprite3 = spriteFactory->createSprite(UNIT);
-    unit3->setMovement(3);
-    unit3->setAttackRange(1);
-    unit3->setHP(10);
+	unit3->setMovement(Game::config.get("unit_movement", 3));
+	unit3->setAttackRange(Game::config.get("unit_attack_range", 1));
+	unit3->setHP(Game::config.get("unit_health", 10));
     unitSprite3->setModel(unit3);
     Texture* unitTexture3 = renderer->loadSprite(unit3->getResource(), 128, 90);
     unitSprite3->setTexture(unitTexture3);
@@ -179,9 +180,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit4 = new Unit();
     unit4->setResource("soldier_red.png");
     Sprite* unitSprite4 = spriteFactory->createSprite(UNIT);
-    unit4->setMovement(3);
-    unit4->setAttackRange(1);
-    unit4->setHP(10);
+	unit4->setMovement(Game::config.get("unit_movement", 3));
+	unit4->setAttackRange(Game::config.get("unit_attack_range", 1));
+	unit4->setHP(Game::config.get("unit_health", 10));
     unitSprite4->setModel(unit4);
     Texture* unitTexture4 = renderer->loadSprite(unit3->getResource(), 128, 90);
     unitSprite4->setTexture(unitTexture4);
@@ -197,9 +198,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit2 = new Unit();
     unit2->setResource("soldier_blue.png");
     Sprite* unit2Sprite = spriteFactory->createSprite(UNIT);
-    unit2->setMovement(3);
-    unit2->setAttackRange(1);
-    unit2->setHP(10);
+	unit2->setMovement(Game::config.get("unit_movement", 3));
+	unit2->setAttackRange(Game::config.get("unit_attack_range", 1));
+	unit2->setHP(Game::config.get("unit_health", 10));
     unit2Sprite->setModel(unit2);
     Texture* unit2Texture = renderer->loadSprite(unit2->getResource(), 128, 90);
     unit2Sprite->setTexture(unit2Texture);
@@ -212,9 +213,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit5 = new Unit();
     unit5->setResource("soldier_blue.png");
     Sprite* unitSprite5 = spriteFactory->createSprite(UNIT);
-    unit5->setMovement(3);
-    unit5->setAttackRange(1);
-    unit5->setHP(10);
+	unit5->setMovement(Game::config.get("unit_movement", 3));
+	unit5->setAttackRange(Game::config.get("unit_attack_range", 1));
+	unit5->setHP(Game::config.get("unit_health", 10));
     unitSprite5->setModel(unit5);
     Texture* unitTexture5 = renderer->loadSprite(unit5->getResource(), 128, 90);
     unitSprite5->setTexture(unitTexture5);
@@ -227,9 +228,9 @@ void ProjectAI::onGameStarted(Scene *scene, Renderer* renderer) {
     Unit* unit6 = new Unit();
     unit6->setResource("soldier_blue.png");
     Sprite* unitSprite6 = spriteFactory->createSprite(UNIT);
-    unit6->setMovement(3);
-    unit6->setAttackRange(1);
-    unit6->setHP(10);
+	unit6->setMovement(Game::config.get("unit_movement", 3));
+	unit6->setAttackRange(Game::config.get("unit_attack_range", 1));
+	unit6->setHP(Game::config.get("unit_health", 10));
     unitSprite6->setModel(unit6);
     Texture* unitTexture6 = renderer->loadSprite(unit6->getResource(), 128, 90);
     unitSprite6->setTexture(unitTexture6);

@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "GameException.h"
 #include "ActionEvaluator.h"
+#include "Game.h"
 
 #include <cmath>
 
@@ -30,9 +31,9 @@ ActionsProvider::ActionsProvider( MapContext& mapContext )
 void ActionsProvider::init() {
     for ( int i = 1; i <= 3; i++ ) {
         std::vector<std::vector<int>>* v = new std::vector<std::vector<int>>;
-        v->reserve(4);
+        v->reserve(Game::config.get("num_actions", 4));
         std::vector<int> variation(i);
-        generateVariations(v, 4, variation, 0);
+        generateVariations(v, Game::config.get("num_actions", 4), variation, 0);
         variations[i] = *v;
         delete v;
     }
@@ -93,7 +94,7 @@ void ActionsProvider::getBestActions(std::vector<Action*>& actions,
 std::vector<Action*>& ActionsProvider::buildUnitActions( int unitID ) const {
     Unit* unit = mapContext.getEntity( unitID );
     
-    int maxAllowedActions = ( unit->getMovement() * 4 ) * 2;
+    int maxAllowedActions = ( unit->getMovement() *  Game::config.get("num_actions", 4)) * 2;
     std::vector<Action*>* actions = new std::vector<Action*>();
     actions->reserve( maxAllowedActions );
     

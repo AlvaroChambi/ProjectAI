@@ -8,6 +8,7 @@
 
 #include "Game.h"
 
+Configuration Game::config;
 
 Game::Game()
 {
@@ -21,6 +22,8 @@ Game::~Game()
 
 void Game::onInit()
 {
+	config.load("config.txt");
+
     renderer = new SDLRenderer;
     scene = new Scene(renderer);
     inputHandler = new SDLInputHandler();

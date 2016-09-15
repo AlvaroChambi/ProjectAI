@@ -17,11 +17,14 @@
 #include "SDLInputHandler.h"
 #include "GameImplementation.h"
 #include "ProjectAI.h"
+#include "Configuration.h"
 
 class Game 
 {
 public:
-    Game();
+	static Configuration config;
+
+	Game();
     virtual ~Game();
     virtual void onInit();
     virtual void onProcessInput();
@@ -29,8 +32,7 @@ public:
     virtual void onRender();
     virtual void onFinish();
     bool isRunning();
-    
-protected:
+
 private:
     bool gameRunning;
     SDLRenderer* renderer;

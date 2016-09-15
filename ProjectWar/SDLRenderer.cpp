@@ -7,6 +7,7 @@
 //
 
 #include "SDLRenderer.h"
+#include "Game.h"
 #include <iostream>
 #include <string>
 
@@ -29,13 +30,9 @@ void SDLRenderer::init()
     }
     
     // create a window
-    sdlWindow = SDL_CreateWindow(   "Project War",             // window title
-                                 SDL_WINDOWPOS_CENTERED,     // x position, centered
-                                 SDL_WINDOWPOS_CENTERED,     // y position, centered
-                                 640,                        // width, in pixels
-                                 480,                        // height, in pixels
-                                 SDL_WINDOW_OPENGL           // flags
-                                 );
+    sdlWindow = SDL_CreateWindow(   "Project War", SDL_WINDOWPOS_CENTERED,     // x position, centered
+		SDL_WINDOWPOS_CENTERED, Game::config.get("screen_width", 640),                        // width, in pixels
+		Game::config.get("screen_height", 480), SDL_WINDOW_OPENGL);
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
     
     if(sdlRenderer != 0) // renderer init success

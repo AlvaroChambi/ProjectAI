@@ -1,0 +1,7 @@
+num_actions:4
+screen_width:640
+screen_height:480
+unit_movement:3
+unit_attack_range:1
+unit_health:25
+building_capture_value:20

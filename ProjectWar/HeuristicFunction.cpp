@@ -70,7 +70,7 @@ int HeuristicFunction::getStaticEvaluation( const Player& player,
     result = result + calculateEnemyHeadquarterDistance( player, enemy,
                                                          *player.getHeadquarter(),
                                                          *enemy.getHeadquarter() );
-    result = result + calculateUnitsHealth( player, enemy ) * 10;
+    result = result + calculateUnitsHealth( player, enemy );
     
     return result;
 }

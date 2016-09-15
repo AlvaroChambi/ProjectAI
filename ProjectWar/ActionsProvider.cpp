@@ -79,7 +79,7 @@ MovementsList& ActionsProvider::generateMovements(
 void ActionsProvider::getBestActions(std::vector<Action*>& actions,
 	const Evaluator& evaluator) const {
 
-	const int size = actions.size();
+	const int size = (int)actions.size();
 	for (int i = 0; i < size; i++) {
 		actions[i]->calculateValue(evaluator, mapContext);
 	}

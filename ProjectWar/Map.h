@@ -24,8 +24,8 @@
 
 #include <map>
 
-static const int MAP_WIDTH = 15;
-static const int MAP_HEIGHT = 10;
+static const int MAP_WIDTH = 8;
+static const int MAP_HEIGHT = 5;
 
 class Player;
 class Map : public MapContext {

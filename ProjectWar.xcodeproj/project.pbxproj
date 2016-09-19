@@ -63,6 +63,7 @@
 		3A2F16A71D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A2F16A81D00531700254750 /* IteratorFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F16A61D00531700254750 /* IteratorFilter.cpp */; };
 		3A3892591D253DBF009EB3E1 /* MapLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */; };
+		3A39A3B01D8FEEAA001D9788 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A39A3AF1D8FEEAA001D9788 /* Configuration.cpp */; };
 		3A4068DF1D4F890400123868 /* ActionEvaluatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */; };
 		3A7CA1B31D782DC200DC29AD /* MovementsList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A7CA1B21D782DC200DC29AD /* MovementsList.cpp */; };
 		3A7CA1B41D782DC200DC29AD /* MovementsList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A7CA1B21D782DC200DC29AD /* MovementsList.cpp */; };
@@ -131,8 +132,6 @@
 		9C8FBFFF1AB056D700C4EB1F /* rider.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FBFFE1AB056D700C4EB1F /* rider.bmp */; };
 		9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC0001AB1958D00C4EB1F /* SDLInputHandler.cpp */; };
 		9C8FC0051AB1A6E600C4EB1F /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC0031AB1A6E600C4EB1F /* Event.cpp */; };
-		9CA8D6311D7F3F5F00E0635A /* Lua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA8D6301D7F3F5F00E0635A /* Lua.framework */; };
-		9CA8D6351D7F3F8F00E0635A /* LuaScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8D6341D7F3F8F00E0635A /* LuaScript.cpp */; settings = {ASSET_TAGS = (); }; };
 		9CAE2DF81AA76F8B00B6279D /* ProjectWarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2DF71AA76F8B00B6279D /* ProjectWarTests.m */; };
 		9CAE2E051AA76FE700B6279D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE2E031AA76FE700B6279D /* main.cpp */; };
 		9CB5E66E1D291AE30067F160 /* PlayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5E66D1D291AE30067F160 /* PlayerTest.cpp */; };
@@ -201,6 +200,7 @@
 		3A2F16A61D00531700254750 /* IteratorFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IteratorFilter.cpp; sourceTree = "<group>"; };
 		3A2F16A91D0057F400254750 /* Iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Iterator.h; sourceTree = "<group>"; };
 		3A3892581D253DBF009EB3E1 /* MapLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapLayerTest.cpp; sourceTree = "<group>"; };
+		3A39A3AF1D8FEEAA001D9788 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		3A3C1B131D23BC9800D0848F /* MapLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
 		3A4068DE1D4F890400123868 /* ActionEvaluatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionEvaluatorTest.cpp; sourceTree = "<group>"; };
 		3A4068E11D50AB7800123868 /* MockEvaluator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockEvaluator.h; sourceTree = "<group>"; };
@@ -317,7 +317,6 @@
 		9C8FC0031AB1A6E600C4EB1F /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
 		9C8FC0041AB1A6E600C4EB1F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		9C8FC0061AB1BCC400C4EB1F /* IGameEventsListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGameEventsListener.h; sourceTree = "<group>"; };
-		9CA8D6301D7F3F5F00E0635A /* Lua.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lua.framework; path = ../../../../Library/Frameworks/Lua.framework; sourceTree = "<group>"; };
 		9CA8D6331D7F3F8F00E0635A /* LuaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaScript.h; sourceTree = "<group>"; };
 		9CA8D6341D7F3F8F00E0635A /* LuaScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaScript.cpp; sourceTree = "<group>"; };
 		9CAE2DDE1AA76F8B00B6279D /* ProjectWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,7 +385,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA8D6311D7F3F5F00E0635A /* Lua.framework in Frameworks */,
 				9C6685C61AD6E41700C9DFAD /* SDL2_image.framework in Frameworks */,
 				9CCD60B21AC6A659004537F8 /* SDL2_ttf.framework in Frameworks */,
 				9C6613881AA774BD0094B72F /* SDL2.framework in Frameworks */,
@@ -482,6 +480,7 @@
 				3A19652A1D4A41AD002CBAA7 /* ActionEvaluator.h */,
 				3A19652B1D4A41C4002CBAA7 /* ActionEvaluator.cpp */,
 				3A7CA1B11D782DAF00DC29AD /* MovementsList.h */,
+				3A39A3AF1D8FEEAA001D9788 /* Configuration.cpp */,
 				3A7CA1B21D782DC200DC29AD /* MovementsList.cpp */,
 			);
 			name = ai;
@@ -746,7 +745,6 @@
 		9CAE2DD51AA76F8B00B6279D = {
 			isa = PBXGroup;
 			children = (
-				9CA8D6301D7F3F5F00E0635A /* Lua.framework */,
 				9CF2463D1CFF51F800AF606D /* gmock.framework */,
 				3A0779F31CF49EFB00B8C065 /* gtest.framework */,
 				9C6685C51AD6E41700C9DFAD /* SDL2_image.framework */,
@@ -1053,7 +1051,6 @@
 				55891C741AEE8AB600888AC7 /* Movement.cpp in Sources */,
 				9C8FC0021AB1958D00C4EB1F /* SDLInputHandler.cpp in Sources */,
 				9C8FBFF91AAF44E500C4EB1F /* SDLTexture.cpp in Sources */,
-				9CA8D6351D7F3F8F00E0635A /* LuaScript.cpp in Sources */,
 				9C800B281AB86673003FE2AA /* UnitView.cpp in Sources */,
 				9C800B231AB74485003FE2AA /* Tile.cpp in Sources */,
 				9C800B221AB74485003FE2AA /* Map.cpp in Sources */,
@@ -1072,6 +1069,7 @@
 				55966F471ADC163A00B36FA8 /* BuildingView.cpp in Sources */,
 				9C8FBFE41AAEF19C00C4EB1F /* Game.cpp in Sources */,
 				9C800B151AB7443C003FE2AA /* Observable.cpp in Sources */,
+				3A39A3B01D8FEEAA001D9788 /* Configuration.cpp in Sources */,
 				9CF246451CFF8F9200AF606D /* UnitFilter.cpp in Sources */,
 				9C7DEA801D35870E0045B3B8 /* ActionsBuilder.cpp in Sources */,
 				9C0A5A691AC03F0A00BF793E /* ProjectAI.cpp in Sources */,

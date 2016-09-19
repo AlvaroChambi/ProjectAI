@@ -15,7 +15,7 @@ public:
 	bool load(const char* filename);
 
 	template <typename T>
-	T get(const char * key, T default);
+	T get(const char * key, T defaultValue);
 	
 private:
 	std::unordered_map<std::string, std::string> configuration;

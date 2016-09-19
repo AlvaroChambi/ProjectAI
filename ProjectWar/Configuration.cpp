@@ -14,8 +14,7 @@ bool Configuration::load(const char* filename) {
 	
 	if ( configurationFile.is_open() ) {
 		std::string line;
-		while (std::getline(configurationFile, line))
-		{
+		while (std::getline(configurationFile, line)) {
 			std::regex expression("^([^:]+):([^:]+)$");
 			std::regex_iterator<std::string::iterator> match(line.begin(), line.end(), expression);
 			std::string key = (*match)[1];
@@ -31,10 +30,10 @@ bool Configuration::load(const char* filename) {
 }
 
 template <>
-int Configuration::get<int>(const char * key, int default) {
+int Configuration::get<int>(const char * key, int defaultValue) {
 	std::unordered_map<std::string, std::string>::iterator iterator = configuration.find(key);
 	if (iterator == configuration.end()) {
-		return default;
+		return defaultValue;
 	}
 	else {
 		return atoi(iterator->second.c_str());
@@ -42,10 +41,10 @@ int Configuration::get<int>(const char * key, int default) {
 }
 
 template<>
-std::string Configuration::get<std::string>(const char * key, std::string default) {
+std::string Configuration::get<std::string>(const char * key, std::string defaultValue) {
 	std::unordered_map<std::string, std::string>::iterator iterator = configuration.find(key);
 	if (iterator == configuration.end()) {
-		return default;
+		return defaultValue;
 	}
 	else {
 		return iterator->second;
